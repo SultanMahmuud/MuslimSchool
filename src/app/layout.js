@@ -1,14 +1,10 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Hind_Siliguri } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const hindSiliguri = Hind_Siliguri({
+  variable: "--font-hind-siliguri",
+  subsets: ["bengali", "latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata = {
@@ -18,11 +14,15 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" data-arp="">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      data-new-gr-c-s-check-loaded="14.1241.0"
+      data-gr-ext-installed=""
+        className={`${hindSiliguri.variable}  antialiased `}
       >
-        {children}
+        
+          {children}
+       
       </body>
     </html>
   );
