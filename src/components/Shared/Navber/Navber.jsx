@@ -1,8 +1,7 @@
-'use client'
+"use client";
 
-import * as React from "react"
-import Link from "next/link"
-import { useState } from "react"
+import Link from "next/link";
+import { useState } from "react";
 import {
   MenuIcon,
   XIcon,
@@ -10,149 +9,221 @@ import {
   LogInIcon,
   CircleHelpIcon,
   CircleCheckIcon,
-  CircleIcon
-} from "lucide-react"
+  CircleIcon,
+} from "lucide-react";
 
 import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
+} from "@/components/ui/navigation-menu";
 
-// 1. Define menu items
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuTrigger,
+} from "@/components/UI/dropdown-menu";
+
+import { Button } from "@/components/UI/button";
+
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+} from "@/components/ui/drawer";
+import AuthComponent from "@/components/Authcomponent/Authcomponent";
+
 const menuItems = [
-  { label: "আমাদের সম্পর্কে", href: "/" },
-  { label: "কোর্স", href: "/components" },
-  { label: "লাইভ ব্যাচ", href: "/docs" },
-  { label: "প্রাইসিং", href: "/docs" },
-  { label: "টিচার", href: "/docs" },
-  { label: "ভর্তি ফর্ম", href: "/docs" },
-  { label: "যোগাযোগ", href: "/docs" },
-]
+  { label: "আমাদের সম্পর্কে", href: "/about" },
+  { label: "কোর্স", href: "/courses" },
+  { label: "লাইভ ব্যাচ", href: "/live-batch" },
+  { label: "প্রাইসিং", href: "/pricing" },
+  { label: "টিচার", href: "/teacher" },
+  { label: "ভর্তি ফর্ম", href: "/student-registration" },
+  { label: "ফ্রি ক্লাস", href: "/trial-class" },
+  { label: "যোগাযোগ", href: "/contact" },
+  { label: "প্রশ্নোত্তর", href: "/frequently-asked-questions" },
+];
 
 const tasksSubMenu = [
-  { label: "Backlog", icon: <CircleHelpIcon className="h-4 w-4" />, href: "#" },
-  { label: "To Do", icon: <CircleIcon className="h-4 w-4" />, href: "#" },
-  { label: "Done", icon: <CircleCheckIcon className="h-4 w-4" />, href: "#" },
-]
+  {
+    label: "স্টুডেন্ট রিভিউ দেখুন",
+    href: "/review",
+    icon: <CircleHelpIcon className="h-4 w-4" />,
+  },
+  {
+    label: "লাইব্রেরি",
+    href: "/show-library",
+    icon: <CircleIcon className="h-4 w-4" />,
+  },
+  {
+    label: "রিডিং কোরআন",
+    href: "/reading-quran",
+    icon: <CircleCheckIcon className="h-4 w-4" />,
+  },
+  {
+    label: "অডিও কোরআন",
+    href: "/audio-quran",
+    icon: <CircleCheckIcon className="h-4 w-4" />,
+  },
+];
 
-export function Navbar() {
-  const [mobileOpen, setMobileOpen] = useState(false)
+const Navbar = () => {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false); // <-- updated
 
   return (
-    <header className="w-full px-4 py-3 shadow-sm border-b bg-white dark:bg-black">
-      <div className="max-w-6xl mx-auto flex items-center justify-between">
-        {/* Logo */}
-        <div className="text-3xl font-extrabold text-primary">
-          <Link href="/">MyLogo</Link>
-        </div>
+    <>
+      <header className="w-full px-4 py-3 shadow-sm border-b bg-white dark:bg-black">
+        <div className="max-w-6xl mx-auto flex items-center justify-between">
+          {/* Logo */}
+          <div className="text-3xl font-extrabold text-primary">
+            <Link href="/">MyLogo</Link>
+          </div>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center justify-center">
-          <NavigationMenu viewport={false}>
-            <NavigationMenuList className="gap-1">
-              {menuItems.map((item, idx) => (
-                <NavigationMenuItem key={idx}>
-                  <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                    <Link href={item.href} className="font-bold text-lg">
-                      {item.label}
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center justify-center">
+            <NavigationMenu>
+              <NavigationMenuList className="gap-1">
+                {menuItems.map((item, idx) => (
+                  <NavigationMenuItem key={idx}>
+                    <NavigationMenuLink
+                      asChild
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      <Link href={item.href} className="font-semibold text-base">
+                        {item.label}
+                      </Link>
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
+                ))}
+
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Link href="#" className="font-semibold text-base">
+                      আরও
                     </Link>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-              ))}
-
-              <NavigationMenuItem>
-                <NavigationMenuTrigger >আরও</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[100px] gap-2 p-2">
-                    {tasksSubMenu.map((task, idx) => (
-                      <li key={idx}>
-                        <NavigationMenuLink asChild>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-40">
+                    <DropdownMenuRadioGroup onValueChange={() => {}}>
+                      {tasksSubMenu.map((task, idx) => (
+                        <DropdownMenuRadioItem
+                          key={idx}
+                          value={task.label}
+                          className="flex items-left gap-4"
+                        >
                           <Link
                             href={task.href}
-                            className="flex gap-2 p-2 rounded-md hover:bg-muted font-bold text-base"
+                            className="font-semibold text-base"
                           >
-                            
                             {task.label}
                           </Link>
-                        </NavigationMenuLink>
-                      </li>
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
-        </div>
-
-        {/* Right actions */}
-        <div className="flex items-center gap-4">
-          <div className="hidden md:flex items-center gap-4">
-            <Link
-              href="/login"
-              className="flex items-center gap-1 text-sm font-medium hover:text-primary transition-colors"
-            >
-              <LogInIcon className="h-5 w-5" />
-              Login
-            </Link>
-            <button className="relative">
-              <BellIcon className="h-5 w-5 hover:text-primary transition-colors" />
-              <span className="absolute top-0 right-0 inline-block w-2 h-2 bg-red-500 rounded-full" />
-            </button>
+                        </DropdownMenuRadioItem>
+                      ))}
+                    </DropdownMenuRadioGroup>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </NavigationMenuList>
+            </NavigationMenu>
           </div>
 
-          {/* Mobile hamburger */}
-          <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden">
-            {mobileOpen ? <XIcon className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
-          </button>
-        </div>
-      </div>
+          {/* Right actions */}
+          <div className="flex items-center gap-4">
+            <div className="hidden md:flex items-center gap-4">
+              <button
+                onClick={() => setDrawerOpen(true)}
+                className="flex items-center gap-1 text-sm font-medium hover:text-primary transition-colors"
+              >
+                <LogInIcon className="h-5 w-5" />
+                Login
+              </button>
 
-      {/* Mobile Menu */}
-      {mobileOpen && (
-        <div className="md:hidden mt-2 space-y-2 px-4 pb-4">
-          {menuItems.map((item, idx) => (
-            <Link
-              key={idx}
-              href={item.href}
-              className="block py-2 font-bold text-lg hover:text-primary"
+              <Button className="relative bg-white">
+                <BellIcon className="h-5 w-5 hover:text-primary transition-colors" />
+                <span className="absolute top-0 right-0 inline-block w-2 h-2 bg-red-500 rounded-full" />
+              </Button>
+            </div>
+
+            {/* Hamburger Menu */}
+            <Button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="md:hidden"
             >
-              {item.label}
-            </Link>
-          ))}
+              {mobileOpen ? (
+                <XIcon className="h-6 w-6" />
+              ) : (
+                <MenuIcon className="h-6 w-6" />
+              )}
+            </Button>
+          </div>
+        </div>
 
-          {/* Mobile submenu items */}
-          <div className="border-t pt-2">
-            <p className="font-bold text-base mb-1">Tasks</p>
-            {tasksSubMenu.map((task, idx) => (
+        {/* Mobile Menu */}
+        {mobileOpen && (
+          <div className="md:hidden mt-3 space-y-2 px-4 pb-4">
+            {menuItems.map((item, idx) => (
               <Link
                 key={idx}
-                href={task.href}
-                className="flex items-center gap-2 py-1 text-base font-medium hover:text-primary"
+                href={item.href}
+                className="block py-2 font-medium text-base hover:text-primary"
               >
-                {task.icon}
-                {task.label}
+                {item.label}
               </Link>
             ))}
-          </div>
 
-          {/* Login & Notifications */}
-          <div className="border-t pt-2">
-            <Link href="/login" className="flex items-center gap-2 text-base py-2 hover:text-primary">
-              <LogInIcon className="h-4 w-4" />
-              Login
-            </Link>
-            <div className="flex items-center gap-2 py-2">
-              <BellIcon className="h-4 w-4" />
-              Notifications
+            <div className="border-t pt-3">
+              <p className="font-semibold text-sm mb-2">Tasks</p>
+              {tasksSubMenu.map((task, idx) => (
+                <Link
+                  key={idx}
+                  href={task?.href}
+                  className="flex items-center gap-2 py-1 text-sm hover:text-primary"
+                >
+                  {task?.icon}
+                  {task?.label}
+                </Link>
+              ))}
+            </div>
+
+            <div className="border-t pt-3">
+              <button
+                onClick={() => setDrawerOpen(true)}
+                className="flex items-center gap-2 text-sm py-2 hover:text-primary"
+              >
+                <LogInIcon className="h-4 w-4" />
+                Login
+              </button>
+              <div className="flex items-center gap-2 py-2">
+                <BellIcon className="h-4 w-4" />
+                Notifications
+              </div>
             </div>
           </div>
-        </div>
-      )}
-    </header>
-  )
-}
+        )}
+      </header>
+
+      {/* Right Drawer */}
+      <Drawer open={drawerOpen} onOpenChange={setDrawerOpen} direction="right" className="w-[800px]">
+        <DrawerContent className="p-4  mx-auto">
+          <DrawerHeader>
+          
+            <DrawerClose className="absolute top-4 right-4">
+              <XIcon className="h-5 w-5" />
+            </DrawerClose>
+          </DrawerHeader>
+          <div>
+           <AuthComponent/>
+          </div>
+        </DrawerContent>
+      </Drawer>
+    </>
+  );
+};
+
+export default Navbar;

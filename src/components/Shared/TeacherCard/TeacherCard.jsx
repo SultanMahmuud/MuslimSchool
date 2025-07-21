@@ -14,13 +14,13 @@ import Image from 'next/image';
 
 const TeacherCard = ({image, depart, joiningDate,institution,experience,totalClass,totalSutdents,name,qualification}) => {
   return (
-    <div className=" flex items-center justify-center  hind">
+    <div className=" flex items-center justify-center">
       <div className="bg-white max-w-sm w-full rounded-2xl shadow-lg overflow-hidden">
         {/* Profile Section with shadow box */}
         <div className="flex flex-col items-center p-6 bg-gray-50 shadow-sm">
           <div className="relative">
             <div className="w-28 h-28 rounded-full border-4 border-green-500 flex items-center justify-center text-green-500 font-bold text-sm">
-              <Image src={image} width={5} height={5}  className='w-24 h-24 rounded-full' alt="Department Icon" />
+              <Image src={image} width={100} height={100}  className='w-24 h-24 rounded-full' alt="Department Icon" />
             </div>
             <div className="absolute bottom-0 right-0  w-6 h-6 mt-1 rounded-full flex items-center justify-center">
               <Image src={Completedclass} width={5} height={5}  className="w-6 h-6 mt-1" alt="Department Icon" />

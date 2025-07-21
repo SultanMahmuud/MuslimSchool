@@ -1,0 +1,147 @@
+'use client';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import CourseCard from "@/components/Shared/CourseCard/CourseCard";
+import Link from "next/link";
+import { Button } from "@/components/UI/button";
+
+const chips = ["Tajweed", "Hadith", "Arabic", "Kids", "Adults"];
+
+export default function LiveBatch() {
+  const [search, setSearch] = useState("");
+  const [activeChip, setActiveChip] = useState("");
+  const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [categoryOptions, setCategoryOptions] = useState([]);
+  const [searchResult, setSearchResult] = useState([]);
+
+  useEffect(() => {
+    setLoading(true);
+    fetch("https://muslim-schoool.onrender.com/course")
+      .then((res) => res.json())
+      .then((data) => {
+        setCourses(data.data);
+        setSearchResult(data.data);
+        setLoading(false);
+      });
+
+    axios
+      .get(`https://muslim-schoool.onrender.com/category`)
+      .then((res) => {
+        const newData = res.data.data[0];
+        const batchCat = newData.batch.map((item) => item.category);
+        const recordedCat = newData.course.map((item) => item.category);
+        const catArray = [...batchCat, ...recordedCat];
+        const catObject = catArray.map((item) => ({
+          label: item,
+          value: item,
+        }));
+        setCategoryOptions(catObject);
+      })
+      .catch((error) => {});
+  }, []);
+
+  // Filter logic
+  const filteredCourses = courses.filter((course) => {
+    const lowerTitle = course.title.toLowerCase();
+    const matchesSearch = lowerTitle.includes(search.toLowerCase());
+    const matchesChip =
+      !activeChip || lowerTitle.includes(activeChip.toLowerCase());
+    return matchesSearch && matchesChip;
+  });
+
+  return (
+    <>
+  
+      <section className="px-4 max-w-6xl mx-auto py-16">
+        {/* Featured Courses */}
+        <h2 className="text-3xl font-bold text-center mb-6">
+          Featured Courses
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {courses.slice(0, 3).map((course, idx) => (
+            <div key={idx} className="relative">
+              <CourseCard course={course} loading={loading} />
+              {course.rank && (
+                <span
+                  className={`absolute top-4 left-4 px-3 py-1 text-sm font-medium rounded-full ${
+                    course.badge === "popular"
+                      ? "bg-yellow-400 text-white"
+                      : "bg-red-500 text-white"
+                  }`}
+                >
+                  {course.rank}
+                </span>
+              )}
+              <h3 className="text-white text-xl font-bold">{course.title}</h3>
+            </div>
+          ))}
+        </div>
+
+        {/* All Courses */}
+        <h2 className="text-3xl font-semibold text-center mb-2">
+          Join Thousands of Learners
+        </h2>
+        <p className="text-center text-gray-600 mb-4 text-[16px] font-semibold">
+          Browse by topic or search
+        </p>
+
+        {/* Category Chips */}
+        <div className="flex flex-wrap justify-center gap-2 mb-6">
+          {chips.map((chip) => (
+            <Button
+              key={chip}
+              onClick={() => setActiveChip(activeChip === chip ? "" : chip)}
+              className={`px-4 py-1 rounded-full border transition font-semibold text-[16px] ${
+                activeChip === chip
+                  ? "bg-green-100 border-green-400 text-green-800"
+                  : "bg-white border-gray-300 text-gray-800"
+              }`}
+            >
+              {chip}
+            </Button>
+          ))}
+        </div>
+
+        {/* Search Input */}
+        <div className="mb-8">
+          <input
+            type="text"
+            placeholder="Search"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-400"
+          />
+        </div>
+
+        {/* Course Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {loading ? (
+            Array.from({ length: 9 }).map((_, idx) => (
+              <div key={idx}>
+                <p>Loading...</p>
+              </div>
+            ))
+          ) : filteredCourses.length > 0 ? (
+            filteredCourses
+              .filter((course) => course.medium === "সিঙ্গেল লাইভ ক্লাস")
+              .map((course, idx) => (
+                <Link key={idx} href={`/course/${course.engTitle}`}>
+                  <CourseCard course={course} loading={loading} />
+                </Link>
+              ))
+          ) : (
+            courses
+              .filter((course) => course.medium === "লাইভ ব্যাচ")
+              .map((course, idx) => (
+                <Link key={idx} href={`/course/${course.engTitle}`}>
+                  <CourseCard course={course} loading={loading} />
+                </Link>
+              ))
+          )}
+        </div>
+      </section>
+    
+    </>
+  );
+}
