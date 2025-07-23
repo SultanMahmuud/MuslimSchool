@@ -26,6 +26,7 @@ import { FaUserFriends } from "react-icons/fa";
 import { Mail } from "lucide-react";
 import { Button } from "@/components/UI/button";
 
+
 export default function StudentRegistration({ type }) {
   const [time, setTime] = useState("Morning");
   const [days, setDays] = useState(1);
@@ -257,7 +258,7 @@ export default function StudentRegistration({ type }) {
             <label className="font-semibold block my-6">Which time? ( BD Time) </label>
             <div className="flex flex-wrap gap-2 mb-2">
               {timeOptions.map((option) => (
-                < Button
+                <Button
                   key={option}
                   type="button"
                   className={`px-4 py-2 rounded-lg font-medium border

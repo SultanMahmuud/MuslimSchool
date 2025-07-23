@@ -19,6 +19,7 @@ import Simg2 from "../../../assets/R1/R2.png";
 import Simg3 from "../../../assets/R1/R3.png";
 
 import { FaUserFriends } from "react-icons/fa";
+import { Button } from "@/components/UI/button";
 
 const TrialClass = ({ type }) =>  {
   const [time, setTime] = useState("Morning");

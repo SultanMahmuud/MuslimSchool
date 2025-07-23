@@ -1,23 +1,16 @@
 "use client";
 
-import * as React from "react";
+
 import {
   BarChart,
   Book,
-  BookOpen,
   Bot,
-  Frame,
   LogOut,
-  Map,
-  PieChart,
   SearchCode,
-  Settings2,
   SquareTerminal,
 } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
-import { NavProjects } from "@/components/nav-projects";
-import { NavUser } from "@/components/nav-user";
 
 import {
   Sidebar,
@@ -27,12 +20,11 @@ import {
   SidebarRail,
 } from "@/components/UI/sidebar";
 import { getUserInfo } from "@/services/auth.services";
-import { BsPeople } from "react-icons/bs";
 import { PiStudent } from "react-icons/pi";
 import { MdLeaderboard, MdPayment } from "react-icons/md";
 import { BiCategory, BiComment } from "react-icons/bi";
-import { FaQq, FaQuestion } from "react-icons/fa";
-import { DropdownMenuItem } from "@radix-ui/react-dropdown-menu";
+import { FaQuestion } from "react-icons/fa";
+import { ComponentProps, useMemo } from "react";
 
 // adjust path as needed
 
@@ -62,42 +54,35 @@ const baseData = {
     },
     {
       title: "Class Room",
-      url: "#",
+      url: "/dashboard/admin/class-room",
       icon: Book,
       roles: ["admin"],
       items: [
-        { title: "Create New", url: "#" },
-        { title: "Edit", url: "#" },
+        { title: "Create New", url: "/dashboard/admin/class-room/create-new" },
+        { title: "Edit", url: "/dashboard/admin/class-room/edit" },
       ],
     },
     {
       title: "Analytics",
-      url: "#",
+      url: "/dashboard/admin/analytics",
       icon: BarChart,
       roles: ["admin"],
     },
-    {
-      title: "Team Hire",
-      url: "#",
-      icon: BsPeople,
-      roles: ["admin"],
-    },
+
     {
       title: "Student Admition",
       url: "#",
       icon: PiStudent,
       roles: ["admin"],
       items: [
-        { title: "Student Create", url: "#" },
-        { title: "Call request", url: "#" },
-        { title: "Contact us", url: "#" },
-        { title: "Student Registration", url: "#" },
+        { title: "Student Create", url: "/dashboard/admin/student-create" },
+        { title: "Student Registration", url: "/dashboard/admin/registration-student" },
         { title: "Trail class Registration", url: "#" },
         { title: "Current  Registration", url: "#" },
         { title: "Current Student Delete", url: "#" },
       ],
     },
-  
+
     {
       title: "Payment",
       url: "#",
@@ -129,20 +114,14 @@ const baseData = {
       url: "#",
       icon: BiComment,
       roles: ["admin"],
-      items: [
-        { title: "Create Review", url: "#" },
-      
-      ],
+      items: [{ title: "Create Review", url: "#" }],
     },
     {
       title: "F.A Question",
       url: "#",
       icon: FaQuestion,
       roles: ["admin"],
-      items: [
-        { title: "Create FAQ", url: "#" },
-      
-      ],
+      items: [{ title: "Create FAQ", url: "#" }],
     },
     {
       title: "Category",
@@ -155,7 +134,6 @@ const baseData = {
         { title: "Library", url: "#" },
         { title: "Blog", url: "#" },
         { title: "Faq", url: "#" },
-      
       ],
     },
     {
@@ -163,10 +141,9 @@ const baseData = {
       url: "#",
       icon: MdLeaderboard,
       roles: ["admin"],
-      
     },
 
-    // 
+    //
     // {
     //   title: "Settings",
     //   url: "#",
@@ -180,13 +157,12 @@ const baseData = {
     //   ],
     // },
   ],
-  
 };
 
-export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar(props: ComponentProps<typeof Sidebar>) {
   const user = getUserInfo();
 
-  const filteredNav = React.useMemo(() => {
+  const filteredNav = useMemo(() => {
     if (!user?.role) return [];
 
     return baseData.navMain.filter((item) => item.roles?.includes(user.role));
@@ -200,10 +176,7 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
         {/* <NavProjects projects={baseData.projects} /> */}
       </SidebarContent>
       <SidebarFooter>
-         
-              <LogOut />
-           
-         
+        <LogOut />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

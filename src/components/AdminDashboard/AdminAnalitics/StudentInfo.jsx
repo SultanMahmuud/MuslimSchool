@@ -1,0 +1,147 @@
+import axios from "axios";
+import React, { useEffect, useRef, useState } from "react";
+// import { GetTotalClass } from "../../../Utilis/GetTotalClass";
+// import StudentCastCheck from "./StudentCastCheck";
+// import StudentEmailInfo from "./StudentEmailInfo";
+// import StudentInfoSms from "./StudentInfoSms";
+
+const StudentInfo = ({
+  setSearchUser,
+  setEmail,
+  searchUser,
+  sumOfQuestionMarks,
+  sumOfTotalQuestionMarks,
+  sumOfQuizMarks,
+  sumOfTotalQuizMarks,
+}) => {
+  const studentRef = useRef(null);
+  const studentRefID = useRef(null);
+  const email = studentRef?.current?.value;
+
+  const [classroom, setClassroom] = useState([]);
+  const [totalClass, setTotalClass] = useState();
+  const [studentDetail, setStudentDetail] = useState();
+  const [presentDay, setPresentDay] = useState();
+  const [totalPayment, setTotalPayment] = useState();
+
+  const FilterUser = searchUser?.data;
+
+  const getStudentByEmail = () => {
+    const email = studentRef?.current?.value;
+    fetch(`https://muslim-schoool.onrender.com/user/single/${email}`)
+      .then((res) => res.json())
+      .then((db) => {
+        setSearchUser(db);
+        setEmail(email);
+      });
+  };
+
+  const getStudentByID = () => {
+    const id = studentRefID?.current?.value;
+    fetch(`https://muslim-schoool.onrender.com/user/studentId/${id}`)
+      .then((res) => res.json())
+      .then((db) => {
+        setSearchUser(db);
+        setEmail(id);
+      });
+  };
+
+  useEffect(() => {
+    fetch(`https://muslim-schoool.onrender.com/classroom/student/${email}`)
+      .then((res) => res.json())
+      .then((data) => setClassroom(data.data));
+
+    axios
+      .get(`https://muslim-schoool.onrender.com/user/single/${email}`)
+      .then((res) => {
+        setStudentDetail(res?.data.data);
+      });
+  }, [email]);
+
+  useEffect(() => {
+    const allClasses = classroom?.map((clssrm) => clssrm.classes);
+    const flatAllClasses = allClasses?.reduce((acc, curr) => acc.concat(curr), []);
+    // const classNumberArray = flatAllClasses?.map((singleClass) =>
+    //   GetTotalClass(singleClass.startingDate, singleClass.selectedDays)
+    // );
+
+    // const total = classNumberArray?.reduce((acc, curr) => acc + curr, 0);
+    // setTotalClass(total);
+
+    const presentDate = studentDetail?.attendance?.map((attend) => attend.presentDate);
+    setPresentDay(presentDate);
+  }, [classroom]);
+
+  const activeData = [
+    { heading: "Assignment M.", count: FilterUser?.points },
+    { heading: "Total Exam", count: sumOfTotalQuestionMarks },
+    { heading: "Attended N'th", count: FilterUser?.questionMarks?.length },
+    { heading: "Quiz Marks", count: sumOfQuizMarks },
+    { heading: "Examen Quiz", count: sumOfTotalQuizMarks },
+    { heading: "Enrolled C", count: FilterUser?.Course?.length },
+    { heading: "Number", count: FilterUser?.number },
+    { heading: "Total Class", count: totalClass },
+    { heading: "Present Class", count: FilterUser?.attendance?.length },
+    {
+      heading: "Miss Class",
+      count: totalClass - FilterUser?.attendance?.length,
+    },
+    { heading: "Email", count: FilterUser?.email },
+    { heading: "ID", count: FilterUser?.studentId },
+  ];
+
+  const phoneNumber = activeData[6];
+
+  return (
+    <div className="px-3">
+      {/* Email Input */}
+      <div className="flex gap-2">
+        <input
+          ref={studentRef}
+          type="text"
+          placeholder="Enter Student Email or ID"
+          className="w-full border border-gray-300 text-sm px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <button
+          onClick={getStudentByEmail}
+          className="bg-blue-600 text-white px-4 py-2 text-sm rounded-md shadow"
+        >
+          Check
+        </button>
+      </div>
+
+      {/* ID Input */}
+      <div className="flex gap-2 mt-3">
+        <input
+          ref={studentRefID}
+          type="text"
+          placeholder="Enter Student ID"
+          className="w-full border border-gray-300 text-sm px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <button
+          onClick={getStudentByID}
+          className="bg-blue-600 text-white px-4 py-2 text-sm rounded-md shadow"
+        >
+          Check
+        </button>
+      </div>
+
+      {/* Stats Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 mt-4">
+        {activeData?.map((element, index) => (
+          <div key={index} className="bg-white rounded-md shadow p-3">
+            {/* <StudentCastCheck element={element} searchUser={FilterUser?.avatar} /> */}
+          </div>
+        ))}
+      </div>
+
+      {/* Actions */}
+      <div className="flex justify-around items-center mt-6">
+        {/* <StudentEmailInfo email={FilterUser?.email} primary="Send email" /> */}
+        {/* <StudentInfoSms row={phoneNumber} primary="Send SMS" /> */}
+      </div>
+    </div>
+  );
+};
+
+export default StudentInfo;

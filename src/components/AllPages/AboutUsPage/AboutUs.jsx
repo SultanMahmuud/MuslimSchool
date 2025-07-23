@@ -1,4 +1,4 @@
-import Link from "next/link";
+
 import AboutAndDetails from "./AboutAndDetails";
 import Abouttopbar from "./AboutTopBar";
 import MostPopularCourses from "../Homepage/MostPopularCourses/MostPopularCourses";
@@ -10,7 +10,7 @@ const About = () => {
         
         <AboutAndDetails />
         <Abouttopbar />
-        <MostPopularCourses />
+        {/* <MostPopularCourses /> */}
       </div>
     </>
   );
