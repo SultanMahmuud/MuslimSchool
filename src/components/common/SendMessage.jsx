@@ -9,13 +9,20 @@ import {
 } from "@/components/UI/dropdown-menu"
 import {
   Dialog,
-
 } from "@/components/UI/dialog"
 
 import RegistrationAllSendSms from "./RegistrationAllSendSms"
+import StudentEmailInfo from "./StudentEmailInfo"
+
 
 const SendMessage = ({ data }) => {
   const [open, setOpen] = useState(false)
+  const [type, setType] = useState(null)
+
+  const handleOpen = (selectedType) => {
+    setType(selectedType)
+    setOpen(true)
+  }
 
   return (
     <>
@@ -27,18 +34,19 @@ const SendMessage = ({ data }) => {
         </DropdownMenuTrigger>
 
         <DropdownMenuContent className="w-64 p-2">
-          <DropdownMenuItem onSelect={() => setOpen(true)}>
+          <DropdownMenuItem onSelect={() => handleOpen("sms")}>
             <span className="w-full">Open SMS Dialog</span>
           </DropdownMenuItem>
-          <DropdownMenuItem onSelect={() => setOpen(true)}>
+          <DropdownMenuItem onSelect={() => handleOpen("mail")}>
             <span className="w-full">Open Mail</span>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
 
-      {/* Dialog rendered outside of dropdown */}
+      {/* Conditional Dialog Content */}
       <Dialog open={open} onOpenChange={setOpen}>
-      <RegistrationAllSendSms row={{phoneNumber:data.number}} email={data.email}/>
+        {type === "sms" && <RegistrationAllSendSms row={{ phoneNumber: data.number }} />}
+        {type === "mail" && <StudentEmailInfo email={data.email} />}
       </Dialog>
     </>
   )

@@ -68,11 +68,11 @@ const FAQ = ({ current }) =>{
   return (
     <div className="pb-12 px-4 max-w-3xl mx-auto">
       <div className="mb-10 text-center">
-        <h2 className="text-3xl font-extrabold text-gray-900 hind">
-          প্রায়ই জিজ্ঞেস করা প্রশ্ন
+        <h2 className="text-3xl font-extrabold">
+          <span className="text-primary">প্রায়ই </span> <span className="base1">জিজ্ঞেস করা প্রশ্ন</span>
         </h2>
         {!current && (
-          <p className="text-gray-600 mt-2 hind">
+          <p className="base1 text-lg font-semibold mt-2 hind">
            সম্ভব্য সমস্ত প্রশ্ন এখানে দেওয়া আছে। যদি আপনি আপনার প্রয়োজনীয় প্রশ্ন খুঁজে না পান, দয়া করে আমাদের একটি ইমেইল করুন support@muslimschoool.com এই ইমেলে । আমরা যত তাড়াতাড়ি সম্ভব আপনার সাথে যোগাযোগ করবো।
           </p>
         )}
@@ -98,7 +98,7 @@ const FAQ = ({ current }) =>{
             key={item.question}
             className="mb-4 border border-gray-200 rounded-lg shadow-sm"
           >
-            <Button
+            <div
               onClick={() => handleToggle(item.question)}
               className="w-full flex justify-between items-center p-4 text-left focus:outline-none"
               aria-expanded={expanded === item.question}
@@ -122,7 +122,7 @@ const FAQ = ({ current }) =>{
                   d="M19 9l-7 7-7-7"
                 />
               </svg>
-            </Button>
+            </div>
             {expanded === item.question && (
               <div className="p-4 border-t border-gray-200 text-gray-700 hind">
                 {item.answer}
@@ -136,7 +136,7 @@ const FAQ = ({ current }) =>{
         <Link href="/frequently-asked-questions" className="inline-block">
           <Button
             type="button"
-            className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-base px-6 py-2 rounded-lg transition"
+            className="flex items-center gap-2 bg-primary hover:bg-emerald-700 text-white font-semibold  px-20 py-6 rounded-lg transition text-lg"
           >
             আরও দেখুন <MdArrowRight className="text-xl" />
           </Button>

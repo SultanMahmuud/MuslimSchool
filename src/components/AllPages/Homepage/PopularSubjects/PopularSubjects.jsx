@@ -15,10 +15,10 @@ const PopularSubjects = async () => {
         <div className='max-w-6xl mx-auto'>
           {/* Header */}
           <div className="flex flex-col items-center justify-center mb-6 px-4 text-center">
-            <h2 className="hind text-[26px] lg:text-[30px] font-bold text-[#1F2937]">
+            <h2 className="hind text-[26px] lg:text-[30px] font-bold base1">
               জনপ্রিয় বিষয়সমূহ
             </h2>
-            <p className="hind text-[18px] sm:text-[15px] lg:text-[20px] font-medium text-[#4B5563] mt-2">
+            <p className="hind text-[18px] sm:text-[15px] lg:text-[20px] font-medium base2 mt-2">
               যেসব বিষয়গুলো ছাত্রদের কাছে সবচেয়ে জনপ্রিয়
             </p>
           </div>
@@ -38,10 +38,10 @@ const PopularSubjects = async () => {
                   className="w-10 h-10 object-contain"
                 />
                 <div className="flex flex-col">
-                  <p className="hind font-bold text-[16px] md:text-[20px] text-[#1F2937] text-left">
+                  <p className="hind font-bold text-[16px] md:text-[20px] base1 text-left">
                     {item.title}
                   </p>
-                  <p className="inter font-medium text-[14px] md:text-[16px] lg:text-[18px] text-[#4B5563] text-left">
+                  <p className="inter font-medium text-[14px] md:text-[16px] lg:text-[18px] base2 text-left">
                     {item.SubTitle}
                   </p>
                 </div>

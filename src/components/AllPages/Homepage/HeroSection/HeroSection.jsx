@@ -9,35 +9,33 @@ const HeroSection = () => {
     <>
       <div className="my-6">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 items-center">
             {/* Left: Text */}
             <div>
-              <p className="text-primary text-xl font-bold leading-relaxed mb-2">
-                কোরআন, হাদিস ও দ্বীনের সঠিক জ্ঞান লাভের সুযোগ দক্ষ ও অভিজ্ঞ আলেম
-                দ্বারা লাইভ ক্লাস
+              <p className="text-primary text-xl font-bold leading-relaxed">
+                সহজ উপায়ে উন্নত মানের দ্বীনি শিক্ষা।
               </p>
-              <h2 className="text-black text-xl md:text-2xl font-extrabold leading-tight mb-4">
-                ঘরে বসেই শিখুন কুরআন শিক্ষা,
+              <h2 className="base1 text-[36px] font-extrabold leading-tight">
+                দ্বীন শেখার নতুন দুনিয়ায়
                 <br />
-                আরবি ভাষা ও ইসলামি স্টাডিজ
+                আপনাকে স্বাগতম
               </h2>
-              <p className="text-base md:text-lg font-semibold text-gray-700 mb-6">
-                এখনই জয়েন করুন আমাদের প্রোগ্রামে এবং দ্বীনের জ্ঞান অর্জন করুন
-                সহজে ঘরে বসেই
+              <p className="base2 font-semibold text-[20px] mb-6">
+                সহজ উপায়ে উন্নত মানের দ্বীনি শিক্ষা নিয়ে
                 <br />
-                নিয়মিত পরীক্ষার ব্যবস্থা ও সার্টিফিকেটসহ কোর্সসমূহ
+                আমরা আছি আপনার পাশে, শিখুন প্রাণ খুলে।
               </p>
 
               <div className="flex gap-4 flex-wrap">
                 <Button
                   // onClick={JoinFreeClass}
-                  className="flex items-center gap-2 bg-yellow-400 text-black font-semibold text-lg px-6 py-3 rounded-md shadow hover:bg-yellow-500 transition"
+                  className="banner-button-1"
                 >
                   ফ্রি ক্লাস
                   <MdOutlineDoubleArrow className="text-xl" />
                 </Button>
 
-                <Button className="flex items-center gap-2 bg-primary text-white font-semibold text-lg px-6 py-3 rounded-md hover:bg-primary/90 transition">
+                <Button className="banner-button-2">
                   এখনই যোগ দিন
                   <MdOutlineDoubleArrow className="text-xl" />
                 </Button>

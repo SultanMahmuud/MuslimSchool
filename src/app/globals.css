@@ -1,10 +1,9 @@
-
-
 @import "tailwindcss";
 @import "tw-animate-css";
 
-.slick-prev:before, .slick-next:before {
-  color:  #43bc8b !important;
+.slick-prev:before,
+.slick-next:before {
+  color: #43bc8b !important;
 }
 
 @custom-variant dark (&:is(.dark *));
@@ -55,7 +54,7 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: #43bc8b;
+  --primary: #2eca7f;
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -115,8 +114,8 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 }
-body{
-   font-family: "Hind Siliguri", sans-serif;
+body {
+  font-family: "Hind Siliguri", sans-serif;
 }
 @layer base {
   * {
@@ -125,5 +124,32 @@ body{
   body {
     @apply bg-background text-foreground;
   }
+
+  .base1 {
+    color: #101828;
+  }
+  .base2 {
+    color: rgba(29, 41, 57, 0.9);
+  }
+  .navColor {
+    color: rgba(31, 49, 101);
+  }
+  
 }
 
+
+.banner-button-1 {
+  @apply font-semibold text-secondary text-[17px] lg:text-[18px] min-w-[120px]  h-[45px] lg:h-[52px] rounded-[5px] border-2 border-[#ddd] mb-2 text-center no-underline cursor-pointer transition-transform duration-500;
+}
+
+.banner-button-1:hover {
+  @apply translate-x-1 bg-gradient-to-r from-[#99e200] to-[#009b6e] text-white border-0;
+}
+
+.banner-button-2 {
+  @apply font-semibold text-black border-2 border-[#ddd] text-[17px] lg:text-[18px] w-[120px] lg:w-[150px] h-[45px] lg:h-[52px] rounded-[5px] bg-white cursor-pointer transition-transform duration-500;
+}
+
+.banner-button-2:hover {
+  @apply translate-x-1 bg-gradient-to-r from-[#99e200] to-[#009b6e] text-white;
+}

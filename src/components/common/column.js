@@ -54,7 +54,7 @@ export const columns = [
       const handleDelete = async () => {
         try {
           const id = row.original.id
-          console.log(id)
+          
           await axios.delete(`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/delete/${id}`)
           alert("Deleted successfully")
           // Optional: trigger a refetch or update table state here

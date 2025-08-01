@@ -65,7 +65,7 @@ export default function CourseCard({ course }) {
 
           {/* Love Button */}
           <div className="absolute top-2 right-2 flex items-center gap-1">
-            <Button onClick={() => handleLove(course._id)}>
+            <Button onClick={() => handleLove(course._id)} className="bg-transparent">
               {!loved ? (
                 <MdFavoriteBorder className="text-white" />
               ) : (
@@ -82,8 +82,8 @@ export default function CourseCard({ course }) {
         </div>
 
         {/* Title */}
-        <div className="px-4">
-          <h3 className="text-xl font-bold text-gray-800 mb-2">{course?.title}</h3>
+        <div className="px-2">
+          <h3 className="text-xl font-bold base1 mb-2">{course?.title}</h3>
 
           {/* Time & Seat */}
           <div className="flex flex-wrap gap-2 mb-3">
@@ -144,7 +144,7 @@ export default function CourseCard({ course }) {
               e.preventDefault();
               window.location.href = `/course/${course._id}`;
             }}
-            className="mt-4 w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-xl shadow"
+            className="banner-button-1 w-full mt-3"
           >
             Enroll Now
           </Button>

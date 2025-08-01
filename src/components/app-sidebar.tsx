@@ -5,6 +5,7 @@ import {
   BarChart,
   Book,
   Bot,
+  Library,
   LogOut,
   SearchCode,
   SquareTerminal,
@@ -22,9 +23,10 @@ import {
 import { getUserInfo } from "@/services/auth.services";
 import { PiStudent } from "react-icons/pi";
 import { MdLeaderboard, MdPayment } from "react-icons/md";
-import { BiCategory, BiComment } from "react-icons/bi";
+import { BiCategory, BiComment, BiLogIn } from "react-icons/bi";
 import { FaQuestion } from "react-icons/fa";
 import { ComponentProps, useMemo } from "react";
+import Link from "next/link";
 
 // adjust path as needed
 
@@ -49,7 +51,7 @@ const baseData = {
       roles: ["admin"],
       items: [
         { title: "Create New", url: "/dashboard/admin/course/add-course" },
-        { title: "Draft Course", url: "#" },
+        { title: "Draft Course", url: "/dashboard/admin/course/draft-course" },
       ],
     },
     {
@@ -77,9 +79,9 @@ const baseData = {
       items: [
         { title: "Student Create", url: "/dashboard/admin/student-create" },
         { title: "Student Registration", url: "/dashboard/admin/registration-student" },
-        { title: "Trail class Registration", url: "#" },
-        { title: "Current  Registration", url: "#" },
-        { title: "Current Student Delete", url: "#" },
+        { title: "Trail class Registration", url: "/dashboard/admin/trail-class" },
+        { title: "Current  Registration", url: "/dashboard/admin/current-student" },
+        { title: "Current Student Delete", url: "/dashboard/admin/current-student-delete" },
       ],
     },
 
@@ -89,10 +91,10 @@ const baseData = {
       icon: MdPayment,
       roles: ["admin"],
       items: [
-        { title: "Student Payment", url: "#" },
-        { title: "Teacher Payment", url: "#" },
-        { title: "All Payment ", url: "#" },
-        { title: "Student Monthly pay", url: "#" },
+        { title: "Student Payment", url: "/dashboard/admin/student-payment" },
+        { title: "Teacher Payment", url: "/dashboard/admin/teacher-payment" },
+        { title: "All Payment ", url: "/dashboard/admin/all-payment" },
+        { title: "Student Monthly pay", url: "/dashboard/admin/student-monthly-pay" },
       ],
     },
     {
@@ -101,44 +103,51 @@ const baseData = {
       icon: SearchCode,
       roles: ["admin"],
       items: [
-        { title: "Content", url: "#" },
-        { title: "Admin Setting", url: "#" },
-        { title: "Student Management ", url: "#" },
-        { title: "Teacher Management", url: "#" },
-        { title: "Message", url: "#" },
-        { title: "Add Teacher", url: "#" },
+        { title: "Content", url: "/dashboard/admin/content" },
+        { title: "Admin Setting", url: "/dashboard/admin/admin-settings" },
+        { title: "Student Management ", url: "/dashboard/admin/student-management" },
+        { title: "Teacher Management", url: "/dashboard/admin/teacher-management" },
+        { title: "Add Teacher", url: "/dashboard/admin/add-teacher" },
       ],
     },
     {
-      title: "Add Review",
-      url: "#",
+      title: "Blog",
+      url: "/dashboard/admin/blog",
+      icon: BiLogIn,
+      roles: ["admin"],
+      items: [{ title: "Create Blog", url: "/dashboard/admin/blog/add-blog" }],
+    },
+    {
+      title: "Library",
+      url: "/dashboard/admin/library",
+      icon: Library,
+      roles: ["admin"],
+      items: [{ title: "Add book", url: "/dashboard/admin/library/add-book" }],
+    },
+    {
+      title: "All Reviews",
+      url: "/dashboard/admin/add-review",
       icon: BiComment,
       roles: ["admin"],
-      items: [{ title: "Create Review", url: "#" }],
+      items: [{ title: "Create Review", url: "/dashboard/admin/add-review/create" }],
     },
     {
       title: "F.A Question",
-      url: "#",
+      url: "/dashboard/admin/faqs",
       icon: FaQuestion,
       roles: ["admin"],
-      items: [{ title: "Create FAQ", url: "#" }],
+      items: [{ title: "Create FAQ", url: "/dashboard/admin/faqs/create-faq" }],
     },
     {
       title: "Category",
-      url: "#",
+      url: "/dashboard/admin/category",
       icon: BiCategory,
       roles: ["admin"],
-      items: [
-        { title: "Course", url: "#" },
-        { title: "Batch", url: "#" },
-        { title: "Library", url: "#" },
-        { title: "Blog", url: "#" },
-        { title: "Faq", url: "#" },
-      ],
+     
     },
     {
       title: "Leader Board",
-      url: "#",
+      url: "/dashboard/admin/leader-board",
       icon: MdLeaderboard,
       roles: ["admin"],
     },
@@ -170,7 +179,7 @@ export function AppSidebar(props: ComponentProps<typeof Sidebar>) {
 
   return (
     <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader>Muslim School</SidebarHeader>
+      <SidebarHeader><Link href='/' className="text-2xl font-bold">Muslim School</Link></SidebarHeader>
       <SidebarContent>
         <NavMain items={filteredNav} />
         {/* <NavProjects projects={baseData.projects} /> */}

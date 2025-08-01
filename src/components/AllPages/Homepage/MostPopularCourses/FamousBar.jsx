@@ -19,7 +19,7 @@ const FamousBar = () => {
           <div
             key={page}
             onClick={() => setActivePage(page)}
-            className={`hind px-3 py-2 rounded-md font-semibold text-[16px] cursor-pointer transition-all duration-300 ${
+            className={`hind px-3 py-2 rounded-md base2 font-semibold text-[16px] cursor-pointer transition-all duration-300 ${
               activePage === page
                 ? "bg-white shadow-lg"
                 : "bg-[#EFF3F1] hover:bg-white"

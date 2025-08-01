@@ -1,12 +1,18 @@
-import AddCourse from '@/components/AdminDashboard/AdminCourse/AddCourse'
-import React from 'react'
+"use client";
 
-const page = () => {
+import dynamic from "next/dynamic";
+import React from "react";
+
+const AddCourse = dynamic(() => import('@/components/AdminDashboard/AdminCourse/AddCourse'), {
+  ssr: false,
+});
+
+const Page = () => {
   return (
     <div>
-      <AddCourse/>
+      <AddCourse />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default Page;

@@ -10,7 +10,7 @@ const About = () => {
         
         <AboutAndDetails />
         <Abouttopbar />
-        {/* <MostPopularCourses /> */}
+        <MostPopularCourses />
       </div>
     </>
   );

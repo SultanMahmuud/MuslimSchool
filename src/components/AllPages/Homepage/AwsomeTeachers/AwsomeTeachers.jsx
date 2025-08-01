@@ -20,15 +20,15 @@ const AwsomeTeachers = async ({isLoading=false}) => {
     <div className="px-4 md:px-10 lg:px-16 py-10">
       {/* Section Heading */}
       <div className="text-center mb-10">
-        <h2 className="hind text-2xl sm:text-xl lg:text-3xl font-bold text-[#1F2937]">
+        <h2 className="hind text-2xl sm:text-xl lg:text-3xl font-bold base1">
           আপনার পাশে আছে অসাধারণ শিক্ষক-শিক্ষিকাবৃন্দ
         </h2>
-        <p className="hind text-lg sm:text-sm lg:text-xl text-[#4B5563] mt-2 font-medium">
+        <p className="hind text-lg sm:text-sm lg:text-xl base2 mt-2 font-medium">
           আপনি পাচ্ছেন সাবজেক্টের সেরা টিচার ফলে কঠিন টপিকও পানির মতো সহজ মনে হবে
         </p>
 
         <Link href="/teacher">
-          <Button className="mt-5 inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-2 rounded-full font-semibold text-base transition-all duration-300">
+          <Button className="mt-5 inline-flex items-center gap-2 bg-primary hover:bg-emerald-600 text-white px-6 py-2 rounded-full font-semibold text-base transition-all duration-300">
             সকল শিক্ষক দেখুন
             <MdArrowRight className="text-xl" />
           </Button>

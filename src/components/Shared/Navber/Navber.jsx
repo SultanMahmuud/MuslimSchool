@@ -18,7 +18,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
+} from "@/components/UI/navigation-menu";
 
 import {
   DropdownMenu,
@@ -36,7 +36,7 @@ import {
   DrawerContent,
   DrawerHeader,
   DrawerTitle,
-} from "@/components/ui/drawer";
+} from "@/components/UI/drawer";
 import AuthComponent from "@/components/Authcomponent/Authcomponent";
 
 const menuItems = [
@@ -80,7 +80,7 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="w-full px-4 py-3 shadow-sm border-b bg-white dark:bg-black">
+      <header className="w-full px-4 py-3 shadow-sm border-b bg-white dark:bg-black sticky top-0 z-50">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           {/* Logo */}
           <div className="text-3xl font-extrabold text-primary">
@@ -90,14 +90,14 @@ const Navbar = () => {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center justify-center">
             <NavigationMenu>
-              <NavigationMenuList className="gap-1">
+              <NavigationMenuList className="">
                 {menuItems.map((item, idx) => (
                   <NavigationMenuItem key={idx}>
                     <NavigationMenuLink
                       asChild
-                      className={navigationMenuTriggerStyle()}
+                      className={navigationMenuTriggerStyle() }
                     >
-                      <Link href={item.href} className="font-semibold text-base">
+                      <Link href={item.href} className="font-semibold navColor text-[16px] hover:navColor">
                         {item.label}
                       </Link>
                     </NavigationMenuLink>
@@ -106,7 +106,7 @@ const Navbar = () => {
 
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Link href="#" className="font-semibold text-base">
+                    <Link href="#" className="font-semibold navColor text-lg">
                       আরও
                     </Link>
                   </DropdownMenuTrigger>
@@ -120,7 +120,7 @@ const Navbar = () => {
                         >
                           <Link
                             href={task.href}
-                            className="font-semibold text-base"
+                            className="font-semibold navColor text-base"
                           >
                             {task.label}
                           </Link>

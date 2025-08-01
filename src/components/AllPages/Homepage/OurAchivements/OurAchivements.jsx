@@ -8,10 +8,10 @@ const OurAchivements = async () => {
 
   return (
     <div className="py-8 px-4">
-      <h2 className="text-center text-2xl md:text-3xl font-bold text-gray-800 hind">
+      <h2 className="text-center text-2xl md:text-3xl font-bold  base1">
         আমাদের অর্জনসমূহ
       </h2>
-      <p className="text-center text-sm md:text-lg font-medium text-gray-600 mt-2 mb-6 hind">
+      <p className="text-center text-sm md:text-[20px] font-medium base2 mt-2 mb-6 hind">
         আল্লাহর রহমতে, আমাদের আপ্রান চেষ্টা ও শিক্ষার্থীদের ভালোবাসায় আমরা এগিয়ে যাচ্ছি
       </p>
 

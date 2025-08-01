@@ -49,7 +49,7 @@ export default function HowToGetStart() {
       <div className="absolute -bottom-24 -right-36 w-80 h-64 bg-sky-100 rounded-[50%_60%_40%_50%]" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-4">
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-slate-800 mb-10 hind">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center base1 mb-10 hind">
           কিভাবে শুরু করবেন
         </h2>
 
@@ -65,7 +65,7 @@ export default function HowToGetStart() {
                 >
                   <img src={step.icon} alt={step.title} className="w-8 h-8" />
                 </div>
-                <h3 className="text-lg font-semibold text-slate-800 mt-3">
+                <h3 className="text-xl font-semibold text-slate-800 mt-3">
                   {step.title}
                 </h3>
                 <p className="text-[15px] text-green-800 font-medium mt-1 mb-3 px-2">
@@ -74,7 +74,7 @@ export default function HowToGetStart() {
 
                 <Button
                   type="button"
-                  className="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-sm px-5 py-2 rounded-xl flex items-center gap-2 transition duration-200"
+                  className="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-[16px] px-8 py-6 rounded-xl flex items-center gap-2 transition duration-200"
                 >
                   {step?.buttonText}
                   <TbClick className="text-lg" />

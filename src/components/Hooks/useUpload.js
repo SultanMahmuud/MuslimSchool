@@ -1,32 +1,35 @@
-import axios from 'axios';
 import { useState } from 'react';
-// import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const useUpload = () => {
-  const [file, setFile] = useState();
+  const [file, setFile] = useState(null);
   const [url, setUrl] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
-    setLoading(true);
     e.preventDefault();
-    const formData = new FormData();
-    formData.append('file', file);
+    if (!file) return;
 
-    // sending to the server
-    const res = await axios.post(`${`${process.env.NEXT_PUBLIC_API_BASE_URL}/images`}`, formData);
-    setLoading(false);
-    alert('File is uploaded');
-    setUrl(res.data);
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      setLoading(true);
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/images`, formData);
+      setUrl(res.data); // Ensure your API responds with the uploaded file URL
+      setLoading(false);
+    } catch (error) {
+      console.error("Upload failed", error);
+      setLoading(false);
+    }
   };
 
   return {
-    handleSubmit,
-    setFile,
     file,
+    setFile,
     url,
     loading,
-    setUrl
+    handleSubmit,
   };
 };
 

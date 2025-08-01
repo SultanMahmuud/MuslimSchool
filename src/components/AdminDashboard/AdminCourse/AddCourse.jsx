@@ -1,125 +1,17 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import CourseDesc from "./CourseDesc";
+import AddCourseTab from "@/components/AdminDashboard/AdminCourse/AddCourseTab/AddCourseTab";
+import CourseCurriculum from "./CourseCurriculum";
+import CourseFaq from "./CourseFaq";
+import Announcement from "./Announcement";
+import TeacherAddBox from "./TeacherAddBox";
+import CommonFileUpload from "@/components/Shared/FileUpload/CommonFileUpload"
+
+const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 
-// Mock components - replace with your actual components
-const FileUpload = ({ url, setUrl }) => (
-  <div className="p-4">
-    <input
-      type="file"
-      onChange={(e) => setUrl(URL.createObjectURL(e.target.files[0]))}
-      className="w-full p-2 border rounded"
-    />
-    {url && (
-      <img src={url} alt="Preview" className="mt-2 w-32 h-32 object-cover" />
-    )}
-  </div>
-);
-
-const CourseDesc = ({ savedValue, setValue }) => (
-  <textarea
-    value={savedValue}
-    onChange={(e) => setValue(e.target.value)}
-    placeholder="Course Description"
-    className="w-full p-3 border rounded-lg resize-none h-32"
-  />
-);
-
-const CourseCurriculum = ({ curriculum, setCurriculum }) => (
-  <div>
-    <h3 className="text-lg font-semibold mb-3">Course Curriculum</h3>
-    <button
-      onClick={() => setCurriculum([...curriculum, { title: "", lessons: [] }])}
-      className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-    >
-      Add Module
-    </button>
-  </div>
-);
-
-const CourseFaq = ({ faq, setFaq }) => (
-  <div>
-    <h3 className="text-lg font-semibold mb-3">FAQ</h3>
-    <button
-      onClick={() => setFaq([...faq, { question: "", answer: "" }])}
-      className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
-    >
-      Add FAQ
-    </button>
-  </div>
-);
-
-const Announcement = ({ setAnnouncement }) => (
-  <textarea
-    onChange={(e) => setAnnouncement(e.target.value)}
-    placeholder="Course Announcement"
-    className="w-full p-3 border rounded-lg resize-none h-24"
-  />
-);
-
-const AddCourseTab = ({ com1, com2, com3, com5, com6, com7, com8, com9 }) => {
-  const [activeTab, setActiveTab] = useState(0);
-
-  const tabs = [
-    { label: "Description", component: com1 },
-    { label: "Curriculum", component: com2 },
-    { label: "FAQ", component: com3 },
-    { label: "Announcement", component: com5 },
-    { label: "What Learn", component: com6 },
-    { label: "What You Get", component: com7 },
-    { label: "For Whom", component: com8 },
-    { label: "Why Choose", component: com9 },
-  ];
-
-  return (
-    <div className="w-full">
-      <div className="flex border-b mb-4 overflow-x-auto">
-        {tabs.map((tab, index) => (
-          <button
-            key={index}
-            onClick={() => setActiveTab(index)}
-            className={`px-4 py-2 whitespace-nowrap ${
-              activeTab === index
-                ? "border-b-2 border-blue-500 text-blue-600"
-                : "text-gray-600 hover:text-gray-800"
-            }`}
-          >
-            {tab.label}
-          </button>
-        ))}
-      </div>
-      <div className="p-4">{tabs[activeTab].component}</div>
-    </div>
-  );
-};
-
-const TeacherAddBox = ({ setTeacher, teacher, selectWrapper }) => (
-  <div className="shadow-md rounded-lg bg-white">
-    <select
-      onChange={(e) => setTeacher(e.target.value)}
-      className="w-full p-3 rounded-lg border-none outline-none"
-    >
-      <option value="">Select Teacher</option>
-      {/* {teacher.map((t, index) => (
-        <option key={index} value={t.id}>
-          {t.name}
-        </option>
-      ))} */}
-    </select>
-  </div>
-);
-
-const SeeFAQ = ({ data }) => (
-  <div className="mt-4">
-    {data.map((faq, index) => (
-      <div key={index} className="border-b pb-2 mb-2">
-        <h4 className="font-semibold">Q: {faq.question}</h4>
-        <p className="text-gray-600">A: {faq.answer}</p>
-      </div>
-    ))}
-  </div>
-);
 
 const AddCourse = ({ setValue }) => {
   const [courseTitle, setCourseTitle] = useState("");
@@ -178,9 +70,6 @@ const AddCourse = ({ setValue }) => {
     { uploadUrl: "", title: "", subtitle: "", layout: "" },
   ]);
 
-  // Mock lesson data
-  const [lesson, setLesson] = useState({});
-
   const renderCourseFutures = () => {
     const fields = [];
     for (let i = 1; i <= 10; i++) {
@@ -207,7 +96,7 @@ const AddCourse = ({ setValue }) => {
 
   useEffect(() => {
     axios
-      .get("https://muslim-schoool.onrender.com/category")
+      .get(`${BASE_URL}/category`)
       .then(function (response) {
         const data = response?.data?.data[0];
         const newCate = data?.batch?.concat(data.course);
@@ -246,7 +135,7 @@ const AddCourse = ({ setValue }) => {
     });
   };
 
-  const handlePublish = (courseType) => {
+  const handlePublish = async (courseType) => {
     const newCourse = {
       title: courseTitle,
       subTitle: subtitle,
@@ -267,56 +156,64 @@ const AddCourse = ({ setValue }) => {
       curriculum: curriculum,
       FAQ: faq,
       rank: courseRank,
-      visibility,
-      announcement,
+      visibility: visibility,
+      announcement: announcement,
       courseType: courseType,
-      featuredVideo,
-      courseFuture,
+      featuredVideo: featuredVideo,
+      courseFuture: courseFuture,
       courseTime: courseTime,
       courseSeat: courseSeat,
       courseDay: courseDate,
       singleHighlighter: singleHighlighter,
-      banPrice,
-      banSalePrice,
-      teacherName,
-      studentTotal,
-      whatLearn,
-      whatYouGet,
-      courseForWhom,
-      courseWhy,
-      PromoCode,
-      PromoPercentage,
+      banPrice: banPrice,
+      banSalePrice: banSalePrice,
+      teacherName: teacherName,
+      studentTotal: studentTotal,
+      whatLearn: whatLearn,
+      whatYouGet: whatYouGet,
+      courseForWhom: courseForWhom,
+      courseWhy: courseWhy,
+      PromoCode: PromoCode,
+      PromoPercentage: PromoPercentage,
     };
 
-    console.log("Course data:", newCourse);
+    try {
+      const response = await axios.post(
+        `${BASE_URL}/course`,
+        newCourse
+      );
 
-    // Reset form
-    setCourseTime("");
-    setCourseDesc("");
-    setCourseTitle("");
-    setSubtitle("");
-    setPrice("");
-    setSalePrice("");
-    setDuration("");
-    setArticle("");
+     
+      alert(
+        `Course ${
+          courseType === "draft" ? "saved as draft" : "published"
+        } successfully!`
+      );
 
-    // Mock course creation - replace with actual API call
-    alert(
-      `Course ${
-        courseType === "draft" ? "saved as draft" : "published"
-      } successfully!`
-    );
+      // Reset form fields
+      setCourseTime("");
+      setCourseDesc("");
+      setCourseTitle("");
+      setSubtitle("");
+      setPrice("");
+      setSalePrice("");
+      setDuration("");
+      setArticle("");
 
-    if (setValue) {
-      setValue("1");
+      if (setValue) {
+        setValue("1");
+      }
+    } catch (error) {
+      console.error("Error creating course:", error);
+      alert("Failed to create course. Please try again.");
     }
   };
 
   useEffect(() => {
     axios
-      .get("https://muslim-schoool.onrender.com/user/role/teacher")
+      .get(`${BASE_URL}/user/role/teacher`)
       .then((res) => {
-        setTeacher(res?.data || []);
+        setTeacher(res?.data.data || []);
       })
       .catch((error) => {
         console.error("Error fetching teachers:", error);
@@ -329,7 +226,6 @@ const AddCourse = ({ setValue }) => {
 
   return (
     <div className="min-h-screen w-full">
-      
       <div className="xl:w-[1100px] mx-auto">
         <h3 className="text-2xl p-5 font-semibold">Create Course</h3>
         <div className="flex flex-col">
@@ -617,7 +513,7 @@ const AddCourse = ({ setValue }) => {
                 />
               </div>
 
-              <SeeFAQ data={faq} />
+           
             </div>
           </div>
 
@@ -628,7 +524,7 @@ const AddCourse = ({ setValue }) => {
 
               {/* Featured Image Upload */}
               <div className="mb-6">
-                <FileUpload url={featuredImage} setUrl={setFeaturedImage} />
+                <CommonFileUpload url={featuredImage} setUrl={setFeaturedImage} />
               </div>
               <div className="flex gap-2 w-full justify-between">
                 {/* Course Medium */}
@@ -696,7 +592,7 @@ const AddCourse = ({ setValue }) => {
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Teacher
                   </label>
-                  <TeacherAddBox  setTeacher={setTeacher} teacher={teacher} />
+                  <TeacherAddBox setTeacher={setTeacher} teacher={teacher} />
                 </div>
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -713,7 +609,9 @@ const AddCourse = ({ setValue }) => {
 
               {/* Price Section */}
               <div className="mb-6">
-                <h4 className="block text-2xl font-bold text-gray-700 mb-2">Price Section</h4>
+                <h4 className="block text-2xl font-bold text-gray-700 mb-2">
+                  Price Section
+                </h4>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -785,10 +683,9 @@ const AddCourse = ({ setValue }) => {
                 </div>
               </div>
 
-              
-                      <label className="block text-2xl font-bold text-gray-700 mb-2">
-                   Student Facility
-                  </label>
+              <label className="block text-2xl font-bold text-gray-700 mb-2">
+                Student Facility
+              </label>
               {/* Additional Fields */}
               <div className="flex  gap-4 mb-4 w-full justify-between">
                 <div>
@@ -803,7 +700,7 @@ const AddCourse = ({ setValue }) => {
                     placeholder="Total Lessons"
                   />
                 </div>
-                  <div>
+                <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Total Students
                   </label>
@@ -838,9 +735,8 @@ const AddCourse = ({ setValue }) => {
                     <option value="Private">Private</option>
                   </select>
                 </div>
-              
               </div>
-{/* Checkboxes */}
+              {/* Checkboxes */}
               <div className="flex gap-6 mb-4">
                 <label className="flex items-center">
                   <input
@@ -863,7 +759,9 @@ const AddCourse = ({ setValue }) => {
               </div>
               {/* Course Futures */}
               <div className="mt-6">
-                <h4 className="block text-2xl font-bold text-gray-700 mb-2">Course Futures</h4>
+                <h4 className="block text-2xl font-bold text-gray-700 mb-2">
+                  Course Futures
+                </h4>
                 <div className="flex flex-wrap -mx-2">
                   {renderCourseFutures()}
                 </div>

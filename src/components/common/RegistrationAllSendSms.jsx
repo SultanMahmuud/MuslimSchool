@@ -17,7 +17,7 @@ import { Textarea } from "../UI/textarea"
 import { Button } from "../UI/button"
 
 
-const RegistrationAllSendSms = ({ row, email }) => {
+const RegistrationAllSendSms = ({ row }) => {
   const [text, setText] = useState("")
   const [to, setTo] = useState(row?.phoneNumber || "")
 

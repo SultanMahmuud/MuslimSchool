@@ -118,10 +118,10 @@ const LearningPlans = () => {
               <img src={Icon} alt={title} className="w-16 h-16 object-contain" />
             </div>
 
-            <h3 className="text-[22px] font-bold text-[rgb(16_24_40_/_90%)] text-center hind">
+            <h3 className="text-[22px] font-bold text-[rgb(16_24_40_/_90%)] text-center">
               {title}
             </h3>
-            <p className="text-[17px] font-semibold text-[rgb(29_41_57_/_90%)] text-center mb-10 hind">
+            <p className="text-[17px] font-semibold text-[rgb(29_41_57_/_90%)] text-center">
               {subtitle}
             </p>
 
@@ -138,7 +138,7 @@ const LearningPlans = () => {
 
             <Button
               onClick={() => handleChosen(title)}
-              className="mt-8 bg-green-500 text-white font-semibold rounded-full py-3 px-6 shadow-lg transition-transform duration-200 transform group-hover:scale-105"
+              className="banner-button-1 mt-5"
             >
               Get Started
             </Button>

@@ -46,6 +46,7 @@ const CreateClassRoom = () => {
       />
       <TeacherForm setTeacher={setTeacher} roomRef={roomRef} />
       <StudentForm setStudent={setStudent} />
+      
       <ImageForm
         handleClick={handleClick}
         handleSubmit={handleSubmit}
@@ -177,13 +178,13 @@ const ImageForm = ({ handleClick, handleSubmit, setFile, loading, url, file }) =
         file={file}
       />
     </div>
-    {url.length > 3 && (
+  
       <button
         onClick={handleClick}
-        className="w-full bg-blue-600 text-white py-2 rounded text-sm mt-2 hover:bg-blue-700"
+        className="w-full bg-primary text-white py-2 rounded text-sm mt-2"
       >
         Create
       </button>
-    )}
+   
   </div>
 );

@@ -17,6 +17,7 @@ const AdminClassRoom = () => {
     fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/classRoom`)
       .then((res) => res.json())
       .then((data) => {
+       
         setClassRoom(data.data);
         setSearchResult(data.data); // Update search result with fetched data
         setOpen(false);
