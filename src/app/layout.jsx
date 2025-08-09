@@ -1,6 +1,10 @@
 import { Hind_Siliguri } from "next/font/google";
 import "./globals.css";
+import dynamic from "next/dynamic";
+import { Toaster } from "sonner";
 
+
+const Providers = dynamic(() => import('@/lib/providers'));
 const hindSiliguri = Hind_Siliguri({
   variable: "--font-hind-siliguri",
   subsets: ["bengali", "latin"],
@@ -23,8 +27,10 @@ export default function RootLayout({ children }) {
         className={`${hindSiliguri.variable}  antialiased `}
       >
         
+        <Providers>
           {children}
-       
+        </Providers>
+         <Toaster />
       </body>
     </html>
   );

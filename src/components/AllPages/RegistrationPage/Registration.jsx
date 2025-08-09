@@ -25,11 +25,14 @@ import Simg3 from "../../../assets/R1/R3.png";
 import { FaUserFriends } from "react-icons/fa";
 import { Mail } from "lucide-react";
 import { Button } from "@/components/UI/button";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 
 export default function StudentRegistration({ type }) {
   const [time, setTime] = useState("Morning");
   const [days, setDays] = useState(1);
+  const navigate = useRouter();
 
   const timeOptions = [
     "7 AM",
@@ -100,12 +103,12 @@ export default function StudentRegistration({ type }) {
         setSubmit(response.data);
         if (response.data._id) {
           if (type === "student-registration") {
-            // toast("Your Registration Successful");
-            // navigate('/student-registration-registration-thank-you');
+            toast("Your Registration Successful");
+            navigate('/student-registration-registration-thank-you');
             window.location.reload();
           } else {
-            // toast("Your Registration Successful");
-            // navigate('/thank-you-student-application');
+            toast("Your Registration Successful");
+            navigate('/thank-you-student-application');
             window.location.reload();
           }
         }
@@ -321,7 +324,7 @@ export default function StudentRegistration({ type }) {
           {/* Submit */}
           <Button
             type="submit"
-            className="bannerButton2 w-full py-3 rounded-lg text-white font-semibold  transition-colors duration-300 "
+            className="banner-button-1 w-full"
 
           >
             Submit

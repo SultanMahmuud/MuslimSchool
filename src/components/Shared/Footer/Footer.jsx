@@ -1,5 +1,6 @@
 'use client'
 import { Button } from "@/components/UI/button";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import {
@@ -45,7 +46,9 @@ const Footer = () => {
         <div className="lg:w-2/3 flex flex-col  justify-between ">
           <div>
             <div className="flex items-center mb-6">
-              <img
+              <Image
+                width={48}
+                height={48}
                 src="/logo.svg"
                 alt="Muslim School Logo"
                 className="w-12 h-12 mr-4"
@@ -63,7 +66,7 @@ const Footer = () => {
             </p>
           </div>
           <div className=" p-4 rounded-lg">
-            <img src="https://www.qawmiuniversity.com/static/media/SSLCommerz-Pay-With-logo-All.6bb92f6b6d60c6b0c6d9.png" alt="SSLCommerz Payment" />
+            <Image  width={700} height={50} src="https://www.qawmiuniversity.com/static/media/SSLCommerz-Pay-With-logo-All.6bb92f6b6d60c6b0c6d9.png" alt="SSLCommerz Payment" />
           </div>
         </div>
 

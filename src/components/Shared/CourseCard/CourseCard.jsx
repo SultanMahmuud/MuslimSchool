@@ -142,7 +142,7 @@ export default function CourseCard({ course }) {
           <Button
             onClick={(e) => {
               e.preventDefault();
-              window.location.href = `/course/${course._id}`;
+              window.location.href = `/courses/${course._id}`;
             }}
             className="banner-button-1 w-full mt-3"
           >

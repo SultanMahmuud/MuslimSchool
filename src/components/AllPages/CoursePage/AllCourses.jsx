@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import CourseCard from '@/components/Shared/CourseCard/CourseCard';
 import { Button } from '@/components/UI/button';
+import Link from 'next/link';
 
 
 
@@ -114,7 +115,9 @@ export default function AllCourses() {
               ))
             : filteredCourses.length > 0
             ? filteredCourses.map((course, _id) => (
-                <CourseCard key={_id} course={course} loading={false} />
+                <Link key={_id} href={`/courses/${course._id}`}>
+                  <CourseCard course={course} loading={false} />
+                </Link>
               ))
             : (
               <p className="text-center text-gray-500 col-span-full">

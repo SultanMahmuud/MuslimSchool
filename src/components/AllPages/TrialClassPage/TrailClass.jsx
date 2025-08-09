@@ -20,11 +20,14 @@ import Simg3 from "../../../assets/R1/R3.png";
 
 import { FaUserFriends } from "react-icons/fa";
 import { Button } from "@/components/UI/button";
+import Image from "next/image";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const TrialClass = ({ type }) =>  {
   const [time, setTime] = useState("Morning");
   const [days, setDays] = useState(1);
-
+const navigate = useRouter();
   const timeOptions = [
     "7 AM",
     "8 AM",
@@ -93,12 +96,12 @@ const TrialClass = ({ type }) =>  {
         setSubmit(response.data);
         if (response.data._id) {
           if (type === "student-registration") {
-            // toast("Your Registration Successful");
-            // navigate('/student-registration-registration-thank-you');
-            // window.location.reload();
+            toast("Your Registration Successful");
+            navigate('/student-registration-registration-thank-you');
+            window.location.reload();
           } else {
-            // toast("Your Registration Successful");
-            // navigate('/thank-you-student-application');
+            toast("Your Registration Successful");
+            navigate('/thank-you-student-application');
             window.location.reload();
           }
         }
@@ -109,8 +112,8 @@ const TrialClass = ({ type }) =>  {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#fffefa] px-2 hind mt-12">
-      <div className="w-full max-w-md mt-12">
+    <div className="min-h-screen flex items-center justify-center bg-[#fffefa] px-2 hind mt-12 max-w-2xl my-12 mx-auto">
+      <div className="w-full  mt-12">
         {/* Top Section with Sun Icon, Greeting, and Illustration */}
         <div className="flex flex-row justify-between items-center mb-2">
           <div>
@@ -136,21 +139,21 @@ const TrialClass = ({ type }) =>  {
             dotsClass="slick-dots slick-thumb"
           >
             <div>
-              <img
+              <Image
                 src={Simg1}
                 alt="Online Course"
                 className="w-32 h-32 object-contain mx-auto"
               />
             </div>
             <div>
-              <img
+              <Image
                 src={Simg2}
                 alt="Reading Book"
                 className="w-32 h-32 object-contain mx-auto"
               />
             </div>
             <div>
-              <img
+              <Image
                 src={Simg3}
                 alt="Studying"
                 className="w-32 h-32 object-contain mx-auto"
@@ -303,7 +306,7 @@ const TrialClass = ({ type }) =>  {
           {/* Submit */}
           <Button
             type="submit"
-            className="bannerButton2 w-full py-3 rounded-lg text-white font-semibold  transition-colors duration-300 "
+            className="banner-button-1 w-full"
 
           >
             Submit

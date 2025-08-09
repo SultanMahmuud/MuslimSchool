@@ -1,6 +1,7 @@
 'use client';
 import TeacherCard from "@/components/Shared/TeacherCard/TeacherCard";
 import { Button } from "@/components/UI/button";
+import Image from "next/image";
 import Link from "next/link";
 import{ useEffect, useState } from "react";
 
@@ -74,7 +75,7 @@ export default function TeachersSection() {
               key={i}
               className="min-w-[18rem] bg-white rounded-2xl p-6 flex-shrink-0 shadow-md"
             >
-              <img
+              <Image
                 src={t.avatar}
                 alt={t.name}
                 className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"

@@ -27,6 +27,7 @@ import courseImg from "@/assets/3 Learning Plan/Course.svg";
 import liveBatchImg from "@/assets/3 Learning Plan/Live Batch.svg";
 import privateImg from "@/assets/3 Learning Plan/Private Class.svg";
 import { Button } from "@/components/UI/button";
+import Image from "next/image";
 
 export const plans = [
   {
@@ -115,7 +116,7 @@ const LearningPlans = () => {
               </div>
             )}
             <div className="mb-6 flex justify-center">
-              <img src={Icon} alt={title} className="w-16 h-16 object-contain" />
+              <Image src={Icon} alt={title} className="w-16 h-16 object-contain" />
             </div>
 
             <h3 className="text-[22px] font-bold text-[rgb(16_24_40_/_90%)] text-center">

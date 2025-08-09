@@ -5,6 +5,12 @@ import { useForm } from 'react-hook-form';
 import { Button } from '@/components/UI/button';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 
+import { useUpdatePutResourceMutation } from '@/redux/api/curd';
+import { authRoutes } from '@/constants/end-point';
+import { tagTypes } from '@/redux/tag-types';
+
+import { toast } from 'sonner';
+
 const ForgotPass = ({ onBackToLogin }) => {
  
 
@@ -19,6 +25,7 @@ const ForgotPass = ({ onBackToLogin }) => {
   const [otp, setOtp] = useState('');
   const [message, setMessage] = useState('');
   const [toastVisible, setToastVisible] = useState(false);
+
 
   const showToast = (msg) => {
     setMessage(msg);
@@ -114,30 +121,48 @@ const ForgotPass = ({ onBackToLogin }) => {
       showToast('সার্ভার সমস্যা হয়েছে');
     }
   };
+const [forgetPass, { isLoading }] = useUpdatePutResourceMutation();
 
-  const onSubmitforgotPass = (data) => {
-    if (data.password !== data.con_password) return;
+const onSubmitforgotPass = async (data) => {
+  if (data.password !== data.con_password) {
+    toast.error("Passwords do not match!");
+    return;
+  }
 
-    const pass = {
-      password: data.password,
-      number,
-      email,
-    };
-// TODO: Implement forgot password logic here
-    // dispatch(RecoveryPassword({ pass }));
+  const pass = {
+    password: data.password,
+    number,
+    email
   };
 
-  const inputClass = 'border border-gray-300 rounded-md px-4 py-2 text-sm text-gray-700 mb-2 focus:outline-none focus:ring-2 focus:ring-green-500';
+  try {
+    const res = await forgetPass({
+      url: authRoutes.forgotPassword,
+      tags: tagTypes.auth,
+      payload: pass
+    }).unwrap();
+
+    toast.success(res?.data || "Password updated successfully!");
+   setTimeout(() => onBackToLogin(), 1500);
+    return;
+  } catch (error) {
+    console.error(error);
+    toast.error(error?.data?.error || "Failed to reset password!");
+  }
+};
+
+
+  const inputClass = 'border border-gray-300 rounded-md px-4 py-3 text-sm text-gray-700 mb-2 focus:outline-none focus:ring-2 focus:ring-green-500 w-full';
 
   return (
-    <div className="mx-auto p-4 bg-white rounded-lg shadow-sm ">
+    <div className="mx-auto p-4 bg-white rounded-lg">
       <h2 className="text-lg font-bold mb-3">পাসওয়ার্ড ভুলে গিয়েছি</h2>
 
       {showStep1 && (
-        <form onSubmit={handleSendOtp} className="space-y-3">
-          <label className="text-sm font-medium text-gray-700">
+        <form onSubmit={handleSendOtp} className="space-y-3 flex flex-col">
+          <p className="text-sm font-medium text-gray-700 text-left pt-4">
             ফোন নাম্বার বা ইমেইল দিন
-          </label>
+          </p>
           <input
             type="text"
             className={inputClass}
@@ -146,7 +171,7 @@ const ForgotPass = ({ onBackToLogin }) => {
             placeholder="মোবাইল নাম্বার বা ইমেইল দিন"
             required
           />
-          <div className="flex gap-3">
+          <div className="flex gap-3 mt-3">
             <Button type="button" onClick={onBackToLogin}>
               <ArrowLeft className="mr-1 w-4 h-4" />
               পেছনে যাই
@@ -208,7 +233,7 @@ const ForgotPass = ({ onBackToLogin }) => {
       )}
 
       {toastVisible && (
-        <div className="mt-3 text-sm text-center text-white bg-green-600 px-3 py-2 rounded-md transition">
+        <div className="mt-3 text-sm text-center  px-3 py-2 rounded-md transition">
           {message}
         </div>
       )}

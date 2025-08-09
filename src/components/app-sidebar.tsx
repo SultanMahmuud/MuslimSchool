@@ -22,11 +22,13 @@ import {
 } from "@/components/UI/sidebar";
 import { getUserInfo } from "@/services/auth.services";
 import { PiStudent } from "react-icons/pi";
-import { MdLeaderboard, MdPayment } from "react-icons/md";
+import { MdClass, MdLeaderboard, MdPayment } from "react-icons/md";
 import { BiCategory, BiComment, BiLogIn } from "react-icons/bi";
 import { FaQuestion } from "react-icons/fa";
-import { ComponentProps, useMemo } from "react";
+import {  useMemo, } from "react";
 import Link from "next/link";
+import { redirect, useRouter } from "next/navigation";
+
 
 // adjust path as needed
 
@@ -42,7 +44,7 @@ const baseData = {
       url: "/dashboard/admin/adminDashboard",
       icon: SquareTerminal,
       isActive: true,
-      roles: ["admin", "teacher"], // only shown to these roles
+      roles: ["admin"], // only shown to these roles
     },
     {
       title: "Course",
@@ -60,7 +62,7 @@ const baseData = {
       icon: Book,
       roles: ["admin"],
       items: [
-        { title: "Create New", url: "/dashboard/admin/class-room/create-new" },
+        { title: "Create New", url: "/dashboard/admin/class-room/create-new"},
         { title: "Edit", url: "/dashboard/admin/class-room/edit" },
       ],
     },
@@ -145,13 +147,52 @@ const baseData = {
       roles: ["admin"],
      
     },
+  
+  
+    
     {
-      title: "Leader Board",
-      url: "/dashboard/admin/leader-board",
-      icon: MdLeaderboard,
-      roles: ["admin"],
+      title: "My Courses",
+      url: "/dashboard/my-courses",
+      icon: Bot,
+      roles: ["teacher","student"],
     },
-
+    
+    {
+      title: "Class Room",
+      url: "/dashboard/class-room",
+      icon: MdClass,
+      roles: ["teacher", "student"],
+    },
+    {
+      title: "Annalytics",
+      url: "/dashboard/analytics",
+      icon: BarChart,
+      roles: ["teacher", "student"],
+    },
+    {
+      title: "Payment",
+      url: "/dashboard/teacher/payment",
+      icon: MdPayment,
+      roles: ["teacher"],
+    },
+    {
+      title: "Settings",
+      url: "/dashboard/settings",
+      icon: SearchCode,
+      roles: ["teacher", "student"],
+    },
+    {
+      title: "Sent Feedback",
+      url: "/dashboard/sent-feedback",
+      icon: BiComment,
+      roles: ["teacher", "student"],
+    },
+  {
+      title: "Leader Board",
+      url: "/dashboard/leader-board",
+      icon: MdLeaderboard,
+      roles: ["admin",  "student"],
+    },
     //
     // {
     //   title: "Settings",
@@ -168,21 +209,28 @@ const baseData = {
   ],
 };
 
-export function AppSidebar(props: ComponentProps<typeof Sidebar>) {
-  const user = getUserInfo();
+export function AppSidebar() {
+
+const role = getUserInfo().role;
+ 
+
+  if (!role) {
+    redirect("/");
+  }
+
 
   const filteredNav = useMemo(() => {
-    if (!user?.role) return [];
+    return baseData.navMain.filter((item) => item.roles.includes(role));
+  }, [role]);
 
-    return baseData.navMain.filter((item) => item.roles?.includes(user.role));
-  }, [user]);
 
   return (
-    <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader><Link href='/' className="text-2xl font-bold">Muslim School</Link></SidebarHeader>
+    <Sidebar collapsible="icon">
+      <SidebarHeader>
+        <Link href="/" className="text-2xl font-bold">Muslim School</Link>
+      </SidebarHeader>
       <SidebarContent>
         <NavMain items={filteredNav} />
-        {/* <NavProjects projects={baseData.projects} /> */}
       </SidebarContent>
       <SidebarFooter>
         <LogOut />

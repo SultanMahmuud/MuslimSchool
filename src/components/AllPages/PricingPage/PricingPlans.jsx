@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import sehedule from "@/assets/icons/working.png"
 import axios from "axios";
 import { Button } from "@/components/UI/button";
+import Image from "next/image";
 const daysOptions = ["2 Days", "3 Days", "4 Days", "5 Days", "6 Days"];
 const planKeys = ["30", "40", "1hr"];
 const colors = ["bg-[rgb(243_255_247)]", "bg-[rgb(243_255_247)]", "bg-[rgb(243_255_247)]"];
@@ -112,7 +113,7 @@ const PricingPlans = () => {
 
             {/* Minutes */}
             <div className="text-3xl font-extrabold text-gray-900 mb-3 mt-2 flex gap-3">
-              <img src={sehedule} className="w-8 h-8"/>{plan.minutes} min
+              <Image src={sehedule} className="w-8 h-8"/>{plan.minutes} min
             </div>
 
             {/* Features */}

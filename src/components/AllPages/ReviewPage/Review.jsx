@@ -1,5 +1,6 @@
 'use client';
 import axios from "axios";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function Review() {
@@ -73,7 +74,7 @@ export default function Review() {
                 {t.review}
               </p>
               <div className="flex items-center gap-4 mt-4">
-                <img
+                <Image
                   src={t.reviewPersonImg}
                   alt={t.personName}
                   className="w-12 h-12 rounded-full border-2 border-white shadow-md"

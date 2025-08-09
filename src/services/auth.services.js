@@ -1,7 +1,5 @@
 
 
-import { decodedToken } from '@/utils/jwt';
-
 import {
    getFromLocalStorage,
    removeFromLocalStorage,
@@ -23,13 +21,15 @@ export const getUserInfo = () => {
 
   try {
     const parsed = JSON.parse(authData); // if you're storing full user object
-    const decodedData = decodedToken(parsed.token); // assume token is stored inside the user object
+     // assume token is stored inside the user object
 
     return {
       ...parsed,
-      ...decodedData,
-      role:parsed.role
+      role: parsed.role
+
     };
+
+    
   } catch (error) {
     console.error("Failed to decode user info:", error);
     return null;

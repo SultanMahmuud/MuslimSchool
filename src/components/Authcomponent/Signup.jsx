@@ -4,12 +4,19 @@ import { useForm } from "react-hook-form";
 
 // import { toast } from "react-toastify";
 import { Button } from "@/components/UI/button";
+import { useDispatch } from "react-redux";
+import { useCreateResourceMutation } from "@/redux/api/curd";
+import { authRoutes } from "@/constants/end-point";
+import { tagTypes } from "@/redux/tag-types";
+import { setAuth } from "@/redux/features/slice/authSlice";
+import { toast } from "sonner";
+import { getUserInfo } from "@/services/auth.services";
 
 
 
 
 
-const SignUp = () => {
+const SignUp = ({ onRegisterSuccess }) => {
   const { register, handleSubmit } = useForm();
   const [number, setNumber] = useState("");
   const [otp, setOtp] = useState("");
@@ -17,9 +24,10 @@ const SignUp = () => {
   const [passwordShown, setPasswordShown] = useState(false);
   const [loginMethod, setLoginMethod] = useState("phone");
   const [step, setStep] = useState("initial");
+  const dispatch = useDispatch() // Placeholder for dispatch function, replace with actual dispatch from Redux or context
 
-  // const { user } = useSelector((state) => state.qawmiauth);
-const user = 'admin'; // Placeholder for user state, replace with actual user state management
+const user = getUserInfo(); // Assuming getUserInfo is a function that retrieves user info from local storage or state
+
   useEffect(() => {
     if (user?.name) {
       const { state } = location;
@@ -64,25 +72,42 @@ const user = 'admin'; // Placeholder for user state, replace with actual user st
     if (data.success) setStep("register");
   };
 
-  const onSubmitRegister = (data) => {
-    // dispatch(
-    //   registers({
-    //     name: data.name,
-    //     password: data.password,
-    //     email,
-    //     number,
-    //   })
-    // );
-  };
+
+  const [registerUser, { isLoading }] = useCreateResourceMutation();
+  
+ const onSubmitRegister = async (data) => {
+    try {
+      const res = await registerUser({
+        url: authRoutes.register,
+        tags: tagTypes.auth,
+        payload: {
+          email,
+          password: data.password,
+          number,
+          name: data.name
+        }
+      }).unwrap();
+
+      toast.success(res.message || "Registration successful!");
+
+      // Switch to login tab after success
+      if (onRegisterSuccess) {
+        onRegisterSuccess();
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error(error?.data?.error || "Something went wrong!");
+    }}
+
 
   return (
     <div className="">
-      <div className="w-full">
+      <div>
         {step === "initial" && (
           <>
-            <label className="text-sm font-semibold text-gray-700 mb-1">
+            <p className="text-sm  pt-4 font-semibold text-gray-700 mb-1 text-left">
               {loginMethod === "phone" ? "ফোন নাম্বার দিন" : "ইমেল এড্রেস দিন"}
-            </label>
+            </p>
             <input
               type={loginMethod === "phone" ? "text" : "email"}
               value={loginMethod === "phone" ? number : email}

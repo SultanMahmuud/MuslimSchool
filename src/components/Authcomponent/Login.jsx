@@ -4,10 +4,18 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/UI/button";
 import { cn } from "@/lib/utils";
+import { useCreateResourceMutation } from "@/redux/api/curd";
+import { setAuth } from "@/redux/features/slice/authSlice";
+import { authRoutes } from "@/constants/end-point";
+import { tagTypes } from "@/redux/tag-types";
+import { toast } from "sonner";
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
+  const dispatch = useDispatch();
+const router = useRouter();
 
-  const  user  = 'admin';
 
   const [inputValue, setInputValue] = useState("");
   const [email, setEmail] = useState("");
@@ -22,16 +30,69 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  useEffect(() => {
-    if (user?.name) {
-      const redirectPath = location.state?.from?.pathname || "/";
-      // navigate(redirectPath);
-    }
-  }, [user,  location]);
 
-  const onSubmitPass = (data) => {
+
+  const [loginUser, { isLoading }] = useCreateResourceMutation();
+  const [loading, setLoading] = useState(false);
+  const onSubmitPass = async (data) => {
    // TODO: Implement login logic here
-    // dispatch(login({ email, password: data.password, number }));
+try {
+    // Prevent multiple submissions
+    if (loading) return;
+    setLoading(true);
+
+    // Basic validation
+    if (!data.password || data.password.trim().length < 6) {
+      toast.error("Password must be at least 6 characters!");
+      return;
+    }
+    if (!email && !number) {
+      toast.error("Please provide email or phone number!");
+      return;
+    }
+
+    // Send login request
+    const response = await loginUser({
+      url: authRoutes.login,
+      tags: tagTypes.auth,
+      payload: {
+        email: email || undefined,
+        password: data.password.trim(),
+        number: number || undefined,
+      },
+    }).unwrap();
+  
+    if (!response.success) {
+      toast.error( response.error || "Login failed! Please try again.");
+      return;
+    }
+
+    // Save auth data to store
+    dispatch(
+      setAuth({
+        token: response?.token,
+        _id: response?._id,
+        name: response?.name,
+        email: response?.email,
+        number: response?.number,
+        role: response?.role,
+        isBlock: response?.isBlock,
+      })
+    );
+
+    // Success toast
+    toast.success("Login successful!");
+
+    // Redirect
+    router.push("/dashboard");
+
+  } catch (error) {
+    console.error("Login error:", error);
+    toast.error(error?.error || "Failed to login! Please try again.");
+  } finally {
+    setLoading(false);
+  }
+
   };
 
   const handleLogin = async () => {
@@ -51,7 +112,7 @@ const Login = () => {
     }
 
     try {
-      const res = await fetch("https://muslim-schoool.onrender.com/otp/check", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BaseApi}/otp/check`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ input: inputValue }),
@@ -80,10 +141,10 @@ const Login = () => {
 
   return (
     <div className="flex flex-col">
-      <div className="w-full">
+      <div className="">
         {showInitialSection && (
           <div className="space-y-3">
-            <label className="text-sm font-semibold">মোবাইল নাম্বার বা ইমেইল দিন</label>
+            <p className="text-sm font-semibold text-left pt-4">মোবাইল নাম্বার বা ইমেইল দিন</p>
             <input
               className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm font-medium"
               placeholder="মোবাইল নাম্বার বা ইমেইল দিন"
@@ -107,7 +168,7 @@ const Login = () => {
             <input
               type="password"
               className={cn(
-                "w-full border border-gray-300 rounded-md px-3 py-2 text-sm",
+                "w-full border border-gray-300 rounded-md px-3 py-2 text-sm mt-3",
                 errors.password && "border-red-500"
               )}
               placeholder="পাসওয়ার্ড দিন"

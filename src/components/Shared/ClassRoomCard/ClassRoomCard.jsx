@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
+import Image from 'next/image';
 
 
 const ClassRoomCard = ({ dashboard, element }) => {
@@ -34,9 +35,12 @@ const ClassRoomCard = ({ dashboard, element }) => {
           </p>
         </div>
 
-        <img
+        <Image
+        
           src={element?.image}
           alt="classroom"
+          width={400}
+          height={250}
           className="w-full h-40 object-cover"
         />
 
@@ -52,9 +56,11 @@ const ClassRoomCard = ({ dashboard, element }) => {
               key={index}
               className="flex items-center gap-2 bg-gray-100 rounded p-1.5 my-1 shadow-sm"
             >
-              <img
+              <Image
                 src={teacher?.avatar}
                 alt={teacher?.name}
+                width={32}
+                height={32}
                 className="w-8 h-8 rounded-full"
               />
               <p className="text-sm text-gray-700">

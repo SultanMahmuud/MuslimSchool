@@ -55,7 +55,7 @@ const FAQContainer = () => {
         <div className="mb-10 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
             Frequently Asked{' '}
-            <span className="text-blue-600">Questions</span>
+            <span className="text-primary">Questions</span>
           </h2>
           <p className="text-sm sm:text-base text-gray-500 mt-2">
             All the questions are available here. If you don't find your required question,

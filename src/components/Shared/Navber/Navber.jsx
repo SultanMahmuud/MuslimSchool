@@ -10,6 +10,7 @@ import {
   CircleHelpIcon,
   CircleCheckIcon,
   CircleIcon,
+  UserIcon,
 } from "lucide-react";
 
 import {
@@ -38,6 +39,11 @@ import {
   DrawerTitle,
 } from "@/components/UI/drawer";
 import AuthComponent from "@/components/Authcomponent/Authcomponent";
+import { getUserInfo } from "@/services/auth.services";
+import RelativeMenu from "./RelativeMenu";
+import { useDispatch } from "react-redux";
+import { logout } from "@/redux/features/slice/authSlice";
+import { useRouter } from "next/navigation";
 
 const menuItems = [
   { label: "আমাদের সম্পর্কে", href: "/about" },
@@ -75,8 +81,17 @@ const tasksSubMenu = [
 ];
 
 const Navbar = () => {
+  const dispatch = useDispatch();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false); // <-- updated
+const router = useRouter();
+  const user = getUserInfo();
+
+  const handleLogout = () => {
+    // Implement logout functionality
+    dispatch(logout());
+     router.refresh();
+  };
 
   return (
     <>
@@ -134,20 +149,24 @@ const Navbar = () => {
           </div>
 
           {/* Right actions */}
-          <div className="flex items-center gap-4">
-            <div className="hidden md:flex items-center gap-4">
-              <button
-                onClick={() => setDrawerOpen(true)}
-                className="flex items-center gap-1 text-sm font-medium hover:text-primary transition-colors"
-              >
-                <LogInIcon className="h-5 w-5" />
-                Login
-              </button>
+<div className="flex items-center gap-4">
+  <div className="hidden md:flex items-center gap-4">
+    {user ? (
+      <RelativeMenu user={user} handleLogout={handleLogout} />
+    ) : (
+      <button
+        onClick={() => setDrawerOpen(true)}
+        className="flex items-center gap-1  font-medium hover:text-primary transition-colors"
+      >
+        <LogInIcon className="h-5 w-5" />
+        লগইন
+      </button>
+    )}
 
-              <Button className="relative bg-white">
-                <BellIcon className="h-5 w-5 hover:text-primary transition-colors" />
-                <span className="absolute top-0 right-0 inline-block w-2 h-2 bg-red-500 rounded-full" />
-              </Button>
+
+
+
+             
             </div>
 
             {/* Hamburger Menu */}
@@ -199,27 +218,24 @@ const Navbar = () => {
                 <LogInIcon className="h-4 w-4" />
                 Login
               </button>
-              <div className="flex items-center gap-2 py-2">
-                <BellIcon className="h-4 w-4" />
-                Notifications
-              </div>
+              
             </div>
           </div>
         )}
       </header>
 
       {/* Right Drawer */}
-      <Drawer open={drawerOpen} onOpenChange={setDrawerOpen} direction="right" className="w-[800px]">
-        <DrawerContent className="p-4  mx-auto">
+      <Drawer open={drawerOpen} onOpenChange={setDrawerOpen} direction="right" className="">
+        <DrawerContent className="p-4  mx-auto  min-w-lg">
           <DrawerHeader>
           
             <DrawerClose className="absolute top-4 right-4">
               <XIcon className="h-5 w-5" />
             </DrawerClose>
           </DrawerHeader>
-          <div>
+          
            <AuthComponent/>
-          </div>
+     
         </DrawerContent>
       </Drawer>
     </>

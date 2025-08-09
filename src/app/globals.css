@@ -147,7 +147,7 @@ body {
 }
 
 .banner-button-2 {
-  @apply font-semibold text-black border-2 border-[#ddd] text-[17px] lg:text-[18px] w-[120px] lg:w-[150px] h-[45px] lg:h-[52px] rounded-[5px] bg-white cursor-pointer transition-transform duration-500;
+  @apply font-semibold text-black border-2 border-[#ddd] text-[17px] lg:text-[18px]  min-w-[150px]  h-[45px] lg:h-[52px] rounded-[5px] bg-white cursor-pointer transition-transform duration-500;
 }
 
 .banner-button-2:hover {

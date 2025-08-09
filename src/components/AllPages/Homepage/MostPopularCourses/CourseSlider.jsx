@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CourseCard from "@/components/Shared/CourseCard/CourseCard";
+import Link from "next/link";
 
 const sliderSettings = {
   dots: true,
@@ -30,7 +31,9 @@ const CourseSlider = ({ courses }) => {
       <Slider {...sliderSettings}>
         {courses.map((course) => (
           <div key={course.id}>
-            <CourseCard course={course} />
+            <Link href={`/courses/${course._id}`}>
+                <CourseCard course={course} />
+            </Link>
           </div>
         ))}
       </Slider>

@@ -11,7 +11,7 @@ const AuthComponent = () => {
   if (forgotPass) {
     // Show only ForgotPass when forgotPass is true
     return (
-      <div className="flex items-center justify-center h-screen">
+      <div className="flex flex-col  h-screen">
 
             <div
         className="bg-white m-6 p-6 text-center w-full max-w-md"
@@ -30,7 +30,7 @@ const AuthComponent = () => {
   }
 
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex h-screen">
  <div
       className="hind bg-white p-6 text-center w-[400px]"
       style={{
@@ -71,7 +71,10 @@ const AuthComponent = () => {
       </div>
 
       {/* Form Body */}
-      {activeTab === "login" ? <Login /> : <SignUp />}
+      {activeTab === "login" 
+  ? <Login /> 
+  : <SignUp onRegisterSuccess={() => setActiveTab("login")} />}
+
 
      {activeTab === "login"?  <button
         className={`mt-4  underline text-gray-400 transition-colors duration-200 `}

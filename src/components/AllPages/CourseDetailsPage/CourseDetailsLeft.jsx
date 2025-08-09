@@ -1,0 +1,188 @@
+import { useEffect, useState } from "react";
+// import ReactPlayer from "react-player";
+import axios from "axios";
+import CourseDetailsRight from "./CourseDetailsRight";
+import { Button } from "@/components/UI/button";
+import LearnCourseTab from "./LearnCourseTab";
+// import LearnCourseTab from "./CoursePageInside.js/LearnCourseTab";
+
+const CourseDetailsLeft = ({ data, trailClass, HandleEnrollNow }) => {
+  const [teachers, setTeachers] = useState([]);
+
+  useEffect(() => {
+    if (data?.teacherInfo?.length > 0) {
+      axios
+        .put(`${process.env.NEXT_PUBLIC_API_BASE_URL}/getByFiltered`, {
+          emails: data.teacherInfo,
+        })
+        .then((res) => {
+          setTeachers(res?.data?.data || []);
+        })
+        .catch((error) => {
+          console.error("Failed to fetch teachers", error);
+        });
+    }
+  }, [data]);
+
+  return (
+    <div className="mt-2 lg:mt-0">
+      {data?.previewVideo ? (
+        <div className="relative pt-[56.25%]">
+          {/* <ReactPlayer
+            className="absolute top-0 left-0"
+            url={data.previewVideo}
+            width="100%"
+            height="100%"
+            controls
+          /> */}
+        </div>
+      ) : (
+        <div className="mt-6">
+          <img
+            src={data?.image}
+            alt="Course Thumbnail"
+            className="w-full rounded-lg"
+          />
+        </div>
+      )}
+
+      <div className="border p-4 rounded-lg mt-4">
+        <h2 className="text-xl font-semibold mb-2">{data?.title}</h2>
+        <p className="text-gray-700 mb-4">{data?.subTitle}</p>
+
+      <div
+            style={{
+              display: "flex",
+              gap: "10px",
+              marginTop: "6px",
+              
+              justifyContent: " flex-start",
+              marginBottom: "10px",
+            }}
+          >
+            {data?.courseDay && (
+              <Button
+                style={{
+                  border: "1px solid orange",
+                  backgroundColor: "#fef0e8",
+                  padding: '0 5px',
+                  height: "35px",
+                  borderRadius: "4px",
+                  color:'black',
+                  fontSize:'16px',
+                  fontWeight:700
+                }}
+              >
+                <p>
+                  {`${data?.courseDay}`}
+                </p>
+              </Button>
+            )}
+
+            {data?.courseTime && (
+              <Button
+                style={{
+                  border: "1px solid purple",
+                  backgroundColor: "#f1e3ff",
+                 padding: '0 5px',
+                  height: "35px",
+                  borderRadius: "4px",
+                  color:'black',
+                  fontSize:'16px',
+                  fontWeight:700
+                }}
+              >
+                <p className="inter"
+                >
+                  {`${data?.courseTime}`}
+                </p>
+              </Button>
+            )}
+
+            {data?.courseSeat && (
+              <Button
+                style={{
+                  border: "1px solid orange",
+                  backgroundColor: "#fef0e8",
+                  padding: '0 5px',
+                  height: "35px",
+                  borderRadius: "4px",
+                  color:'black',
+                  fontSize:'16px',
+                  fontWeight:700
+                }}
+              >
+                <p
+                >
+                  {`${data?.courseSeat}`}
+                </p>
+              </Button>
+            )}
+          </div>
+          <div className="border border-[#ddd] rounded-[10px] p-[5px] mb-[10px] lg:mb-0 hind">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
+              {/* Instructor */}
+              <div className="flex items-center border-r lg:border-r border-[#ddd] pr-2">
+                {/* <Avatar
+                  alt="Remy Sharp"
+                  src={
+                    teachers[0]?.avatar ||
+                    "https://i.ibb.co/N9jMprL/download.jpg"
+                  }
+                /> */}
+                <div className="text-[#1C1C1E] ml-2 leading-tight">
+                  <p className="text-[16px] font-semibold font-hind">
+                    ইন্সট্রাক্টর
+                  </p>
+                  <p className="text-[18px] font-semibold font-hind">
+                    {data?.teacherName}
+                  </p>
+                </div>
+              </div>
+
+              {/* Category */}
+              <div className="flex items-center border-r lg:border-r border-[#ddd] pr-2">
+                <div className="text-[#1C1C1E] leading-tight">
+                  <p className="text-[16px] font-semibold">ক্যাটাগরি</p>
+                  <p className="text-[18px] font-semibold">{data?.category}</p>
+                </div>
+              </div>
+
+              {/* Students */}
+              <div className="flex items-center border-t lg:border-t-0 border-[#ddd] pl-10 lg:pl-0 border-r lg:border-r pr-2">
+                <div className="text-[#1C1C1E] leading-tight w-full">
+                  <p className="text-[16px] font-semibold">স্টুডেন্ট</p>
+                  <p className="text-[18px] font-semibold">
+                    {data?.studentTotal}
+                  </p>
+                </div>
+              </div>
+
+              {/* Rating */}
+              <div className="flex items-center border-t lg:border-t-0 border-[#ddd] pl-2">
+                <div className="text-[#1C1C1E] leading-tight">
+                  <p className="text-[16px] font-semibold">রেটিং</p>
+                  {/* <Rating
+                    name="size-small"
+                    size="small"
+                    readOnly
+                    defaultValue={5}
+                    precision={0.5}
+                    max={5}
+                  /> */}
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+
+      {/* Additional Tabs or Right Section */}
+      <div className="mt-6">
+        <LearnCourseTab course={data}/>
+        {/* <CourseDetailsRight data={data} /> */}
+      </div>
+    </div>
+  );
+};
+
+export default CourseDetailsLeft;
