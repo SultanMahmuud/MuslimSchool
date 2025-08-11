@@ -12,6 +12,7 @@ import {
   FaTiktok,
   FaYoutube,
 } from "react-icons/fa";
+import logo from "@/assets/Logo/Logo WH.png";
 
 
 const Footer = () => {
@@ -47,13 +48,13 @@ const Footer = () => {
           <div>
             <div className="flex items-center mb-6">
               <Image
-                width={48}
-                height={48}
-                src="/logo.svg"
+                src={logo}
                 alt="Muslim School Logo"
-                className="w-12 h-12 mr-4"
+             
+                width={100}
+                height={100}
               />
-              <h2 className="text-white text-3xl font-semibold hind">Muslim School</h2>
+             
             </div>
             <p className="text-white text-base leading-relaxed hind">
               দ্বীনের আলোয় জীবন আলোকিত হোক—স্বাগতম ইসলামের নতুন দুনিয়ায়! <br />

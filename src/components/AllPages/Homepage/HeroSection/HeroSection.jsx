@@ -1,5 +1,5 @@
 import { MdOutlineDoubleArrow } from "react-icons/md";
-import engImg from "@/assets/Banner BN V1.jpg";
+import engImg from "@/assets/Logo/Bannar/Bannar.jpg";
 import Image from "next/image";
 import { Button } from "@/components/UI/button";
 
@@ -7,8 +7,8 @@ import { Button } from "@/components/UI/button";
 const HeroSection = () => {
   return (
     <>
-      <div className="my-6">
-        <div className="max-w-6xl mx-auto">
+      <div className="mb-6">
+        <div className="max-w-7xl mx-auto bg-[#faf9f7] p-12 rounded-lg">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 items-center">
             {/* Left: Text */}
             <div>

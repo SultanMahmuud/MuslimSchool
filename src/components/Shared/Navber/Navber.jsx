@@ -44,7 +44,8 @@ import RelativeMenu from "./RelativeMenu";
 import { useDispatch } from "react-redux";
 import { logout } from "@/redux/features/slice/authSlice";
 import { useRouter } from "next/navigation";
-
+import Image from "next/image";
+import logo from "@/assets/Logo/Logo.png";
 const menuItems = [
   { label: "আমাদের সম্পর্কে", href: "/about" },
   { label: "কোর্স", href: "/courses" },
@@ -100,7 +101,7 @@ const router = useRouter();
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           {/* Logo */}
           <div className="text-3xl font-extrabold text-primary">
-            <Link href="/">MyLogo</Link>
+            <Link href="/"><Image src={logo} alt="Logo" width={128} height={128} />  </Link>
           </div>
 
           {/* Desktop Menu */}
