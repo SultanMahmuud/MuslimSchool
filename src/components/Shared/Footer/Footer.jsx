@@ -88,7 +88,7 @@ const Footer = () => {
             <h3 className="text-white text-lg font-semibold mb-4">আমাদের সাথে কথা বলুন</h3>
             <ul className="space-y-3 text-white">
              <ul className="space-y-2 text-white">
-              <li><Link href="/faq">প্রশ্নোত্তর</Link></li>
+              <li><Link href="/frequently-asked-questions">প্রশ্নোত্তর</Link></li>
               <li><Link href="/contact">যোগাযোগ করুন</Link></li>
               <li><Link href="/student-registration">দ্বীন শিখা শুরু করুন </Link></li>
             </ul>

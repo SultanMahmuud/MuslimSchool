@@ -2,9 +2,11 @@
 
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import ReactApexChart from 'react-apexcharts';
-import AnalyticsRightbar from '@/components/TeacherDashboard/Analytics/AnalyticsRightbar';
 
+import AnalyticsRightbar from '@/components/TeacherDashboard/Analytics/AnalyticsRightbar';
+import dynamic from 'next/dynamic';
+import { getUserInfo } from '@/services/auth.services';
+const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 
 const Analytics = () => {
@@ -14,10 +16,7 @@ const Analytics = () => {
   const [total, setTotal] = useState([]);
   const [sumOfQuestionMarks, setSumOfQuestionMarks] = useState(null);
   const [sumOfTotalQuestionMarks, setSumOfTotalQuestionMarks] = useState(null);
-const user = {
-    email: 'QUT7.liyas@qawmiuniversity.live',
-   
-  };
+const user = getUserInfo();
 
   useEffect(() => {
     const marks = [];

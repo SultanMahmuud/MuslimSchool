@@ -30,6 +30,7 @@ import Link from "next/link";
 import { redirect, useRouter } from "next/navigation";
 
 
+
 // adjust path as needed
 
 const baseData = {
@@ -112,13 +113,13 @@ const baseData = {
         { title: "Add Teacher", url: "/dashboard/admin/add-teacher" },
       ],
     },
-    {
-      title: "Blog",
-      url: "/dashboard/admin/blog",
-      icon: BiLogIn,
-      roles: ["admin"],
-      items: [{ title: "Create Blog", url: "/dashboard/admin/blog/add-blog" }],
-    },
+    // {
+    //   title: "Blog",
+    //   url: "/dashboard/admin/blog",
+    //   icon: BiLogIn,
+    //   roles: ["admin"],
+    //   items: [{ title: "Create Blog", url: "/dashboard/admin/blog/add-blog" }],
+    // },
     {
       title: "Library",
       url: "/dashboard/admin/library",
@@ -209,15 +210,11 @@ const baseData = {
   ],
 };
 
-export function AppSidebar() {
+export   function AppSidebar() {
 
-const role = getUserInfo().role;
- 
+  const userInfo = getUserInfo();
 
-  if (!role) {
-    redirect("/");
-  }
-
+  const role = userInfo?.role;
 
   const filteredNav = useMemo(() => {
     return baseData.navMain.filter((item) => item.roles.includes(role));

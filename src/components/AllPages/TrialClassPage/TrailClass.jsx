@@ -25,6 +25,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
 const TrialClass = ({ type }) =>  {
+  console.log(type)
   const [time, setTime] = useState("Morning");
   const [days, setDays] = useState(1);
 const navigate = useRouter();
@@ -86,7 +87,7 @@ const navigate = useRouter();
       regType: type,
       user: {
         name: user,
-        email: email,
+       
       },
     };
 
@@ -95,14 +96,14 @@ const navigate = useRouter();
       .then((response) => {
         setSubmit(response.data);
         if (response.data._id) {
-          if (type === "student-registration") {
+          if (type === "trial-class") {
             toast("Your Registration Successful");
-            navigate('/student-registration-registration-thank-you');
-            window.location.reload();
+            navigate.push('/student-registration-registration-thank-you');
+           
+            return;
           } else {
-            toast("Your Registration Successful");
-            navigate('/thank-you-student-application');
-            window.location.reload();
+            toast("Something went wrong");
+            return;
           }
         }
       })

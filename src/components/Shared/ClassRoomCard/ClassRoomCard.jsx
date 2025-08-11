@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import Link from 'next/link';
 import Image from 'next/image';
 
 
@@ -22,8 +21,7 @@ const ClassRoomCard = ({ dashboard, element }) => {
 
   return (
     <div className="w-full p-2">
-      <Link
-        href={`/${dashboard}/classRoom/${element?._id}`}
+      <div
         className="block bg-white rounded shadow-sm hover:-translate-y-2 transition-transform duration-300"
       >
         <div className="flex flex-col items-center justify-center py-3 px-2">
@@ -35,14 +33,17 @@ const ClassRoomCard = ({ dashboard, element }) => {
           </p>
         </div>
 
-        <Image
-        
-          src={element?.image}
-          alt="classroom"
-          width={400}
-          height={250}
-          className="w-full h-40 object-cover"
-        />
+       {
+        element?.image && (
+          <Image
+            src={element?.image}
+            alt="classroom"
+            width={400}
+            height={250}
+            className="w-full h-40 object-cover"
+          />
+        )}
+      </div>
 
         <div className="p-3">
           <div className="flex justify-between text-sm text-gray-600 mb-2">
@@ -56,6 +57,8 @@ const ClassRoomCard = ({ dashboard, element }) => {
               key={index}
               className="flex items-center gap-2 bg-gray-100 rounded p-1.5 my-1 shadow-sm"
             >
+
+{teacher?.avatar && (
               <Image
                 src={teacher?.avatar}
                 alt={teacher?.name}
@@ -63,6 +66,9 @@ const ClassRoomCard = ({ dashboard, element }) => {
                 height={32}
                 className="w-8 h-8 rounded-full"
               />
+            )}
+
+             
               <p className="text-sm text-gray-700">
                 <strong>Teacher:</strong> {teacher?.name}
               </p>
@@ -86,8 +92,8 @@ const ClassRoomCard = ({ dashboard, element }) => {
             </div>
           </div>
         </div>
-      </Link>
-    </div>
+      </div>
+  
   );
 };
 

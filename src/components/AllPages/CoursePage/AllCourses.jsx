@@ -111,7 +111,7 @@ export default function AllCourses() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {loading
             ? Array.from({ length: 6 }).map((_, idx) => (
-                <p>loading</p>
+                <h2 key={idx}>loading</h2>
               ))
             : filteredCourses.length > 0
             ? filteredCourses.map((course, _id) => (

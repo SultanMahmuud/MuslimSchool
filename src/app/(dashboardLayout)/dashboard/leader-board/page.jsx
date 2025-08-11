@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Avatar } from "lucide-react";
 
 const LeaderBoard = () => {
   const [selectedIndex, setSelectedIndex] = useState(1);

@@ -1,6 +1,8 @@
 import axios from "axios";
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import ReactApexChart from "react-apexcharts";
+const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
+
 const StudentQuizChart = ({
   searchUser,
   email,

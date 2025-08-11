@@ -38,7 +38,7 @@ const CommonFileUpload = ({ setUrl, url, label }) => {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div className="flex items-center gap-2 w-full">
           {label && (
-            <label className="bg-blue-600 text-white text-sm px-3 py-1 rounded-l-md whitespace-nowrap">
+            <label className="text-sm px-3 py-1 font-semibold rounded-l-md whitespace-nowrap">
               {label}
             </label>
           )}
@@ -46,7 +46,7 @@ const CommonFileUpload = ({ setUrl, url, label }) => {
           <input
             type="file"
             onChange={handleImageChange}
-            className="w-full text-sm border rounded-md px-2 py-1 file:border-none file:mr-2 file:bg-blue-600 file:text-white file:px-3 file:py-1"
+            className="w-full text-sm border rounded-md px-2 py-1 file:border-none file:mr-2 file:bg-primary file:text-white file:px-3 file:py-1"
           />
         </div>
 
@@ -63,7 +63,7 @@ const CommonFileUpload = ({ setUrl, url, label }) => {
               onClick={handleSubmit}
               disabled={loading}
               className={`text-white text-sm px-3 py-1 rounded-md ${
-                loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'
+                loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-primary'
               }`}
             >
               {loading ? (

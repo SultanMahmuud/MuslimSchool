@@ -28,6 +28,7 @@ import liveBatchImg from "@/assets/3 Learning Plan/Live Batch.svg";
 import privateImg from "@/assets/3 Learning Plan/Private Class.svg";
 import { Button } from "@/components/UI/button";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export const plans = [
   {
@@ -87,17 +88,17 @@ export const plans = [
 
 
 const LearningPlans = () => {
-  
+  const navigate = useRouter();
 
-  // const handleChosen = (title) => {
-  //   if (title === "Course") {
-  //     navigate("/courses");
-  //   } else if (title === "Live Batch") {
-  //     navigate("/live-batch");
-  //   } else {
-  //     navigate("/pricing");
-  //   }
-  // };
+  const handleChosen = (title) => {
+    if (title === "Course") {
+      navigate.push("/courses");
+    } else if (title === "Live Batch") {
+      navigate.push("/live-batch");
+    } else {
+      navigate.push("/pricing");
+    }
+  };
 
   return (
     <section className="py-16 hind">

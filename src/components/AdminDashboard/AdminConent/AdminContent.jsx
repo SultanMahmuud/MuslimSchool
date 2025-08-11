@@ -1,7 +1,9 @@
 import useUpload from '@/components/Hooks/useUpload';
+import CommonFileUpload from '@/components/Shared/FileUpload/CommonFileUpload';
 import axios from 'axios';
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { set, useForm } from 'react-hook-form';
+import { ImageForm } from '../AdminClassRoom/CreateClassRoom';
 
 
 
@@ -10,14 +12,16 @@ const Achievement = ({
   light,
 
 }) => {
-  const [firstSelectedFatured, setfirstSelectedFatured] = useState('');
+  // const [firstSelectedFatured, setfirstSelectedFatured] = useState('');
   const { handleSubmits } = useUpload();
   const { register, handleSubmit, reset } = useForm();
+const [featuredImage, setFeaturedImage] = useState('');
+
 
   const onSubmit = (data) => {
     const Newdata = {
       ...data,
-      iconImg: firstSelectedFatured,
+      iconImg: featuredImage,
     };
 
     axios
@@ -57,7 +61,7 @@ const Achievement = ({
               type="text"
               placeholder="Enter Title..."
               {...register('title', { required: true })}
-              className="w-full border px-3 py-2 rounded outline-blue-500"
+              className="w-full border px-3 py-2 rounded "
             />
           </div>
 
@@ -74,7 +78,7 @@ const Achievement = ({
               type="number"
               placeholder="Enter Number..."
               {...register('number', { required: true })}
-              className="w-full border px-3 py-2 rounded outline-blue-500"
+              className="w-full border px-3 py-2 rounded "
             />
           </div>
         </div>
@@ -88,18 +92,15 @@ const Achievement = ({
             >
               Add Image Icon
             </label>
-            <input
-              id="upload"
-              type="file"
-              onChange={img1}
-              className="block w-full text-sm text-gray-500 file:mr-4 file:py-1 file:px-2 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-            />
+          
+            <CommonFileUpload url={featuredImage} setUrl={setFeaturedImage} />
+          
           </div>
 
-          {firstSelectedFatured && (
+          {featuredImage && (
             <button
               type="submit"
-              className="mt-4 w-full bg-blue-600 text-white font-semibold py-2 rounded hover:bg-blue-700 transition"
+              className="mt-4 w-full bg-primary text-white font-semibold py-2 rounded  transition"
             >
               Publish
             </button>

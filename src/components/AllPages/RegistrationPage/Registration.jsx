@@ -104,12 +104,8 @@ export default function StudentRegistration({ type }) {
         if (response.data._id) {
           if (type === "student-registration") {
             toast("Your Registration Successful");
-            navigate('/student-registration-registration-thank-you');
-            window.location.reload();
-          } else {
-            toast("Your Registration Successful");
-            navigate('/thank-you-student-application');
-            window.location.reload();
+            navigate.push('/student-registration-registration-thank-you');
+            
           }
         }
       })

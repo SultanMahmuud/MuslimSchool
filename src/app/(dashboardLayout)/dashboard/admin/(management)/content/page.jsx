@@ -7,8 +7,8 @@ import PricingSection from "@/components/AdminDashboard/AdminConent/PriceSection
 
 
 const ContentContainer = () => {
-  const heading = 'text-blue-600 font-semibold text-lg md:text-xl mb-2 font-hind';
-  const light = 'text-blue-600 font-medium text-sm md:text-base font-hind';
+  const heading = 'font-semibold text-lg md:text-xl mb-2 font-hind';
+  const light = 'font-medium text-sm md:text-base font-hind';
   const layout = 'flex items-center gap-2';
   const inputTitle = 'bg-white shadow text-base capitalize';
   const card = 'bg-white shadow-md p-4 rounded-lg mb-4';

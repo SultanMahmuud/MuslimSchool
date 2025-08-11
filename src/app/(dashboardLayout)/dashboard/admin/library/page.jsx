@@ -2,8 +2,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { TbCurrencyTaka } from 'react-icons/tb';
-// import { alert } from 'react-toastify';
-// import UpdateLibaray from './UpdateLibaray';
+import UpdateLibrary from '@/components/AdminDashboard/AddLibrary/UpdateLibrary';
+
+
+
+
+
 
 const AdminLibrary = () => {
   const [books, setBooks] = useState([]);
@@ -22,19 +26,19 @@ const AdminLibrary = () => {
     
       setBooks(res.data.data || []);
     } catch (error) {
-      alert.error('Failed to load books');
+      alert('Failed to load books');
     }
   };
 
   // Delete a book
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`${process.env.NEXT_PUBLIC_API_BASE_URL}/books/${id}`); // replace with your API
+      await axios.delete(`${process.env.NEXT_PUBLIC_API_BASE_URL}/book/${id}`); // replace with your API
       alert.success('Book deleted successfully');
       // Remove deleted book from UI
       setBooks((prev) => prev.filter((book) => book._id !== id));
     } catch (error) {
-      alert.error('Failed to delete book');
+      alert('Failed to delete book');
     }
   };
 
@@ -42,11 +46,11 @@ const AdminLibrary = () => {
   const handleClickOpen = async (id) => {
     setItemId(id);
     try {
-      const res = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/books/${id}`); // replace with your API
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/book/${id}`); // replace with your API
       setSingleBook(res.data);
       setOpen(true);
     } catch (error) {
-      alert.error('Failed to load book details');
+      alert('Failed to load book details');
     }
   };
 
@@ -106,7 +110,7 @@ const AdminLibrary = () => {
             >
               ✕
             </button>
-            <UpdateLibaray
+            <UpdateLibrary
               itemId={itemId}
               handleClose={handleClose}
               singleBook={singleBook}

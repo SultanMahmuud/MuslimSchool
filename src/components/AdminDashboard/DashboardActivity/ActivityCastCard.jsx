@@ -1,6 +1,7 @@
 import React from "react";
 
-const ActivityCastCard = ({ element }) => {
+const ActivityCastCard = ({ element, loading }) => {
+
   return (
     <div className="col-span-1">
       <div className="bg-white rounded-md shadow p-3 flex sm:flex-row flex-col items-center sm:items-start gap-2">
@@ -14,7 +15,7 @@ const ActivityCastCard = ({ element }) => {
             {element.heading}
           </p>
           <p className="text-base sm:text-lg font-semibold text-blue-600 whitespace-nowrap">
-            {element.count}
+            {loading ? "Loading..." : element.count}
           </p>
         </div>
       </div>

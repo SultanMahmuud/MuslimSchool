@@ -1,5 +1,6 @@
 'use client';
 import useUpload from '@/components/Hooks/useUpload';
+import { getUserInfo } from '@/services/auth.services';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -21,10 +22,7 @@ const StudentSettings = () => {
   const [gender, setGender] = useState('');
 
   // Assuming userData is available in the context or props
-  const user = {
-    email: 'QUT7.liyas@qawmiuniversity.live',
-   
-  };
+ const user = getUserInfo();
 
   useEffect(() => {
     axios

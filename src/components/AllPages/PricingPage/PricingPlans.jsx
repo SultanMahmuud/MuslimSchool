@@ -6,6 +6,7 @@ import sehedule from "@/assets/icons/working.png"
 import axios from "axios";
 import { Button } from "@/components/UI/button";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 const daysOptions = ["2 Days", "3 Days", "4 Days", "5 Days", "6 Days"];
 const planKeys = ["30", "40", "1hr"];
 const colors = ["bg-[rgb(243_255_247)]", "bg-[rgb(243_255_247)]", "bg-[rgb(243_255_247)]"];
@@ -13,7 +14,7 @@ const colors = ["bg-[rgb(243_255_247)]", "bg-[rgb(243_255_247)]", "bg-[rgb(243_2
 const PricingPlans = () => {
   const [selectedDays, setSelectedDays] = useState(0);
   const [plans, setPlans] = useState([]);
-
+const navigate = useRouter();
 
 
 
@@ -36,13 +37,13 @@ const PricingPlans = () => {
   }, [selectedDays]);
 
     const handleChosen = (method) => {
-    // const newMethod = {
-    //   ...method,
-    //   selectedDays,
-    // };
-    navigate(`/student-registration`);
+    const newMethod = {
+      ...method,
+      selectedDays,
+    };
+    navigate.push(`/student-registration`);
     // handleSetLocal(newMethod);
-    // navigate(`/check-out/6300ab9c3429913af039b41a`);
+    // navigate.push(`/check-out/6300ab9c3429913af039b41a`);
   };
 
   const updatePlansByDay = (data, index) => {
@@ -113,7 +114,7 @@ const PricingPlans = () => {
 
             {/* Minutes */}
             <div className="text-3xl font-extrabold text-gray-900 mb-3 mt-2 flex gap-3">
-              <Image src={sehedule} className="w-8 h-8"/>{plan.minutes} min
+              <Image alt="Schedule Icon" src={sehedule} className="w-8 h-8"/>{plan.minutes} min
             </div>
 
             {/* Features */}
@@ -139,7 +140,7 @@ const PricingPlans = () => {
             {/* Select Button */}
 
             <Button
-              className={`w-full py-3 text-lg font-semibold rounded-xl text-white shadow-lg transition-all duration-200 active:scale-95 ${plan.btnColor}`}
+              className={`banner-button-1 w-full ${plan.btnColor}`}
               onClick={()=>handleChosen(plan)}
             >
             Select

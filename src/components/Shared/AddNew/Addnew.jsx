@@ -2,8 +2,12 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import Fileupload from "../FileUpload/FileUpload";
 import { Input } from "@/components/UI/input";
+import CommonFileUpload from "../FileUpload/CommonFileUpload";
+import { useCreateResourceMutation } from "@/redux/api/curd";
+import {  authRoutes, teacherRoutes } from "@/constants/end-point";
+import { tagTypes } from "@/redux/tag-types";
+import { toast } from "sonner";
 
 const AddNew = ({ role }) => {
   const {
@@ -21,7 +25,10 @@ const AddNew = ({ role }) => {
   const [passport, setPassport] = useState('');
   const [avatar, setAvatar] = useState('');
 
-  const onSubmit = (data) => {
+  const [registerUser, { isLoading }] = useCreateResourceMutation();
+
+
+  const onSubmit =async (data) => {
     const payload = {
       ...data,
       married,
@@ -34,10 +41,18 @@ const AddNew = ({ role }) => {
       avatar,
     };
 
-    alert("Profile Updated Successfully");
-    if (message?.data?.modifiedCount) {
-      alert(`${role} updated`);
-    }
+   const res = await registerUser({
+        url: authRoutes.register,
+        tags: tagTypes.auth,
+        payload: payload,
+      }).unwrap();
+
+      toast.success(res.message || "Registration successful!");
+
+    // alert("Profile Updated Successfully");
+    // if (message?.data?.modifiedCount) {
+    //   alert(`${role} updated`);
+    // }
   };
 
   return (
@@ -74,10 +89,10 @@ const AddNew = ({ role }) => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-4 mt-4">
-          <Fileupload setUrl={setBirthCertificate} url={birthCertificate} label="Birth Certificate" />
-          <Fileupload setUrl={setAvatar} url={avatar} label="Profile Image" />
-          <Fileupload setUrl={setNid} url={NID} label="National ID" />
-          <Fileupload setUrl={setPassport} url={passport} label="Passport" />
+          <CommonFileUpload setUrl={setBirthCertificate} url={birthCertificate} label="Birth Certificate" />
+          <CommonFileUpload setUrl={setAvatar} url={avatar} label="Profile Image" />
+          <CommonFileUpload setUrl={setNid} url={NID} label="National ID" />
+          <CommonFileUpload setUrl={setPassport} url={passport} label="Passport" />
         </div>
 
         <textarea {...register('bio')} rows="4" placeholder="Bio" className="mt-4 w-full border p-2 rounded-md dark:bg-gray-800 dark:text-white" />
@@ -149,7 +164,7 @@ const AddNew = ({ role }) => {
       <div className="flex justify-end mt-8">
         <button
           type="submit"
-          className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-2 rounded-md"
+          className="bg-primary text-white font-semibold px-6 py-2 rounded-md"
         >
           Save
         </button>

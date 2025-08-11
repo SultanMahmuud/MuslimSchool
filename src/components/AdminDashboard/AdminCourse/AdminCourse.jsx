@@ -57,7 +57,7 @@ const AdminCourse = () => {
           {courses.data.map((course) => (
              <Link key={course._id} href={`course/${course._id}`}>
              <CourseCard
-                        
+                        dashboard={true}
                         course={course}
                        
                         

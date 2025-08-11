@@ -5,9 +5,10 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 // import toast from 'react-hot-toast';
 import dynamic from 'next/dynamic';
+import CommonFileUpload from '@/components/Shared/FileUpload/CommonFileUpload';
 // import { BookCatagory } from '../../../constants';
 
-// const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
+const JoditEditor = dynamic(() => import('jodit-react'), { ssr: false });
 
 const AddBook = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -33,35 +34,8 @@ const AddBook = () => {
     setInputFields([...inputFields, '']);
   };
 
-  const handleImageUpload = async (e, setter) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const formData = new FormData();
-    formData.append('image', file);
 
-    try {
-      const res = await axios.post('https://api.imgbb.com/1/upload?key=YOUR_IMGBB_API_KEY', formData);
-      setter(res.data.data.url);
-      alert('Image uploaded');
-    } catch {
-      alert('Image upload failed');
-    }
-  };
 
-  const handleFileUpload = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const formData = new FormData();
-    formData.append('file', file);
-
-    try {
-      const res = await axios.post('https://your-upload-api.com', formData); // Replace with actual
-      setFileLink(res.data.url);
-      toast.success('File uploaded');
-    } catch {
-      alert('File upload failed');
-    }
-  };
 
   const onSubmit = async (data) => {
     const newdata = {
@@ -118,7 +92,7 @@ const AddBook = () => {
         {/* Description */}
         <div>
           <label className="block mb-1 font-medium">Description</label>
-          {/* <ReactQuill theme="snow" value={value} onChange={setValue} /> */}
+          <JoditEditor value={value} onChange={setValue} />
         </div>
 
         {/* FAQ Tabs */}
@@ -126,11 +100,10 @@ const AddBook = () => {
           {['tab1', 'tab2', 'tab3', 'tab4'].map((tab, idx) => (
             <div key={tab}>
               <label className="block mb-1 font-medium">FAQ {idx + 1}</label>
-              {/* <ReactQuill
-                theme="snow"
+              <JoditEditor
                 value={faq[tab]}
                 onChange={(val) => handleFAQChange(tab, val)}
-              /> */}
+              />
             </div>
           ))}
         </div>
@@ -148,20 +121,22 @@ const AddBook = () => {
           {[setBookMainImg1, setBookMainImg2, setBookMainImg3].map((setter, idx) => (
             <div key={idx}>
               <label className="block mb-1 font-medium">Upload Image {idx + 1}</label>
-              <input type="file" onChange={(e) => handleImageUpload(e, setter)} />
+             <CommonFileUpload url={setter} setUrl={setter} />
+
+             
             </div>
           ))}
         </div>
 
-        {/* File Upload */}
+        {/* File Upload
         <div>
           <label className="block mb-1 font-medium">Upload File</label>
-          <input type="file" onChange={handleFileUpload} />
-        </div>
+         
+        </div> */}
 
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 transition"
+          className="w-full bg-primary text-white py-3 rounded-md transition"
         >
           Add Book
         </button>

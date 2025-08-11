@@ -14,7 +14,7 @@ import { MdFavoriteBorder } from "react-icons/md";
 import Image from "next/image";
 import { Button } from "@/components/UI/button";
 
-export default function CourseCard({ course }) {
+export default function CourseCard({ course, dashboard }) {
   const [loved, setLoved] = useState(false);
 
   const rankStyle = {
@@ -139,15 +139,17 @@ export default function CourseCard({ course }) {
           </div>
 
           {/* Enroll Button */}
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              window.location.href = `/courses/${course._id}`;
-            }}
-            className="banner-button-1 w-full mt-3"
-          >
-            Enroll Now
-          </Button>
+         {!dashboard && (
+           <Button
+             onClick={(e) => {
+               e.preventDefault();
+               window.location.href = `/courses/${course._id}`;
+             }}
+             className="banner-button-1 w-full mt-3"
+           >
+             Enroll Now
+           </Button>
+         )}
         </div>
       </div>
    

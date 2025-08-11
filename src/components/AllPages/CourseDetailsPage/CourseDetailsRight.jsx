@@ -1,23 +1,16 @@
-import { useEffect, useState } from 'react';
+'use client'
+import {  useState } from 'react';
 import { IoMdCheckboxOutline } from 'react-icons/io';
 import { MdOutlineDoubleArrow } from 'react-icons/md';
-import axios from 'axios';
+
 import { Button } from '@/components/UI/button';
 
 const CourseDetailsRight = ({ data, trailClass, HandleEnrollNow }) => {
-  const [teachers, setTeachers] = useState([]);
+
   const [showAll, setShowAll] = useState(false);
   const itemsToShowInitially = 4;
   const courseFutureValues = Object.values(data?.courseFuture || {});
 
-  useEffect(() => {
-    axios
-      .put('https://muslim-schoool.onrender.com/user/getByFiltered', {
-        emails: data?.teacherInfo,
-      })
-      .then((res) => setTeachers(res?.data?.data || []))
-      .catch((err) => console.error(err));
-  }, [data]);
 
   return (
     <div className="w-full space-y-4 sticky top-16">

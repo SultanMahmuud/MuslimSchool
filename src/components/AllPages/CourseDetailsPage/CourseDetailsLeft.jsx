@@ -1,28 +1,17 @@
+'use client'
 import { useEffect, useState } from "react";
-// import ReactPlayer from "react-player";
-import axios from "axios";
-import CourseDetailsRight from "./CourseDetailsRight";
+
+
+
 import { Button } from "@/components/UI/button";
 import LearnCourseTab from "./LearnCourseTab";
-// import LearnCourseTab from "./CoursePageInside.js/LearnCourseTab";
+import Image from "next/image";
 
-const CourseDetailsLeft = ({ data, trailClass, HandleEnrollNow }) => {
-  const [teachers, setTeachers] = useState([]);
 
-  useEffect(() => {
-    if (data?.teacherInfo?.length > 0) {
-      axios
-        .put(`${process.env.NEXT_PUBLIC_API_BASE_URL}/getByFiltered`, {
-          emails: data.teacherInfo,
-        })
-        .then((res) => {
-          setTeachers(res?.data?.data || []);
-        })
-        .catch((error) => {
-          console.error("Failed to fetch teachers", error);
-        });
-    }
-  }, [data]);
+
+
+const CourseDetailsLeft = ({ data,}) => {
+
 
   return (
     <div className="mt-2 lg:mt-0">
@@ -123,7 +112,7 @@ const CourseDetailsLeft = ({ data, trailClass, HandleEnrollNow }) => {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
               {/* Instructor */}
               <div className="flex items-center border-r lg:border-r border-[#ddd] pr-2">
-                {/* <Avatar
+                {/* <Image
                   alt="Remy Sharp"
                   src={
                     teachers[0]?.avatar ||

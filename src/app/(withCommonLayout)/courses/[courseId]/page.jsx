@@ -1,16 +1,13 @@
+// app/course/[courseId]/page.jsx (server component by default)
+import CourseDetails from '@/components/AllPages/CourseDetailsPage/CourseDetails/CourseDetails';
 
-import CourseDetails from '@/components/AllPages/CourseDetailsPage/CourseDetails/CourseDetails'
-import React from 'react'
-
-
-const page = ({ params }) => {
-  console.log(params.courseId,'........')
+export default async function Page({ params }) {
+  
+  const { courseId } = await params;
+console.log("Course ID:", courseId); // Debugging line to check courseId
   return (
     <div>
-      <CourseDetails courseID={params.courseId} />
+      <CourseDetails courseID={courseId} />
     </div>
   );
-};
-
-
-export default page
+}

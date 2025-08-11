@@ -1,41 +1,46 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import axios from "axios";
+
 import { MdOutlineDoubleArrow } from "react-icons/md";
 import CourseDetailsLeft from "../CourseDetailsLeft";
 import CourseDetailsRight from "../CourseDetailsRight";
+import axios from "axios";
 
 
 const CourseDetails = ({ courseID }) => {
   const [loading, setLoading] = useState(true);
   const [course, setCourse] = useState(null);
 
+useEffect(() => {
+  if (!courseID) return; 
 
-  const fetchCourseById = async (id) => {
+  const fetchCourse = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/course/${id}`);
+      const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/course/${courseID}`;
+      console.log("Fetching:", url); // 🔍 Debug
+      const response = await axios.get(url);
       setCourse(response.data?.data);
-      setLoading(false);
     } catch (error) {
       console.error("Failed to fetch course:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
-  useEffect(() => {
-    if (courseID) {
-      fetchCourseById(courseID);
-    }
-  }, []);
+  fetchCourse();
+}, [courseID]); // ✅ run only when courseID changes
+
+
 
   const HandleEnrollNow = () => {
-    // if (!course) return;
-    // window.location.href = `/check-out/${course._id}`;
+    if (!course) return;
+    window.location.href = `/check-out/${course._id}`;
   };
 
   const trailClass = () => {
-    // window.location.href = "/trail-class";
+    window.location.href = "/trial-class";
   };
 
   return (
@@ -49,16 +54,15 @@ const CourseDetails = ({ courseID }) => {
             <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
               <div className="md:col-span-8">
                 {course && (
-                        <CourseDetailsLeft
-                  data={course}
-                  trailClass={trailClass}
-                  HandleEnrollNow={HandleEnrollNow}
-                />
-              )}
-
-            
-            </div>
-            <div className="hidden md:block md:col-span-4">
+                  <CourseDetailsLeft
+                    data={course}
+                    trailClass={trailClass}
+                    HandleEnrollNow={HandleEnrollNow}
+                  />
+                )}
+                
+              </div>
+              <div className="hidden md:block md:col-span-4">
               {course && (
                 <CourseDetailsRight
                   data={course}
@@ -66,6 +70,7 @@ const CourseDetails = ({ courseID }) => {
                   HandleEnrollNow={HandleEnrollNow}
                 />
               )}
+                <p>hfabi</p>
             </div>
           </div>
            

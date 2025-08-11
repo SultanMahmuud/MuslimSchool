@@ -85,6 +85,7 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false); // <-- updated
 const router = useRouter();
+
   const user = getUserInfo();
 
   const handleLogout = () => {

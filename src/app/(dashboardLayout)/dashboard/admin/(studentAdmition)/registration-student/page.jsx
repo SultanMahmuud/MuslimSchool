@@ -33,11 +33,11 @@ const Registration = () => {
     axios
       .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration`, config)
       .then((res) => {
-        setRegistrations(res.data.reverse())
+        setRegistrations(res.data)
       })
       .catch((err) => console.error(err))
   }, [user, openLevel, openDete])
-
+console.log(registrations, "registrations")
   const filteredData = registrations
     ?.filter((reg) => reg.regType === "student-registration")
     .slice(0, 15)

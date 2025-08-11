@@ -166,7 +166,7 @@ const StudentForm = ({ setStudent }) => {
   );
 };
 
-const ImageForm = ({ handleClick, handleSubmit, setFile, loading, url, file }) => (
+export const ImageForm = ({ handleClick, handleSubmit, setFile, loading, url, file }) => (
   <div className="space-y-4">
     <div>
       <label className="block text-sm mb-1">Featured image</label>

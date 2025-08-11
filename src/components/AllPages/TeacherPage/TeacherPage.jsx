@@ -78,6 +78,8 @@ export default function TeachersSection() {
               <Image
                 src={t.avatar}
                 alt={t.name}
+                width={96}
+                height={96}
                 className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
               />
               <h3 className="text-xl font-semibold text-center mb-2">
@@ -109,8 +111,8 @@ export default function TeachersSection() {
             className="px-4 py-2 border border-gray-300 hind rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
           >
             <option value="">All Departments</option>
-            {departments.map((dep) => (
-              <option key={dep} value={dep}>
+            {departments.map((dep,index) => (
+              <option key={index} value={dep}>
                 {dep}
               </option>
             ))}
@@ -149,7 +151,7 @@ export default function TeachersSection() {
           filteredTeachers.map((el) => (
             <div key={el?._id}>
               <Link href={`/teacher/${el?._id}`} className="no-underline">
-                <TeacherCard
+                {/* <TeacherCard
                   depart={el?.Department}
                   name={el?.name}
                   joiningDate={el?.joiningDate}
@@ -159,7 +161,7 @@ export default function TeachersSection() {
                   totalClass={el?.attendance?.length}
                   image={el?.avatar}
                   qualification={el?.qual1}
-                />
+                /> */}
               </Link>
             </div>
           ))

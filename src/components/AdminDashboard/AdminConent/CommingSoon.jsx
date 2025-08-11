@@ -2,6 +2,7 @@ import { createRef, useState } from 'react';
 
 import axios from 'axios';
 import useUpload from '@/components/Hooks/useUpload';
+import CommonFileUpload from '@/components/Shared/FileUpload/CommonFileUpload';
 
 const ComingSoon = ({
   heading,
@@ -109,12 +110,7 @@ const ComingSoon = ({
             >
               Add Image
             </label>
-            <input
-              id="image"
-              type="file"
-              onChange={img1}
-              className="block w-full text-sm text-gray-500 file:mr-4 file:py-1 file:px-2 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-            />
+            <CommonFileUpload url={firstSelectedFatured} setUrl={setfirstSelectedFatured} />
           </div>
 
           {firstSelectedFatured && (

@@ -1,5 +1,6 @@
 'use client';
 
+import { getUserInfo } from '@/services/auth.services';
 import axios from 'axios';
 import { useState } from 'react';
 
@@ -24,10 +25,7 @@ const StudentFeedback = () => {
   const [feedBackCategory, setFeedBackCategory] = useState('');
   const [studentFeedback, setStudentFeedback] = useState('');
   const [topic, setTopic] = useState('');
-const user = {
-    email: 'QUT7.liyas@qawmiuniversity.live',
-   
-  };
+  const user = getUserInfo();
 
   const handleSubmit = (e) => {
     e.preventDefault();
