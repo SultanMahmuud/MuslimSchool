@@ -1,3 +1,4 @@
+
 import React from 'react';
 import TeacherCard from '@/components/Shared/TeacherCard/TeacherCard';
 import Link from 'next/link';
@@ -6,7 +7,7 @@ import { Button } from '@/components/UI/button';
 
 const getAllTeachers = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/role/teacher`, {
-    cache: 'force-cache', 
+    cache: 'no-store', // Ensures fresh data on each request
   });
   const data = await res.json();
   return data?.data || [];

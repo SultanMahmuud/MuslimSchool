@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const PopularSubjects = async () => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/populersubjectsBng`, {
-    cache: 'force-cache', 
+    cache: 'no-store', 
   });
   const data = await res.json();
 

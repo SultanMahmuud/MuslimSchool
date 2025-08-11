@@ -49,7 +49,7 @@ const BestReviews = async () => {
 const getStaticReviews = async () => {
   try {   
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/reviews/getReview`, {
-      cache: 'force-cache',
+      cache: 'no-store', // Ensures fresh data on each request
     });
     if (!response.ok) {
       throw new Error('Failed to fetch reviews');

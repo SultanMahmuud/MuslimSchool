@@ -8,7 +8,7 @@ const RecentAdmitStudent = async () => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/current-students`,
     {
-      cache: "force-cache", // Use cached data if available
+      cache: "no-store", // Use cached data if available
     }
   );
   const data = await res.json();
