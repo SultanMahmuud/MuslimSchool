@@ -4,11 +4,6 @@ import axios from 'axios';
 import { TbCurrencyTaka } from 'react-icons/tb';
 import UpdateLibrary from '@/components/AdminDashboard/AddLibrary/UpdateLibrary';
 
-
-
-
-
-
 const AdminLibrary = () => {
   const [books, setBooks] = useState([]);
   const [open, setOpen] = useState(false);

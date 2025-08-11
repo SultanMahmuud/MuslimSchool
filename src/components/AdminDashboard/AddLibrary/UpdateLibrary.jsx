@@ -1,11 +1,14 @@
+'use client'
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import JoditEditor from "jodit-react";
 
 
 
 import { toast } from "sonner";
 import CommonFileUpload from "@/components/Shared/FileUpload/CommonFileUpload";
+import dynamic from "next/dynamic";
+const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
+
 
 const config = {
   buttons: ["bold", "italic", "link", "unlink", "underline", "source"],

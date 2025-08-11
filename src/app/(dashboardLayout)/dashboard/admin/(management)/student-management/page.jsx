@@ -14,20 +14,32 @@ const Registration = () => {
   const [leveledEmail, setLeveledEmail] = useState(null)
   const [user, setUser] = useState(null) // store user here
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedUser = localStorage.getItem("user")
+      if (storedUser) setUser(JSON.parse(storedUser))
+    }
+  }, [])
 
+  useEffect(() => {
+    if (!user) return // don't fetch if no user
 
-  
- 
+    const config = {
+      headers: {
+        authorization: `Bearer ${user.token}`,
+      },
+    }
+
     axios
-      .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration`)
+      .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration`, config)
       .then((res) => {
         setRegistrations(res.data.reverse())
       })
       .catch((err) => console.error(err))
-  
-      console.log("registrations", registrations)
+  }, [user, openLevel, openDete])
 
-  const filteredData = registrations?.filter((reg) => reg.regType === "student-registration")
+  const filteredData = registrations
+    ?.filter((reg) => reg.regType === "student-registration")
     .slice(0, 15)
     .map((user) => ({
       id: user._id,
