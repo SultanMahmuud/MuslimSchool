@@ -211,7 +211,7 @@ const AddCourse = ({ setValue }) => {
 
   useEffect(() => {
     axios
-      .get(`${BASE_URL}/user/role/teacher`)
+      .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/role/teacher`)
       .then((res) => {
         setTeacher(res?.data.data || []);
       })

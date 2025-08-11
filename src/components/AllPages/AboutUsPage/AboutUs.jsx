@@ -1,5 +1,5 @@
 
-import MostPopularCoursesPage from "../Homepage/MostPopularCourses/MostPopularCourses";
+// import MostPopularCoursesPage from "../Homepage/MostPopularCourses/MostPopularCourses";
 import AboutAndDetails from "./AboutAndDetails";
 import Abouttopbar from "./AboutTopBar";
 
@@ -10,7 +10,7 @@ const About = () => {
         
         <AboutAndDetails />
         <Abouttopbar />
-        <MostPopularCoursesPage />
+        {/* <MostPopularCoursesPage /> */}
       </div>
     </>
   );
