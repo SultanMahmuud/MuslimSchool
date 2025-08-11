@@ -1,7 +1,7 @@
 
+import MostPopularCoursesPage from "../Homepage/MostPopularCourses/MostPopularCourses";
 import AboutAndDetails from "./AboutAndDetails";
 import Abouttopbar from "./AboutTopBar";
-import MostPopularCourses from "../Homepage/MostPopularCourses/MostPopularCourses";
 
 const About = () => {
   return (
@@ -10,7 +10,7 @@ const About = () => {
         
         <AboutAndDetails />
         <Abouttopbar />
-        <MostPopularCourses />
+        <MostPopularCoursesPage />
       </div>
     </>
   );

@@ -21,7 +21,7 @@ const StudentInfo = ({
   const [presentDay, setPresentDay] = useState();
   const [totalPayment, setTotalPayment] = useState();
 
-  const FilterUser = searchUser?.data;
+  // const FilterUser = searchUser?.data;
 
   const getStudentByEmail = () => {
     const email = studentRef?.current?.value;
@@ -71,23 +71,23 @@ const StudentInfo = ({
     setPresentDay(presentDate);
   }, [classroom]);
 
-  const activeData = [
-    { heading: "Assignment M.", count: FilterUser?.points },
-    { heading: "Total Exam", count: sumOfTotalQuestionMarks },
-    { heading: "Attended N'th", count: FilterUser?.questionMarks?.length },
-    { heading: "Quiz Marks", count: sumOfQuizMarks },
-    { heading: "Examen Quiz", count: sumOfTotalQuizMarks },
-    { heading: "Enrolled C", count: FilterUser?.Course?.length },
-    { heading: "Number", count: FilterUser?.number },
-    { heading: "Total Class", count: totalClass },
-    { heading: "Present Class", count: FilterUser?.attendance?.length },
-    {
-      heading: "Miss Class",
-      count: totalClass - FilterUser?.attendance?.length,
-    },
-    { heading: "Email", count: FilterUser?.email },
-    { heading: "ID", count: FilterUser?.studentId },
-  ];
+  // const activeData = [
+  //   { heading: "Assignment M.", count: FilterUser?.points },
+  //   { heading: "Total Exam", count: sumOfTotalQuestionMarks },
+  //   { heading: "Attended N'th", count: FilterUser?.questionMarks?.length },
+  //   { heading: "Quiz Marks", count: sumOfQuizMarks },
+  //   { heading: "Examen Quiz", count: sumOfTotalQuizMarks },
+  //   { heading: "Enrolled C", count: FilterUser?.Course?.length },
+  //   { heading: "Number", count: FilterUser?.number },
+  //   { heading: "Total Class", count: totalClass },
+  //   { heading: "Present Class", count: FilterUser?.attendance?.length },
+  //   {
+  //     heading: "Miss Class",
+  //     count: totalClass - FilterUser?.attendance?.length,
+  //   },
+  //   { heading: "Email", count: FilterUser?.email },
+  //   { heading: "ID", count: FilterUser?.studentId },
+  // ];
 
   const phoneNumber = activeData[6];
 
@@ -128,8 +128,7 @@ const StudentInfo = ({
       {/* Stats Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 mt-4">
         {activeData?.map((element, index) => (
-          <div key={index} className="bg-white rounded-md shadow p-3">
-            {/* <StudentCastCheck element={element} searchUser={FilterUser?.avatar} /> */}
+          <div key={index} className="bg-white rounded-md shadow p-3">         {/* <StudentCastCheck element={element} searchUser={FilterUser?.avatar} /> */}
           </div>
         ))}
       </div>

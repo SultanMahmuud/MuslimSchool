@@ -37,7 +37,7 @@ const Registration = () => {
       })
       .catch((err) => console.error(err))
   }, [user, openLevel, openDete])
-console.log(registrations, "registrations")
+
   const filteredData = registrations
     ?.filter((reg) => reg.regType === "student-registration")
     .slice(0, 15)

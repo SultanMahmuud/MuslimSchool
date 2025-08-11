@@ -1,12 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-// import CourseDesc from "./CourseDesc";
+
 import AddCourseTab from "@/components/AdminDashboard/AdminCourse/AddCourseTab/AddCourseTab";
-// import CourseCurriculum from "./CourseCurriculum";
-// import CourseFaq from "./CourseFaq";
-// import Announcement from "./Announcement";
-// import TeacherAddBox from "./TeacherAddBox";
 import CommonFileUpload from "@/components/Shared/FileUpload/CommonFileUpload"
 import CourseCurriculum from "@/components/AdminDashboard/AdminCourse/CourseCurriculum";
 import CourseFaq from "@/components/AdminDashboard/AdminCourse/CourseFaq";
@@ -14,17 +10,18 @@ import Announcement from "@/components/AdminDashboard/AdminCourse/Announcement";
 import CourseDesc from "@/components/AdminDashboard/AdminCourse/CourseDesc";
 import TeacherAddBox from "@/components/AdminDashboard/AdminCourse/TeacherAddBox";
 import { useRouter } from "next/navigation";
-// import { useRouter } from "next/navigation";
+
 // 
 
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
 
 
 
 const UpdateCourse = ({ params }) => {
-  
-    const unwrappedParams =  React.use(params);
+  const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+  const unwrappedParams = React.use(params);
   const id = unwrappedParams.courseId;
  const router = useRouter();
   const [courseTitle, setCourseTitle] = useState("");

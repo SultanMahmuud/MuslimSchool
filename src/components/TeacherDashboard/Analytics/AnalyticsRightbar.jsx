@@ -30,7 +30,7 @@ const AnalyticsRightbar = ({ sumOfTotalQuestionMarks, sumOfQuestionMarks }) => {
     { heading: 'Attended', count: FilterUser?.questionMarks?.length },
     { heading: 'Enrolled Course', count: FilterUser?.Course?.length },
   ];
-  console.log(FilterUser, 'FilterUser');
+
 
   return (
     <div className="px-4">

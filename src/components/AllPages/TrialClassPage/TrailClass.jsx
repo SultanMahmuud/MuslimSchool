@@ -25,7 +25,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
 const TrialClass = ({ type }) =>  {
-  console.log(type)
+
   const [time, setTime] = useState("Morning");
   const [days, setDays] = useState(1);
 const navigate = useRouter();
