@@ -1,4 +1,5 @@
 
+import Image from "next/image";
 import Link from "next/link";
 import { BiBarChart } from "react-icons/bi";
 import { BsJournalBookmark } from "react-icons/bs";
@@ -12,10 +13,12 @@ const TeacherCourseCard = ({ element }) => {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden w-full h-full">
       <Link href={`/teacherDashboard/myCourse/${element?._id}`} className="block">
-        <img
+        <Image
           src={element?.image}
           alt={element?.title}
           className="w-full h-52 object-cover rounded-t-lg"
+          width={300}
+          height={300}
         />
         <div className="p-4">
           {/* Rating Section */}

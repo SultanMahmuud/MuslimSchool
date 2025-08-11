@@ -4,6 +4,7 @@ import axios from "axios";
 // import { toast } from "react-toastify";
 import useUpload from "@/components/Hooks/useUpload";
 import Rb from "@/components/Shared/FileUpload/FileUpload";
+import Image from "next/image";
 
 
 const EditClassRoom = () => {
@@ -47,7 +48,9 @@ const ClassRoomCard = ({ element }) => {
           {element.slogan?.slice(0, 30)}
         </p>
       </div>
-      <img
+      <Image
+        width={1920}
+        height={1080}
         src={element?.image}
         alt="classroom"
         className="w-full h-40 object-cover rounded"
@@ -67,7 +70,7 @@ const ClassRoomCard = ({ element }) => {
               key={index}
               className="flex items-center gap-2 my-1 px-2 py-1 border border-gray-200 rounded shadow"
             >
-              <img
+              <Image
                 src={teacher?.avatar}
                 alt="avatar"
                 className="w-8 h-8 rounded-full"

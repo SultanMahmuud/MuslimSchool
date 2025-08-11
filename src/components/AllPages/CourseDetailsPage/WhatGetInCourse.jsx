@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 
 const WhatGetInCourse = ({data}) => {
@@ -12,10 +13,12 @@ const array = data.whatYouGet
             className="flex flex-col items-center border border-[#f3f4f7] h-auto lg:h-[170px] text-center"
           >
             <div className="h-[50px] w-[50px] mt-5">
-              <img
+              <Image
                 src={item.uploadUrl}
                 alt="img"
                 className="mx-auto object-contain h-full w-full"
+                width={50}
+                height={50}
               />
             </div>
             <div className="px-3 pt-2 pb-4">

@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 
 const CallUs = () => {
@@ -6,10 +7,12 @@ const CallUs = () => {
       
       {/* Left Icon */}
       <div className="hidden lg:block">
-        <img
+        <Image
           src="https://qawamiuniversity.nyc3.digitaloceanspaces.com/courseIcons/Support%20(1).png"
           alt="Support"
           className="w-16 h-16 pl-2"
+          width={64}
+          height={64}
         />
       </div>
 
@@ -26,10 +29,12 @@ const CallUs = () => {
       {/* Right Button */}
       <div className="flex justify-center lg:justify-start mt-3 lg:mt-0">
         <div className="flex items-center bg-[#eaecf2] px-4 py-2 lg:px-12 lg:py-3 rounded">
-          <img
+          <Image
             src="https://qawamiuniversity.nyc3.digitaloceanspaces.com/courseIcons/contacting%20(1).svg"
             alt="Call Icon"
             className="w-[18px] mx-1"
+            width={18}
+            height={18}
           />
           <p className="hidden lg:block font-bold text-[18px] text-[#ff8c4b] font-hind pr-2">
             01947200111

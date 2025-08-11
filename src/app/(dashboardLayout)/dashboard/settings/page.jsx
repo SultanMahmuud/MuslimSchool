@@ -2,6 +2,7 @@
 import useUpload from '@/components/Hooks/useUpload';
 import { getUserInfo } from '@/services/auth.services';
 import axios from 'axios';
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -64,7 +65,7 @@ const StudentSettings = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="flex flex-col items-center">
           <div className="w-32 h-32 rounded-full bg-[#46AAD5] flex items-center justify-center overflow-hidden">
-            <img src={firstimg ? firstimg : singleUsers?.avatar} alt="Avatar" className="object-cover w-full h-full" />
+            <Image src={firstimg ? firstimg : singleUsers?.avatar} alt="Avatar" className="object-cover w-full h-full" width={128} height={128} />
           </div>
           {sound && (
             <input

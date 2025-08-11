@@ -1,3 +1,4 @@
+import Image from "next/image";
 
 
 const OurAchivements = async () => {
@@ -25,10 +26,12 @@ const OurAchivements = async () => {
                 animation: `popIn 0.5s cubic-bezier(.26,.66,.38,1.25) ${i * 0.07 + 0.3}s both`,
               }}
             >
-              <img
+              <Image
                 src={item.iconImg}
                 alt={item.title}
                 className="w-20 h-20 mb-3 opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                width={80}
+                height={80}
               />
               <div className="text-2xl font-extrabold text-gray-800 drop-shadow-md">
                 {item.number}+

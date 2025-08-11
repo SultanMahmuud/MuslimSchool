@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import AnlaCards from './AnlaCards';
+import Image from 'next/image';
 
 
 
@@ -35,10 +36,12 @@ const AnalyticsRightbar = ({ sumOfTotalQuestionMarks, sumOfQuestionMarks }) => {
   return (
     <div className="px-4">
       <div className="flex justify-center items-center my-4">
-        <img
+        <Image
           className="w-[75px] h-[75px] rounded-full object-cover"
           src={FilterUser?.avatar}
           alt="User Avatar"
+          width={75}
+          height={75}
         />
       </div>
       <AnlaCards element={activeData} searchUser={searchUser} />

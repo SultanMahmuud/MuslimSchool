@@ -4,6 +4,7 @@ import { IoMdCheckboxOutline } from 'react-icons/io';
 import { MdOutlineDoubleArrow } from 'react-icons/md';
 
 import { Button } from '@/components/UI/button';
+import Image from 'next/image';
 
 const CourseDetailsRight = ({ data, trailClass, HandleEnrollNow }) => {
 
@@ -20,7 +21,7 @@ const CourseDetailsRight = ({ data, trailClass, HandleEnrollNow }) => {
           <div className="text-lg line-through text-gray-500">৳{data?.banPrice || data?.salePrice}</div>
           {data?.singleHighlighter && (
             <div className="flex items-center text-red-600 bg-red-100 px-3 py-1 rounded text-sm font-bold">
-              <img src="" alt="clock" className="w-4 h-4 mr-2" />
+              <Image src="" alt="clock" className="w-4 h-4 mr-2" width={16} height={16} />
               {data?.singleHighlighter}
             </div>
           )}
@@ -66,11 +67,14 @@ const CourseDetailsRight = ({ data, trailClass, HandleEnrollNow }) => {
         </div>
         <div className="bg-white shadow rounded p-4 text-center">
         <div className="flex items-center justify-center gap-2 text-orange-500 text-lg font-bold">
-          <img
+          <Image
             src="https://qawamiuniversity.nyc3.digitaloceanspaces.com/courseIcons/contacting%20(1).svg"
             alt="call"
             className="w-5 h-5"
+            width={20}
+            height={20}
           />
+          
           <span>কল করুন</span>
           <a href="tel:01947200111" className="underline">01947200111</a>
         </div>

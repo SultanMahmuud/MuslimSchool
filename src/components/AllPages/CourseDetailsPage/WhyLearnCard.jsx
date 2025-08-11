@@ -1,6 +1,7 @@
 "use client";
 
 import ButtonStyle from "@/components/Shared/ButtonStyle";
+import Image from "next/image";
 
 
 
@@ -21,10 +22,12 @@ const array = data?.courseWhy
           } justify-between p-4 shadow-sm rounded-md border gap-4 mx-2`}
         >
           <div className="flex-shrink-0 mx-auto md:mx-0 w-[60%] md:w-[40%]">
-            <img
+            <Image
               src={card.uploadUrl}
               alt="Card Image"
               className="w-full object-cover"
+              width={500}
+              height={500}
             />
           </div>
 

@@ -5,6 +5,7 @@ import freeClass from "@/assets/howStartIcon/ফ্রি ক্লাস.svg";
 import startNow from "@/assets/howStartIcon/শুরু করুন.svg";
 
 import { Button } from "@/components/UI/button";
+import Image from "next/image";
 
 const steps = [
   {
@@ -63,7 +64,7 @@ export default function HowToGetStart() {
                 <div
                   className={`w-16 h-16 rounded-full flex items-center justify-center mt-4 ${step.bg}`}
                 >
-                  <img src={step.icon} alt={step.title} className="w-8 h-8" />
+                  <Image width={40} height={40} src={step.icon} alt={step.title} className="w-8 h-8" />
                 </div>
                 <h3 className="text-xl font-semibold text-slate-800 mt-3">
                   {step.title}

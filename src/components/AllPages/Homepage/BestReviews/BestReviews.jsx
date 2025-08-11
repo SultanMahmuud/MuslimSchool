@@ -1,4 +1,5 @@
 
+import Image from 'next/image';
 import Marquee from 'react-fast-marquee';
 
 const stylePresets = [
@@ -49,7 +50,7 @@ const BestReviews = async () => {
 const getStaticReviews = async () => {
   try {   
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/reviews/getReview`, {
-      cache: 'no-store', // Ensures fresh data on each request
+       next: { revalidate: 60 }, // Ensures fresh data on each request
     });
     if (!response.ok) {
       throw new Error('Failed to fetch reviews');
@@ -90,10 +91,12 @@ const staticReviews = await getStaticReviews();
                   {t.review}
                 </p>
                 <div className="flex items-center gap-4 mt-4">
-                  <img
+                  <Image
                     src={t.reviewPersonImg}
                     alt={t.personName}
                     className="w-12 h-12 rounded-full border-2 border-white shadow-md"
+                    width={40}
+                    height={40}
                   />
                   <div>
                     <div className="font-bold text-white">{t.personName}</div>

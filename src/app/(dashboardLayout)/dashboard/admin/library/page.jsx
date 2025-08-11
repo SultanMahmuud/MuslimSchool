@@ -64,10 +64,12 @@ const AdminLibrary = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         {books.map((item) => (
           <div key={item._id} className="bg-white rounded shadow p-4 flex flex-col items-center">
-            <img
+            <Image
               src={item.image1}
               alt={item.title}
               className="w-48 h-72 object-cover mb-4 rounded"
+              width={192}
+              height={288}
             />
 
             <h3 className="text-lg font-medium text-blue-700 text-left w-full">{item.title}</h3>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 
@@ -22,11 +23,13 @@ const Successful = () => {
               </ul>
             </div>
             <div className="mt-6">
-              <img
+              <Image
                 src="https://i.ibb.co/LzCsVX9/Completed-pana.png"
                 alt="Payment Successful Illustration"
                 className="min-h-[200px] w-4/5 object-cover mx-auto"
                 style={{ aspectRatio: "auto 200/200" }}
+                width={500}
+                height={500}
               />
             </div>
           </div>

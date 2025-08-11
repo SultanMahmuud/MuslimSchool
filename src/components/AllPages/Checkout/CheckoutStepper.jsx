@@ -7,6 +7,7 @@ import CheckoutForm from "./CheckoutForm";
 import CostSummary from "./CostSummary";
 import Successful from "./Successful";
 import Otp from "./Otp";
+import Image from "next/image";
 
 
 const steps = ["অর্ডার কনফার্মেশন", "লগ ইন", "পেমেন্ট","সাকসেফুল"];
@@ -241,10 +242,12 @@ const CheckoutStepper = ({ courseData }) => {
                   />
                   <span className="font-semibold text-lg">বিকাশ</span>
                 </div>
-                <img
+                <Image
                   src="https://qawamiuniversity.nyc3.digitaloceanspaces.com/merchantlogo/Qawmi%20bkash_payment_logo%20(1).png"
                   alt="Bkash Logo"
                   className="h-10"
+                  width={40}
+                  height={40}
                 />
               </label>
 
@@ -267,10 +270,12 @@ const CheckoutStepper = ({ courseData }) => {
                   />
                   <span className="font-semibold text-lg">অন্যান্য পেমেন্ট মাধ্যম</span>
                 </div>
-                <img
+                <Image
                   src="https://qawamiuniversity.nyc3.digitaloceanspaces.com/merchantlogo/SSLCommerz-Pay-With-logo-All%20(1).png"
                   alt="SSL Pay Logo"
                   className="h-10"
+                  width={40}
+                  height={40}
                 />
               </label>
 

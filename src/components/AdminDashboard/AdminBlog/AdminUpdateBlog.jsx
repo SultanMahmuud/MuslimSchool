@@ -10,6 +10,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Badge } from '@/components/UI/badge'
 import JoditEditor from 'jodit-react'
 import useUploads from '@/components/Hooks/useUpload'
+import Image from 'next/image'
 
 
 const config = {
@@ -169,7 +170,7 @@ const AdminUpdateBlog = ({ itemId }) => {
               <label className="text-sm font-medium">Blog Image</label>
               <Input type="file" onChange={img1} />
               {Bookmainimg1 && (
-                <img src={Bookmainimg1} alt="Blog" className="mt-2 w-full h-48 object-cover rounded" />
+                <Image src={Bookmainimg1} alt="Blog" className="mt-2 w-full h-48 object-cover rounded" width={1920} height={1080} />
               )}
             </div>
 

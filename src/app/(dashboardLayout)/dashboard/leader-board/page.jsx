@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 const LeaderBoard = () => {
@@ -34,10 +35,13 @@ const LeaderBoard = () => {
       {student?.[0] && (
         <div className="text-center mb-6">
           <h2 className="text-2xl font-bold">Leader Board</h2>
-          <img
+          <Image
+          
             src={student[0].avatar || placeholderImage}
             alt="avatar"
             className="w-24 h-24 rounded-full mx-auto mt-4 object-cover border border-gray-300"
+            width={96}
+            height={96}
           />
           <h3 className="mt-2 text-lg font-semibold">{student[0].name}</h3>
           <p className="text-sm text-gray-500">{student[0].address}</p>
@@ -56,10 +60,12 @@ const LeaderBoard = () => {
             onClick={() => setSelectedIndex(index)}
           >
             <div className="flex items-center gap-3">
-              <img
+              <Image
                 src={e.avatar || placeholderImage}
                 alt={e.name}
                 className="w-12 h-12 rounded-full object-cover border"
+                width={48}
+                height={48}
               />
               <div>
                 <p className="font-semibold text-sm">{e.name}</p>

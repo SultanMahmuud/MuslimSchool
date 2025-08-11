@@ -5,6 +5,7 @@ import axios from 'axios'
 // import { toast } from 'react-toastify'
 import { Button } from '@/components/UI/button'
 import AdminUpdateBlog from './AdminUpdateBlog'
+import Image from 'next/image'
 
 
 
@@ -24,10 +25,12 @@ const AdminBlog = ({ blogs, setIsLoading }) => {
       {blogs?.map((item) => (
         <div key={item._id} className="flex flex-col justify-between shadow-md hover:shadow-lg transition duration-300">
           <div className="overflow-hidden">
-            <img
+            <Image
               src={item?.blogImg}
               alt="blog"
               className="w-full h-[200px] object-cover rounded-t-md transform transition-transform duration-500 hover:scale-105"
+              width={1920}
+              height={1080}
             />
           </div>
           <div className="space-y-3">

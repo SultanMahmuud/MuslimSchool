@@ -1,3 +1,4 @@
+import Image from "next/image";
 
 const AboutAndDetails = () => {
   return (
@@ -5,10 +6,12 @@ const AboutAndDetails = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Left Image Section */}
         <div className="flex justify-center items-center">
-          <img
+          <Image
             src="https://qawamiuniversity.nyc3.digitaloceanspaces.com/4727487.jpg"
             alt="The house from the offer."
             className="min-h-[200px] w-4/5 object-cover"
+            width={500}
+            height={500}
           />
         </div>
 
@@ -29,10 +32,12 @@ const AboutAndDetails = () => {
           <div className="useful abouticon_cont">
             <ul>
               <li className="flex items-start gap-4 py-2">
-                <img
+                <Image
                   src="https://qawamiuniversity.nyc3.digitaloceanspaces.com/4727487.jpg"
                   alt="Icon"
                   className="max-w-[40px] flex-shrink-0"
+                  width={40}
+                  height={40} 
                 />
                 <span className="text-justify text-gray-700 text-base">
                   দিন কে দ্বীন বানাতে আমরা আছি তোমার পাশে। তুমি পারবে। পথকে তো প্রভুই সহজ করবেন

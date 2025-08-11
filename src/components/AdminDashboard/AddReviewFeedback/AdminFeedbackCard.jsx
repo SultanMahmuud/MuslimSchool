@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import FeedbackUpdate from './FeedBackUpdate';
+import Image from 'next/image';
 // import { toast } from 'react-toastify';
 // import FeedbackUpdate from './FeedbackUpdate';
 
@@ -26,10 +27,12 @@ const AdminFeedbackCard = ({ reviews, setIsLoading }) => {
             className="bg-white shadow-md rounded-lg flex flex-col justify-between transition-transform duration-500 hover:scale-105"
           >
             <div className="overflow-hidden rounded-t-lg">
-              <img
+              <Image
                 src={item?.reviewPersonImg}
                 alt="reviewer"
                 className="h-52 w-full object-cover"
+                width={192}
+                height={288}
               />
             </div>
             <div className="p-4 flex flex-col justify-between h-full">

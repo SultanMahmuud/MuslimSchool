@@ -1,4 +1,5 @@
 import { Button } from "@/components/UI/button";
+import Image from "next/image";
 import Link from "next/link";
 
 
@@ -85,8 +86,10 @@ const Library = () => {
 
             
               <div className="relative overflow-hidden rounded-lg">
-                <img
-                  src={item.image1}
+                <Image
+                  width={300}
+                  height={300}
+                  src={item?.img1}
                   alt={item?.title.slice(0, 50)}
                   className="w-full h-auto transform group-hover:scale-105 transition-transform duration-300"
                 />

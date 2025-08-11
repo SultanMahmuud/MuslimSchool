@@ -27,10 +27,12 @@ const CourseDetailsLeft = ({ data,}) => {
         </div>
       ) : (
         <div className="mt-6">
-          <img
+          <Image
             src={data?.image}
             alt="Course Thumbnail"
             className="w-full rounded-lg"
+            width={1920}
+            height={1080}
           />
         </div>
       )}

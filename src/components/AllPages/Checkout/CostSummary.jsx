@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const CostSummary = ({ data, getMethod, promoValue }) => {
@@ -13,7 +14,7 @@ const CostSummary = ({ data, getMethod, promoValue }) => {
         কোর্সের বিস্তারিত
       </div>
 
-      <img
+      <Image
         src={
           data?.medium === "Private"
             ? "https://qawamiuniversity.nyc3.digitaloceanspaces.com/Reading%20Quran%20Online%20Qawmi%20University%20(1).jpg"
@@ -21,6 +22,8 @@ const CostSummary = ({ data, getMethod, promoValue }) => {
         }
         alt="course"
         className="w-20 h-20 rounded-md mb-4 object-cover"
+        width={500}
+        height={500}
       />
 
       {/* Price Row */}

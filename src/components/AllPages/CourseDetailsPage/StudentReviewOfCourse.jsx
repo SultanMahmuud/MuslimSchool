@@ -1,5 +1,6 @@
 import ButtonStyle from "@/components/Shared/ButtonStyle";
 import { Button } from "@/components/UI/button";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 
@@ -38,10 +39,12 @@ const StudentReviewOfCourse = () => {
               </p>
               <div className="w-1/2 h-[2px] bg-gray-200 mx-auto my-2" />
               <div className="flex justify-center">
-                <img
+                <Image
                   src={dt?.reviewPersonImg}
                   alt="Reviewer"
                   className="w-32 h-32 rounded-full border-4 border-primary object-cover"
+                  width={128}
+                  height={128}
                 />
               </div>
               <div className="flex justify-center mt-3 text-yellow-500">

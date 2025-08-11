@@ -6,6 +6,7 @@ import { MdOutlineDoubleArrow } from "react-icons/md";
 import CourseDetailsLeft from "../CourseDetailsLeft";
 import CourseDetailsRight from "../CourseDetailsRight";
 import axios from "axios";
+import Image from "next/image";
 
 
 const CourseDetails = ({ courseID }) => {
@@ -92,10 +93,12 @@ useEffect(() => {
 
               {course?.courseTime && (
                 <div className="flex items-center bg-red-100 text-red-600 text-sm font-medium px-2 py-1 rounded-md">
-                  <img
+                  <Image
                     src="https://qawamiuniversity.nyc3.digitaloceanspaces.com/courseIcons/clock%20(2).svg"
                     alt="Clock"
                     className="w-5 h-5 mr-1"
+                    width={40}
+                    height={40} 
                   />
                   {course?.courseTime}
                 </div>

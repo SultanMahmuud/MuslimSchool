@@ -11,6 +11,7 @@ import { Button } from '@/components/UI/button'
 import { Label } from '@/components/UI/label'
 import { Badge } from '@/components/UI/badge'
 import useUploads from '@/components/Hooks/useUpload'
+import Image from 'next/image'
 
 
 
@@ -151,10 +152,13 @@ const AddBlog = () => {
             <Label>Upload Blog Image</Label>
             <Input type="file" onChange={handleImageUpload} />
             {Bookmainimg1 && (
-              <img
+              <Image
+              
                 src={Bookmainimg1}
                 alt="Uploaded blog"
                 className="mt-2 w-full h-40 object-cover rounded"
+                width={1920}
+                height={1080}
               />
             )}
           </div>

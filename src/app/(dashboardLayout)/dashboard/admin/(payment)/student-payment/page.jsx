@@ -6,6 +6,7 @@ import { ColumnDef } from '@tanstack/react-table'
 import { DataTable } from '@/components/UI/data-table'
 import SendMessage from '@/components/common/SendMessage'
 import AddLevelModalReg from '@/components/AdminDashboard/AdminCourse/RegistrationModal/AddLevelModalReg'
+import Image from 'next/image'
 
 
 
@@ -105,7 +106,9 @@ const StudentPayment = () => {
       accessorKey: 'avatar',
       header: 'Student',
       cell: ({ row }) => (
-        <img
+        <Image
+          width={32}
+          height={32}
           src={row.getValue('avatar')}
           alt="avatar"
           className="w-8 h-8 rounded-full"

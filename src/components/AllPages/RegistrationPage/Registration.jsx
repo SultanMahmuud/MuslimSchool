@@ -27,6 +27,7 @@ import { Mail } from "lucide-react";
 import { Button } from "@/components/UI/button";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 
 export default function StudentRegistration({ type }) {
@@ -142,24 +143,30 @@ export default function StudentRegistration({ type }) {
             dotsClass="slick-dots slick-thumb"
           >
             <div>
-              <img
+              <Image
                 src={Simg1}
                 alt="Online Course"
                 className="w-32 h-32 object-contain mx-auto"
+                width={128}
+                height={128}
               />
             </div>
             <div>
-              <img
+              <Image
                 src={Simg2}
                 alt="Reading Book"
                 className="w-32 h-32 object-contain mx-auto"
+                width={128}
+                height={128}
               />
             </div>
             <div>
-              <img
+              <Image
                 src={Simg3}
                 alt="Studying"
                 className="w-32 h-32 object-contain mx-auto"
+                width={128}
+                height={128}
               />
             </div>
           </Slider>

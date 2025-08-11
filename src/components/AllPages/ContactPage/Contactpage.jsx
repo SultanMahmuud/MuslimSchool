@@ -2,6 +2,7 @@ import React from "react";
 import { FiMail, FiMapPin, FiPhone} from "react-icons/fi";
 import img from "@/assets/contact.jpg"
 import ContactForm from "./ContactForm";
+import Image from "next/image";
 const ContactNew = () => {
   return (
    <>
@@ -20,7 +21,7 @@ const ContactNew = () => {
           {/* Avatar Illustration */}
           <div className="flex items-center mt-2">
             {/* Replace with your own SVG or illustration for best results */}
-            <img src={img} alt=""/>
+            <Image src={img} alt="" width={64} height={64} />
             {/* Optionally, add a waving hand emoji for friendliness */}
             
           </div>
