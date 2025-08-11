@@ -23,7 +23,7 @@ const StudentChart = ({
     const total = [];
 
     axios
-      .get(`https://muslim-schoool.onrender.com/user/questionMarks/${email}`)
+      .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/questionMarks/${email}`)
       .then((response) => {
         response.data.data.questionMarks.forEach((item) => {
           marks.push(item?.questionMark);

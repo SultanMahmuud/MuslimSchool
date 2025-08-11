@@ -17,7 +17,7 @@ export default function LiveBatch() {
 
   useEffect(() => {
     setLoading(true);
-    fetch("https://muslim-schoool.onrender.com/course")
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/course`)
       .then((res) => res.json())
       .then((data) => {
         setCourses(data.data);
@@ -26,7 +26,7 @@ export default function LiveBatch() {
       });
 
     axios
-      .get(`https://muslim-schoool.onrender.com/category`)
+      .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/category`)
       .then((res) => {
         const newData = res.data.data[0];
         const batchCat = newData.batch.map((item) => item.category);

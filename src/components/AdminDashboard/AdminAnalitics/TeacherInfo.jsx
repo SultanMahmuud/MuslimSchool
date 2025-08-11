@@ -17,7 +17,8 @@ const TeacherInfo = ({
   const [email, setEmail] = useState("");
 
   const getStudentByEmail = () => {
-    fetch(`https://muslim-schoool.onrender.com/user/single/${email}`)
+    
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/single/${email}`)
       .then((res) => res.json())
       .then((db) => {
         setTeacher(db?.data);
@@ -34,18 +35,18 @@ const TeacherInfo = ({
   const [totalPayment, setTotalPayment] = useState(0);
 
   useEffect(() => {
-    fetch(`https://muslim-schoool.onrender.com/classroom/teacher/${email}`)
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/classroom/teacher/${email}`)
       .then((res) => res.json())
       .then((data) => setClassroom(data.data || []));
 
     axios
-      .get(`https://muslim-schoool.onrender.com/user/single/${email}`)
+      .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/single/${email}`)
       .then((res) => setTeacherDetail(res?.data?.data));
   }, [email]);
 
   useEffect(() => {
     axios
-      .get(`https://muslim-schoool.onrender.com/course/teacher/${teacherDetail?.email}`)
+      .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/course/teacher/${teacherDetail?.email}`)
       .then((res) => setCourses(res?.data?.data || []));
 
     const totalPay = teacherDetail?.teacherPayment?.reduce(

@@ -19,7 +19,7 @@ const PrivatePrice = ({ day }) => {
 
     axios
       .put(
-        'https://muslim-schoool.onrender.com/pricingplan/batch/62fe235707df0fb059cf7298',
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/pricingplan/batch/62fe235707df0fb059cf7298`,
         containerData
       )
       .then((response) => {

@@ -8,14 +8,14 @@ const CourseAndClassRoom = ({ teacherEmail, setCourseLength, setClassroomLength 
   const [classRoom, setClassRoom] = useState(null);
 
   useEffect(() => {
-    fetch(`https://muslim-schoool.onrender.com/course/teacher/${teacherEmail}`)
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/course/teacher/${teacherEmail}`)
       .then((res) => res.json())
       .then((db) => {
         setCourses(db?.data);
         setCourseLength(db?.data?.length);
       });
 
-    fetch(`https://muslim-schoool.onrender.com/classRoom/teacher/${teacherEmail}`)
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/classRoom/teacher/${teacherEmail}`)
       .then((res) => res.json())
       .then((db) => {
         setClassRoom(db?.data);

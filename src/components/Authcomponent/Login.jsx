@@ -112,7 +112,7 @@ try {
     }
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BaseApi}/otp/check`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/otp/check`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ input: inputValue }),

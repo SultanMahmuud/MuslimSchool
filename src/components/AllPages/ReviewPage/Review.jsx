@@ -23,7 +23,7 @@ export default function Review() {
       try {
         setIsLoading(true);
         const res = await axios.get(
-          "https://muslim-schoool.onrender.com/api/v1/reviews/getReview"
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/reviews/getReview`
         );
 
         const styledData = res.data.map((review, index) => {

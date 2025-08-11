@@ -30,7 +30,7 @@ const ContactForm = () => {
     };
 
     axios
-      .post('https://muslim-schoool.onrender.com/registration', newData)
+      .post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration`, newData)
       .then((response) => {
         // toast.success('Success Contact !');
 

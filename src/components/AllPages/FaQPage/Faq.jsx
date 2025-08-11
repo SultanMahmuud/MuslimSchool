@@ -15,7 +15,7 @@ const FAQContainer = () => {
   const [category, setCategory] = useState([]);
 
   const getComponent = () => {
-    Axios.get('https://muslim-schoool.onrender.com/faq').then((res) => {
+    Axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/faq`).then((res) => {
       const reversedData = res?.data?.data?.reverse();
       setFaq(reversedData);
       setSearchResult(reversedData);
@@ -27,7 +27,7 @@ const FAQContainer = () => {
   }, []);
 
   useEffect(() => {
-    fetch('https://muslim-schoool.onrender.com/category')
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/category`)
       .then((res) => res.json())
       .then((data) => setCategory(data.data.reverse()));
   }, []);

@@ -19,7 +19,7 @@ const CurrentStudentForm = () => {
     setMessage(null);
 
     try {
-      const response = await fetch('https://muslim-schoool.onrender.com/api/current-students', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/current-students`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

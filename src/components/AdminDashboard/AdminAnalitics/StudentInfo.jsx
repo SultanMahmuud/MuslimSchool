@@ -1,9 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
-// import { GetTotalClass } from "../../../Utilis/GetTotalClass";
-// import StudentCastCheck from "./StudentCastCheck";
-// import StudentEmailInfo from "./StudentEmailInfo";
-// import StudentInfoSms from "./StudentInfoSms";
+
 
 const StudentInfo = ({
   setSearchUser,
@@ -28,7 +25,8 @@ const StudentInfo = ({
 
   const getStudentByEmail = () => {
     const email = studentRef?.current?.value;
-    fetch(`https://muslim-schoool.onrender.com/user/single/${email}`)
+
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/single/${email}`)
       .then((res) => res.json())
       .then((db) => {
         setSearchUser(db);
@@ -37,8 +35,9 @@ const StudentInfo = ({
   };
 
   const getStudentByID = () => {
+    
     const id = studentRefID?.current?.value;
-    fetch(`https://muslim-schoool.onrender.com/user/studentId/${id}`)
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/studentId/${id}`)
       .then((res) => res.json())
       .then((db) => {
         setSearchUser(db);
@@ -47,12 +46,12 @@ const StudentInfo = ({
   };
 
   useEffect(() => {
-    fetch(`https://muslim-schoool.onrender.com/classroom/student/${email}`)
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/classroom/student/${email}`)
       .then((res) => res.json())
       .then((data) => setClassroom(data.data));
 
     axios
-      .get(`https://muslim-schoool.onrender.com/user/single/${email}`)
+      .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/single/${email}`)
       .then((res) => {
         setStudentDetail(res?.data.data);
       });

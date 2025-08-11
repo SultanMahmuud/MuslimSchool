@@ -28,6 +28,8 @@ import { FaQuestion } from "react-icons/fa";
 import {  useMemo, } from "react";
 import Link from "next/link";
 import { redirect, useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { logout } from "@/redux/features/slice/authSlice";
 
 
 
@@ -219,7 +221,14 @@ export   function AppSidebar() {
   const filteredNav = useMemo(() => {
     return baseData.navMain.filter((item) => item.roles.includes(role));
   }, [role]);
+const dispatch = useDispatch();
+  const router = useRouter();
 
+  const handleLogout = () => {
+    // Implement logout functionality
+    dispatch(logout());
+     router.refresh();
+  };
 
   return (
     <Sidebar collapsible="icon">
@@ -230,7 +239,7 @@ export   function AppSidebar() {
         <NavMain items={filteredNav} />
       </SidebarContent>
       <SidebarFooter>
-        <LogOut />
+        <LogOut onClick={handleLogout} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

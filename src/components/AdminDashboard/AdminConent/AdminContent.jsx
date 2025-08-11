@@ -25,7 +25,7 @@ const [featuredImage, setFeaturedImage] = useState('');
     };
 
     axios
-      .post('https://muslim-schoool.onrender.com/achievement', Newdata)
+      .post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/achievement`, Newdata)
       .then((res) => {
         if (res.status === 200) {
           alert('Add Blog successfully');

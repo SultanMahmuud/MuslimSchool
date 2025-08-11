@@ -17,25 +17,25 @@ const RelativeMenu = ({ user, handleLogout }) => {
             href="/dashboard"
             className="block px-4 py-2 text-sm hover:bg-gray-100"
           >
-            Dashboard
+           ড্যাশবোর্ড
           </a>
           <a
             href="/profile"
             className="block px-4 py-2 text-sm hover:bg-gray-100"
           >
-            Profile
+            প্রোফাইল
           </a>
           <a
             href={`/dashboard/leader-board`}
             className="block px-4 py-2 text-sm hover:bg-gray-100"
           >
-            Leaderboard
+            লিডারবোর্ড
           </a>
           <button
             onClick={handleLogout}
             className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
           >
-            Logout
+            লগ আউট
           </button>
         </div>
       </div>

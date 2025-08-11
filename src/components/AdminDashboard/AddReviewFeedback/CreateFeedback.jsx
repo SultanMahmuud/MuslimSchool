@@ -32,7 +32,7 @@ const Feedback = () => {
     };
 
     axios
-      .post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/reviews/createReview`, newData)
+      .post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/reviews/createReview`, newData)
       .then(() => {
         alert('Add Feedback successfully');
         reset();

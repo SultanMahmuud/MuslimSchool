@@ -23,7 +23,7 @@ const navigate = useRouter();
     const fetchPlans = async () => {
       try {
         const res = await axios.get(
-          "https://muslim-schoool.onrender.com/pricingplan"
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/pricingplan`
         );
         const data = res.data.data[0];
 

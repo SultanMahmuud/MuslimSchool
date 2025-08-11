@@ -31,7 +31,7 @@ const ComingSoon = ({
     };
 
     axios
-      .post('https://muslim-schoool.onrender.com/comingSoon', data)
+      .post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/comingSoon`, data)
       .then((response) => {
         if (response.status === 200) {
           alert('Sent data to server');

@@ -29,8 +29,9 @@ const AddBlog = () => {
 
   const { register, handleSubmit, reset } = useForm()
 
+
   useEffect(() => {
-    fetch('https://muslim-schoool.onrender.com/category')
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/category`)
       .then((res) => res.json())
       .then((data) => setCategoryOptions(data.data[0]?.blog || []))
   }, [])
@@ -57,7 +58,7 @@ const AddBlog = () => {
     }
 
     axios
-      .post('https://muslim-schoool.onrender.com/blogs/createBlog', newData)
+      .post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/blogs/createBlog`, newData)
       .then((res) => {
         if (res.status === 200) {
           alert('Blog added successfully')

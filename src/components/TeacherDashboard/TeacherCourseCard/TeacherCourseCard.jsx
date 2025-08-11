@@ -8,19 +8,7 @@ import { GiDuration } from "react-icons/gi";
 const TeacherCourseCard = ({ element }) => {
  
 
-  // useEffect(() => {
-  //   if (!element?.teacherInfo?.length) return;
-
-  //   fetch("https://muslim-schoool.onrender.com/user/getByFiltered", {
-  //     method: "PUT",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify({ emails: element.teacherInfo }),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => setTeachers(data?.data || []))
-  //     .catch(() => {});
-  // }, [element]);
-
+ 
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden w-full h-full">
       <Link href={`/teacherDashboard/myCourse/${element?._id}`} className="block">

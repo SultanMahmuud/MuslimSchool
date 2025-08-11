@@ -25,7 +25,7 @@ const StudentManagement = () => {
       try {
         setLoading(true)
         const res = await axios.get(
-          `https://muslim-schoool.onrender.com/user/role/student`
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/user/role/student`
         )
         setRoleUsers(res?.data)
         setError(false)
@@ -46,7 +46,7 @@ const StudentManagement = () => {
 
   const deleteStudent = async (email) => {
     try {
-      await axios.post(`https://muslim-schoool.onrender.com/user/delete`, {
+      await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/delete`, {
         email,
       })
       setRoleUsers((prev) =>
@@ -64,7 +64,7 @@ const StudentManagement = () => {
 
   const handleBlock = async (value, email) => {
     try {
-      await axios.post(`https://muslim-schoool.onrender.com/user/update`, {
+      await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/update`, {
         email,
         isBlock: !value,
       })
@@ -77,7 +77,7 @@ const StudentManagement = () => {
   const handleStudentOfTheMonth = async (e, email) => {
     try {
       const state = e.target.checked
-      await axios.post(`https://muslim-schoool.onrender.com/user/update`, {
+      await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/update`, {
         email,
         studentOfTheMonth: state,
       })

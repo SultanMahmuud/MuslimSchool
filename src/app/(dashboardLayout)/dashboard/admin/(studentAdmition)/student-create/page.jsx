@@ -22,7 +22,7 @@ const RegisterStudent = () => {
 
     try {
       const response = await fetch(
-        "https://muslim-schoool.onrender.com/user/signup",
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/user/signup`,
         {
           method: "POST",
           headers: {

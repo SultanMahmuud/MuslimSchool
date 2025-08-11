@@ -37,7 +37,7 @@ export default function TeachersSection() {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(`https://muslim-schoool.onrender.com/user/role/teacher`)
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/role/teacher`)
       .then((res) => res.json())
       .then((data) => {
         const activeTeachers = data?.data?.filter((teacher) => !teacher.isBlock);

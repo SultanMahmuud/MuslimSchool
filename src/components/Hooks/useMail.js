@@ -15,7 +15,7 @@ const useEmail = () => {
         subject: subject,
         text: text
     };
-    axios.post(`https://muslim-schoool.onrender.com/mail`, data)
+    axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/mail`, data)
     .then(function (res) {
         if (res.status === 200) {
           alert("Mail has been sent");

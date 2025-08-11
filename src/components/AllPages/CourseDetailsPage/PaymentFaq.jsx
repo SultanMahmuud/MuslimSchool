@@ -14,7 +14,7 @@ const PaymentFaq = () => {
 
   useEffect(() => {
     // Fetch data from the API
-    fetch('https://muslim-schoool.onrender.com/faq')
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/faq`)
       .then(response => response.json())
       .then(data => {
         // Filter data based on category

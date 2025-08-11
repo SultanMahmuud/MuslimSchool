@@ -9,24 +9,6 @@ const TeacherCourse = ({ email ='sharminaktermetu86@gmail.com' }) => {
   // const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // useEffect(() => {
-  //   if (!email) return;
-
-  //   setLoading(true);
-
-  //   fetch(`https://muslim-schoool.onrender.com/course/teacher/${email}`)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       const filteredCourses = data?.data?.filter(
-  //         (course) => course.medium === "Record Course"
-  //       );
-  //       setCourses(filteredCourses || []);
-  //       setLoading(false);
-  //     })
-  //     .catch(() => {
-  //       setLoading(false);
-  //     });
-  // }, [email]);
 const course = {
   _id: "abc123",
   image: "https://placekitten.com/400/250",

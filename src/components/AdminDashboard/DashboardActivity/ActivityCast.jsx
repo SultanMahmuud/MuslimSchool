@@ -33,19 +33,19 @@ useEffect(() => {
     }
   };
 
-  axios.get(`https://muslim-schoool.onrender.com/user/role/student`)
+  axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/role/student`)
     .then(res => setTotalStudent(res.data.data))
     .finally(checkAllDone);
 
-  axios.get(`https://muslim-schoool.onrender.com/user/all`)
+  axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/all`)
     .then(res => setTotalUser(res.data.data?.length))
     .finally(checkAllDone);
 
-  axios.get(`https://muslim-schoool.onrender.com/assignment`)
+  axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/assignment`)
     .then(res => setAssignment(res.data.data || []))
     .finally(checkAllDone);
 
-  axios.get(`https://muslim-schoool.onrender.com/user/role/teacher`)
+  axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/role/teacher`)
     .then(res => setTotalTeacher(res.data.data || []))
     .finally(checkAllDone);
 

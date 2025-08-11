@@ -30,7 +30,7 @@ export default function AdminTable() {
 
   useEffect(() => {
     setLoading(true);
-    fetch('https://muslim-schoool.onrender.com/user/role/admin')
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/role/admin`)
       .then((res) => res.json())
       .then((json) => {
         setData(json.data);
@@ -40,7 +40,7 @@ export default function AdminTable() {
   }, [openLevel]);
 
   const handleDelete = (email) => {
-    fetch('https://muslim-schoool.onrender.com/user/delete', {
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/delete`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email }),
@@ -50,7 +50,7 @@ export default function AdminTable() {
   };
 
   const handleBlockToggle = (email, current) => {
-    fetch('https://muslim‑schoool.onrender.com/user/update', {
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/update`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, isBlock: !current }),

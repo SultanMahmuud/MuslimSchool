@@ -51,8 +51,8 @@ const AddBook = () => {
     };
 
     try {
-      await axios.post('https://muslim-schoool.onrender.com/books/create', newdata); // Replace with actual endpoint
-     alert('Book added successfully!');
+      await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/book/create`, newdata);
+      alert('Book added successfully!');
       reset();
     } catch (error) {
       alert('Failed to add book');

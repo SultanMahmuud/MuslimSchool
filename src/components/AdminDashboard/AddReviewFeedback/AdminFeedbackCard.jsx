@@ -7,7 +7,7 @@ import FeedbackUpdate from './FeedBackUpdate';
 const AdminFeedbackCard = ({ reviews, setIsLoading }) => {
   const handleDeleteCours = (id) => {
     axios
-      .delete(`https://muslim-schoool.onrender.com/api/v1/reviews/getReview/${id}`)
+      .delete(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/reviews/getReview/${id}`)
       .then(() => {
         alert('Review deleted successfully');
         setIsLoading(true);

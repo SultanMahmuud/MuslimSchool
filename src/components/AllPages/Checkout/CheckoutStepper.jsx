@@ -73,7 +73,7 @@ const CheckoutStepper = ({ courseData }) => {
       setShowWarning(true);
     } else {
       try {
-        fetch("https://muslim-schoool.onrender.com/ssl-request", {
+        fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/ssl-request`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(paymentData),
@@ -98,7 +98,7 @@ const CheckoutStepper = ({ courseData }) => {
       setShowWarning(true);
     } else {
       try {
-        fetch("https://muslim-schoool.onrender.com/bkash/bkash-checkout", {
+        fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/bkash/bkash-checkout`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(paymentData),

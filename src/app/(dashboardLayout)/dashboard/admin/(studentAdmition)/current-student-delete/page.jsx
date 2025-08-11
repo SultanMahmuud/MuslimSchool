@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 
-const API_URL = 'https://muslim-schoool.onrender.com/api/current-students';
+const API_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/current-students`;
 
 const DeleteStudent = () => {
   const [students, setStudents] = useState([]);

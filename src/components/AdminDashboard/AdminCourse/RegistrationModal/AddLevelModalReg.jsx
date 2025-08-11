@@ -14,7 +14,7 @@ const AddLevelModalReg = ({ open, setOpen, email }) => {
 
     setLoading(true)
     axios
-      .get(`https://muslim-schoool.onrender.com/registration/${email}`)
+      .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/${email}`)
       .then((res) => {
         setRegUser(res?.data)
         setLevels(res?.data?.data?.levels || {})
@@ -32,7 +32,7 @@ const AddLevelModalReg = ({ open, setOpen, email }) => {
     setLoading(true)
 
     axios
-      .put(`https://muslim-schoool.onrender.com/registration/${email}`, {
+      .put(`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/${email}`, {
         levels,
       })
       .then(() => {

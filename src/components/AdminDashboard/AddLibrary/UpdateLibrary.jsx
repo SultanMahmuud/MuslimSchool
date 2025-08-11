@@ -36,7 +36,7 @@ axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/book/${itemId}`)
   });
 
   useEffect(() => {
-    fetch("https://muslim-schoool.onrender.com/category")
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/category`)
       .then((res) => res.json())
       .then((data) => setCategory(data.data.reverse()));
   }, []);
@@ -54,7 +54,7 @@ axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/book/${itemId}`)
     };
 
     axios
-      .put(`https://muslim-schoool.onrender.com/book/${id}`, data)
+      .put(`${process.env.NEXT_PUBLIC_API_BASE_URL}/book/${id}`, data)
       .then((res) => {
         if (res.status === 201) {
           toast.success("Successfully edited");
