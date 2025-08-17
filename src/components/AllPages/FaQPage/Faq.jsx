@@ -5,7 +5,7 @@ import { BiSearch } from 'react-icons/bi';
 
 import Axios from 'axios';
 import { MdExpandMore } from 'react-icons/md';
-import { Button } from '@/components/UI/button';
+
 
 const FAQContainer = () => {
   const [faq, setFaq] = useState([]);
@@ -65,17 +65,17 @@ const FAQContainer = () => {
 
         <div className="flex flex-wrap gap-3 justify-center mb-6 max-w-4xl mx-auto">
           {category[0]?.FAQ?.map((e, index) => (
-            <Button
+            <div
               key={index}
               onClick={handleSearch}
               className={`px-4 py-2 rounded-md shadow text-base font-semibold ${
                 searchInput === e?.category
-                  ? 'bg-blue-600 text-white'
+                  ? 'bg-primary text-white'
                   : 'text-gray-800 bg-white'
               }`}
             >
               {e?.category}
-            </Button>
+            </div>
           ))}
         </div>
 
@@ -96,7 +96,7 @@ const FAQContainer = () => {
               key={index}
               className="bg-white rounded-md shadow-md mb-4 overflow-hidden"
             >
-              <Button
+              <div
                 onClick={handleChange(e.question)}
                 className="w-full flex justify-between items-center px-4 py-3 text-left text-gray-800 font-semibold hover:bg-gray-50"
               >
@@ -106,7 +106,7 @@ const FAQContainer = () => {
                     expanded === e.question ? 'rotate-180' : ''
                   }`}
                 />
-              </Button>
+              </div>
               {expanded === e.question && (
                 <div className="px-4 pb-4 text-gray-600 text-sm">
                   {e.answer}

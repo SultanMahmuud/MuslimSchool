@@ -1,51 +1,20 @@
 "use client";
-
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
-  MenuIcon,
-  XIcon,
-  BellIcon,
-  LogInIcon,
-  CircleHelpIcon,
-  CircleCheckIcon,
-  CircleIcon,
-  UserIcon,
+  MenuIcon, XIcon, LogInIcon, CircleHelpIcon, CircleCheckIcon, CircleIcon
 } from "lucide-react";
-
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  navigationMenuTriggerStyle,
-} from "@/components/UI/navigation-menu";
-
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuTrigger,
-} from "@/components/UI/dropdown-menu";
-
 import { Button } from "@/components/UI/button";
-
 import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerHeader,
-  DrawerTitle,
+  Drawer, DrawerClose, DrawerContent, DrawerHeader
 } from "@/components/UI/drawer";
 import AuthComponent from "@/components/Authcomponent/Authcomponent";
 import { getUserInfo } from "@/services/auth.services";
 import RelativeMenu from "./RelativeMenu";
 import { useDispatch } from "react-redux";
 import { logout } from "@/redux/features/slice/authSlice";
-import { useRouter } from "next/navigation";
-import Image from "next/image";
-import logo from "@/assets/Logo/Logo.png";
+import { useRouter, usePathname } from "next/navigation";
+
 const menuItems = [
   { label: "আমাদের সম্পর্কে", href: "/about" },
   { label: "কোর্স", href: "/courses" },
@@ -59,189 +28,113 @@ const menuItems = [
 ];
 
 const tasksSubMenu = [
-  {
-    label: "স্টুডেন্ট রিভিউ দেখুন",
-    href: "/review",
-    icon: <CircleHelpIcon className="h-4 w-4" />,
-  },
-  {
-    label: "লাইব্রেরি",
-    href: "/show-library",
-    icon: <CircleIcon className="h-4 w-4" />,
-  },
-  {
-    label: "রিডিং কোরআন",
-    href: "/reading-quran",
-    icon: <CircleCheckIcon className="h-4 w-4" />,
-  },
-  {
-    label: "অডিও কোরআন",
-    href: "/audio-quran",
-    icon: <CircleCheckIcon className="h-4 w-4" />,
-  },
+  { label: "স্টুডেন্ট রিভিউ দেখুন", href: "/review", icon: <CircleHelpIcon className="h-4 w-4" /> },
+  { label: "লাইব্রেরি", href: "/show-library", icon: <CircleIcon className="h-4 w-4" /> },
+  { label: "রিডিং কোরআন", href: "/reading-quran", icon: <CircleCheckIcon className="h-4 w-4" /> },
+  { label: "অডিও কোরআন", href: "/audio-quran", icon: <CircleCheckIcon className="h-4 w-4" /> },
 ];
 
-const Navbar = () => {
+export default function Navbar() {
   const dispatch = useDispatch();
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [drawerOpen, setDrawerOpen] = useState(false); // <-- updated
-const router = useRouter();
-
+  const router = useRouter();
+  const pathname = usePathname();
   const user = getUserInfo();
 
+  const [drawerOpen, setDrawerOpen] = useState(false); // login drawer
+  const [mobileNavOpen, setMobileNavOpen] = useState(false); // left nav drawer
+
   const handleLogout = () => {
-    // Implement logout functionality
     dispatch(logout());
-     router.refresh();
+    router.refresh();
   };
+
+  useEffect(() => {
+    setMobileNavOpen(false);
+  }, [pathname]);
 
   return (
     <>
-      <header className="w-full px-4 py-3 shadow-sm border-b bg-white dark:bg-black sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          {/* Logo */}
-          <div className="text-3xl font-extrabold text-primary">
-            <Link href="/"><Image src={logo} alt="Logo" width={128} height={128} />  </Link>
-          </div>
-
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center justify-center">
-            <NavigationMenu>
-              <NavigationMenuList className="">
-                {menuItems.map((item, idx) => (
-                  <NavigationMenuItem key={idx}>
-                    <NavigationMenuLink
-                      asChild
-                      className={navigationMenuTriggerStyle() }
-                    >
-                      <Link href={item.href} className="font-semibold navColor text-[16px] hover:navColor">
-                        {item.label}
-                      </Link>
-                    </NavigationMenuLink>
-                  </NavigationMenuItem>
-                ))}
-
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Link href="#" className="font-semibold navColor text-lg">
-                      আরও
-                    </Link>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent className="w-40">
-                    <DropdownMenuRadioGroup onValueChange={() => {}}>
-                      {tasksSubMenu.map((task, idx) => (
-                        <DropdownMenuRadioItem
-                          key={idx}
-                          value={task.label}
-                          className="flex items-left gap-4"
-                        >
-                          <Link
-                            href={task.href}
-                            className="font-semibold navColor text-base"
-                          >
-                            {task.label}
-                          </Link>
-                        </DropdownMenuRadioItem>
-                      ))}
-                    </DropdownMenuRadioGroup>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </NavigationMenuList>
-            </NavigationMenu>
-          </div>
-
-          {/* Right actions */}
-<div className="flex items-center gap-4">
-  <div className="hidden md:flex items-center gap-4">
-    {user ? (
-      <RelativeMenu user={user} handleLogout={handleLogout} />
-    ) : (
-      <button
-        onClick={() => setDrawerOpen(true)}
-        className="flex items-center gap-1  font-medium hover:text-primary transition-colors"
-      >
-        <LogInIcon className="h-5 w-5" />
-        লগইন
-      </button>
-    )}
-
-
-
-
-             
-            </div>
-
-            {/* Hamburger Menu */}
-            <Button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden"
-            >
-              {mobileOpen ? (
-                <XIcon className="h-6 w-6" />
-              ) : (
-                <MenuIcon className="h-6 w-6" />
-              )}
-            </Button>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        {mobileOpen && (
-          <div className="md:hidden mt-3 space-y-2 px-4 pb-4">
-            {menuItems.map((item, idx) => (
-              <Link
-                key={idx}
-                href={item.href}
-                className="block py-2 font-medium text-base hover:text-primary"
-              >
-                {item.label}
-              </Link>
-            ))}
-
-            <div className="border-t pt-3">
-              <p className="font-semibold text-sm mb-2">Tasks</p>
-              {tasksSubMenu.map((task, idx) => (
-                <Link
-                  key={idx}
-                  href={task?.href}
-                  className="flex items-center gap-2 py-1 text-sm hover:text-primary"
-                >
-                  {task?.icon}
-                  {task?.label}
-                </Link>
-              ))}
-            </div>
-
-            <div className="border-t pt-3">
-              <button
-                onClick={() => setDrawerOpen(true)}
-                className="flex items-center gap-2 text-sm py-2 hover:text-primary"
-              >
-                <LogInIcon className="h-4 w-4" />
-                Login
-              </button>
-              
-            </div>
-          </div>
+      {/* Desktop Navbar */}
+      <header className="hidden md:flex w-full px-4 py-3 shadow-sm border-b bg-white sticky top-0 z-50 justify-between">
+        {/* Left: Logo or Menu */}
+        <div className="text-xl font-bold">LOGO</div>
+        {/* Center: Menu Items */}
+        <nav className="flex gap-4">
+          {menuItems.map((item) => (
+            <Link key={item.href} href={item.href} className="hover:text-primary">{item.label}</Link>
+          ))}
+        </nav>
+        {/* Right: Login / User Menu */}
+        {user ? (
+          <RelativeMenu user={user} handleLogout={handleLogout} />
+        ) : (
+          <button onClick={() => setDrawerOpen(true)} className="flex items-center gap-1">
+            <LogInIcon className="h-5 w-5" /> লগইন
+          </button>
         )}
       </header>
 
-      {/* Right Drawer */}
-      <Drawer open={drawerOpen} onOpenChange={setDrawerOpen} direction="right" className="">
-        <DrawerContent className="p-4  mx-auto  min-w-lg">
+      {/* Mobile Sticky Bar */}
+      <div className="md:hidden fixed top-0 left-0 right-0 bg-white border-b shadow-sm z-50 flex justify-between items-center px-4 py-2">
+        <Button variant="ghost" onClick={() => setMobileNavOpen(true)}>
+          <MenuIcon className="h-6 w-6" />
+        </Button>
+        {menuItems.slice(0,3).map((item) => (
+          <Link key={item.href} href={item.href} className="block py-2 hover:text-primary">
+            {item.label}
+          </Link>
+        ))}
+       
+      </div>
+
+      {/* Mobile Left Drawer */}
+      <Drawer open={mobileNavOpen} onOpenChange={setMobileNavOpen} direction="left">
+        <DrawerContent className="p-4 w-64">
           <DrawerHeader>
-          
+            <DrawerClose className="absolute top-4 right-4">
+              <XIcon className="h-5 w-5" />
+            </DrawerClose>
+            <h2 className="text-lg font-bold mb-4">Navigation</h2>
+          </DrawerHeader>
+          <div className="space-y-2">
+            {menuItems.map((item) => (
+              <Link key={item.href} href={item.href} className="block py-2 hover:text-primary">
+                {item.label}
+              </Link>
+            ))}
+            <div className="pt-4 border-t">
+              {tasksSubMenu.map((task) => (
+                <Link key={task.href} href={task.href} className="flex items-center gap-2 py-2 hover:text-primary">
+                  {task.icon} {task.label}
+                </Link>
+              ))}
+            </div>
+            <div className="pt-4 border-t">
+              <button
+                onClick={() => {
+                  setMobileNavOpen(false);
+                  setDrawerOpen(true);
+                }}
+                className="flex items-center gap-2 hover:text-primary"
+              >
+                <LogInIcon className="h-4 w-4" /> Login
+              </button>
+            </div>
+          </div>
+        </DrawerContent>
+      </Drawer>
+
+      {/* Login Drawer (Right Side) */}
+      <Drawer open={drawerOpen} onOpenChange={setDrawerOpen} direction="right">
+        <DrawerContent className="p-4 max-w-sm">
+          <DrawerHeader>
             <DrawerClose className="absolute top-4 right-4">
               <XIcon className="h-5 w-5" />
             </DrawerClose>
           </DrawerHeader>
-          
-           <AuthComponent/>
-     
+          <AuthComponent />
         </DrawerContent>
       </Drawer>
     </>
   );
-};
-
-export default Navbar;
+}
