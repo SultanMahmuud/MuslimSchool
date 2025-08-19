@@ -1,18 +1,19 @@
 'use client'
 import { CheckCircle, Star } from 'lucide-react';
+import Link from 'next/link';
 import React, { useState } from 'react'
 import { BiBookOpen } from 'react-icons/bi';
 import { FiRefreshCw } from 'react-icons/fi';
 
 const Instructureteacher = ({teacherProfiles}) => {
  const [aboutOpen, setAboutOpen] = useState(false);
-
+console.log(teacherProfiles)
  // Sample data
 const stats = [
-  { icon: <BiBookOpen />, label: 'Total Classes', value: 2869 },
-  { icon: <CheckCircle />, label: 'Completed', value: 95 },
-  { icon: <FiRefreshCw />, label: 'Active Courses', value: 1 },
-  { icon: <Star />, label: 'Average Rating', value: '4.9' }
+  { icon: <BiBookOpen />, label: 'Total Classes', value: teacherProfiles?.Course.length || 0 },
+  { icon: <CheckCircle />, label: 'Completed', value: teacherProfiles?.completedLessons || 0 },
+  { icon: <FiRefreshCw />, label: 'Active Courses', value: teacherProfiles?.activeCourses || 0 },
+  { icon: <Star />, label: 'Average Rating', value: teacherProfiles?.averageRating || '0' }
 ];
   return (
     <div>
@@ -30,9 +31,9 @@ const stats = [
             <p className="text-2xl text-gray-700 mt-1">{teacherProfiles?.name}</p>
           </div>
         </div>
-        <button className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg">
+        <Link href="/trial-class" ><button className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg">
           Book Trial Class
-        </button>
+        </button></Link>
       </div>
 
       {/* Stats Cards */}

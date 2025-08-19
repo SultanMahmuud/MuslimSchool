@@ -30,15 +30,15 @@ const AuthComponent = () => {
   }
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen w-[80%] lg:w-full lg:items-center justify-center">
  <div
-      className="hind bg-white p-6 text-center w-[400px]"
+      className="hind bg-white p-6 text-center "
       style={{
         borderRadius: "8px",
         boxShadow: "0px 14px 22px rgb(42 135 158 / 14%)",
         
         background: "white",
-        margin: "32px",
+        
       }}
     >
       {/* Header */}

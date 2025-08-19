@@ -10,6 +10,7 @@ import WhyLearnCard from "./WhyLearnCard";
 import CourseStudentFaq from "./CourseStudentFaq";
 import PaymentFaq from "@/components/AdminDashboard/AdminCourse/CourseFaq";
 import StudentReviewOfCourse from "./StudentReviewOfCourse";
+import SectionTitle from "@/components/Shared/SectionTitle/SectionTitle";
 
 
 const LearnCourseTab = ({ course }) => {
@@ -62,7 +63,7 @@ const LearnCourseTab = ({ course }) => {
       {whatLearn && (
         <Element name="what-learn">
           <section id="what-learn">
-            <CourseTitle title="কোর্সে কি শিখবেন" />
+            <SectionTitle secondaryText="কোর্সে কি শিখবেন" />
             <WhatLearn data={course}/>
           </section>
         </Element>
@@ -71,7 +72,7 @@ const LearnCourseTab = ({ course }) => {
       {whatYouGet && (
         <Element name="what-get">
           <section id="what-get">
-            <CourseTitle title="কোর্সে আপনি পাচ্ছেন" />
+            <SectionTitle secondaryText="কোর্সে আপনি পাচ্ছেন"/>
             <WhatGetInCourse data={course}/>
           </section>
         </Element>
@@ -93,7 +94,7 @@ const LearnCourseTab = ({ course }) => {
 
       <Element name="course-curriculum">
         <section id="course-curriculum">
-          <CourseTitle title="কোর্স কারিকুলাম" />
+          <SectionTitle primaryText="কোর্স কারিকুলাম" />
           {/* <CourseCurriculum /> */}
         </section>
       </Element>
@@ -101,7 +102,7 @@ const LearnCourseTab = ({ course }) => {
       {courseWhy && (
         <Element name="why-learn">
           <section id="why-learn">
-            <CourseTitle first="কোরআন" title=" কেন শিখবেন" />
+            <SectionTitle primaryText="কোরআন" secondaryText=" কেন শিখবেন" />
             <WhyLearnCard  data={course}/>
           </section>
         </Element>
@@ -109,21 +110,21 @@ const LearnCourseTab = ({ course }) => {
 
       <Element name="what-student-says">
         <section id="what-student-says">
-          <CourseTitle first="শিক্ষার্থীরা " title="যা বলছে" />
+          <SectionTitle primaryText="শিক্ষার্থীরা" secondaryText="যা বলছে" />
           <StudentReviewOfCourse />
         </section>
       </Element>
 
       <Element name="what-student-asks">
         <section id="what-student-asks">
-          <CourseTitle first="প্রায়ই " title="জিজ্ঞেস করা প্রশ্ন" />
+          <SectionTitle primaryText="প্রায়ই" secondaryText="জিজ্ঞেস করা প্রশ্ন" />
           <CourseStudentFaq data={course}/>
         </section>
       </Element>
 
       <Element name="what-student-asks-payment">
         <section id="what-student-asks-payment">
-          <CourseTitle first="পেমেন্ট" title=" কিভাবে করব?" />
+          <SectionTitle primaryText="পেমেন্ট" secondaryText="কিভাবে করব?" />
           <PaymentFaq />
         </section>
       </Element>

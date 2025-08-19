@@ -71,7 +71,7 @@ useEffect(() => {
                   HandleEnrollNow={HandleEnrollNow}
                 />
               )}
-                <p>hfabi</p>
+              
             </div>
           </div>
            

@@ -47,7 +47,7 @@ export default function AllCourses() {
   return (
     <>
    
-      <section className="px-4 py-8 max-w-5xl mx-auto">
+      <section className="px-4 py-8 max-w-6xl mx-auto">
         {/* Featured Courses */}
         <h2 className="text-3xl font-semibold text-center mb-6">Featured Courses</h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">

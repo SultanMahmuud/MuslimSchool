@@ -4,7 +4,7 @@ import CourseDetails from '@/components/AllPages/CourseDetailsPage/CourseDetails
 export default async function Page({ params }) {
   
   const { courseId } = await params;
-console.log("Course ID:", courseId); // Debugging line to check courseId
+// Debugging line to check courseId
   return (
     <div>
       <CourseDetails courseID={courseId} />

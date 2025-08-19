@@ -246,11 +246,12 @@ export default function Navbar() {
 
       {/* Login Drawer (Right Side) */}
       <Drawer open={drawerOpen} onOpenChange={setDrawerOpen} direction="right">
-        <DrawerContent className="p-4 max-w-sm">
+        <DrawerContent className="p-4 max-w-[100%]">
           <DrawerHeader>
             <DrawerClose className="absolute top-4 right-4">
               <XIcon className="h-5 w-5" />
             </DrawerClose>
+            
           </DrawerHeader>
           <AuthComponent />
         </DrawerContent>

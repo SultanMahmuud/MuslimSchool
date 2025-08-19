@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 
 
-import sehedule from "@/assets/icons/working.png"
+import sehedule from "@/assets/icons/schedule (2).svg"
 import axios from "axios";
 import { Button } from "@/components/UI/button";
 import Image from "next/image";
@@ -84,8 +84,8 @@ const navigate = useRouter();
             key={label}
             className={`px-5 py-2 rounded-lg font-semibold text-[18px] transition-all duration-200 ${
               selectedDays === idx
-                ? "bg-[rgb(246_250_255)] text-[rgb(16_185_129);] shadow-md"
-                : "bg-transparent text-gray-600 hover:bg-gray-100"
+                ? "bg-[rgb(246_250_255)] text-[rgb(16_185_129)] shadow-md"
+                : "bg-white text-gray-600 hover:bg-gray-100"
             }`}
             onClick={() => setSelectedDays(idx)}
           >

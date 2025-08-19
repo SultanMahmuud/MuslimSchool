@@ -1,12 +1,12 @@
-'use client'
+"use client";
 import React, { useEffect, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { MdArrowRight } from "react-icons/md";
 import Link from "next/link";
 import { Button } from "@/components/UI/button";
 import axios from "axios";
-
-const FAQ = ({ current }) =>{
+import SectionTitle from "@/components/Shared/SectionTitle/SectionTitle";
+const FAQ = ({ current }) => {
   // const faq = [
   //   {
   //     question: "এই কোর্সে কি কি শেখানো হয়?",
@@ -42,10 +42,6 @@ const FAQ = ({ current }) =>{
   const [filteredFaq, setFilteredFaq] = useState([]);
 
   const [faq, setFaq] = useState([]);
-
-
-
-
 
   const getComponent = () => {
     axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/faq`).then((res) => {
@@ -84,22 +80,18 @@ const FAQ = ({ current }) =>{
 
   return (
     <div className="pb-12 px-4 max-w-3xl mx-auto ">
-     <div className="mb-10 text-center relative">
-  <h2 className="text-3xl font-extrabold relative inline-block">
-    <span className="text-primary">প্রায়ই </span>
-    <span className="navColor">জিজ্ঞেস করা প্রশ্ন</span>
+      <div className="my-10 text-center">
+        <SectionTitle
+          primaryText="প্রায়ই"
+          secondaryText="জিজ্ঞেস করা প্রশ্ন"
+        />
 
-    {/* underline background */}
-    <span className="absolute left-1/2 -translate-x-1/2 -bottom-3 w-[800px] h-12 bg-[url('https://qawamiuniversity.nyc3.digitaloceanspaces.com/courseIcons/underline%201%20(1).svg')] bg-no-repeat bg-center bg-contain"></span>
-  </h2>
-
-
-
-   
-          <p className="base1 text-lg font-semibold mt-4">
-           সম্ভব্য সমস্ত প্রশ্ন এখানে দেওয়া আছে। যদি আপনি আপনার প্রয়োজনীয় প্রশ্ন খুঁজে না পান, দয়া করে আমাদের একটি ইমেইল করুন support@muslimschoool.com এই ইমেলে । আমরা যত তাড়াতাড়ি সম্ভব আপনার সাথে যোগাযোগ করবো।
-          </p>
-      
+        <p className="base1 text-lg font-semibold mt-4">
+          সম্ভব্য সমস্ত প্রশ্ন এখানে দেওয়া আছে। যদি আপনি আপনার প্রয়োজনীয়
+          প্রশ্ন খুঁজে না পান, দয়া করে আমাদের একটি ইমেইল করুন
+          support@muslimschoool.com এই ইমেলে । আমরা যত তাড়াতাড়ি সম্ভব আপনার
+          সাথে যোগাযোগ করবো।
+        </p>
       </div>
 
       {!current && (
@@ -158,16 +150,14 @@ const FAQ = ({ current }) =>{
 
       <div className="flex justify-center mt-8">
         <Link href="/frequently-asked-questions" className="inline-block">
-          <button
-                      className="mt-3 bg-[#10B981] hover:bg-[#059669] rounded-full px-6 py-4 text-[16px] font-semibold text-white flex items-center gap-2 mx-auto"
-                    >
-                      <span>আরও দেখুন</span>
-                      <MdArrowRight className="text-lg" />
-                    </button>
+          <button className="mt-3 bg-[#10B981] hover:bg-[#059669] rounded-full px-6 py-4 text-[16px] font-semibold text-white flex items-center gap-2 mx-auto">
+            <span>আরও দেখুন</span>
+            <MdArrowRight className="text-lg" />
+          </button>
         </Link>
       </div>
     </div>
   );
-}
+};
 
 export default FAQ;

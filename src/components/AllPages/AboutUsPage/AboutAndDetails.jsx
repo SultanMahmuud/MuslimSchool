@@ -1,15 +1,15 @@
 import Image from "next/image";
-
+import aboutIcon from "@/assets/images/aboutpagesicon.png";
 const AboutAndDetails = () => {
   return (
-    <div className="about px-4 md:px-10 py-6">
+    <div className="about px-4  py-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Left Image Section */}
         <div className="flex justify-center items-center">
           <Image
             src="https://qawamiuniversity.nyc3.digitaloceanspaces.com/4727487.jpg"
             alt="The house from the offer."
-            className="min-h-[200px] w-4/5 object-cover"
+            className="min-h-[200px] object-cover"
             width={500}
             height={500}
           />
@@ -33,7 +33,7 @@ const AboutAndDetails = () => {
             <ul>
               <li className="flex items-start gap-4 py-2">
                 <Image
-                  src="https://qawamiuniversity.nyc3.digitaloceanspaces.com/4727487.jpg"
+                  src={aboutIcon}
                   alt="Icon"
                   className="max-w-[40px] flex-shrink-0"
                   width={40}

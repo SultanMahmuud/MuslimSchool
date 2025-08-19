@@ -21,7 +21,7 @@ const ContactNew = () => {
           {/* Avatar Illustration */}
           <div className="flex items-center mt-2">
             {/* Replace with your own SVG or illustration for best results */}
-            <Image src={img} alt="" width={64} height={64} />
+            <Image src={img} alt="" width={300} height={100} />
             {/* Optionally, add a waving hand emoji for friendliness */}
             
           </div>
