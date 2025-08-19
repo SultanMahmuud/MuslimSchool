@@ -13,6 +13,7 @@ import students from "@/assets/cardIcon/Icon/Total Student.svg";
 import { MdFavoriteBorder } from "react-icons/md";
 import Image from "next/image";
 import { Button } from "@/components/UI/button";
+import StarRating from "@/utils/StarRating";
 
 export default function CourseCard({ course, dashboard }) {
   const [loved, setLoved] = useState(false);
@@ -42,12 +43,16 @@ export default function CourseCard({ course, dashboard }) {
 
   return (
   
-      <div className="max-w-[340px] rounded-2xl  border p-3 mb-8">
-        {/* Image */}
-        <div
-          className="relative h-[200px] rounded-xl overflow-hidden mb-4 bg-cover bg-center"
+      <div className="w-[340px] rounded-2xl bg-white/50 shadow-xl backdrop-blur-xl border border-white/70 p-3 my-10"
           style={{
-            backgroundImage: course?.image
+            background: "linear-gradient(135deg, rgb(224 239 231) 0%, rgb(255 255 255) 80%)",
+          }}
+        >
+          {/* Image */}
+          <div
+            className="relative h-[200px] rounded-xl overflow-hidden mb-4 bg-cover bg-center"
+            style={{
+              backgroundImage: course?.image
               ? `url("${course.image}")`
               : "url('/fallback.jpg')",
           }}
@@ -57,7 +62,7 @@ export default function CourseCard({ course, dashboard }) {
           {/* Rank Badge */}
           {course?.rank && (
             <span
-              className={`absolute top-2 left-2 px-3 py-1 rounded-full text-white text-xs font-semibold shadow-sm ${rankStyle[course.rank]}`}
+              className={`absolute top-2 left-2 px-3 py-1 rounded-md text-white text-xs font-semibold shadow-sm ${rankStyle[course.rank]}`}
             >
               {course.rank}
             </span>
@@ -77,8 +82,8 @@ export default function CourseCard({ course, dashboard }) {
         </div>
 
         {/* Star Rating */}
-        <div className="px-4 mb-2">
-          {/* <StarRating reviews={course?.review} /> */}
+        <div className="px-2 my-4">
+          <StarRating reviews={course?.review} />
         </div>
 
         {/* Title */}
@@ -101,22 +106,22 @@ export default function CourseCard({ course, dashboard }) {
 
           {/* Features */}
           <div className="flex justify-between gap-2 mb-2">
-            <div className="flex items-center bg-gray-100 gap-1 px-3 py-1 rounded-md text-sm text-gray-700">
+            <div className="flex items-center bg-gray-100 gap-1 px-3 py-1 rounded-md text-[16px] text-gray-700 font-medium">
               <Image src={enrolled} className="w-4 h-4" alt="Enrolled Icon" />
               Enrolled
             </div>
-            <div className="flex items-center bg-gray-100 gap-1 px-3 py-1 rounded-md text-sm text-gray-700">
+            <div className="flex items-center bg-gray-100 gap-1 px-3 py-1 rounded-md text-[16px] text-gray-700 font-medium">
               <Image src={classNote} className="w-4 h-4" alt="Class Note Icon" />
               Class Notes
             </div>
           </div>
 
           <div className="flex justify-between gap-2 mb-2">
-            <div className="flex items-center bg-gray-100 gap-1 px-3 py-1 rounded-md text-sm text-gray-700">
+            <div className="flex items-center bg-gray-100 gap-1 px-3 py-1 rounded-md text-[16px] text-gray-700 font-medium">
               <Image src={liveclass} className="w-4 h-4" alt="Live Class Icon" />
               Live Classes
             </div>
-            <div className="flex items-center bg-gray-100 gap-1 px-3 py-1 rounded-md text-sm text-gray-700">
+            <div className="flex items-center bg-gray-100 gap-1 px-3 py-1 rounded-md text-[16px] text-gray-700 font-medium">
               <Image src={students} className="w-4 h-4" alt="Student Icon" />
               Students {course?.lesson}
             </div>
@@ -126,10 +131,10 @@ export default function CourseCard({ course, dashboard }) {
           <div className="flex justify-between items-end mt-2">
             <div className="flex items-center text-sm text-gray-600 gap-2">
               <FaUniversity />
-              <span className="font-medium">{course?.provider || "Muslim School"}</span>
+              <span className="font-medium text-[16px]">{course?.provider || "Muslim School"}</span>
             </div>
             <div className="text-right">
-              <p className="text-lg font-bold text-gray-800">
+              <p className="text-lg font-extrabold text-gray-800">
                 ৳{course?.banSalePrice || course?.salePrice}
               </p>
               <p className="text-sm text-gray-500 line-through">

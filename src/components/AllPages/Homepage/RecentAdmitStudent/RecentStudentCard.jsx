@@ -11,24 +11,24 @@ export default function ContentCard({
   location,
 }) {
   return (
-    <div className="flex justify-center items-center p-4 mt-4 font-hind">
-      <div className="bg-gray-50 border border-[#d0e1da] rounded-2xl p-5 max-w-[360px] w-full text-center shadow-md">
+    <div className="flex justify-center items-center p-4 mt-4 font-hind min-w-[360px]">
+      <div className="bg-[#f9fafb] border border-[#d0e1da] rounded-2xl p-5 max-w-[360px] w-full text-center shadow-md">
         {/* Avatar */}
         <div className="-mt-12 mb-4">
           <div className="w-24 h-24 mx-auto rounded-full border-4 border-white bg-green-100 overflow-hidden">
-            {/* <Image
+            <Image
               src={image || '/avatar.png'} // default fallback
               alt={name}
               width={96}
               height={96}
               className="w-full h-full object-cover"
-            /> */}
+            />
           </div>
         </div>
 
         {/* Course and Name */}
-        <p className="text-green-700 font-semibold text-sm">{course}</p>
-        <h3 className="text-lg font-bold text-gray-900">{name}</h3>
+        <p className="text-green-700 font-semibold">{course}</p>
+        <h3 className="text-xl font-bold text-gray-900">{name}</h3>
 
         {/* Class Type */}
         <div className="flex items-center justify-center gap-2 mt-2">

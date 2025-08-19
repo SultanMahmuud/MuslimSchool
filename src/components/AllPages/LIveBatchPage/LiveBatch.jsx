@@ -49,7 +49,11 @@ export default function LiveBatch() {
       !activeChip || lowerTitle.includes(activeChip.toLowerCase());
     return matchesSearch && matchesChip;
   });
-
+const featuredCourses = [
+  { title: 'Learn Quranic Arabic', badge: 'Popular' },
+  { title: 'Introduction to Hadith', badge: null },
+  { title: 'Islamic Theology', badge: null },
+];
   return (
     <>
   
@@ -58,19 +62,24 @@ export default function LiveBatch() {
         <h2 className="text-3xl font-bold text-center mb-6">
           Featured Courses
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {courses.slice(0, 3).map((course, idx) => (
-            <div key={idx} className="relative">
-              <CourseCard course={course} loading={loading} />
-              {course.rank && (
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
+          {featuredCourses.map((course, idx) => (
+            <div
+              key={`featured-${idx}`}
+              className="relative rounded-2xl p-6 h-56 flex items-end"
+              style={{
+                background: 'linear-gradient(to bottom, #6CCFAD, #3A8D56)',
+              }}
+            >
+              {course.badge && (
                 <span
                   className={`absolute top-4 left-4 px-3 py-1 text-sm font-medium rounded-full ${
-                    course.badge === "popular"
-                      ? "bg-yellow-400 text-white"
-                      : "bg-red-500 text-white"
+                    course.badge === 'Popular'
+                      ? 'bg-yellow-400 text-white'
+                      : 'bg-red-500 text-white'
                   }`}
                 >
-                  {course.rank}
+                  {course.badge}
                 </span>
               )}
               <h3 className="text-white text-xl font-bold">{course.title}</h3>

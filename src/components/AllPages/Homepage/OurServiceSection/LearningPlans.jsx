@@ -131,7 +131,7 @@ const LearningPlans = () => {
               {features.map(({ icon: FIcon, label }) => (
                 <li key={label} className="flex items-center">
                   <div className="bg-[#F4F7F0] p-2 rounded-full mr-3">
-                    <FIcon className="w-5 h-5 text-[#2eca7f]" />
+                    <FIcon className="w-5 h-5 text-[rgb(16_185_129)]" />
                   </div>
                   <span className="text-[#2D2D2D] font-medium hind">{label}</span>
                 </li>
@@ -140,7 +140,7 @@ const LearningPlans = () => {
 
             <Button
               onClick={() => handleChosen(title)}
-              className="banner-button-1 mt-5"
+              className="banner-button-1 mt-5 bg-gradient-to-r from-green-500 to-teal-400 hover:from-green-600 hover:to-teal-500"
             >
               Get Started
             </Button>

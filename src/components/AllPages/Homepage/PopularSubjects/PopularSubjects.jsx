@@ -19,7 +19,7 @@ const PopularSubjects = async () => {
               জনপ্রিয় বিষয়সমূহ
             </h2>
             <p className="hind text-[18px] sm:text-[15px] lg:text-[20px] font-medium base2 mt-2">
-              যেসব বিষয়গুলো ছাত্রদের কাছে সবচেয়ে জনপ্রিয়
+              প্রতিটি ডিপার্টমেন্টে আমাদের রয়েছে অভিজ্ঞ টিচারযা আপনার শিক্ষার যাত্রাকে করবে সহজ থেকে সহজতর
             </p>
           </div>
 

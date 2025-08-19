@@ -6,6 +6,7 @@ import startNow from "@/assets/howStartIcon/শুরু করুন.svg";
 
 import { Button } from "@/components/UI/button";
 import Image from "next/image";
+import Link from "next/link";
 
 const steps = [
   {
@@ -73,18 +74,22 @@ export default function HowToGetStart() {
                   {step.description}
                 </p>
 
+                
+
+              <Link href={step.link}>
                 <Button
                   type="button"
-                  className="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-[16px] px-8 py-6 rounded-xl flex items-center gap-2 transition duration-200"
+                  className="bg-[#10B981] hover:bg-[#059669] text-white font-semibold text-[16px] px-16 py-6 rounded-xl flex items-center gap-2 transition duration-200"
                 >
                   {step?.buttonText}
                   <TbClick className="text-lg" />
                 </Button>
-              </div>
+              </Link>
+            </div>
 
               {/* Arrow, not for last item */}
               {index < steps.length - 1 && (
-                <div className="text-emerald-700 text-3xl hidden md:block">
+                <div className="text-[45px] hidden md:block">
                   <PiArrowArcRightBold />
                 </div>
               )}

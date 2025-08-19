@@ -1,47 +1,64 @@
 'use client'
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { MdArrowRight } from "react-icons/md";
 import Link from "next/link";
 import { Button } from "@/components/UI/button";
+import axios from "axios";
 
 const FAQ = ({ current }) =>{
-  const demoFaq = [
-    {
-      question: "এই কোর্সে কি কি শেখানো হয়?",
-      answer:
-        "এই কোর্সে কোরআন পাঠ, ইসলামিক শিক্ষা এবং বিভিন্ন ফিকহ বিষয় শেখানো হয়।",
-    },
-    {
-      question: "কোর্সে ভর্তি হওয়ার জন্য কীভাবে আবেদন করব?",
-      answer:
-        "আমাদের ওয়েবসাইটে ‘শুরু করুন’ বাটনে ক্লিক করে আবেদন ফর্ম পূরণ করুন।",
-    },
-    {
-      question: "ফ্রি ক্লাসগুলো কখন হবে?",
-      answer:
-        "প্রতিমাসের প্রথম সপ্তাহে ফ্রি ক্লাস আয়োজন করা হয়। বিস্তারিত জানার জন্য আমাদের ফ্রি ক্লাস পেজ দেখুন।",
-    },
-    {
-      question: "কত দিন ধরে কোর্স চলবে?",
-      answer: "কোর্সের মেয়াদ সাধারণত ৩ মাস থেকে ৬ মাস পর্যন্ত হয়।",
-    },
-    {
-      question: "ক্লাসগুলো অনলাইনে হবে নাকি অফলাইনে?",
-      answer: "আমাদের সব ক্লাস অনলাইনে হয়, তাই আপনি যেকোন জায়গা থেকে অংশ নিতে পারেন।",
-    },
-    {
-      question: "কোর্স শেষে কি সার্টিফিকেট দেওয়া হয়?",
-      answer: "হ্যাঁ, কোর্স সম্পন্ন হলে আমরা একটি সার্টিফিকেট প্রদান করি।",
-    },
-  ];
+  // const faq = [
+  //   {
+  //     question: "এই কোর্সে কি কি শেখানো হয়?",
+  //     answer:
+  //       "এই কোর্সে কোরআন পাঠ, ইসলামিক শিক্ষা এবং বিভিন্ন ফিকহ বিষয় শেখানো হয়।",
+  //   },
+  //   {
+  //     question: "কোর্সে ভর্তি হওয়ার জন্য কীভাবে আবেদন করব?",
+  //     answer:
+  //       "আমাদের ওয়েবসাইটে ‘শুরু করুন’ বাটনে ক্লিক করে আবেদন ফর্ম পূরণ করুন।",
+  //   },
+  //   {
+  //     question: "ফ্রি ক্লাসগুলো কখন হবে?",
+  //     answer:
+  //       "প্রতিমাসের প্রথম সপ্তাহে ফ্রি ক্লাস আয়োজন করা হয়। বিস্তারিত জানার জন্য আমাদের ফ্রি ক্লাস পেজ দেখুন।",
+  //   },
+  //   {
+  //     question: "কত দিন ধরে কোর্স চলবে?",
+  //     answer: "কোর্সের মেয়াদ সাধারণত ৩ মাস থেকে ৬ মাস পর্যন্ত হয়।",
+  //   },
+  //   {
+  //     question: "ক্লাসগুলো অনলাইনে হবে নাকি অফলাইনে?",
+  //     answer: "আমাদের সব ক্লাস অনলাইনে হয়, তাই আপনি যেকোন জায়গা থেকে অংশ নিতে পারেন।",
+  //   },
+  //   {
+  //     question: "কোর্স শেষে কি সার্টিফিকেট দেওয়া হয়?",
+  //     answer: "হ্যাঁ, কোর্স সম্পন্ন হলে আমরা একটি সার্টিফিকেট প্রদান করি।",
+  //   },
+  // ];
 
   const [expanded, setExpanded] = useState(null);
   const [name, setName] = useState("");
-  const [filteredFaq, setFilteredFaq] = useState(demoFaq);
+  const [filteredFaq, setFilteredFaq] = useState([]);
 
+  const [faq, setFaq] = useState([]);
+
+
+
+
+
+  const getComponent = () => {
+    axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/faq`).then((res) => {
+      const reversedData = res?.data?.data?.reverse();
+      setFaq(reversedData);
+    });
+  };
+
+  useEffect(() => {
+    getComponent();
+  }, []);
   // Limit items shown on homepage or all on FAQ page
-  const itemsToShow = current ? demoFaq.length : 3;
+  const itemsToShow = current ? faq.length : 3;
 
   // Toggle accordion open/close
   const handleToggle = (question) => {
@@ -54,9 +71,9 @@ const FAQ = ({ current }) =>{
     setName(e.target.value);
 
     if (keyword === "") {
-      setFilteredFaq(demoFaq);
+      setFilteredFaq(faq);
     } else {
-      const results = demoFaq.filter(
+      const results = faq.filter(
         (item) =>
           item.question.toLowerCase().includes(keyword) ||
           item.answer.toLowerCase().includes(keyword)
@@ -66,16 +83,23 @@ const FAQ = ({ current }) =>{
   };
 
   return (
-    <div className="pb-12 px-4 max-w-3xl mx-auto">
-      <div className="mb-10 text-center">
-        <h2 className="text-3xl font-extrabold">
-          <span className="text-primary">প্রায়ই </span> <span className="base1">জিজ্ঞেস করা প্রশ্ন</span>
-        </h2>
-        {!current && (
-          <p className="base1 text-lg font-semibold mt-2 hind">
+    <div className="pb-12 px-4 max-w-3xl mx-auto ">
+     <div className="mb-10 text-center relative">
+  <h2 className="text-3xl font-extrabold relative inline-block">
+    <span className="text-primary">প্রায়ই </span>
+    <span className="navColor">জিজ্ঞেস করা প্রশ্ন</span>
+
+    {/* underline background */}
+    <span className="absolute left-1/2 -translate-x-1/2 -bottom-3 w-[800px] h-12 bg-[url('https://qawamiuniversity.nyc3.digitaloceanspaces.com/courseIcons/underline%201%20(1).svg')] bg-no-repeat bg-center bg-contain"></span>
+  </h2>
+
+
+
+   
+          <p className="base1 text-lg font-semibold mt-4">
            সম্ভব্য সমস্ত প্রশ্ন এখানে দেওয়া আছে। যদি আপনি আপনার প্রয়োজনীয় প্রশ্ন খুঁজে না পান, দয়া করে আমাদের একটি ইমেইল করুন support@muslimschoool.com এই ইমেলে । আমরা যত তাড়াতাড়ি সম্ভব আপনার সাথে যোগাযোগ করবো।
           </p>
-        )}
+      
       </div>
 
       {!current && (
@@ -134,12 +158,12 @@ const FAQ = ({ current }) =>{
 
       <div className="flex justify-center mt-8">
         <Link href="/frequently-asked-questions" className="inline-block">
-          <Button
-            type="button"
-            className="flex items-center gap-2 bg-primary hover:bg-emerald-700 text-white font-semibold  px-20 py-6 rounded-lg transition text-lg"
-          >
-            আরও দেখুন <MdArrowRight className="text-xl" />
-          </Button>
+          <button
+                      className="mt-3 bg-[#10B981] hover:bg-[#059669] rounded-full px-6 py-4 text-[16px] font-semibold text-white flex items-center gap-2 mx-auto"
+                    >
+                      <span>আরও দেখুন</span>
+                      <MdArrowRight className="text-lg" />
+                    </button>
         </Link>
       </div>
     </div>

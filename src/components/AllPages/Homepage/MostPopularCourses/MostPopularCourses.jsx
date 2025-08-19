@@ -22,7 +22,7 @@ const MostPopularCoursesPage = async() => {
             ২৫,০০০+  বেশি লাইভ ক্লাসে অংশগ্রহণ করেছেন
           </p>
           <h2 className="text-2xl md:text-3xl font-extrabold base1 my-4">
-            জনপ্রিয় কোর্সসমূহ
+           আমাদের সবচেয়ে জনপ্রিয় কোর্সসমূহ
           </h2>
           <FamousBar />
         </div>

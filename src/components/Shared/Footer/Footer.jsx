@@ -53,6 +53,7 @@ const Footer = () => {
              
                 width={100}
                 height={100}
+                style={{width:'180px', height:'80px'}} 
               />
              
             </div>
@@ -67,7 +68,7 @@ const Footer = () => {
             </p>
           </div>
           <div className=" p-4 rounded-lg">
-            <Image  width={700} height={50} src="https://www.qawmiuniversity.com/static/media/SSLCommerz-Pay-With-logo-All.6bb92f6b6d60c6b0c6d9.png" alt="SSLCommerz Payment" />
+            <Image  width={700} height={50} src="https://www.qawmiuniversity.com/static/media/SSLCommerz-Pay-With-logo-All.6bb92f6b6d60c6b0c6d9.png" alt="SSLCommerz Payment"/>
           </div>
         </div>
 

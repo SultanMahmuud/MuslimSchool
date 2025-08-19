@@ -113,7 +113,7 @@ const navigate = useRouter();
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#fffefa] px-2 hind mt-12 max-w-2xl my-12 mx-auto">
+    <div className="min-h-screen flex items-center justify-center bg-[#fffefa] px-2 hind mt-12 max-w-lg my-12 mx-auto">
       <div className="w-full  mt-12">
         {/* Top Section with Sun Icon, Greeting, and Illustration */}
         <div className="flex flex-row justify-between items-center mb-2">

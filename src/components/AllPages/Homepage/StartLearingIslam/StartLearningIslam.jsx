@@ -33,7 +33,8 @@ export default function StartLearningIslam() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="relative overflow-hidden py-14 px-2 bg-gradient-to-tr from-[#f7fafd] via-[#fff6fc] to-[#f8fbff] hind  rounded-md mt-12">
+    <section className="relative overflow-hidden py-14 px-2 bg-gradient-to-tr from-[#f7fafd] via-[#fff6fc] to-[#f8fbff] hind  rounded-md mt-12 max-w-7xl mx-auto">
+      {/* Background Circle */}
       {/* Title */}
       <h2 className="text-center font-extrabold text-3xl md:text-4xl text-[rgb(16_24_40_/_90%)]  tracking-tight hind">
         শুরু করুন আপনার ইসলাম শেখার যাত্রা
