@@ -49,7 +49,7 @@ const LearnCourseTab = ({ course }) => {
   return (
     <div className="w-full">
       {isDesktop && (
-        <div className="sticky top-[50px] z-40 bg-[#f8fffc] shadow-md rounded-b-lg flex justify-center py-2 space-x-4 text-[14px]">
+        <div className="sticky top-[65px] z-40 bg-[#f8fffc] shadow-md rounded-b-lg flex justify-center py-2 space-x-4 text-[14px]">
           {whatLearn && sectionLink("what-learn", "কোর্সে কি শিখবেন")}
           {whatYouGet && sectionLink("what-get", "কোর্সে আপনি পাচ্ছেন")}
           {courseForWhom && sectionLink("for-whom", "কোর্সটি যাদের জন্য")}

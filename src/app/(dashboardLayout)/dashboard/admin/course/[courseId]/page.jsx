@@ -84,10 +84,10 @@ const UpdateCourse = ({ params }) => {
 useEffect(() => {
     if (id) {
       axios
-        .get(`${BASE_URL}/course/single-admin/${id}`)
+        .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/course/single-admin/${id}`)
         .then((res) => {
-          const data = res.data?.data;
-          
+          const data = res?.data?.data;
+          console.log("Course data fetched:", data);
           if (data) {
             // setCourseData(data);
             setCourseTitle(data.title || "");

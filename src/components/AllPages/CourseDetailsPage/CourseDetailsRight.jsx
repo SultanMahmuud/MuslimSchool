@@ -14,7 +14,7 @@ const CourseDetailsRight = ({ data, trailClass, HandleEnrollNow }) => {
 
 
   return (
-    <div className="w-full space-y-4 sticky top-16">
+    <div className="w-full space-y-4 sticky top-20">
       <div className=" border-2 border-green-400 rounded-md shadow p-4 bg-white">
         <div className="flex items-center justify-between">
           <div className="text-2xl font-bold text-green-600">৳{data?.banSalePrice || data?.price}</div>

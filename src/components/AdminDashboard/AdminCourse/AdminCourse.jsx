@@ -12,7 +12,7 @@ const AdminCourse = () => {
   useEffect(() => {
     setMounted(true); // mark that we are on client
 
-    fetch("https://api.qawmiuniversity.com/course")
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/course`)
       .then((res) => res.json())
       .then((data) => {
         setCourses(data);

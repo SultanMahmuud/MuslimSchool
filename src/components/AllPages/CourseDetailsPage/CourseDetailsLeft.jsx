@@ -1,5 +1,4 @@
-'use client'
-import { useEffect, useState } from "react";
+"use client";
 
 
 
@@ -7,11 +6,25 @@ import { Button } from "@/components/UI/button";
 import LearnCourseTab from "./LearnCourseTab";
 import Image from "next/image";
 
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 
 
-const CourseDetailsLeft = ({ data,}) => {
 
+const CourseDetailsLeft = ({ data}) => {
+const [teachers, setTeachers] = useState([]);
+
+  useEffect(() => {
+    axios
+      .put(`https://muslim-schoool.onrender.com/user/getByFiltered`, {
+        emails: data?.teacherInfo,
+      })
+      .then((res) => {
+        setTeachers(res?.data.data);
+      })
+      .catch((error) => {});
+  }, [data]);
 
   return (
     <div className="mt-2 lg:mt-0">
@@ -117,9 +130,10 @@ const CourseDetailsLeft = ({ data,}) => {
                 {/* <Image
                   alt="Remy Sharp"
                   src={
-                    teachers[0]?.avatar ||
-                    "https://i.ibb.co/N9jMprL/download.jpg"
+                    teachers[0]?.avatar
                   }
+                  width={40}
+                  height={40}
                 /> */}
                 <div className="text-[#1C1C1E] ml-2 leading-tight">
                   <p className="text-[16px] font-semibold font-hind">
@@ -153,7 +167,7 @@ const CourseDetailsLeft = ({ data,}) => {
               <div className="flex items-center border-t lg:border-t-0 border-[#ddd] pl-2">
                 <div className="text-[#1C1C1E] leading-tight">
                   <p className="text-[16px] font-semibold">রেটিং</p>
-                  {/* <Rating
+                  {/* <StarRating
                     name="size-small"
                     size="small"
                     readOnly
@@ -168,7 +182,7 @@ const CourseDetailsLeft = ({ data,}) => {
       </div>
 
       {/* Additional Tabs or Right Section */}
-      <div className="mt-6">
+      <div className="mt-12">
         <LearnCourseTab course={data}/>
         {/* <CourseDetailsRight data={data} /> */}
       </div>
