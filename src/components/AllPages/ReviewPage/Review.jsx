@@ -22,7 +22,7 @@ export default function Review() {
     const getComponent = async () => {
       try {
         setIsLoading(true);
-        const res = await axios.get(
+        const res =  axios.get(
           `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/reviews/getReview`
         );
 

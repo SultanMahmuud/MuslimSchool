@@ -4,12 +4,21 @@ import FamousBar from './FamousBar';
 
 
 const getCourses = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/course`, {
-    cache: 'no-store',
-  });
-  const data = await res.json();
-  return data?.data || [];
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/course`, {
+      cache: 'no-store',
+    });
+
+    if (!res.ok) return "Failed to fetch courses";
+
+    const data = await res.json();
+    return data?.data || [];
+  } catch (error) {
+    console.error("Error fetching courses:", error);
+    return [];
+  }
 };
+
 
 const MostPopularCoursesPage = async() => {
   const courses = await getCourses();

@@ -4,16 +4,23 @@ import Link from "next/link";
 import { MdArrowRight } from "react-icons/md";
 import { Button } from "@/components/UI/button";
 
+
 const getAllTeachers = async () => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/user/role/teacher`,
-    {
-      cache: "no-store", // Ensures fresh data on each request
-    }
-  );
-  const data = await res.json();
-  return data?.data || [];
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/role/teacher`, {
+      cache: 'no-store',
+    });
+
+    if (!res.ok) throw new Error("Failed to fetch courses");
+
+    const data = await res.json();
+    return data?.data || [];
+  } catch (error) {
+    console.error("Error fetching courses:", error);
+    return [];
+  }
 };
+
 const AwsomeTeachers = async ({ isLoading = false }) => {
   const teachers = await getAllTeachers();
 
