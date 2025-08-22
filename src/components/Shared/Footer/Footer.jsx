@@ -96,7 +96,7 @@ const Footer = () => {
             </ul>
 
             </ul>
-            <div className="flex items-center  mt-8">
+            <div className="flex items-center mt-8">
               <a href="https://www.facebook.com/muslimschoool" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-500">
                 <FaFacebookF className="w-6 h-6 " />
               </a>
@@ -114,21 +114,19 @@ const Footer = () => {
               <a href="https://www.linkedin.com/company/muslimschoool" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-700">
                 <FaLinkedinIn className="w-6 h-6 mx-2" />
               </a>
-               <a href="https://twitter.com/muslimschoool" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-400">
-                <FaTwitter className="w-6 h-6 mx-2" />
-              </a>
+             
 
           </div>
       
             <div className="mt-14 flex justify-end flex-col">
              <h3 className="text-xl font-semibold mb-4">Newsletter</h3>
             <form className="flex flex-col gap-2">
-              {/* <input
+              <input
                
                 type="email"
                 placeholder="Enter your email"
                 className="px-4 py-2 rounded-lg bg-white/30 placeholder-white text-white focus:outline-none"
-              /> */}
+              />
               <Button
                 type="submit"
                 className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg font-semibold transition"
