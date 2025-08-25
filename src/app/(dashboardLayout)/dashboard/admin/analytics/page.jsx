@@ -1,9 +1,10 @@
 'use client'
-import dynamic from 'next/dynamic';
+import AdminAnalyticContainer from '@/components/AdminDashboard/AdminAnalitics/AdminAnalyticContainer';
 
-const AdminAnalyticContainer = dynamic(() => import('@/components/AdminDashboard/AdminAnalitics/AdminAnalyticContainer'), {
-  ssr: false, // disables server-side rendering to avoid using 'self' on the server
-});
+
+// const AdminAnalyticContainer = dynamic(() => import('@/components/AdminDashboard/AdminAnalitics/AdminAnalyticContainer'), {
+//   ssr: false, // disables server-side rendering to avoid using 'self' on the server
+// });
 
 const page = () => {
   return (

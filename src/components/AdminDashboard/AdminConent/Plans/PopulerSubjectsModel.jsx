@@ -1,4 +1,5 @@
 import useUpload from '@/components/Hooks/useUpload';
+import CommonFileUpload from '@/components/Shared/FileUpload/CommonFileUpload';
 import axios from 'axios';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -74,11 +75,7 @@ const PopulerSubjectsModel = () => {
               Book Image
             </span>
 
-            <input
-              type="file"
-              onChange={img1}
-              className="w-full border border-gray-200 px-3 py-2 rounded-md"
-            />
+            <CommonFileUpload url={populerSubjectsimg} setUrl={setPopulerSubjectsimg} />
 
             {populerSubjectsimg && (
               <button

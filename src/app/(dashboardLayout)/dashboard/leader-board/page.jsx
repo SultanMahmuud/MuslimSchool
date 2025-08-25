@@ -6,12 +6,14 @@ import React, { useEffect, useState } from "react";
 const LeaderBoard = () => {
   const [selectedIndex, setSelectedIndex] = useState(1);
   const [student, setStudent] = useState([]);
+  const [loading, setLoading] = useState(true); 
 
   const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
   const placeholderImage =
     "https://upload.wikimedia.org/wikipedia/commons/f/fc/Qur%27an_and_Rehal.jpg";
 
   useEffect(() => {
+    setLoading(true);
     fetch(`${BASE_URL}/user/role/student`)
       .then((res) => res.json())
       .then((data) => {
@@ -26,12 +28,13 @@ const LeaderBoard = () => {
           }))
           .sort((a, b) => b.points - a.points);
         setStudent(sorted || []);
+        setLoading(false);
       });
   }, [BASE_URL]);
 
   return (
     <div className="flex flex-col items-center justify-center w-full px-4">
-      {/* Leader */}
+      {loading ? <p>Loading...</p> : null}
       {student?.[0] && (
         <div className="text-center mb-6">
           <h2 className="text-2xl font-bold">Leader Board</h2>

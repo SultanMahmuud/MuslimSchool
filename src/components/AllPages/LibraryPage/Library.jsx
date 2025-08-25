@@ -1,68 +1,33 @@
+
+'use client'
 import { Button } from "@/components/UI/button";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 
 
-const books = [
-  {
-    id: 1,
-    title: "Qur’an Tafsir",
-    author: "Yasin Hussain",
-    image: "/images/quran-tafsir.jpg",
-    badge: null,
-    rating: 4.5,
-    excerpt: "#",
-  },
-  {
-    id: 2,
-    title: "Learning Islam",
-    author: "Sakina Amin",
-    image: "/images/learning-islam.jpg",
-    badge: "New Release",
-  },
-  {
-    id: 3,
-    title: "Pillars of Faith",
-    author: "Sarah Amin",
-    image: "/images/pillars-of-faith.jpg",
-    badge: null,
-  },
-  {
-    id: 4,
-    title: "Daily Duas",
-    author: "Fatima Bilal",
-    image: "/images/daily-duas.jpg",
-    badge: "Bestseller",
-  },
-];
 
 const Library = () => {
-  // const { Allbook, isLoading, isError, isSuccess, message } = useSelector(
-  //   (state) => state.book
-  // );
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(getAllbook());
-  // }, [isError, isSuccess, message, dispatch]);
-  const Allbook = {
-    data: [
-      {
-        _id: "1",
-        title: "Islamic Studies",
-        author: "John Doe",
-        image: "/images/islamic-studies.jpg",
-        excerpt: "An in-depth study of Islamic teachings and principles.",
-      },
-      {
-        _id: "2",
-        title: "Arabic Language",
-        author: "Jane Smith",
-        image: "/images/arabic-language.jpg",
-        excerpt: "Learn the Arabic language with this comprehensive guide.",
-      },
-    ],
+
+  const [Allbook, setAllbook] = useState([]);
+  // add fetch
+  const fetchBooks = async () => {
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/book`);
+      const data = await response.json();
+      setAllbook(data);
+      console.log(data);
+    } catch (error) {
+      console.error("Error fetching books:", error);
+    }
   };
+
+  useEffect(() => {
+    fetchBooks();
+  }, []);
+
+
 
   return (
     <section className="py-16 bg-white">
@@ -72,7 +37,7 @@ const Library = () => {
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           {Allbook?.data?.map((item, index) => (
-            <Link   key={item._id} href={`/libraryDetails/${item._id}`}>
+            <Link   key={item._id} href={`/show-library/${item._id}`}>
             <div
           
               className="relative bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 p-6 group"

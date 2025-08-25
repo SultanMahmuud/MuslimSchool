@@ -13,7 +13,7 @@ const StudentReviewOfCourse = () => {
   console.log(reviews,'reviews');
   useEffect(() => {
     setIsLoading(true);
-    fetch('https://api.qawmiuniversity.com/api/v1/reviews/getReview')
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/reviews/getReview`)
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);

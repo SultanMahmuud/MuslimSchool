@@ -49,7 +49,8 @@ const DraftCourse = () => {
                   <CourseCard
                     element={element}
                     loading={loading}
-                    isDashboard={true}
+                    dashboard={true}
+
                   />
                   
                   </Link>

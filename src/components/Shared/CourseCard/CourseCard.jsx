@@ -29,7 +29,7 @@ export default function CourseCard({ course, dashboard }) {
   const handleLove = async (id) => {
     try {
       const res = await axios.put(
-        `https://api.qawmiuniversity.com/course/like/${id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/course/like/${id}`,
         { n: 1 }
       );
       if (res.status === 201) {
@@ -43,7 +43,7 @@ export default function CourseCard({ course, dashboard }) {
 
   return (
   
-      <div className="w-[340px] rounded-2xl bg-white/50 shadow-xl backdrop-blur-xl border border-white/70 p-3 my-10"
+      <div className="max-w-[340px] rounded-2xl bg-white/50 shadow-xl backdrop-blur-xl border border-white/70 p-3 my-10"
           style={{
             background: "linear-gradient(135deg, rgb(224 239 231) 0%, rgb(255 255 255) 80%)",
           }}

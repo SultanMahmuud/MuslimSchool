@@ -1,3 +1,5 @@
+import StudentEmailInfo from "@/components/common/StudentEmailInfo";
+import { GetTotalClass } from "@/utils/GetTotalClass";
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 
@@ -21,7 +23,7 @@ const StudentInfo = ({
   const [presentDay, setPresentDay] = useState();
   const [totalPayment, setTotalPayment] = useState();
 
-  // const FilterUser = searchUser?.data;
+  const FilterUser = searchUser?.data;
 
   const getStudentByEmail = () => {
     const email = studentRef?.current?.value;
@@ -60,34 +62,34 @@ const StudentInfo = ({
   useEffect(() => {
     const allClasses = classroom?.map((clssrm) => clssrm.classes);
     const flatAllClasses = allClasses?.reduce((acc, curr) => acc.concat(curr), []);
-    // const classNumberArray = flatAllClasses?.map((singleClass) =>
-    //   GetTotalClass(singleClass.startingDate, singleClass.selectedDays)
-    // );
+    const classNumberArray = flatAllClasses?.map((singleClass) =>
+      GetTotalClass(singleClass.startingDate, singleClass.selectedDays)
+    );
 
-    // const total = classNumberArray?.reduce((acc, curr) => acc + curr, 0);
-    // setTotalClass(total);
+    const total = classNumberArray?.reduce((acc, curr) => acc + curr, 0);
+    setTotalClass(total);
 
     const presentDate = studentDetail?.attendance?.map((attend) => attend.presentDate);
     setPresentDay(presentDate);
   }, [classroom]);
 
-  // const activeData = [
-  //   { heading: "Assignment M.", count: FilterUser?.points },
-  //   { heading: "Total Exam", count: sumOfTotalQuestionMarks },
-  //   { heading: "Attended N'th", count: FilterUser?.questionMarks?.length },
-  //   { heading: "Quiz Marks", count: sumOfQuizMarks },
-  //   { heading: "Examen Quiz", count: sumOfTotalQuizMarks },
-  //   { heading: "Enrolled C", count: FilterUser?.Course?.length },
-  //   { heading: "Number", count: FilterUser?.number },
-  //   { heading: "Total Class", count: totalClass },
-  //   { heading: "Present Class", count: FilterUser?.attendance?.length },
-  //   {
-  //     heading: "Miss Class",
-  //     count: totalClass - FilterUser?.attendance?.length,
-  //   },
-  //   { heading: "Email", count: FilterUser?.email },
-  //   { heading: "ID", count: FilterUser?.studentId },
-  // ];
+  const activeData = [
+    { heading: "Assignment M.", count: FilterUser?.points },
+    { heading: "Total Exam", count: sumOfTotalQuestionMarks },
+    { heading: "Attended N'th", count: FilterUser?.questionMarks?.length },
+    { heading: "Quiz Marks", count: sumOfQuizMarks },
+    { heading: "Examen Quiz", count: sumOfTotalQuizMarks },
+    { heading: "Enrolled C", count: FilterUser?.Course?.length },
+    { heading: "Number", count: FilterUser?.number },
+    { heading: "Total Class", count: totalClass },
+    { heading: "Present Class", count: FilterUser?.attendance?.length },
+    {
+      heading: "Miss Class",
+      count: totalClass - FilterUser?.attendance?.length,
+    },
+    { heading: "Email", count: FilterUser?.email },
+    { heading: "ID", count: FilterUser?.studentId },
+  ];
 
   const phoneNumber = activeData[6];
 

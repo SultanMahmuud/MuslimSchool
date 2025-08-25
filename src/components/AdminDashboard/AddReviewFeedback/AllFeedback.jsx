@@ -17,6 +17,10 @@ const AllFeedback = () => {
   return (
     <div>
       {isLoading && 'loading......'}
+     {/* if data have show data otherwise show no data */}
+     {!isLoading && reviews.length === 0 && (
+       <p className="text-gray-500 text-center font-medium text-lg">No feedback available</p>
+     )}
       <AdminFeedbackCard reviews={reviews} setIsLoading={setIsLoading} />
     </div>
   );

@@ -26,7 +26,7 @@ export default function AllCourses() {
   useEffect(() => {
     setLoading(true);
     axios
-      .get('https://api.qawmiuniversity.com/course')
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/course`)
       .then((res) => {
         setCourses(res.data.data);
       })

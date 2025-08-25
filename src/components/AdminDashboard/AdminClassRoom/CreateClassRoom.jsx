@@ -5,10 +5,12 @@ import axios from 'axios';
 import useUpload from '@/components/Hooks/useUpload';
 
 import Fileupload from "@/components/Shared/FileUpload/FileUpload"
+import { useRouter } from 'next/navigation';
 const CreateClassRoom = () => {
   const { handleSubmit, setFile, file, url, loading } = useUpload();
   const [teacher, setTeacher] = useState([]);
   const [student, setStudent] = useState([]);
+  const router = useRouter();
 
   const departmentRef = useRef();
   const sloganRef = useRef();
@@ -31,10 +33,12 @@ const CreateClassRoom = () => {
       .post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/classRoom`, data)
       .then((response) => {
         if (response.status === 200) alert('Sent data to server');
+           router.push('/dashboard/admin/class-room');
       })
       .catch(() => {});
+      // navigate
+      
 
-    
   };
 
   return (
