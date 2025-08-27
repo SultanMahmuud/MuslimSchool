@@ -8,6 +8,7 @@ import Image from "next/image";
 
 import axios from "axios";
 import { useEffect, useState } from "react";
+import StarRating from "@/utils/StarRating";
 
 
 
@@ -17,7 +18,7 @@ const [teachers, setTeachers] = useState([]);
 
   useEffect(() => {
     axios
-      .put(`https://muslim-schoool.onrender.com/user/getByFiltered`, {
+      .put(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/getByFiltered`, {
         emails: data?.teacherInfo,
       })
       .then((res) => {
@@ -41,7 +42,7 @@ const [teachers, setTeachers] = useState([]);
       ) : (
         <div className="mt-6">
           <Image
-            src={data?.image}
+            src={data?.image || "https://via.placeholder.com/1920x1080"}
             alt="Course Thumbnail"
             className="w-full rounded-lg"
             width={1920}
@@ -51,8 +52,8 @@ const [teachers, setTeachers] = useState([]);
       )}
 
       <div className="border p-4 rounded-lg mt-4">
-        <h2 className="text-xl font-semibold mb-2">{data?.title}</h2>
-        <p className="text-gray-700 mb-4">{data?.subTitle}</p>
+        <h2 className="text-xl lg:text-4xl font-semibold lg:font-bold mb-2 navColor">{data?.title}</h2>
+        <p className="text-gray-700 mb-4 text-[20px] font-medium">{data?.subTitle}</p>
 
       <div
             style={{
@@ -127,14 +128,14 @@ const [teachers, setTeachers] = useState([]);
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
               {/* Instructor */}
               <div className="flex items-center border-r lg:border-r border-[#ddd] pr-2">
-                {/* <Image
+                <Image
                   alt="Remy Sharp"
                   src={
                     teachers[0]?.avatar
                   }
                   width={40}
                   height={40}
-                /> */}
+                />
                 <div className="text-[#1C1C1E] ml-2 leading-tight">
                   <p className="text-[16px] font-semibold font-hind">
                     ইন্সট্রাক্টর
@@ -167,14 +168,14 @@ const [teachers, setTeachers] = useState([]);
               <div className="flex items-center border-t lg:border-t-0 border-[#ddd] pl-2">
                 <div className="text-[#1C1C1E] leading-tight">
                   <p className="text-[16px] font-semibold">রেটিং</p>
-                  {/* <StarRating
+                  <StarRating
                     name="size-small"
                     size="small"
                     readOnly
                     defaultValue={5}
                     precision={0.5}
                     max={5}
-                  /> */}
+                  />
                 </div>
               </div>
             </div>

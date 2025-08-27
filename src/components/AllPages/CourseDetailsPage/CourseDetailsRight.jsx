@@ -76,9 +76,9 @@ const CourseDetailsRight = ({ data, trailClass, HandleEnrollNow }) => {
           />
           
           <span>কল করুন</span>
-          <a href="tel:01947200111" className="underline">01947200111</a>
+          <a href="tel:+8801947200111" className="underline">+8801947200111</a>
         </div>
-        <div className="text-sm text-gray-500 mt-1">(সকাল ১০টা থেকে রাত ১০টা)</div>
+        <div className="text-sm text-gray-500 mt-1 font-bold">(সকাল ১০টা থেকে রাত ১০টা)</div>
       </div>
 
       </div>

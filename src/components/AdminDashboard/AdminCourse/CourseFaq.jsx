@@ -5,7 +5,7 @@ import { MdExpandMore } from 'react-icons/md';
 const PaymentFaq = () => {
   const [faqData, setFaqData] = useState([]);
   const [expandedPanel, setExpandedPanel] = useState(0);
-console.log(faqData,'faqdata')
+
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/faq`)
       .then(response => response.json())
@@ -27,7 +27,7 @@ console.log(faqData,'faqdata')
   };
 
   return (
-    <div className="mb-12 bg-white p-4 md:p-8 rounded-lg">
+    <div className="mb-4 bg-white p-4 md:p-8 rounded-lg">
       <div>
         {faqData.map((item, index) => (
           <div
@@ -38,7 +38,7 @@ console.log(faqData,'faqdata')
               className="w-full flex justify-between items-center text-left px-4 py-3 bg-gray-50 hover:bg-gray-100 rounded-md transition"
               onClick={() => handleToggle(index)}
             >
-              <span className="font-semibold text-[16px] text-gray-800">{item.question}</span>
+              <span className="font-bold text-[16px] navColor">{item.question}</span>
               <MdExpandMore
                 className={`text-xl transform transition-transform ${
                   expandedPanel === index ? 'rotate-180' : ''
@@ -46,7 +46,7 @@ console.log(faqData,'faqdata')
               />
             </button>
             {expandedPanel === index && (
-              <div className="px-4 py-3 text-gray-700 text-[16px] font-medium">
+              <div className="px-4 py-3 font-bold text-[16px] navColor">
                 {item.answer}
               </div>
             )}

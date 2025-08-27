@@ -57,7 +57,7 @@ const TeacherCourseCard = ({ element }) => {
             <div className="flex items-center gap-2">
               {/* {teachers?.map((teacher, index) => (
                 <div key={index} className="flex items-center gap-2">
-                  <img
+                  <Image
                     src={teacher?.avatar}
                     alt="avatar"
                     className="w-8 h-8 rounded-full"

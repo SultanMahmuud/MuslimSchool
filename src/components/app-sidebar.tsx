@@ -31,7 +31,8 @@ import { redirect, useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { logout } from "@/redux/features/slice/authSlice";
 
-
+import logo from "@/assets/Logo/Logo WH.png";
+import Image from "next/image";
 
 // adjust path as needed
 
@@ -233,7 +234,7 @@ const dispatch = useDispatch();
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader>
-        <Link href="/" className="text-2xl font-bold">Muslim School</Link>
+        <Link href="/" className="text-2xl font-bold"><Image src={logo} width={150} height={100} alt="logo"/></Link>
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={filteredNav} />

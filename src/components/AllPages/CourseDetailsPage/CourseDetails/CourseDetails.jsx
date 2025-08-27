@@ -20,7 +20,7 @@ useEffect(() => {
     try {
       setLoading(true);
       const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/course/${courseID}`;
-      console.log("Fetching:", url); // 🔍 Debug
+     
       const response = await axios.get(url);
       setCourse(response.data?.data);
     } catch (error) {
@@ -50,7 +50,15 @@ useEffect(() => {
 
         <section className=" py-6 w-7xl mx-auto">
           {loading ? (
-            <div className="flex items-center justify-center h-64">Loading...</div>
+            <div className="flex items-center justify-center h-screen">
+              <div className="animate-pulse flex flex-col items-center space-y-4">
+                <div className="h-8 w-2/3 bg-gray-200 rounded" />
+                <div className="h-64 w-full bg-gray-200 rounded" />
+                <div className="h-6 w-1/2 bg-gray-200 rounded" />
+                <div className="h-6 w-1/3 bg-gray-200 rounded" />
+                <div className="h-10 w-1/4 bg-gray-200 rounded" />
+              </div>
+            </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
               <div className="md:col-span-9">

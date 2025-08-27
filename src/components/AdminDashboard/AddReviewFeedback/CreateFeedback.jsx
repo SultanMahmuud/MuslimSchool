@@ -11,6 +11,7 @@ import { Label } from '@/components/UI/label';
 import { Textarea } from '@/components/UI/textarea';
 import { Separator } from '@/components/UI/separator';
 import useUploads from '@/components/Hooks/useUpload';
+import CommonFileUpload from '@/components/Shared/FileUpload/CommonFileUpload';
 
 const suggestTopics = [{ title: 'ReviewPage' }, { title: 'HomePage' }];
 
@@ -20,9 +21,7 @@ const Feedback = () => {
   const [showPage, setShowPage] = useState('');
   const [reviewPersonImg, setreviewPersonImg] = useState('');
 
-  const img1 = (e) => {
-    handleSubmits(e, setreviewPersonImg);
-  };
+ 
 
   const onSubmit = (data) => {
     const newData = {
@@ -82,7 +81,7 @@ const Feedback = () => {
         {/* Image Upload */}
         <div className="space-y-2">
           <Label>Upload Reviewer Image</Label>
-          <Input type="file" onChange={img1} />
+         <CommonFileUpload url={reviewPersonImg} setUrl={setreviewPersonImg} />
         </div>
 
         {/* Submit Button */}

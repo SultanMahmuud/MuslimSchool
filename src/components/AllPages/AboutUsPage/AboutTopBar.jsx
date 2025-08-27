@@ -6,22 +6,22 @@ const Abouttopbar = () => {
   return (
     <div className="w-full mt-8 mb-28">
       <Tabs defaultValue="class">
-        <TabsList className="flex gap-2 bg-primary  p-2 rounded-md overflow-x-auto ">
+        <TabsList className="flex gap-2 bg-gray-100  p-4 rounded-md overflow-x-auto h-16">
           <TabsTrigger
             value="class"
-            className="text-white whitespace-nowrap data-[state=active]:bg-transparent data-[state=active]:text-black px-4 py-2 rounded-md"
+            className="text-black whitespace-nowrap data-[state=active]:bg-primary data-[state=active]:text-white px-4 py-3 rounded-md data-[state=active]:font-semibold"
           >
             ক্লাস ব্যবস্থা
           </TabsTrigger>
           <TabsTrigger
             value="teachers"
-            className="text-white whitespace-nowrap data-[state=active]:bg-transparent data-[state=active]:text-black px-4 py-2 rounded-md"
+              className="text-black whitespace-nowrap data-[state=active]:bg-primary data-[state=active]:text-white px-4 py-3 rounded-md"
           >
             শিক্ষক-শিক্ষিকা
           </TabsTrigger>
           <TabsTrigger
             value="achievements"
-            className="text-white whitespace-nowrap data-[state=active]:bg-transparent data-[state=active]:text-black px-4 py-2 rounded-md"
+             className="text-black whitespace-nowrap data-[state=active]:bg-primary data-[state=active]:text-white px-4 py-3 rounded-md"
           >
             আমাদের অর্জন
           </TabsTrigger>

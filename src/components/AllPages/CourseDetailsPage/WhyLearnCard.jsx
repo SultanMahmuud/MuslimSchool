@@ -1,49 +1,36 @@
 "use client";
-
-import ButtonStyle from "@/components/Shared/ButtonStyle";
+import { Button } from "@/components/UI/button";
 import Image from "next/image";
+import React from "react";
 
-
-
-const WhyLearnCard = ({data}) => {
-
-const array = data?.courseWhy
-  const handleEnrollNow = () => {
-    router.push(`/check-out/${cdata?.singleCourse?.data?._id}`);
-  };
+const WhyLearnCard = ({ data }) => {
+  const array = data?.courseWhy || [];
 
   return (
-    <div className="space-y-4">
-      {array?.slice(0, 4).map((card, index) => (
+    <div>
+      {array.map((card, index) => (
         <div
           key={index}
-          className={`flex flex-col ${
-            card.layout === "row" ? "md:flex-row" : "md:flex-col"
-          } justify-between p-4 shadow-sm rounded-md border gap-4 mx-2`}
+          className={`flex flex-col md:flex-row items-center justify-between bg-white  rounded-lg shadow-sm p-2 mb-4 ${
+            index % 2 == 0 ? "md:flex-row-reverse" : ""
+          }`}
         >
-          <div className="flex-shrink-0 mx-auto md:mx-0 w-[60%] md:w-[40%]">
+          {/* Image */}
+          <div className="w-full md:w-1/2 flex justify-start gap-12">
             <Image
               src={card.uploadUrl}
-              alt="Card Image"
-              className="w-full object-cover"
-              width={500}
-              height={500}
+              alt={card.title}
+              className="w-48 h-auto object-contain"
             />
           </div>
 
-          <div className="flex flex-col justify-between px-2 w-full">
-            <h3 className="text-[22px] font-bold text-secondary font-hind">
-              {card.title}
-            </h3>
-            <p className="text-[18px] font-semibold text-gray-700 font-hind">
+          {/* Content */}
+          <div className="w-full flex flex-col md:px-6 mt-4 md:mt-0">
+            <h2 className="text-[22px] font-bold mb-2 navColor">{card.title}</h2>
+            <p className="text-[#0009] text-[18px] font-semibold mb-4">
               {card.subtitle}
             </p>
-            <ButtonStyle
-              // onClick={handleEnrollNow}
-              className="bg-primary text-white mt-2 px-4 py-2 rounded-md w-fit"
-            >
-              এখনই ভর্তি হোন
-            </ButtonStyle>
+            <Button className="banner-button-1 w-1/3 font-extrabold text-3xl">এখনই ভর্তি হোন</Button>
           </div>
         </div>
       ))}

@@ -64,7 +64,7 @@ const Registration = () => {
   return (
     <div className="p-4 w-full">
       
-      {/* <DataTable columns={columns} data={filteredData} /> */}
+      <DataTable columns={columns} data={filteredData} />
       {/* <AddLevelModalReg open={openLevel} setOpen={setOpenLevel} email={leveledEmail} /> */}
     </div>
   )

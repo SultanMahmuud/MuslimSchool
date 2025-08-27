@@ -25,7 +25,7 @@ const array = data.whatYouGet
               <p className="font-hind text-[16px] lg:text-[18px] font-semibold pb-2 base1">
                 {item.title}
               </p>
-              <p className="font-hind text-[14px] font-normal base1">
+              <p className="font-hind text-[16px] font-normal base1">
                 {item.subtitle}
               </p>
             </div>

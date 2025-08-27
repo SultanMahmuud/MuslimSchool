@@ -19,6 +19,7 @@ export default function FAQPage() {
       setLoading(true)
       const res = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/faq`)
       const reversed = res?.data?.data?.reverse()
+      
       setFaq(reversed)
       setFilteredFaq(reversed)
     } catch (err) {

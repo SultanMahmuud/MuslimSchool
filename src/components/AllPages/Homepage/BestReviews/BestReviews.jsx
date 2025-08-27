@@ -88,12 +88,12 @@ const staticReviews = await getStaticReviews();
                   &ldquo;
                 </div>
                 <p className="text-white/90 text-[1.08rem] leading-relaxed mb-6 flex-grow hind">
-                  {t.review}
+                  {t?.review}
                 </p>
                 <div className="flex items-center gap-4 mt-4">
                   <Image
-                    src={t.reviewPersonImg}
-                    alt={t.personName}
+                    src={t?.reviewPersonImg || "https://via.placeholder.com/150"}
+                    alt={t?.personName}
                     className="w-12 h-12 rounded-full border-2 border-white shadow-md"
                     width={40}
                     height={40}
@@ -101,7 +101,7 @@ const staticReviews = await getStaticReviews();
                   <div>
                     <div className="font-bold text-white">{t.personName}</div>
                     <div className="text-white/70 text-sm">
-                      {t.location} &bull; {t.date}
+                      {t?.location} &bull; {t?.date}
                     </div>
                   </div>
                 </div>

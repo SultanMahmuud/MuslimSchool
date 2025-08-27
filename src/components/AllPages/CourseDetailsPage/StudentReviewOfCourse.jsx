@@ -10,7 +10,7 @@ const StudentReviewOfCourse = () => {
 
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  console.log(reviews,'reviews');
+  
   useEffect(() => {
     setIsLoading(true);
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/reviews/getReview`)

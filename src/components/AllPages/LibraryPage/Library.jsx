@@ -17,7 +17,7 @@ const Library = () => {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/book`);
       const data = await response.json();
       setAllbook(data);
-      console.log(data);
+      
     } catch (error) {
       console.error("Error fetching books:", error);
     }

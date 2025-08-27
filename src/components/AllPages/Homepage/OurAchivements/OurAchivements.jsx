@@ -9,11 +9,11 @@ const OurAchivements = async () => {
 
   return (
     <div className="py-8 px-4">
-      <h2 className="text-center text-2xl md:text-3xl font-bold  base1">
+      <h2 className="text-center text-[26px] md:text-3xl font-bold  base1">
         আমাদের অর্জন
       </h2>
-      <p className="text-center text-sm md:text-[20px] font-medium base2 mt-2 mb-6 hind">
-        আল্লাহর রহমতে, আমাদের আপ্রান চেষ্টা ও শিক্ষার্থীদের ভালোবাসায় আমরা এগিয়ে যাচ্ছি
+      <p className="text-center  text-[20px] font-medium base2 mt-2 mb-6 hind">
+        আল্লাহর রহমতে, আমাদের আপ্রান চেষ্টা ও শিক্ষার্থীদের  ভালোবাসায়  আমরা এগিয়ে যাচ্ছি
       </p>
 
       <div className="flex justify-center">

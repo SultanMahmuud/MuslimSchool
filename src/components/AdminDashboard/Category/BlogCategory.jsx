@@ -13,17 +13,22 @@ const BlogCategary = ({ featured, texteld, featured__vis, button_form }) => {
   const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   // Load categories
-  useEffect(() => {
-    fetch(`${BASE_URL}/category`)
-      .then((res) => res.json())
-      .then((data) => setCategory(data.data.reverse()));
-  }, [categoryItem, BASE_URL]);
+useEffect(() => {
+  fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/category`)
+    .then((res) => res.json())
+    .then((data) => {
+      if (data?.data?.length > 0) {
+        setCategory(data.data[0].blog); // directly save only courses
+      }
+    });
+}, [categoryItem]);
+
 
   // Add new blog category
   const onSubmit = (data) => {
     const newData = { ...data };
     axios
-      .put(`${BASE_URL}/category/blog/62eeb3f4d83f3f2c7c28e9e0`, newData)
+      .put(`${BASE_URL}/category/blog/68af1a2bda8917c50135cebc`, newData)
       .then(() => {
         reset();
         setCategoryItem("true");
@@ -36,7 +41,7 @@ const BlogCategary = ({ featured, texteld, featured__vis, button_form }) => {
   // Delete blog category
   const handleDeleteCours = (id) => {
     const data = {
-      Id: "62eeb3f4d83f3f2c7c28e9e0",
+      Id: "68af1a2bda8917c50135cebc",
     };
     axios
       .put(`${BASE_URL}/category/blogdelete/${id}`, data)
@@ -75,24 +80,19 @@ const BlogCategary = ({ featured, texteld, featured__vis, button_form }) => {
 
         {/* Show Blog Categories */}
         <div>
-          {category[0]?.blog.map(
-            (e, index) =>
-              e?.category?.length > 2 && (
-                <div
-                  key={index}
-                  className="flex items-center gap-4 mb-2 bg-white p-2 rounded shadow"
-                >
-                  <button
-                    type="button"
-                    onClick={() => handleDeleteCours(e?._id)}
-                    className="flex items-center justify-center w-9 h-9 rounded-full border border-gray-400 shadow bg-gray-100"
-                  >
-                    <Trash2 className="text-red-600 w-4 h-4" />
-                  </button>
-                  <p className={`${featured} text-sm`}>{e?.category}</p>
-                </div>
-              )
-          )}
+          {category.map((e, index) => (
+  <div key={index} className="flex items-center gap-4 mb-2 bg-white p-2 rounded shadow">
+    <button
+      type="button"
+      onClick={() => handleDeleteCours(e?._id)}
+      className="flex items-center justify-center w-9 h-9 rounded-full border border-gray-400 shadow bg-gray-100"
+    >
+      <Trash2 className="text-red-600 w-4 h-4" />
+    </button>
+    <p className={`${featured} text-sm`}>{e?.category}</p>
+  </div>
+))}
+
         </div>
       </div>
     </form>

@@ -95,7 +95,7 @@ export default function TeachersSection() {
 
         {/* Header + Subtext */}
         <h2 className="text-3xl font-bold text-center mb-2">
-          Prophet School Awesome Teachers
+          Muslim School Awesome Teachers
         </h2>
         <p className="text-center text-gray-600 mb-6">
           You Get The Best Teacher In the Subject As A Result, <br />
@@ -151,7 +151,7 @@ export default function TeachersSection() {
           filteredTeachers.map((el) => (
             <div key={el?._id}>
               <Link href={`/teacher/${el?._id}`} className="no-underline">
-                {/* <TeacherCard
+                <TeacherCard
                   depart={el?.Department}
                   name={el?.name}
                   joiningDate={el?.joiningDate}
@@ -161,7 +161,7 @@ export default function TeachersSection() {
                   totalClass={el?.attendance?.length}
                   image={el?.avatar}
                   qualification={el?.qual1}
-                /> */}
+                />
               </Link>
             </div>
           ))

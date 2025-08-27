@@ -59,7 +59,7 @@ export function NavMain({
                       tooltip={item.title}
                       className={`w-full ${isParentActive ? "bg-green-300" : ""} hover:bg-none`}
                     >
-                      <div className="flex items-center gap-2 w-full">
+                      <div className="flex items-center gap-2 w-full text-[18px]">
                         {item.icon && <item.icon className="shrink-0" />}
                         <span>{item.title}</span>
                         {item.items && (
@@ -83,7 +83,7 @@ export function NavMain({
                                 asChild
                                 className={`${isSubActive ? "bg-green-100" : ""} hover:bg-none`}
                               >
-                                <span>{subItem.title}</span>
+                                <span className="">{subItem.title}</span>
                               </SidebarMenuSubButton>
                             </Link>
                           </SidebarMenuSubItem>

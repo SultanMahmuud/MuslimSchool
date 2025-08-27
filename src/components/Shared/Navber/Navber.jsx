@@ -55,7 +55,6 @@ const tasksSubMenu = [
 const mobileTopMenu = [
   { label: "হোম", href: "/", icon: <Home className="h-4 w-4" /> },
   { label: "কোর্স", href: "/courses", icon: <Book className="h-4 w-4" /> },
-  { label: "ব্যাচ", href: "/live-batch", icon: <Clock className="h-4 w-4" /> },
   {
     label: "প্রাইসিং",
     href: "/pricing",
@@ -131,7 +130,7 @@ export default function Navbar() {
                       href={item.href}
                       className="
               flex items-center gap-2 px-3 py-1.5 rounded-md
-              font-semibold text-md navColor
+              font-semibold  navColor
               transition-colors duration-200
               hover:bg-primary hover:text-white
             "
@@ -159,14 +158,16 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Sticky Bar */}
-    <div className="md:hidden sticky top-0 left-0 right-0 bg-white border-b shadow-sm z-50 flex justify-between items-center px-5 py-2">
-
+      <div className="md:hidden sticky top-0 left-0 right-0 bg-white border-b shadow-sm z-50 flex justify-between items-center px-5 py-2">
         <Button
           variant="ghost"
           size="icon"
           onClick={() => setMobileNavOpen(true)}
         >
-          <MenuIcon className="h-6 w-6" />
+          <div className="flex items-center gap-1 flex-col hover:text-primary font-semibold text-lg navColor">
+            <MenuIcon className="h-6 w-6" />
+            <p>মেনু</p>
+          </div>
         </Button>
 
         {mobileTopMenu.map((item) => (
@@ -246,12 +247,11 @@ export default function Navbar() {
 
       {/* Login Drawer (Right Side) */}
       <Drawer open={drawerOpen} onOpenChange={setDrawerOpen} direction="right">
-        <DrawerContent className="p-4 max-w-[100%]">
+        <DrawerContent className="p-4 max-w-[100%] min-w-[400px]">
           <DrawerHeader>
             <DrawerClose className="absolute top-4 right-4">
               <XIcon className="h-5 w-5" />
             </DrawerClose>
-            
           </DrawerHeader>
           <AuthComponent />
         </DrawerContent>

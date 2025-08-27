@@ -56,13 +56,12 @@ const featuredCourses = [
 ];
   return (
     <>
-  
       <section className="px-4 max-w-6xl mx-auto py-16">
         {/* Featured Courses */}
         <h2 className="text-3xl font-bold text-center mb-6">
           Featured Courses
         </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
           {featuredCourses.map((course, idx) => (
             <div
               key={`featured-${idx}`}
@@ -127,8 +126,12 @@ const featuredCourses = [
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {loading ? (
             Array.from({ length: 9 }).map((_, idx) => (
-              <div key={idx}>
-                <p>Loading...</p>
+              <div
+                key={idx}
+                className="animate-pulse bg-gray-100 rounded-xl h-64 flex flex-col justify-end p-4"
+              >
+                <div className="h-6 bg-gray-300 rounded w-2/3 mb-2"></div>
+                <div className="h-4 bg-gray-200 rounded w-1/2"></div>
               </div>
             ))
           ) : filteredCourses.length > 0 ? (
@@ -150,7 +153,6 @@ const featuredCourses = [
           )}
         </div>
       </section>
-    
     </>
   );
 }

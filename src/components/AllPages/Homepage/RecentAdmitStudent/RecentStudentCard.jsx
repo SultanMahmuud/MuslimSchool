@@ -9,9 +9,11 @@ export default function ContentCard({
   course,
   joinDate,
   location,
+  time,
+  label
 }) {
   return (
-    <div className="flex justify-center items-center p-4 mt-4 font-hind min-w-[360px]">
+    <div className="flex justify-center items-center p-4 mt-4 font-hind min-w-[300px]">
       <div className="bg-[#f9fafb] border border-[#d0e1da] rounded-2xl p-5 max-w-[360px] w-full text-center shadow-md">
         {/* Avatar */}
         <div className="-mt-12 mb-4">
@@ -53,11 +55,11 @@ export default function ContentCard({
 
           {/* Chips */}
           <div className="flex justify-between items-center gap-2 pt-1">
-            <span className="text-sm font-semibold px-3 py-1 rounded-md bg-gray-100">
-              Ongoing
+            <span className="text-[13px] font-semibold px-3 py-1 rounded-md bg-gray-100">
+            {label || "Ongoing"}
             </span>
-            <span className="text-sm font-semibold text-white px-3 py-1 rounded-md bg-emerald-600">
-              ৮–১০ PM
+            <span className="text-[13px] font-semibold text-white px-3 py-1 rounded-md bg-emerald-600">
+              {time}
             </span>
           </div>
         </div>

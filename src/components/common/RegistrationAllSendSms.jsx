@@ -30,7 +30,7 @@ const RegistrationAllSendSms = ({ row }) => {
       mobile: to,
       message_body: text,
       isPromotional: 1,
-      campaign_title: "Prophet School Team",
+      campaign_title: "Muslim School Team",
     }
 
     try {

@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 const CourseAndClassRoom = ({ teacherEmail, setCourseLength, setClassroomLength }) => {
   const [courses, setCourses] = useState(null);
   const [classRoom, setClassRoom] = useState(null);
-  console.log(courses,'courses')
+  
 
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/course/teacher/${teacherEmail}`)

@@ -5,7 +5,7 @@ import React from 'react'
 
 const CommonLayout = ({ children }) => {
   return (
-    <div>
+    <div >
    <Navbar/>
       {children}
       <Footer/>

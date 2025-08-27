@@ -1,92 +1,62 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { BiSearch } from "react-icons/bi";
-import { MdArrowRight } from "react-icons/md";
+import { MdArrowRight, MdExpandMore } from "react-icons/md";
 import Link from "next/link";
-import { Button } from "@/components/UI/button";
+
 import axios from "axios";
 import SectionTitle from "@/components/Shared/SectionTitle/SectionTitle";
-const FAQ = ({ current }) => {
-  // const faq = [
-  //   {
-  //     question: "এই কোর্সে কি কি শেখানো হয়?",
-  //     answer:
-  //       "এই কোর্সে কোরআন পাঠ, ইসলামিক শিক্ষা এবং বিভিন্ন ফিকহ বিষয় শেখানো হয়।",
-  //   },
-  //   {
-  //     question: "কোর্সে ভর্তি হওয়ার জন্য কীভাবে আবেদন করব?",
-  //     answer:
-  //       "আমাদের ওয়েবসাইটে ‘শুরু করুন’ বাটনে ক্লিক করে আবেদন ফর্ম পূরণ করুন।",
-  //   },
-  //   {
-  //     question: "ফ্রি ক্লাসগুলো কখন হবে?",
-  //     answer:
-  //       "প্রতিমাসের প্রথম সপ্তাহে ফ্রি ক্লাস আয়োজন করা হয়। বিস্তারিত জানার জন্য আমাদের ফ্রি ক্লাস পেজ দেখুন।",
-  //   },
-  //   {
-  //     question: "কত দিন ধরে কোর্স চলবে?",
-  //     answer: "কোর্সের মেয়াদ সাধারণত ৩ মাস থেকে ৬ মাস পর্যন্ত হয়।",
-  //   },
-  //   {
-  //     question: "ক্লাসগুলো অনলাইনে হবে নাকি অফলাইনে?",
-  //     answer: "আমাদের সব ক্লাস অনলাইনে হয়, তাই আপনি যেকোন জায়গা থেকে অংশ নিতে পারেন।",
-  //   },
-  //   {
-  //     question: "কোর্স শেষে কি সার্টিফিকেট দেওয়া হয়?",
-  //     answer: "হ্যাঁ, কোর্স সম্পন্ন হলে আমরা একটি সার্টিফিকেট প্রদান করি।",
-  //   },
-  // ];
-
-  const [expanded, setExpanded] = useState(null);
-  const [name, setName] = useState("");
-  const [filteredFaq, setFilteredFaq] = useState([]);
-
+const FAQ = () => {
   const [faq, setFaq] = useState([]);
+  const [searchInput, setSearchInput] = useState('');
+  const [searchResult, setSearchResult] = useState([]);
+  const [expanded, setExpanded] = useState(false);
+  const [category, setCategory] = useState([]);
 
   const getComponent = () => {
     axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/faq`).then((res) => {
       const reversedData = res?.data?.data?.reverse();
       setFaq(reversedData);
+      setSearchResult(reversedData);
     });
   };
 
   useEffect(() => {
     getComponent();
   }, []);
-  // Limit items shown on homepage or all on FAQ page
-  const itemsToShow = current ? faq.length : 3;
 
-  // Toggle accordion open/close
-  const handleToggle = (question) => {
-    setExpanded(expanded === question ? null : question);
+  useEffect(() => {
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/category`)
+      .then((res) => res.json())
+      .then((data) => setCategory(data.data.reverse()));
+  }, []);
+
+  const handleSearch = (e) => {
+    const value = e.target.value || e.target?.innerText || '';
+    setSearchInput(value);
+    const result = faq.filter(
+      (item) =>
+        item?.question?.toLowerCase().includes(value.toLowerCase()) ||
+        item?.category?.toLowerCase().includes(value.toLowerCase())
+    );
+    setSearchResult(result);
   };
 
-  // Filter FAQs by question or answer
-  const filter = (e) => {
-    const keyword = e.target.value.toLowerCase();
-    setName(e.target.value);
-
-    if (keyword === "") {
-      setFilteredFaq(faq);
-    } else {
-      const results = faq.filter(
-        (item) =>
-          item.question.toLowerCase().includes(keyword) ||
-          item.answer.toLowerCase().includes(keyword)
-      );
-      setFilteredFaq(results);
-    }
+  const handleChange = (panel) => (event) => {
+    setExpanded(expanded === panel ? false : panel);
   };
-
   return (
-    <div className="pb-12 px-4 max-w-3xl mx-auto ">
-      <div className="my-10 text-center">
+    <div className="pb-12 px-4 max-w-3xl mx-auto w-full ">
+      <div className="lg:my-10 my-3 text-center">
         <SectionTitle
           primaryText="প্রায়ই"
           secondaryText="জিজ্ঞেস করা প্রশ্ন"
+          underlineWidth="w-[380px]"
+        
+        
         />
 
-        <p className="base1 text-lg font-semibold mt-4">
+        <p className="base1 text-lg font-semibold lg:mt-4">
           সম্ভব্য সমস্ত প্রশ্ন এখানে দেওয়া আছে। যদি আপনি আপনার প্রয়োজনীয়
           প্রশ্ন খুঁজে না পান, দয়া করে আমাদের একটি ইমেইল করুন
           support@muslimschoool.com এই ইমেলে । আমরা যত তাড়াতাড়ি সম্ভব আপনার
@@ -94,58 +64,58 @@ const FAQ = ({ current }) => {
         </p>
       </div>
 
-      {!current && (
-        <div className="flex items-center max-w-xl mx-auto mb-6 border border-gray-300 rounded-md px-3 py-2 bg-white">
-          <BiSearch className="text-gray-400 mr-2 text-xl" />
+     
+        {/* <div className="flex flex-wrap gap-3 justify-center mb-6 max-w-4xl mx-auto">
+          {category[0]?.FAQ?.map((e, index) => (
+            <div
+              key={index}
+              onClick={handleSearch}
+              className={`px-4 py-2 rounded-md shadow text-base font-semibold ${
+                searchInput === e?.category
+                  ? 'bg-primary text-white'
+                  : 'text-gray-800 bg-white'
+              }`}
+            >
+              {e?.category}
+            </div>
+          ))}
+        </div> */}
+
+        <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-md shadow max-w-4xl mx-auto mb-6">
+          <BiSearch className="text-xl text-black" />
           <input
             type="text"
-            value={name}
-            onChange={filter}
-            placeholder="প্রশ্ন বা উত্তর সার্চ করুন"
-            className="w-full focus:outline-none font-hind text-gray-900 text-base"
-            fdprocessedid="rozu1w"
+            value={searchInput}
+            onChange={handleSearch}
+            placeholder="Search question"
+            className="w-full py-2 outline-none text-sm"
           />
         </div>
-      )}
 
       <div>
-        {filteredFaq.slice(0, itemsToShow).map((item) => (
-          <div
-            key={item.question}
-            className="mb-4 border border-gray-200 rounded-lg shadow-sm"
-          >
-            <div
-              onClick={() => handleToggle(item.question)}
-              className="w-full flex justify-between items-center p-4 text-left focus:outline-none"
-              aria-expanded={expanded === item.question}
-            >
-              <span className="text-gray-900 font-semibold text-base hind">
-                {item.question}
-              </span>
-              <svg
-                className={`w-5 h-5 text-gray-600 transform transition-transform duration-200 ${
-                  expanded === item.question ? "rotate-180" : "rotate-0"
-                }`}
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </div>
-            {expanded === item.question && (
-              <div className="p-4 border-t border-gray-200 text-gray-700 hind">
-                {item.answer}
-              </div>
-            )}
-          </div>
-        ))}
+        {(searchResult.length > 0 ? searchResult : faq).slice(0,10).map((e, index) => (
+                   <div
+                     key={index}
+                     className="bg-white rounded-md shadow-md mb-4 overflow-hidden"
+                   >
+                     <div
+                       onClick={handleChange(e.question)}
+                       className="w-full flex justify-between items-center px-4 py-3 text-left text-gray-800 font-semibold hover:bg-gray-50"
+                     >
+                       <span className="text-sm md:text-base">{e.question}</span>
+                       <MdExpandMore
+                         className={`transition-transform ${
+                           expanded === e.question ? 'rotate-180' : ''
+                         }`}
+                       />
+                     </div>
+                     {expanded === e.question && (
+                       <div className="px-4 pb-4 text-gray-600 text-sm">
+                         {e.answer}
+                       </div>
+                     )}
+                   </div>
+                 ))}
       </div>
 
       <div className="flex justify-center mt-8">

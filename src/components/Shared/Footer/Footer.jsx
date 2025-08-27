@@ -5,21 +5,20 @@ import Link from "next/link";
 import React from "react";
 import {
   FaFacebookF,
-  FaTwitter,
   FaLinkedinIn,
-
   FaInstagram,
   FaTiktok,
   FaYoutube,
 } from "react-icons/fa";
 import logo from "@/assets/Logo/Logo WH.png";
+import ssl from "@/assets/SSLCommerz-Pay-With-logo-All.png"
 
 
 const Footer = () => {
   return (
-    <footer className="relative text-white overflow-hidden bg-gradient-to-br from-[#2eca7f] via-[#14532d] to-[#001c12] pt-16 pb-8 mt-20">
+    <footer className="relative text-white overflow-hidden bg-gradient-to-br from-[#2eca7f] via-[#14532d] to-[#001c12] pt-16 pb-8">
       {/* Wave Background Animation */}
-     <div className="absolute inset-0 z-0 pointer-events-none">
+     <div className="absolute inset-0 z-0 bottom-0 pointer-events-none">
         <svg className="w-full h-full" preserveAspectRatio="none" viewBox="0 0 2600 600">
           <defs>
             {/* Gradient stops match start/end for seamless loop */}
@@ -68,12 +67,12 @@ const Footer = () => {
             </p>
           </div>
           <div className=" p-4 rounded-lg">
-            <Image  width={700} height={50} src="https://www.qawmiuniversity.com/static/media/SSLCommerz-Pay-With-logo-All.6bb92f6b6d60c6b0c6d9.png" alt="SSLCommerz Payment"/>
+            <Image  width={700} height={50} src={ssl} alt="SSLCommerz Payment"/>
           </div>
         </div>
 
         {/* Right side: 3 Cards */}
-        <div className="lg:w-2/3 grid grid-cols-2 grid-rows-2 gap-4">
+        <div className="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Contact */}
           <div className="bg-white/20 border border-white/30 rounded-lg p-6 hind">
             <h3 className="text-white text-lg font-semibold mb-4">আমাদের সম্পর্কে</h3>
@@ -156,7 +155,7 @@ const Footer = () => {
 
       {/* Bothrefm copyright */}
       <div className="mt-10 text-center text-white text-sm opacity-80">
-        © 2025 Muslim School. All rights reserved.
+        © 2025 Muslim School. All Rights Reserved.
       </div>
 
       {/* Styles for Wave Animation */}

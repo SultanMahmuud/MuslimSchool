@@ -49,10 +49,7 @@ const AddNew = ({ role }) => {
 
       toast.success(res.message || "Registration successful!");
 
-    // alert("Profile Updated Successfully");
-    // if (message?.data?.modifiedCount) {
-    //   alert(`${role} updated`);
-    // }
+
   };
 
   return (
@@ -67,6 +64,7 @@ const AddNew = ({ role }) => {
           <Input type="date" {...register('dob')} className="Input" />
           <Input {...register('nationality')} placeholder="Nationality" />
         </div>
+        
 
         <div className="grid md:grid-cols-2 gap-4 mt-4">
           <select
@@ -116,20 +114,28 @@ const AddNew = ({ role }) => {
           <Input {...register('qual2')} placeholder="Qualification 1" />
           <Input {...register('qual3')} placeholder="Qualification 2" />
         </div>
-      </section>
-
-      <section>
-        <h2 className="text-xl font-semibold mb-4">Department</h2>
-        <div className="grid md:grid-cols-2 gap-4">
-          <Input {...register('Department')} placeholder="Department Name" />
-          <Input type="date" {...register('joiningDate')} />
+        <div className="grid md:grid-cols-2 gap-4 mt-3">
+          {/* TOTAL Student, department, Experience,Institution, Expert  */}
+          <Input {...register('Department')} placeholder="Department" />
+        <Input {...register('totalStudents')} placeholder="Total Students" />
+        
+        <Input {...register('experience')} placeholder="Experience" />
+        <Input {...register('institution')} placeholder="Institution" />
+        <Input {...register('expert')} placeholder="Expert" />
+        <Input {...register('totalClasses')} placeholder="Total Classes" />
+        
         </div>
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-4">Total Classes</h2>
-        <Input {...register('totalClasses')} placeholder="Total Classes" />
+        <h2 className="text-xl font-semibold mb-4">Join date</h2>
+        <div className="grid md:grid-cols-2 gap-4">
+         
+          <Input type="date" {...register('joiningDate')} />
+        </div>
       </section>
+
+   
 
       <section>
         <h2 className="text-xl font-semibold mb-4">Payment Information</h2>

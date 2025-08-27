@@ -37,14 +37,14 @@ export default function StartLearningIslam() {
       {/* Background Circle */}
       {/* Title */}
       <h2 className="text-center font-extrabold text-3xl md:text-4xl text-[rgb(16_24_40_/_90%)]  tracking-tight hind">
-        শুরু করুন আপনার ইসলাম শেখার যাত্রা
+        শুরু করুন আপনার ইসলাম <br className="lg:hidden block"/>শেখার যাত্রা
       </h2>
-      <p className="text-center  my-4 w-2/3 mx-auto text-[18px] font-medium text-[rgb(29_41_57_/_90%)]">
+      <p className="text-center mb-12 my-4 w-2/3 mx-auto text-[18px] font-medium text-[rgb(29_41_57_/_90%)]">
         আমরা থাকবো আপনার পাশে ছায়ার মত, আপনার সফলতায় আমাদের সফলতা। বিশ্বাস করুন আপনি পারবেন। আমরা বিশ্বাস করি আল্লাহ সবচেয়ে বড় সাহায্যকারী ও রাসূল সাঃ বলেন যে চেষ্টা করে সে পায়। আপনার জন্য আমরা দ্বীনি শিক্ষাকে সহজ থেকে সহজতর করতে অবিরাম চেষ্টা করে যাচ্ছি।
       </p>
 
       {/* SVG Wave Path */}
-      <div className="absolute left-0 right-0 top-[300px] md:top-[300px] w-full h-40 z-10 pointer-events-none">
+      <div className="hidden lg:block absolute left-0 right-0 top-[300px] md:top-[300px] w-full h-40 z-10 pointer-events-none">
         <svg viewBox="0 0 1200 120" width="100%" height="100%">
           <defs>
             <linearGradient

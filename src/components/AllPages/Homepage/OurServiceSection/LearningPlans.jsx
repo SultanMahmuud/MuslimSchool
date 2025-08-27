@@ -101,7 +101,7 @@ const LearningPlans = () => {
   };
 
   return (
-    <section className="py-16 hind">
+    <section className="lg:py-16">
       <div className="max-w-6xl mx-auto px-4 grid gap-8 sm:grid-cols-1 md:grid-cols-3">
         {plans.map(({ title, subtitle, icon: Icon, features, recommended }) => (
           <div

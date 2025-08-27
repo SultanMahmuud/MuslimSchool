@@ -20,10 +20,22 @@ const RelativeMenu = ({ user, handleLogout }) => {
            ড্যাশবোর্ড
           </a>
           <a
-            href="/profile"
+            href="/dashboard/leader-board"
             className="block px-4 py-2 text-sm hover:bg-gray-100"
           >
-            প্রোফাইল
+            লিডারবোর্ড
+          </a>
+          <a
+            href="/audio-quran"
+            className="block px-4 py-2 text-sm hover:bg-gray-100"
+          >
+           অডিও কোরআন
+          </a>
+          <a
+            href="/reading-quran"
+            className="block px-4 py-2 text-sm hover:bg-gray-100"
+          >
+            রিডিং কোরআন
           </a>
          
           <button

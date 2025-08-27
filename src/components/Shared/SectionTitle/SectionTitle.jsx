@@ -9,7 +9,7 @@ export default function SectionTitle({
   underlineHeight = "h-12",
 }) {
   return (
-    <h2 className={`text-3xl font-extrabold relative inline-block text-center w-full ${className}`}>
+    <h2 className={`text-4xl my-12 font-extrabold navColor relative inline-block text-center w-full ${className}`}>
       <span className="text-primary">{primaryText} </span>
       <span className="navColor">{secondaryText}</span>
 

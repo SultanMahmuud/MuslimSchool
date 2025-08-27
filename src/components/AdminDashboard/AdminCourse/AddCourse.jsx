@@ -4,8 +4,9 @@ import axios from "axios";
 import CourseDesc from "./CourseDesc";
 import AddCourseTab from "@/components/AdminDashboard/AdminCourse/AddCourseTab/AddCourseTab";
 import CourseCurriculum from "./CourseCurriculum";
-import CourseFaq from "./CourseFaq";
+
 import Announcement from "./Announcement";
+import AddCourseFaq from"./AddCourseFaq"
 import TeacherAddBox from "./TeacherAddBox";
 import CommonFileUpload from "@/components/Shared/FileUpload/CommonFileUpload"
 
@@ -13,7 +14,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 
 
-const AddCourse = ({ setValue }) => {
+const AddCourse = () => {
   const [courseTitle, setCourseTitle] = useState("");
   const [subtitle, setSubtitle] = useState("");
   const [courseDesc, setCourseDesc] = useState("");
@@ -200,9 +201,7 @@ const AddCourse = ({ setValue }) => {
       setDuration("");
       setArticle("");
 
-      if (setValue) {
-        setValue("1");
-      }
+    
     } catch (error) {
       console.error("Error creating course:", error);
       alert("Failed to create course. Please try again.");
@@ -265,7 +264,7 @@ const AddCourse = ({ setValue }) => {
                       setCurriculum={setCurriculum}
                     />
                   }
-                  com3={<CourseFaq faq={faq} setFaq={setFaq} />}
+                  com3={<AddCourseFaq faq={faq} setFaq={setFaq} />}
                   com5={<Announcement setAnnouncement={setAnnouncement} />}
                   com6={
                     <div className="space-y-4">

@@ -23,22 +23,23 @@ const getAllTeachers = async () => {
 
 const AwsomeTeachers = async ({ isLoading = false }) => {
   const teachers = await getAllTeachers();
+ 
 
   return (
-    <div className="px-4 md:px-10 lg:px-16 py-10">
+    <div className="px-4 md:px-10 lg:px-16 lg:mt-12 mt-4">
       {/* Section Heading */}
       <div className="text-center mb-10">
-        <h2 className="hind text-2xl sm:text-xl lg:text-3xl font-bold base1">
-          আপনার পাশে আছে অসাধারণ শিক্ষক-শিক্ষিকাবৃন্দ
+        <h2 className=" text-[26px] sm:text-xl lg:text-3xl font-bold base1">
+          আপনার পাশে আছে অসাধারণ <br className="lg:hidden block"/>শিক্ষক-শিক্ষিকাবৃন্দ
         </h2>
-        <p className="hind text-lg sm:text-sm lg:text-xl base2 mt-2 font-medium">
-          আপনি পাচ্ছেন সাবজেক্টের সেরা টিচার ফলে কঠিন টপিকও পানির মতো সহজ মনে
+        <p className="text-[20px] lg:text-xl base2  font-medium">
+          আপনি পাচ্ছেন সাবজেক্টের সেরা টিচার ফলে <br className="lg:hidden block"/> কঠিন টপিকও পানির মতো সহজ মনে
           হবে
         </p>
 
         <Link href="/teacher">
           <button
-            className="mt-3 bg-[#10B981] hover:bg-[#059669] rounded-full px-4 py-4 text-[16px] font-semibold text-white flex items-center gap-2 mx-auto"
+            className="mt-5 bg-[#10B981] hover:bg-[#059669] rounded-full px-6 py-3 text-[16px] font-semibold text-white flex items-center gap-2 mx-auto"
           >
             <span>টিচারদের দেখুন</span>
             <MdArrowRight className="text-lg" />
@@ -61,11 +62,14 @@ const AwsomeTeachers = async ({ isLoading = false }) => {
                 depart={el?.Department || "নাজেরা"}
                 name={el?.name || "yasin"}
                 joiningDate={el?.joiningDate || "23-5-11"}
-                institution={el?.studiedSchool}
-                experience={el?.teachingExperience}
-                totalSutdents={el?.perAddressLine}
+                institution={el?.institution}
+                experience={el?.experience}
+                totalSutdents={el?.totalStudents}
                 totalClass={el?.totalClasses || "20"}
                 qualification={el?.qual1}
+                qualification2={el?.qual2}
+                expert={el?.expert}
+                
               />
             </Link>
           ))}

@@ -43,7 +43,7 @@ export default function CourseCard({ course, dashboard }) {
 
   return (
   
-      <div className="max-w-[340px] rounded-2xl bg-white/50 shadow-xl backdrop-blur-xl border border-white/70 p-3 my-10"
+      <div className="max-w-[340px] rounded-2xl bg-white/50 shadow-xl backdrop-blur-xl border border-white/70 p-3 my-5"
           style={{
             background: "linear-gradient(135deg, rgb(224 239 231) 0%, rgb(255 255 255) 80%)",
           }}
@@ -127,22 +127,26 @@ export default function CourseCard({ course, dashboard }) {
             </div>
           </div>
 
+          
           {/* Provider and Price */}
-          <div className="flex justify-between items-end mt-2">
-            <div className="flex items-center text-sm text-gray-600 gap-2">
-              <FaUniversity />
-              <span className="font-medium text-[16px]">{course?.provider || "Muslim School"}</span>
+            <div className="flex justify-between mt-4">
+              <div className="flex flex-col items-start ">
+                <div className="flex items-center text-gray-700 gap-2">
+                  <FaUniversity className="text-gray-500" />
+                  <span className="font-medium">
+                    {course?.provider || "Muslim School"}
+                  </span>
+                </div>
+              </div>
+              <div className="flex flex-col items-end leading-none">
+                <span className="text-lg font-extrabold text-gray-900">
+                  {course?.banSalePrice || course?.salePrice}
+                </span>
+                <span className="text-sm text-gray-500 line-through leading-none mb-3">
+                  ৳{course?.banPrice || course?.price}
+                </span>
+              </div>
             </div>
-            <div className="text-right">
-              <p className="text-lg font-extrabold text-gray-800">
-                ৳{course?.banSalePrice || course?.salePrice}
-              </p>
-              <p className="text-sm text-gray-500 line-through">
-                ৳{course?.banPrice || course?.price}
-              </p>
-            </div>
-          </div>
-
           {/* Enroll Button */}
          {!dashboard && (
            <Button

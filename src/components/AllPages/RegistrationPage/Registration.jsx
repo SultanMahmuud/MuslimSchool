@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import axios from "axios";
 import { useState } from "react";
@@ -7,16 +7,10 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import {
-  FaUserAlt,
-  FaPhoneAlt,
-
-  FaAddressCard,
-} from "react-icons/fa";
+import { FaUserAlt, FaPhoneAlt, FaAddressCard } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 
 import { IoMdBookmarks, IoMdSunny } from "react-icons/io";
-
 
 import Simg1 from "../../../assets/R1/R1.png";
 import Simg2 from "../../../assets/R1/R2.png";
@@ -28,7 +22,13 @@ import { Button } from "@/components/UI/button";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/UI/select";
 
 export default function StudentRegistration({ type }) {
   const [time, setTime] = useState("Morning");
@@ -57,22 +57,22 @@ export default function StudentRegistration({ type }) {
   const dayOptions = [1, 2, 3, 4, 5, 6];
   const [selectedSubject, setSelectedSubject] = useState("");
   const vluses = [
-  "কোরআন শিক্ষা ১ম সেমিস্টার (কায়দা)",
-  "কোরআন শিক্ষা ২য় সেমিস্টার (আমপারা)",
-  "কোরআন শিক্ষা ৩য় সেমিস্টার (অ্যাডভান্স ১-৩০ পারা)",
-  "কোরআন হিফজ প্রোগ্রাম ",
-  "পূর্ণাঙ্গ নামাজ শিক্ষা। ",
-  "আমপারা ৩০ মুখস্ত।",
-  "আরবি ভাষা শিক্ষা-লেভেল ১। ",
-  "ইসলামের ইতিহাস। ",
-  "ইসলামী বিধান- মাসায়েল,ফিকহ। ",
-  "ইসলামী আকিদা শিক্ষা। ",
-  "১০০ হাদিস হিফজ প্রোগ্রাম। ",
-  "নবীদের জীবনী ও শিক্ষা।",
-  "তাফসিরুল কোরআন। ",
-  "কোরআন তারজমা। ",
-  "হাদিসের কিতাব।"
-];
+    "কোরআন শিক্ষা ১ম সেমিস্টার (কায়দা)",
+    "কোরআন শিক্ষা ২য় সেমিস্টার (আমপারা)",
+    "কোরআন শিক্ষা ৩য় সেমিস্টার (অ্যাডভান্স ১-৩০ পারা)",
+    "কোরআন হিফজ প্রোগ্রাম ",
+    "পূর্ণাঙ্গ নামাজ শিক্ষা। ",
+    "আমপারা ৩০ মুখস্ত।",
+    "আরবি ভাষা শিক্ষা-লেভেল ১। ",
+    "ইসলামের ইতিহাস। ",
+    "ইসলামী বিধান- মাসায়েল,ফিকহ। ",
+    "ইসলামী আকিদা শিক্ষা। ",
+    "১০০ হাদিস হিফজ প্রোগ্রাম। ",
+    "নবীদের জীবনী ও শিক্ষা।",
+    "তাফসিরুল কোরআন। ",
+    "কোরআন তারজমা। ",
+    "হাদিসের কিতাব।",
+  ];
   const {
     handleSubmit,
     register,
@@ -80,7 +80,6 @@ export default function StudentRegistration({ type }) {
   } = useForm();
 
   const [, setSubmit] = useState();
-
 
   const [user, setUser] = useState("");
   const [email, setEmail] = useState("");
@@ -105,8 +104,7 @@ export default function StudentRegistration({ type }) {
         if (response.data._id) {
           if (type === "student-registration") {
             toast("Your Registration Successful");
-            navigate.push('/student-registration-registration-thank-you');
-            
+            navigate.push("/student-registration-registration-thank-you");
           }
         }
       })
@@ -260,8 +258,9 @@ export default function StudentRegistration({ type }) {
 
           {/* Schedule */}
           <div className="mb-5">
-            
-            <label className="font-semibold block my-6">Which time? ( BD Time) </label>
+            <label className="font-semibold block my-6">
+              Which time? ( BD Time){" "}
+            </label>
             <div className="flex flex-wrap gap-2 mb-2">
               {timeOptions.map((option) => (
                 <Button
@@ -281,7 +280,9 @@ export default function StudentRegistration({ type }) {
               ))}
             </div>
 
-            <label className="font-semibold block mb-1 mt-4">Days Per Week</label>
+            <label className="font-semibold block mb-1 mt-4">
+              Days Per Week
+            </label>
             <div className="flex flex-wrap gap-2">
               {dayOptions.map((option) => (
                 <Button
@@ -302,34 +303,28 @@ export default function StudentRegistration({ type }) {
             </div>
           </div>
           {/* Interested Subject */}
-          <div className="mb-4 relative">
-            <label className="font-semibold block mb-1">Subject</label>
-            <div className="relative">
-              <select
-                value={selectedSubject}
-                onChange={(e) => setSelectedSubject(e.target.value)}
-                className="w-full py-2 pl-10  border rounded-lg focus:outline-none focus:ring-2 ring-blue-300 bg-gray-50"
-                required
-              >
-                <option value="" disabled>
-                  Choose an Option
-                </option>
-                {vluses.map((subject, index) => (
-                  <option key={index} value={subject}>
-                    {subject}
-                  </option>
-                ))}
-              </select>
-              <IoMdBookmarks className="absolute left-3 top-1/2 -translate-y-1/2 text-[#10b981] pointer-events-none" />
-            </div>
-          </div>
+         <div className="mb-4 relative">
+  <label className="font-semibold block mb-1">Subject</label>
+
+  <Select onValueChange={setSelectedSubject}>
+    <SelectTrigger className="w-full pl-10 py-5 text-lg"> {/* extra padding-left for icon */}
+      <IoMdBookmarks className="absolute left-3 top-12 -translate-y-1/2 text-[#10b981]" />
+      <SelectValue placeholder="Choose an Option" />
+    </SelectTrigger>
+
+    <SelectContent className="">
+      {vluses.map((subject, index) => (
+        <SelectItem key={index} value={subject} className="hover:bg-[#10b981] hover:text-white">
+          {subject}
+        </SelectItem>
+      ))}
+    </SelectContent>
+  </Select>
+</div>
+
 
           {/* Submit */}
-          <Button
-            type="submit"
-            className="banner-button-1 w-full"
-
-          >
+          <Button type="submit" className="banner-button-1 w-full">
             Submit
           </Button>
         </form>

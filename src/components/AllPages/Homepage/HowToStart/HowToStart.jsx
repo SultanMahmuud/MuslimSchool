@@ -70,20 +70,20 @@ export default function HowToGetStart() {
                 <h3 className="text-xl font-semibold text-slate-800 mt-3">
                   {step.title}
                 </h3>
-                <p className="text-[15px] text-green-800 font-medium mt-1 mb-3 px-2">
+                <p className="text-[15px] text-[rgb(27,127,81)] font-medium mt-1 mb-3 px-2">
                   {step.description}
                 </p>
 
                 
 
               <Link href={step.link}>
-                <Button
-                  type="button"
-                  className="bg-[#10B981] hover:bg-[#059669] text-white font-semibold text-[16px] px-16 py-6 rounded-xl flex items-center gap-2 transition duration-200"
+                <div
+                
+                  className="bg-[#10B981] hover:bg-[#059669] text-white font-semibold text-[16px] px-6 py-4 rounded-full flex items-center gap-2 transition duration-200"
                 >
                   {step?.buttonText}
                   <TbClick className="text-lg" />
-                </Button>
+                </div>
               </Link>
             </div>
 

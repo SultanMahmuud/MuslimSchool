@@ -1,5 +1,6 @@
 'use client'
 import { CheckCircle, Star } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react'
 import { BiBookOpen } from 'react-icons/bi';
@@ -7,7 +8,7 @@ import { FiRefreshCw } from 'react-icons/fi';
 
 const Instructureteacher = ({teacherProfiles}) => {
  const [aboutOpen, setAboutOpen] = useState(false);
-console.log(teacherProfiles)
+
  // Sample data
 const stats = [
   { icon: <BiBookOpen />, label: 'Total Classes', value: teacherProfiles?.Course.length || 0 },
@@ -21,7 +22,7 @@ const stats = [
       {/* Header */}
       <div className="bg-green-100 rounded-lg p-8 mb-8 flex justify-between items-center">
         <div className="flex items-center">
-          <img
+          <Image
             src={teacherProfiles?.avatar}
             alt="Teacher Illustration"
             className="w-32 h-32"
@@ -84,7 +85,7 @@ const stats = [
         <h2 className="text-xl font-bold text-gray-900 mb-4">Courses</h2>
         <div className="flex space-x-6 overflow-x-auto pb-4">
           <div className="min-w-[300px] bg-green-50 rounded-lg shadow p-4 flex">
-            <img
+            <Image
               src="/"
               alt={teacherProfiles?.name}
               className="w-24 h-24 rounded-md object-cover"

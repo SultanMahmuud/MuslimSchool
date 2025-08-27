@@ -1,5 +1,6 @@
 
-// import MostPopularCoursesPage from "../Homepage/MostPopularCourses/MostPopularCourses";
+import BestReviews from "../Homepage/BestReviews/BestReviews";
+import CommonCourse from "../Homepage/MostPopularCourses/CommonCourse";
 import AboutAndDetails from "./AboutAndDetails";
 import Abouttopbar from "./AboutTopBar";
 
@@ -10,7 +11,8 @@ const About = () => {
         
         <AboutAndDetails />
         <Abouttopbar />
-        {/* <MostPopularCoursesPage /> */}
+       <CommonCourse/>
+        <BestReviews />
       </div>
     </>
   );

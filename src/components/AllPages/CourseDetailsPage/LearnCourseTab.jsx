@@ -5,12 +5,15 @@ import WhatLearn from "./WhatLearn";
 import WhatGetInCourse from "./WhatGetInCourse";
 import CallUs from "./CallUs";
 import CourseForWhom from "./CourseForWhom";
-import CourseCurriculum from "@/components/AdminDashboard/AdminCourse/CourseCurriculum";
+
 import WhyLearnCard from "./WhyLearnCard";
 import CourseStudentFaq from "./CourseStudentFaq";
+import Curriculum from "./Curriculum";
 import PaymentFaq from "@/components/AdminDashboard/AdminCourse/CourseFaq";
 import StudentReviewOfCourse from "./StudentReviewOfCourse";
 import SectionTitle from "@/components/Shared/SectionTitle/SectionTitle";
+import ReviewCard from "../ReviewPage/ReviewCard";
+import { Button } from "@/components/UI/button";
 
 
 const LearnCourseTab = ({ course }) => {
@@ -38,8 +41,8 @@ const LearnCourseTab = ({ course }) => {
       spy={true}
       offset={-70}
       onSetActive={() => handleSetActive(id)}
-      className={`text-[14px] font-semibold px-4 py-2 rounded-md transition-colors duration-200 cursor-pointer ${
-        activeSection === id ? "text-green-500" : "text-blue-900"
+      className={`text-[16px] font-semibold px-4 py-2 rounded-md transition-colors duration-200 cursor-pointer ${
+        activeSection === id ? "bg-primary p-2 text-white" : "navColor"
       } hover:text-green-500`}
     >
       {label}
@@ -49,7 +52,7 @@ const LearnCourseTab = ({ course }) => {
   return (
     <div className="w-full">
       {isDesktop && (
-        <div className="sticky top-[65px] z-40 bg-[#f8fffc] shadow-md rounded-b-lg flex justify-center py-2 space-x-4 text-[14px]">
+        <div className="sticky top-[65px] z-40 bg-[#f8fffc] shadow-md rounded-b-lg flex justify-center py-2 space-x-1">
           {whatLearn && sectionLink("what-learn", "কোর্সে কি শিখবেন")}
           {whatYouGet && sectionLink("what-get", "কোর্সে আপনি পাচ্ছেন")}
           {courseForWhom && sectionLink("for-whom", "কোর্সটি যাদের জন্য")}
@@ -87,6 +90,7 @@ const LearnCourseTab = ({ course }) => {
       {courseForWhom && (
         <Element name="for-whom">
           <section id="for-whom">
+              <SectionTitle secondaryText="কোর্সটি যাদের জন্য"/>
             <CourseForWhom data={course}/>
           </section>
         </Element>
@@ -94,8 +98,8 @@ const LearnCourseTab = ({ course }) => {
 
       <Element name="course-curriculum">
         <section id="course-curriculum">
-          <SectionTitle primaryText="কোর্স কারিকুলাম" />
-          {/* <CourseCurriculum /> */}
+          <SectionTitle secondaryText="কোর্স কারিকুলাম" />
+          <Curriculum data={course}/>
         </section>
       </Element>
 
@@ -111,7 +115,11 @@ const LearnCourseTab = ({ course }) => {
       <Element name="what-student-says">
         <section id="what-student-says">
           <SectionTitle primaryText="শিক্ষার্থীরা" secondaryText="যা বলছে" />
-          <StudentReviewOfCourse />
+          <ReviewCard />
+          <div className="flex w-full  items-center justify-between mt-20">
+            <Button className="w-[45%] banner-button-1">আরও দেখুন</Button>
+            <Button className="w-[45%] banner-button-1">এখনই ভর্তি হোন</Button>
+          </div>
         </section>
       </Element>
 
@@ -119,6 +127,10 @@ const LearnCourseTab = ({ course }) => {
         <section id="what-student-asks">
           <SectionTitle primaryText="প্রায়ই" secondaryText="জিজ্ঞেস করা প্রশ্ন" />
           <CourseStudentFaq data={course}/>
+           <div className="flex w-full  items-center justify-center">
+            <Button className="w-[45%] banner-button-1">আরও দেখুন</Button>
+            
+          </div>
         </section>
       </Element>
 
@@ -126,6 +138,10 @@ const LearnCourseTab = ({ course }) => {
         <section id="what-student-asks-payment">
           <SectionTitle primaryText="পেমেন্ট" secondaryText="কিভাবে করব?" />
           <PaymentFaq />
+          <div className="flex w-full  items-center justify-center">
+            <Button className="w-[45%] banner-button-1">এখনই ভর্তি হোন</Button>
+            
+          </div>
         </section>
       </Element>
     </div>

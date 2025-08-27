@@ -139,15 +139,17 @@ body {
 
 
 .banner-button-1 {
-  @apply font-semibold text-secondary bg-primary hover:bg-primary/90 text-[17px] lg:text-[18px] min-w-[120px]  h-[45px] lg:h-[52px] rounded-[5px] border-2 border-[#ddd] mb-2 text-center no-underline cursor-pointer transition-transform duration-500;
+  @apply text-secondary text-[17px] lg:text-[20px] min-w-[120px] h-[45px] lg:h-[52px] rounded-[5px] border-2 border-[#ddd] mb-2 text-center no-underline cursor-pointer transition-transform duration-500 font-extrabold;
+  background: linear-gradient(90deg, rgba(45, 225, 128, 1) 0%, rgba(25, 157, 144, 1) 100%);
 }
+
 
 .banner-button-1:hover {
   @apply translate-x-1 bg-gradient-to-r from-[#99e200] to-[#009b6e] text-white border-0;
 }
 
 .banner-button-2 {
-  @apply font-semibold hover:bg-primary/90 text-black border-2 border-[#ddd] text-[17px] lg:text-[18px]  min-w-[150px]  h-[45px] lg:h-[52px] rounded-[5px] bg-white cursor-pointer transition-transform duration-500;
+  @apply font-extrabold text-black border-2 border-[#ddd] text-[17px] lg:text-[20px]  min-w-[150px]  h-[45px] lg:h-[52px] rounded-[5px] bg-white cursor-pointer transition-transform duration-500;
 }
 
 .banner-button-2:hover {
