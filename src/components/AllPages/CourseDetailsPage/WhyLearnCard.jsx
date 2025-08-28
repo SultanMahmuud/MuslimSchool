@@ -18,6 +18,8 @@ const WhyLearnCard = ({ data }) => {
           {/* Image */}
           <div className="w-full md:w-1/2 flex justify-start gap-12">
             <Image
+            width={48}
+            height={100}
               src={card.uploadUrl}
               alt={card.title}
               className="w-48 h-auto object-contain"

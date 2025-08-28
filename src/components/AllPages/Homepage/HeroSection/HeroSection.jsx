@@ -16,6 +16,8 @@ const HeroSection = () => {
             {/* For mobile, show image first */}
             <div className="block md:hidden mb-6">
               <Image
+              width={100}
+              height={100}
                 src={engImg}
                 alt="Banner"
                 className="w-full h-auto max-h-[450px] object-contain pt-4"
@@ -54,6 +56,8 @@ const HeroSection = () => {
             {/* For desktop, show image second */}
             <div className="hidden md:block md:order-2">
               <Image
+              width={500}
+              height={100}
                 src={engImg}
                 alt="Banner"
                 className="w-full h-auto max-h-[450px] object-contain pt-4"

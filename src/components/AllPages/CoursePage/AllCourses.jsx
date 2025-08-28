@@ -26,14 +26,16 @@ export default function AllCourses() {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/course`)
+      .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/course`)
       .then((res) => {
-        setCourses(res.data.data);
+        console.log(res)
+        setCourses(res?.data.data);
       })
       .finally(() => {
         setLoading(false);
       });
   }, []);
+
 
   // Filtered courses (by search and chip)
   const filteredCourses = courses?.filter((course) => {
@@ -113,8 +115,8 @@ export default function AllCourses() {
             ? Array.from({ length: 6 }).map((_, idx) => (
                 <h2 key={idx}>loading</h2>
               ))
-            : filteredCourses.length > 0
-            ? filteredCourses.map((course, _id) => (
+            : courses.length > 0
+            ? courses.map((course, _id) => (
                 <Link key={_id} href={`/courses/${course._id}`}>
                   <CourseCard course={course} loading={false} />
                 </Link>

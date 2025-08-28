@@ -144,6 +144,7 @@ const navigate = useRouter();
                 src={Simg1}
                 alt="Online Course"
                 className="w-32 h-32 object-contain mx-auto"
+                width={60} height={60}
               />
             </div>
             <div>
@@ -151,6 +152,7 @@ const navigate = useRouter();
                 src={Simg2}
                 alt="Reading Book"
                 className="w-32 h-32 object-contain mx-auto"
+                width={60} height={60}
               />
             </div>
             <div>
@@ -158,6 +160,7 @@ const navigate = useRouter();
                 src={Simg3}
                 alt="Studying"
                 className="w-32 h-32 object-contain mx-auto"
+                width={60} height={60}
               />
             </div>
           </Slider>

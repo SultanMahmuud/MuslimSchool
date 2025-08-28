@@ -26,6 +26,7 @@ const stats = [
             src={teacherProfiles?.avatar}
             alt="Teacher Illustration"
             className="w-32 h-32"
+            width={60} height={60}
           />
           <div className="ml-6">
             <h1 className="text-4xl font-bold text-gray-900">{teacherProfiles?.Department}</h1>
@@ -89,6 +90,7 @@ const stats = [
               src="/"
               alt={teacherProfiles?.name}
               className="w-24 h-24 rounded-md object-cover"
+              width={60} height={60}
             />
             <div className="ml-4 flex-1">
               <h3 className="font-semibold text-lg text-gray-900">{teacherProfiles?.title}</h3>

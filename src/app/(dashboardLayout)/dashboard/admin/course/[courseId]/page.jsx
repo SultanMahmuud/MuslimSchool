@@ -4,7 +4,6 @@ import axios from "axios";
 
 import AddCourseTab from "@/components/AdminDashboard/AdminCourse/AddCourseTab/AddCourseTab";
 import CommonFileUpload from "@/components/Shared/FileUpload/CommonFileUpload"
-import CourseCurriculum from "@/components/AdminDashboard/AdminCourse/CourseCurriculum";
 import CourseFaq from "@/components/AdminDashboard/AdminCourse/CourseFaq";
 import Announcement from "@/components/AdminDashboard/AdminCourse/Announcement";
 import CourseDesc from "@/components/AdminDashboard/AdminCourse/CourseDesc";
@@ -12,7 +11,7 @@ import TeacherAddBox from "@/components/AdminDashboard/AdminCourse/TeacherAddBox
 import { useRouter } from "next/navigation";
 
 // 
-
+import EditCuriCulumn from "@/components/AdminDashboard/AdminCourse/Update/EditCuriCulumn"
 
 
 
@@ -79,8 +78,40 @@ const UpdateCourse = ({ params }) => {
   const [courseWhy, setcourseWhy] = useState([
     { uploadUrl: "", title: "", subtitle: "", layout: "" },
   ]);
-  
-  
+
+   const handleDeleteLesson = ({ Mindex, lesson, Lindex }) => {
+    const newLessons = curriculum[Mindex].lessons.filter(
+      (item, index) => index !== Lindex
+    );
+
+    const newCurriCulum = curriculum.map((item, index) => {
+      if (index === Mindex) {
+        item.lessons = newLessons;
+        return item;
+      } else {
+        return item;
+      }
+    });
+
+    setCurriculum(newCurriCulum);
+  };
+
+   const AddNewLessonFunc = (newLesson, addIndex) => {
+    let lessons = curriculum[addIndex.Mindex]?.lessons;
+
+    lessons?.splice(addIndex.Lindex + 1, 0, newLesson);
+
+    const newCurr = curriculum.map((item, index) => {
+      if (index === addIndex.Mindex) {
+        item.lessons = lessons;
+        return item;
+      } else {
+        return item;
+      }
+    });
+
+    setCurriculum(newCurr);
+  };
 useEffect(() => {
     if (id) {
       axios
@@ -204,6 +235,41 @@ useEffect(() => {
       return updatedState;
     });
   };
+  const handleEditLesson = (editedLesson) => {
+    const newLessons = curriculum[editedLesson?.Mindex]?.lessons?.map(
+      (item, index) => {
+        if (index === editedLesson?.Lindex) {
+          return editedLesson?.lesson;
+        } else {
+          return item;
+        }
+      }
+    );
+
+    let newCurriCulum = curriculum.map((item, index) => {
+      if (index === editedLesson?.Mindex) {
+        item.moduleName = editedLesson?.moduleName;
+        item.lessons = newLessons;
+        return item;
+      } else {
+        return item;
+      }
+    });
+
+    setCurriculum(newCurriCulum);
+  };
+    const handleDeleteModule = (Mindex) => {
+    const newCurr = curriculum.filter((item, index) => index !== Mindex);
+
+    setCurriculum(newCurr);
+  };
+
+   const handleAddNewModule = (NewModule) => {
+    const newCurr = curriculum;
+    newCurr?.splice(NewModule.Mindex + 1, 0, NewModule.module);
+    const curr = newCurr.map((item) => item);
+    setCurriculum(curr);
+  };
 
   const handlePublish = async (courseType) => {
     const newCourse = {
@@ -321,10 +387,14 @@ useEffect(() => {
                     />
                   }
                   com2={
-                    <CourseCurriculum
-                      curriculum={curriculum}
-                      setCurriculum={setCurriculum}
-                    />
+                     <EditCuriCulumn
+                curriculumData={curriculum}
+                handleDeleteLesson={handleDeleteLesson}
+                handleEditLesson={handleEditLesson}
+                AddNewLessonFunc={AddNewLessonFunc}
+                handleDeleteModule={handleDeleteModule}
+                handleAddNewModule={handleAddNewModule}
+              />
                   }
                   com3={<CourseFaq faq={faq} setFaq={setFaq} />}
                   com5={<Announcement setAnnouncement={setAnnouncement} />}

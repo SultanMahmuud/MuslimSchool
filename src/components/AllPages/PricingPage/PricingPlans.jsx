@@ -136,7 +136,7 @@ const PricingPlans = () => {
 
               {/* Minutes */}
               <div className="text-3xl font-extrabold text-gray-900 mb-3 mt-2 flex gap-3">
-                <Image alt="Schedule Icon" src={sehedule} className="w-8 h-8" />
+                <Image alt="Schedule Icon" src={sehedule} className="w-8 h-8" width={30} height={30}/>
                 {plan.minutes} min
               </div>
 

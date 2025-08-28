@@ -92,6 +92,8 @@ export default function StartLearningIslam() {
                   alt={f.title}
                   className="w-28 h-28 object-contain"
                   draggable="false"
+                  height={100}
+                  width={100}
                 />
               </div>
               <div

@@ -14,15 +14,16 @@ const Library = () => {
   // add fetch
   const fetchBooks = async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/book`);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/book`);
       const data = await response.json();
+      console.log(data.data)
       setAllbook(data);
       
     } catch (error) {
       console.error("Error fetching books:", error);
     }
   };
-
+console.log(Allbook.data)
   useEffect(() => {
     fetchBooks();
   }, []);
@@ -54,7 +55,7 @@ const Library = () => {
                 <Image
                   width={300}
                   height={300}
-                  src={item?.img1}
+                  src={item?.image1}
                   alt={item?.title.slice(0, 50)}
                   className="w-full h-auto transform group-hover:scale-105 transition-transform duration-300"
                 />

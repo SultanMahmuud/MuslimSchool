@@ -107,22 +107,22 @@ export default function CourseCard({ course, dashboard }) {
           {/* Features */}
           <div className="flex justify-between gap-2 mb-2">
             <div className="flex items-center bg-gray-100 gap-1 px-3 py-1 rounded-md text-[16px] text-gray-700 font-medium">
-              <Image src={enrolled} className="w-4 h-4" alt="Enrolled Icon" />
+              <Image src={enrolled} className="w-4 h-4" alt="Enrolled Icon" width={6} height={6}/>
               Enrolled
             </div>
             <div className="flex items-center bg-gray-100 gap-1 px-3 py-1 rounded-md text-[16px] text-gray-700 font-medium">
-              <Image src={classNote} className="w-4 h-4" alt="Class Note Icon" />
+              <Image src={classNote} className="w-4 h-4" alt="Class Note Icon" width={6} height={6}/>
               Class Notes
             </div>
           </div>
 
           <div className="flex justify-between gap-2 mb-2">
             <div className="flex items-center bg-gray-100 gap-1 px-3 py-1 rounded-md text-[16px] text-gray-700 font-medium">
-              <Image src={liveclass} className="w-4 h-4" alt="Live Class Icon" />
+              <Image src={liveclass} className="w-4 h-4" alt="Live Class Icon" width={6} height={6}/>
               Live Classes
             </div>
             <div className="flex items-center bg-gray-100 gap-1 px-3 py-1 rounded-md text-[16px] text-gray-700 font-medium">
-              <Image src={students} className="w-4 h-4" alt="Student Icon" />
+              <Image src={students} className="w-4 h-4" alt="Student Icon" width={6} height={6}/>
               Students {course?.lesson}
             </div>
           </div>

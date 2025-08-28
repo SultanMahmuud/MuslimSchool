@@ -71,6 +71,8 @@ const ClassRoomCard = ({ element }) => {
               className="flex items-center gap-2 my-1 px-2 py-1 border border-gray-200 rounded shadow"
             >
               <Image
+              width={32}
+              height={32}
                 src={teacher?.avatar}
                 alt="avatar"
                 className="w-8 h-8 rounded-full"

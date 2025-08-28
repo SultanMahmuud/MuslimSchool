@@ -117,7 +117,7 @@ const LearningPlans = () => {
               </div>
             )}
             <div className="mb-6 flex justify-center">
-              <Image src={Icon} alt={title} className="w-16 h-16 object-contain" />
+              <Image width={64} height={64} src={Icon} alt={title} className="w-16 h-16 object-contain" />
             </div>
 
             <h3 className="text-[22px] font-bold text-[rgb(16_24_40_/_90%)] text-center">

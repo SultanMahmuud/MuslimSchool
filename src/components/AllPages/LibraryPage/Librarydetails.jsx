@@ -4,7 +4,7 @@ import Link from "next/link";
 const Feature = ({ icon, bgColor, label, value }) => (
   <div className="flex items-center">
     <div className={`${bgColor} p-2 rounded-lg`}>
-      <Image src={icon} alt={label} className="w-6 h-6" />
+      <Image src={icon} alt={label} className="w-6 h-6" width={24} height={24}/>
     </div>
     <span className="ml-4 text-gray-700">{label}</span>
     <span className="ml-auto font-semibold text-gray-900">{value}</span>
@@ -33,6 +33,7 @@ const BookDetails = ({ singleBook }) => {
           src={singleBook?.data.image1}
           alt="Nature Cover"
           className="w-56 h-72 object-cover rounded-xl shadow-md"
+           width={56} height={72}
         />
       </div>
 
@@ -90,6 +91,7 @@ const BookDetails = ({ singleBook }) => {
           src={singleBook?.data.image1}
           alt="Main Preview"
           className="mt-4 w-full h-40 object-cover rounded-lg shadow-sm"
+           width={100} height={100}
         />
 
         <div className="mt-3 flex space-x-2">
@@ -97,16 +99,19 @@ const BookDetails = ({ singleBook }) => {
             src={singleBook?.data.image1}
             alt="Preview 1"
             className="w-16 h-16 object-cover rounded-md"
+             width={60} height={60}
           />
           <Image
            src={singleBook?.data.image2}
             alt="Preview 2"
             className="w-16 h-16 object-cover rounded-md"
+            width={60} height={60}
           />
           <Image
            src={singleBook?.data.image3}
             alt="Preview 3"
             className="w-16 h-16 object-cover rounded-md"
+            width={60} height={60}
           />
         </div>
 
