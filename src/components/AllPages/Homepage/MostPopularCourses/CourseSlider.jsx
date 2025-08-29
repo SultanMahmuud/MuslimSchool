@@ -30,7 +30,7 @@ const CourseSlider = ({ courses }) => {
     <div>
       <Slider {...sliderSettings}>
         {courses.map((course) => (
-          <div key={course.id}>
+          <div key={course._id}>
             <Link href={`/courses/${course._id}`}>
                 <CourseCard course={course} />
             </Link>

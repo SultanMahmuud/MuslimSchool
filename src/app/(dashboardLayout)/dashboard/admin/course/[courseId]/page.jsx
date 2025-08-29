@@ -9,8 +9,7 @@ import Announcement from "@/components/AdminDashboard/AdminCourse/Announcement";
 import CourseDesc from "@/components/AdminDashboard/AdminCourse/CourseDesc";
 import TeacherAddBox from "@/components/AdminDashboard/AdminCourse/TeacherAddBox";
 import { useRouter } from "next/navigation";
-
-// 
+import EditFAQ from "@/components/AdminDashboard/AdminCourse/UpdateFaq/EditFAQ"
 import EditCuriCulumn from "@/components/AdminDashboard/AdminCourse/Update/EditCuriCulumn"
 
 
@@ -346,6 +345,11 @@ useEffect(() => {
       return router.push('/dashboard/admin/course')
     }
   };
+ const handleDeleteFaq = (FaqIndex) => {
+    const newFaq = faq.filter((item, index) => index !== FaqIndex);
+
+    setFaq(newFaq);
+  };
 
   const inputStyles =
     "w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 mt-2";
@@ -396,7 +400,12 @@ useEffect(() => {
                 handleAddNewModule={handleAddNewModule}
               />
                   }
-                  com3={<CourseFaq faq={faq} setFaq={setFaq} />}
+                  com3={
+                  <EditFAQ
+                faqData={faq}
+                handleDeleteFaq={handleDeleteFaq}
+                setFaq={setFaq}
+              />}
                   com5={<Announcement setAnnouncement={setAnnouncement} />}
                   com6={
                     <div className="space-y-4">

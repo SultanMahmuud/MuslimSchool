@@ -5,8 +5,8 @@ import { AiOutlinePlusCircle } from "react-icons/ai";
 import { BiEdit, BiEditAlt } from "react-icons/bi";
 import { MdDeleteForever, MdExpandMore, MdOndemandVideo } from "react-icons/md";
 
-// import AddLessonModal from './AddNewLesson/AddLessonModal';
-// import AddNewModule from './AddNewModule/AddNewModule';
+import AddLessonModal from './AddLessonModal';
+import AddNewModule from './AddNewModule';
 import EditLesson from './EditLesson';
 
 const EditCuriCulumn = ({
@@ -144,13 +144,25 @@ const EditCuriCulumn = ({
           </div>
         ))}
       </div>
-      {/* <EditLesson
+    <AddLessonModal
+        open={addModal}
+        setOpen={SetAddModal}
+        setNewLesson={setNewLesson}
+        newLesson={newLesson}
+      /> 
+   <EditLesson
         editableLesson={editLesson}
         open={open}
         setOpen={setOpen}
         setEditLesson={setEditLesson}
-      /> */}
+      />
 
+<AddNewModule
+        open={OpenCurr}
+        setOpen={setOpenCurr}
+        setNewModuleTitle={setNewModuleTitle}
+        newModuleTitle={newModuleTitle}
+      /> 
       {/* Modals */}
       {/* <EditLesson
         editableLesson={editLesson}

@@ -11,13 +11,11 @@ import {
   DialogTrigger,
 } from "@/components/UI/dialog";
 
-
-
 const EditLesson = ({
   editableLesson,
   open,
   setOpen,
-  onSave,
+  setEditLesson,
 }) => {
   const [lesson, setLesson] = React.useState({});
   const [moduleTitle, setModuleTitle] = React.useState("");
@@ -30,8 +28,15 @@ const EditLesson = ({
   }, [editableLesson]);
 
   const handleSave = () => {
-    if (onSave) {
-      onSave({ ...lesson, moduleName: moduleTitle });
+    // Ensure setEditLesson is triggered with updated data
+    if (setEditLesson) {
+      setEditLesson({
+        lesson: lesson,
+        moduleName: moduleTitle,
+        // Add any other necessary data, e.g., Mindex, Lindex
+        Mindex: editableLesson.Mindex,
+        Lindex: editableLesson.Lindex,
+      });
     }
     setOpen(false);
   };
