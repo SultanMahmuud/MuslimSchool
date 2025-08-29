@@ -47,7 +47,7 @@ const FAQ = () => {
   };
   return (
     <div className="pb-12 px-4 max-w-3xl mx-auto w-full ">
-      <div className="lg:my-10 my-3 text-center">
+      <div className="my-3 text-center">
         <SectionTitle
           primaryText="প্রায়ই"
           secondaryText="জিজ্ঞেস করা প্রশ্ন"
@@ -56,7 +56,7 @@ const FAQ = () => {
         
         />
 
-        <p className="base1 text-lg font-semibold lg:mt-4">
+        <p className="base1 text-lg font-semibold">
           সম্ভব্য সমস্ত প্রশ্ন এখানে দেওয়া আছে। যদি আপনি আপনার প্রয়োজনীয়
           প্রশ্ন খুঁজে না পান, দয়া করে আমাদের একটি ইমেইল করুন
           support@muslimschoool.com এই ইমেলে । আমরা যত তাড়াতাড়ি সম্ভব আপনার

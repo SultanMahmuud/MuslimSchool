@@ -163,25 +163,7 @@ const EditCuriCulumn = ({
         setNewModuleTitle={setNewModuleTitle}
         newModuleTitle={newModuleTitle}
       /> 
-      {/* Modals */}
-      {/* <EditLesson
-        editableLesson={editLesson}
-        open={open}
-        setOpen={setOpen}
-        setEditLesson={setEditLesson}
-      />
-      <AddLessonModal
-        open={addModal}
-        setOpen={SetAddModal}
-        setNewLesson={setNewLesson}
-        newLesson={newLesson}
-      /> */}
-      {/* <AddNewModule
-        open={OpenCurr}
-        setOpen={setOpenCurr}
-        setNewModuleTitle={setNewModuleTitle}
-        newModuleTitle={newModuleTitle}
-      /> */}
+    
     </div>
   );
 };
