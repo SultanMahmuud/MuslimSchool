@@ -7,7 +7,7 @@ import { Button } from '@/components/UI/button';
 import Image from 'next/image';
 
 const CourseDetailsRight = ({ data, trailClass, HandleEnrollNow }) => {
-
+ 
   const [showAll, setShowAll] = useState(false);
   const itemsToShowInitially = 4;
   const courseFutureValues = Object.values(data?.courseFuture || {});

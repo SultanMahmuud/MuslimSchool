@@ -52,7 +52,7 @@ const LearnCourseTab = ({ course }) => {
   return (
     <div className="w-full">
       {isDesktop && (
-        <div className="sticky top-[65px] z-40 bg-[#f8fffc] shadow-md rounded-b-lg flex justify-center py-2 space-x-1">
+        <div className="sticky top-[65px] z-40 bg-[#f8fffc] shadow-md rounded-b-lg justify-center py-2 space-x-1 lg:block hidden">
           {whatLearn && sectionLink("what-learn", "কোর্সে কি শিখবেন")}
           {whatYouGet && sectionLink("what-get", "কোর্সে আপনি পাচ্ছেন")}
           {courseForWhom && sectionLink("for-whom", "কোর্সটি যাদের জন্য")}
@@ -66,7 +66,7 @@ const LearnCourseTab = ({ course }) => {
       {whatLearn && (
         <Element name="what-learn">
           <section id="what-learn">
-            <SectionTitle secondaryText="কোর্সে কি শিখবেন" />
+            <SectionTitle secondaryText="কোর্সে কি শিখবেন" underlineWidth="w-full"/>
             <WhatLearn data={course}/>
           </section>
         </Element>
@@ -75,7 +75,7 @@ const LearnCourseTab = ({ course }) => {
       {whatYouGet && (
         <Element name="what-get">
           <section id="what-get">
-            <SectionTitle secondaryText="কোর্সে আপনি পাচ্ছেন"/>
+            <SectionTitle secondaryText="কোর্সে আপনি পাচ্ছেন" underlineWidth="w-full"/>
             <WhatGetInCourse data={course}/>
           </section>
         </Element>
@@ -90,7 +90,7 @@ const LearnCourseTab = ({ course }) => {
       {courseForWhom && (
         <Element name="for-whom">
           <section id="for-whom">
-              <SectionTitle secondaryText="কোর্সটি যাদের জন্য"/>
+              <SectionTitle secondaryText="কোর্সটি যাদের জন্য" underlineWidth="w-full"/>
             <CourseForWhom data={course}/>
           </section>
         </Element>
@@ -98,7 +98,7 @@ const LearnCourseTab = ({ course }) => {
 
       <Element name="course-curriculum">
         <section id="course-curriculum">
-          <SectionTitle secondaryText="কোর্স কারিকুলাম" />
+          <SectionTitle secondaryText="কোর্স কারিকুলাম" underlineWidth="w-full"/>
           <Curriculum data={course}/>
         </section>
       </Element>
@@ -106,7 +106,7 @@ const LearnCourseTab = ({ course }) => {
       {courseWhy && (
         <Element name="why-learn">
           <section id="why-learn">
-            <SectionTitle primaryText="কোরআন" secondaryText=" কেন শিখবেন" />
+            <SectionTitle primaryText="কোরআন" secondaryText=" কেন শিখবেন" underlineWidth="w-full"/>
             <WhyLearnCard  data={course}/>
           </section>
         </Element>
@@ -114,7 +114,7 @@ const LearnCourseTab = ({ course }) => {
 
       <Element name="what-student-says">
         <section id="what-student-says">
-          <SectionTitle primaryText="শিক্ষার্থীরা" secondaryText="যা বলছে" />
+          <SectionTitle primaryText="শিক্ষার্থীরা" secondaryText="যা বলছে" underlineWidth="w-full"/>
           <ReviewCard />
           <div className="flex w-full  items-center justify-between mt-20">
             <Button className="w-[45%] banner-button-1">আরও দেখুন</Button>
@@ -125,7 +125,7 @@ const LearnCourseTab = ({ course }) => {
 
       <Element name="what-student-asks">
         <section id="what-student-asks">
-          <SectionTitle primaryText="প্রায়ই" secondaryText="জিজ্ঞেস করা প্রশ্ন" />
+          <SectionTitle primaryText="প্রায়ই" secondaryText="জিজ্ঞেস করা প্রশ্ন" underlineWidth="w-full"/>
           <CourseStudentFaq data={course}/>
            <div className="flex w-full  items-center justify-center">
             <Button className="w-[45%] banner-button-1">আরও দেখুন</Button>
@@ -136,7 +136,7 @@ const LearnCourseTab = ({ course }) => {
 
       <Element name="what-student-asks-payment">
         <section id="what-student-asks-payment">
-          <SectionTitle primaryText="পেমেন্ট" secondaryText="কিভাবে করব?" />
+          <SectionTitle primaryText="পেমেন্ট" secondaryText="কিভাবে করব?" underlineWidth="w-full"/>
           <PaymentFaq />
           <div className="flex w-full  items-center justify-center">
             <Button className="w-[45%] banner-button-1">এখনই ভর্তি হোন</Button>

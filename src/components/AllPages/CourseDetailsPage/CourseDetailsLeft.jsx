@@ -9,7 +9,8 @@ import Image from "next/image";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import StarRating from "@/utils/StarRating";
-
+import ReactPlayer from "react-player";
+import CourseDetailsRight from "./CourseDetailsRight";
 
 
 
@@ -28,16 +29,16 @@ const [teachers, setTeachers] = useState([]);
   }, [data]);
 
   return (
-    <div className="mt-2 lg:mt-0">
+    <div className="mt-2 lg:mt-0 p-4">
       {data?.previewVideo ? (
         <div className="relative pt-[56.25%]">
-          {/* <ReactPlayer
+          <ReactPlayer
             className="absolute top-0 left-0"
             url={data.previewVideo}
             width="100%"
             height="100%"
             controls
-          /> */}
+          />
         </div>
       ) : (
         <div className="mt-6">
@@ -184,8 +185,11 @@ const [teachers, setTeachers] = useState([]);
 
       {/* Additional Tabs or Right Section */}
       <div className="mt-12">
+        <div className="lg:hidden block">
+          <CourseDetailsRight data={data} />
+        </div>
         <LearnCourseTab course={data}/>
-        {/* <CourseDetailsRight data={data} /> */}
+
       </div>
     </div>
   );

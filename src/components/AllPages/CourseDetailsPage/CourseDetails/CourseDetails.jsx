@@ -7,6 +7,7 @@ import CourseDetailsLeft from "../CourseDetailsLeft";
 import CourseDetailsRight from "../CourseDetailsRight";
 import axios from "axios";
 import Image from "next/image";
+import { Button } from "@/components/UI/button";
 
 
 const CourseDetails = ({ courseID }) => {
@@ -48,7 +49,7 @@ useEffect(() => {
     <div className="relative">
    
 
-        <section className=" py-6 w-7xl mx-auto">
+        <section className="py-6 max-w-7xl mx-auto">
           {loading ? (
             <div className="flex items-center justify-center h-screen">
               <div className="animate-pulse flex flex-col items-center space-y-4">
@@ -71,13 +72,14 @@ useEffect(() => {
                 )}
                 
               </div>
-              <div className="hidden md:block md:col-span-3">
+              <div className="hidden md:block md:col-span-3 lg:block">
               {course && (
                 <CourseDetailsRight
                   data={course}
                   trailClass={trailClass}
                   HandleEnrollNow={HandleEnrollNow}
                 />
+                
               )}
               
             </div>
@@ -87,7 +89,7 @@ useEffect(() => {
         </section>
 
         {/* Mobile Bottom Bar */}
-        <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-green-400 shadow-md z-50">
+        <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-green-400 shadow-md z-50 w-full">
           <div className="flex flex-col px-4 py-2 space-y-2">
             <div className="flex items-center justify-between text-gray-800 font-semibold">
               <div className="flex items-center space-x-2">
@@ -114,20 +116,20 @@ useEffect(() => {
             </div>
 
             <div className="flex gap-2">
-              <button
+              <Button
                 onClick={trailClass}
-                className="flex-1 flex items-center justify-center gap-1 bg-yellow-100 text-yellow-700 font-semibold py-2 rounded-md text-base"
+                className="banner-button-1 w-[45%]"
               >
                 ফ্রি ক্লাস
                 <MdOutlineDoubleArrow className="text-xl" />
-              </button>
-              <button
+              </Button>
+              <Button
                 onClick={HandleEnrollNow}
-                className="flex-1 flex items-center justify-center gap-1 bg-yellow-400 text-black font-semibold py-2 rounded-md text-base"
+                className="banner-button-2"
               >
                 এখনই ভর্তি হোন
                 <MdOutlineDoubleArrow className="text-xl" />
-              </button>
+              </Button>
             </div>
           </div>
         </div>

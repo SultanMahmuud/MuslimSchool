@@ -11,12 +11,12 @@ const WhyLearnCard = ({ data }) => {
       {array.map((card, index) => (
         <div
           key={index}
-          className={`flex flex-col md:flex-row items-center justify-between bg-white  rounded-lg shadow-sm p-2 mb-4 ${
+          className={`flex flex-col md:flex-row items-center justify-center lg:justify-between bg-white  rounded-lg shadow-sm p-2 mb-4 ${
             index % 2 == 0 ? "md:flex-row-reverse" : ""
           }`}
         >
           {/* Image */}
-          <div className="w-full md:w-1/2 flex justify-start gap-12">
+          <div className="w-full md:w-1/2 flex lg:justify-start gap-12 justify-center">
             <Image
             width={48}
             height={100}
