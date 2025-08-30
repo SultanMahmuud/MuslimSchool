@@ -85,7 +85,7 @@ useEffect(() => {
   <div key={index} className="flex items-center gap-4 mb-2 bg-white p-2 rounded shadow">
     <button
       type="button"
-      onClick={() => handleDeleteCours(e?._id)}
+      onClick={() => handleDeletebatch(e?._id)}
       className="flex items-center justify-center w-9 h-9 rounded-full border border-gray-400 shadow bg-gray-100"
     >
       <Trash2 className="text-red-600 w-4 h-4" />

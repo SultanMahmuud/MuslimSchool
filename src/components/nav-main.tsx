@@ -59,7 +59,7 @@ export function NavMain({
                       tooltip={item.title}
                       className={`w-full ${isParentActive ? "bg-green-300" : ""} hover:bg-none`}
                     >
-                      <div className="flex items-center gap-2 w-full text-[18px]">
+                      <div className="flex items-center gap-3 w-full text-[18px] font-medium">
                         {item.icon && <item.icon className="shrink-0" />}
                         <span>{item.title}</span>
                         {item.items && (
