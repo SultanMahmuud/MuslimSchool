@@ -21,7 +21,7 @@ const RecentAdmitStudent = async () => {
       <h2 className="text-center  text-[26px] md:text-[30px] font-bold base1">
         সম্প্রতি যে সমস্ত শিক্ষার্থী <br className="lg:hidden block"/> ভর্তি হয়েছে
       </h2>
-      <p className="text-center hind text-[20px] font-medium base2 pb-6">
+      <p className="text-center hind text-[18px] font-medium base2 pb-6">
         যারা আমাদের মানসম্মত শিক্ষায় আস্থা রেখে ইসলাম শিক্ষার যাত্রা শুরু করেছেন
       </p>
       <Marquee direction="right" gradient={false} speed={70}>

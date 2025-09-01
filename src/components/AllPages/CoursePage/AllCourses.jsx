@@ -113,7 +113,7 @@ export default function AllCourses() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {loading
             ? Array.from({ length: 6 }).map((_, idx) => (
-                <h2 key={idx}>loading</h2>
+                <h2 key={idx} className="animate-pulse bg-gray-100 rounded-xl h-48 w-full mb-4"></h2>
               ))
             : courses.length > 0
             ? courses.map((course, _id) => (
@@ -123,7 +123,14 @@ export default function AllCourses() {
               ))
             : (
               <p className="text-center text-gray-500 col-span-full">
-                No courses found.
+              <>
+                {[...Array(6)].map((_, idx) => (
+                  <div
+                    key={idx}
+                    className="animate-pulse bg-gray-100 rounded-xl h-48 w-full mb-4"
+                  />
+                ))}
+              </>
               </p>
             )}
         </div>

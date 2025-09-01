@@ -56,7 +56,7 @@ const FAQ = () => {
         
         />
 
-        <p className="base1 text-lg font-semibold">
+        <p className="base1 lg:text-lg text-center  text-[18px] font-medium base2 mt-2 mb-6">
           সম্ভব্য সমস্ত প্রশ্ন এখানে দেওয়া আছে। যদি আপনি আপনার প্রয়োজনীয়
           প্রশ্ন খুঁজে না পান, দয়া করে আমাদের একটি ইমেইল করুন
           support@muslimschoool.com এই ইমেলে । আমরা যত তাড়াতাড়ি সম্ভব আপনার

@@ -85,7 +85,7 @@ const Footer = () => {
           </div>
 
           {/* Follow Us (spans two rows) */}
-          <div className="bg-white/20 border border-white/30 rounded-lg p-6 row-span-2 hind">
+          <div className="bg-white/20 border border-white/30 rounded-lg p-6 row-span-2 lg:block hidden">
             <h3 className="text-white text-lg font-semibold mb-4">আমাদের সাথে কথা বলুন</h3>
             <ul className="space-y-3 text-white">
              <ul className="space-y-2 text-white">
@@ -99,7 +99,7 @@ const Footer = () => {
               <a href="https://www.facebook.com/muslimschoool" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-500">
                 <FaFacebookF className="w-6 h-6 " />
               </a>
-              <a href="https://www.instagram.com/company/muslimschoool" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-700">
+              <a href="https://www.instagram.com/muslimschoool" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-700">
                 <FaInstagram className="w-6 h-6 mx-2" />
               </a>
               <a href="https://youtube.com/muslimschoool" target="_blank" rel="noopener noreferrer" className="text-white hover:text-red-400">
@@ -149,6 +149,60 @@ const Footer = () => {
               <li><Link href="/review">স্টুডেন্ট রিভিউ</Link></li>
             </ul>
             
+          </div>
+
+           {/* Follow Us (spans two rows) */}
+          <div className="bg-white/20 border border-white/30 rounded-lg p-6 row-span-2 block lg:hidden">
+            <h3 className="text-white text-lg font-semibold mb-4">আমাদের সাথে কথা বলুন</h3>
+            <ul className="space-y-3 text-white">
+             <ul className="space-y-2 text-white">
+              <li><Link href="/frequently-asked-questions">প্রশ্নোত্তর</Link></li>
+              <li><Link href="/contact">যোগাযোগ করুন</Link></li>
+              <li><Link href="/student-registration">দ্বীন শিখা শুরু করুন </Link></li>
+            </ul>
+
+            </ul>
+            <div className="flex items-center mt-8">
+              <a href="https://www.facebook.com/muslimschoool" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-500">
+                <FaFacebookF className="w-6 h-6 " />
+              </a>
+              <a href="https://www.instagram.com/muslimschoool" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-700">
+                <FaInstagram className="w-6 h-6 mx-2" />
+              </a>
+              <a href="https://youtube.com/muslimschoool" target="_blank" rel="noopener noreferrer" className="text-white hover:text-red-400">
+                <FaYoutube className="w-6 h-6 mx-2" />
+              </a>
+                <a href="https://www.tiktok.com/@muslimschoool" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-700">
+                <FaTiktok className="w-6 h-6 mx-2" />
+              </a>
+             
+              
+              <a href="https://www.linkedin.com/muslimschoool" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-700">
+                <FaLinkedinIn className="w-6 h-6 mx-2" />
+              </a>
+             
+
+          </div>
+      
+            <div className="mt-14 flex justify-end flex-col">
+             <h3 className="text-xl font-semibold mb-4">Newsletter</h3>
+            <form className="flex flex-col gap-2">
+              <input
+               
+                type="email"
+                placeholder="Enter your email"
+                className="px-4 py-2 rounded-lg bg-white/30 placeholder-white text-white focus:outline-none"
+              />
+              <Button
+                type="submit"
+                className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg font-semibold transition"
+              >
+                Subscribe
+              </Button>
+            </form>
+
+            </div>
+
           </div>
         </div>
       </div>

@@ -32,7 +32,7 @@ const AwsomeTeachers = async ({ isLoading = false }) => {
         <h2 className=" text-[26px] sm:text-xl lg:text-3xl font-bold base1">
           আপনার পাশে আছে অসাধারণ <br className="lg:hidden block"/>শিক্ষক-শিক্ষিকাবৃন্দ
         </h2>
-        <p className="text-[20px] lg:text-xl base2  font-medium">
+        <p className="text-[18px] lg:text-xl base2  font-medium">
           আপনি পাচ্ছেন সাবজেক্টের সেরা টিচার ফলে <br className="lg:hidden block"/> কঠিন টপিকও পানির মতো সহজ মনে
           হবে
         </p>

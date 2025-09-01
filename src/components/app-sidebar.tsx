@@ -233,8 +233,8 @@ const dispatch = useDispatch();
 
   return (
     <Sidebar collapsible="icon">
-      <SidebarHeader>
-        <Link href="/" className="text-2xl font-bold"><Image src={logo} width={150} height={100} alt="logo"/></Link>
+      <SidebarHeader className="flex items-center  max-w-full">
+        <Link href="/" className="text-2xl font-bold"><Image src={logo} width={200} height={100} alt="logo" /></Link>
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={filteredNav} />

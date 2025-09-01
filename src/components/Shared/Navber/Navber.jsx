@@ -34,31 +34,59 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/UI/dropdown-menu";
+
+import { CgMenuLeftAlt } from "react-icons/cg";
+import { FiHome } from "react-icons/fi";
+import { MdMenuBook } from "react-icons/md";
+import { IoMdPricetags } from "react-icons/io";
+import { MdAutoAwesome } from "react-icons/md";
+import { MdGroups } from "react-icons/md";
+import { RiContactsBook3Line } from "react-icons/ri";
+import { LuMessageCircleQuestion } from "react-icons/lu";
+
+import { FaRegGrinStars } from "react-icons/fa";
+import { MdOutlineLibraryBooks } from "react-icons/md";
+
+import { GiSpellBook } from "react-icons/gi";
+
+import { IoDocumentTextOutline } from "react-icons/io5";
+import { RiShieldUserLine } from "react-icons/ri";
+
+
 const menuItems = [
-  { label: "আমাদের সম্পর্কে", href: "/about" },
-  { label: "কোর্স", href: "/courses" },
-  { label: "লাইভ ব্যাচ", href: "/live-batch" },
-  { label: "প্রাইসিং", href: "/pricing" },
-  { label: "টিচার", href: "/teacher" },
-  { label: "ভর্তি ফর্ম", href: "/student-registration" },
-  { label: "ফ্রি ক্লাস", href: "/trial-class" },
-  { label: "যোগাযোগ", href: "/contact" },
-  { label: "প্রশ্নোত্তর", href: "/frequently-asked-questions" },
+  { label: "আমাদের সম্পর্কে", href: "/about",icon: <MdAutoAwesome className="h-4 w-4 base1" />  },
+  { label: "কোর্স", href: "/courses" ,icon: <MdMenuBook className="h-4 w-4 base1" /> },
+  { label: "লাইভ ব্যাচ", href: "/live-batch",icon: <MdGroups className="h-4 w-4 base1" /> },
+  { label: "প্রাইসিং", href: "/pricing",icon: <IoMdPricetags className="h-4 w-4 base1" /> },
+  { label: "টিচার", href: "/teacher",icon: <RiShieldUserLine className="h-4 w-4 base1" /> },
+  { label: "ভর্তি ফর্ম", href: "/student-registration" ,icon: <IoDocumentTextOutline className="h-4 w-4 base1" />},
+  { label: "ফ্রি ক্লাস", href: "/trial-class",icon: <IoDocumentTextOutline className="h-4 w-4 base1" /> },
+  { label: "যোগাযোগ", href: "/contact" ,icon: <RiContactsBook3Line className="h-4 w-4 base1" />},
+  { label: "প্রশ্নোত্তর", href: "/frequently-asked-questions",icon: <LuMessageCircleQuestion className="h-4 w-4 base1" /> },
 ];
 
 const tasksSubMenu = [
-  { label: "স্টুডেন্ট রিভিউ দেখুন", href: "/review" },
-  { label: "লাইব্রেরি", href: "/show-library" },
-  { label: "রিডিং কোরআন", href: "/reading-quran" },
-  { label: "অডিও কোরআন", href: "/audio-quran" },
+  { label: "স্টুডেন্ট রিভিউ দেখুন", href: "/review" ,icon: <FaRegGrinStars className="h-4 w-4 base1" />},
+  { label: "লাইব্রেরি", href: "/show-library", icon: <MdOutlineLibraryBooks className="h-4 w-4 base1" />},
+  { label: "রিডিং কোরআন", href: "/reading-quran",icon: <GiSpellBook className="h-4 w-4 base1" /> },
+  { label: "অডিও কোরআন", href: "/audio-quran",icon: <GiSpellBook className="h-4 w-4 base1" /> },
 ];
+
+
+// মেনু -
+// <CgMenuLeftAlt />
+// হোম -
+// <FiHome />
+// কোর্স 
+
+// <MdMenuBook />
 const mobileTopMenu = [
-  { label: "হোম", href: "/", icon: <Home className="h-4 w-4" /> },
-  { label: "কোর্স", href: "/courses", icon: <Book className="h-4 w-4" /> },
+  { label: "হোম", href: "/", icon: <FiHome  className="h-4 w-4 base1" /> },
+  { label: "কোর্স", href: "/courses", icon: <MdMenuBook className="h-4 w-4 base1" /> },
   {
     label: "প্রাইসিং",
     href: "/pricing",
-    icon: <DollarSign className="h-4 w-4" />,
+    icon: <IoMdPricetags className="h-4 w-4 base1" />,
   },
 ];
 
@@ -135,7 +163,10 @@ export default function Navbar() {
               hover:bg-primary hover:text-white
             "
                     >
-                      {item.label}
+                     <div className="flex  gap-2 items-center">
+              <p>{item.icon} </p>
+              <p>{item.label}</p>
+            </div>
                     </Link>
                   </DropdownMenuItem>
                 ))}
@@ -165,8 +196,8 @@ export default function Navbar() {
           onClick={() => setMobileNavOpen(true)}
         >
           <div className="flex items-center gap-1 flex-col hover:text-primary font-semibold text-lg navColor">
-            <MenuIcon className="h-6 w-6" />
-            <p>মেনু</p>
+            <CgMenuLeftAlt className="h-6 w-6 base1" />
+            <p className="base1">মেনু</p>
           </div>
         </Button>
 
@@ -174,7 +205,7 @@ export default function Navbar() {
           <Link
             key={item.href}
             href={item.href}
-            className="hover:text-primary font-semibold text-lg navColor"
+            className="hover:text-primary font-semibold text-lg base1"
           >
             <div className="flex items-center gap-1 flex-col">
               <p>{item.icon} </p>
@@ -214,7 +245,11 @@ export default function Navbar() {
                 href={item.href}
                 className="block py-2 hover:text-primary"
               >
-                {item.label}
+
+             <div className="flex  gap-2 items-center">
+              <p>{item.icon} </p>
+              <p>{item.label}</p>
+            </div>
               </Link>
             ))}
 
@@ -225,7 +260,10 @@ export default function Navbar() {
                   href={task.href}
                   className="flex items-center gap-2 py-2 hover:text-primary"
                 >
-                  {task.label}
+                   <div className="flex  gap-2 items-center">
+              <p>{task.icon} </p>
+              <p>{task.label}</p>
+            </div>
                 </Link>
               ))}
             </div>

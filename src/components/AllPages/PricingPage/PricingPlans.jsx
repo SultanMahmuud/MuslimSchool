@@ -91,7 +91,7 @@ const PricingPlans = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-2 bg-slate-50 py-12">
+    <div className="flex flex-col items-center justify-center px-2 bg-slate-50 py-12 min-h-[200vh]">
       <h2 className="text-4xl font-extrabold text-gray-900 mb-6 text-center drop-shadow-sm">
         Choose Your Plan
       </h2>
@@ -116,7 +116,7 @@ const PricingPlans = () => {
       {/* Plan Cards */}
       <div className="flex flex-col md:flex-row gap-6 w-full max-w-4xl justify-center items-center mt-5">
         {loading ? (
-          <div className="text-gray-500">Loading plans...</div>
+          <div className="text-gray-500 animate-pulse bg-gray-100 rounded-xl h-48 w-full mb-4"></div>
         ) : plans.length > 0 ? (
           plans.map((plan, idx) => (
             <div

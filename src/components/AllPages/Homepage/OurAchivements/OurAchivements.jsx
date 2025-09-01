@@ -12,7 +12,7 @@ const OurAchivements = async () => {
       <h2 className="text-center text-[26px] md:text-3xl font-bold  base1">
         আমাদের অর্জন
       </h2>
-      <p className="text-center  text-[20px] font-medium base2 mt-2 mb-6 hind">
+      <p className="text-center  text-[18px] font-medium base2 mt-2 mb-6 hind">
         আল্লাহর রহমতে, আমাদের আপ্রান চেষ্টা ও শিক্ষার্থীদের  ভালোবাসায়  আমরা এগিয়ে যাচ্ছি
       </p>
 

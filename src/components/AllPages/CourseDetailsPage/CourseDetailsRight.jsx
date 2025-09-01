@@ -65,7 +65,7 @@ const CourseDetailsRight = ({ data, trailClass, HandleEnrollNow }) => {
             <span className="bg-gray-100 px-3 py-1 rounded">{data?.medium}</span>
           </div>
         </div>
-        <div className="bg-white shadow rounded p-4 text-center">
+        <div className="bg-white shadow rounded p-4 text-center mt-4">
         <div className="flex items-center justify-center gap-2 text-orange-500 text-lg font-bold">
           <Image
             src="https://qawamiuniversity.nyc3.digitaloceanspaces.com/courseIcons/contacting%20(1).svg"
@@ -78,7 +78,7 @@ const CourseDetailsRight = ({ data, trailClass, HandleEnrollNow }) => {
           <span>কল করুন</span>
           <a href="tel:+8801947200111" className="underline">+8801947200111</a>
         </div>
-        <div className="text-sm text-gray-500 mt-1 font-bold">(সকাল ১০টা থেকে রাত ১০টা)</div>
+        <div className="text-sm text-gray-500 mt-1 font-bold">(সকাল ৯টা থেকে রাত ১০টা)</div>
       </div>
 
       </div>

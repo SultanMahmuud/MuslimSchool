@@ -51,7 +51,7 @@ export default function HowToGetStart() {
       <div className="absolute -bottom-24 -right-36 w-80 h-64 bg-sky-100 rounded-[50%_60%_40%_50%]" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-4">
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center base1 mb-10 hind">
+        <h2 className="text-[26px] md:text-3xl lg:text-4xl font-bold text-center base1 mb-10 hind">
           কিভাবে শুরু করবেন
         </h2>
 

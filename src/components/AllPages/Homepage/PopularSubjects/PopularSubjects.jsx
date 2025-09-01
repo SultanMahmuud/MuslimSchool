@@ -39,10 +39,10 @@ const PopularSubjects = async () => {
                   className="w-10 h-10 object-contain"
                 />
                 <div className="flex flex-col">
-                  <p className="hind font-bold text-[16px] md:text-[20px] base1 text-left">
+                  <p className=" font-bold text-[16px] md:text-[20px] base1 lg:text-left text-center">
                     {item.title}
                   </p>
-                  <p className="inter font-medium text-[14px] md:text-[16px] lg:text-[18px] base2 text-left">
+                  <p className=" font-medium text-[14px] md:text-[16px] lg:text-[18px] base2 lg:text-left text-center">
                     {item.SubTitle}
                   </p>
                 </div>

@@ -22,7 +22,7 @@ const CallUs = () => {
           আমাদেরকে কল করুন <br />
         </p>
         <p className="font-bold text-[12px] lg:text-[16px] text-white lg:text-inherit">
-          (সকাল ১০টা থেকে রাত ১০টা)
+          (সকাল ৯টা থেকে রাত ১০টা)
         </p>
       </div>
 
