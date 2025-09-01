@@ -30,36 +30,47 @@ const Registration = () => {
       },
     }
 
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration`, config)
-      .then((res) => {
-        setRegistrations(res.data)
-      })
+   axios
+  .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration`, config)
+  .then((res) => {
+    // Ensure registrations is always an array
+    const data = Array.isArray(res.data) 
+      ? res.data 
+      : Array.isArray(res.data?.data) 
+        ? res.data.data 
+        : []
+    setRegistrations(data)
+  })
+  .catch((err) => console.error(err))
+
       .catch((err) => console.error(err))
   }, [user, openLevel, openDete])
 
-  const filteredData = registrations
-    ?.filter((reg) => reg.regType === "student-registration")
-    .slice(0, 15)
-    .map((user) => ({
-      id: user._id,
-      name: user?.user?.name || "",
-      email: user?.user?.email || "",
-      number: user?.phoneNumber || "",
-      parentName: user?.parentName || "",
-      date: DateConversionWithTime(user?.updatedAt?.split?.("T")?.[0] || ""),
-      address: user?.address || "",
-      level: user?.levels?.level1 || "",
-      age: user?.age || "",
-      days: user?.attDays || "",
-      time: user?.attTime || "",
-      interestedSubject: user?.interestedSubject || "",
-      openLevel: (email) => {
-        setLeveledEmail(email)
-        setOpenLevel(true)
-      },
-      setOpenDete,
-    }))
+const filteredData = Array.isArray(registrations)
+  ? registrations
+      .filter((reg) => reg.regType === "student-registration")
+      .slice(0, 15)
+      .map((user) => ({
+        id: user._id,
+        name: user?.user?.name || "",
+        email: user?.user?.email || "",
+        number: user?.phoneNumber || "",
+        parentName: user?.parentName || "",
+        date: DateConversionWithTime(user?.updatedAt?.split?.("T")?.[0] || ""),
+        address: user?.address || "",
+        level: user?.levels?.level1 || "",
+        age: user?.age || "",
+        days: user?.attDays || "",
+        time: user?.attTime || "",
+        interestedSubject: user?.interestedSubject || "",
+        openLevel: (email) => {
+          setLeveledEmail(email)
+          setOpenLevel(true)
+        },
+        setOpenDete,
+      }))
+  : []
+
 
   return (
     <div className="p-4 w-full">
