@@ -38,7 +38,7 @@ useEffect(() => {
 
   const HandleEnrollNow = () => {
     if (!course) return;
-    window.location.href = `/check-out/${course._id}`;
+    window.location.href = `/check-out/${course?.engTitle}`;
   };
 
   const trailClass = () => {

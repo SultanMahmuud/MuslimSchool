@@ -105,7 +105,10 @@ export default function StudentRegistration({ type }) {
           if (type === "student-registration") {
             toast("Your Registration Successful");
             navigate.push("/student-registration-registration-thank-you");
+
           }
+          // add an another push  after thankyou page to home page
+          navigate.push("/courses");
         }
       })
       .catch((error) => {

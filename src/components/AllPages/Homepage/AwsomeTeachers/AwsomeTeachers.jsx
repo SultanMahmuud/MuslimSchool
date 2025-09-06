@@ -2,8 +2,9 @@ import React from "react";
 import TeacherCard from "@/components/Shared/TeacherCard/TeacherCard";
 import Link from "next/link";
 import { MdArrowRight } from "react-icons/md";
-import { Button } from "@/components/UI/button";
 
+import  maleTeacher from '@/assets/defaultImage/Teacher-1.jpg';
+import  femaleteacher  from '@/assets/defaultImage/Teacher-2.jpg';
 
 const getAllTeachers = async () => {
   try {
@@ -56,9 +57,11 @@ const AwsomeTeachers = async ({ isLoading = false }) => {
           {teachers?.slice(0, 4).map((el) => (
             <Link key={el?._id} href={`teacher/${el._id}`}>
               <TeacherCard
-                image={
-                  el?.avatar || "https://img.icons8.com/color/128/teacher.png"
-                }
+                // image={
+                //   el?.avatar || "https://img.icons8.com/color/128/teacher.png"
+                // }
+                // if gender is male then show maleTeacher else show femaleTeacher
+                image={el?.gender === "male" ? maleTeacher : femaleteacher}
                 depart={el?.Department || "নাজেরা"}
                 name={el?.name || "yasin"}
                 joiningDate={el?.joiningDate || "23-5-11"}

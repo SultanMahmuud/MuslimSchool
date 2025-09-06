@@ -47,7 +47,7 @@ const user = getUserInfo(); // Assuming getUserInfo is a function that retrieves
         ? "/otp/send-otp"
         : "/email-otp/send";
 
-    const res = await fetch(`https://muslim-schoool.onrender.com${endpoint}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}${endpoint}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
@@ -63,7 +63,7 @@ const user = getUserInfo(); // Assuming getUserInfo is a function that retrieves
     const endpoint =
       loginMethod === "phone" ? "/otp/verify-otp" : "/verify/email";
 
-    const res = await fetch(`https://muslim-schoool.onrender.com${endpoint}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}${endpoint}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),

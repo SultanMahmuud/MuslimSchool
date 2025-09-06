@@ -12,6 +12,7 @@ import Image from 'next/image';
 
 
 
+
 const TeacherCard = ({image, depart, qualification2, expert , institution,experience,totalClass,totalSutdents,name,}) => {
   return (
     <div className=" flex items-center justify-center">

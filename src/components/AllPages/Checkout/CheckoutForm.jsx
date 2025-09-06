@@ -35,7 +35,7 @@ const CheckoutForm = ({
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="শিক্ষার্থীর সম্পূর্ন নাম"
-            className="border-2 border-gray-300 rounded-md p-3 mb-5 font-sans text-base h-[50px]"
+            className="border-2 border-gray-300 rounded-md p-3 mb-5  text-base h-[50px]"
           />
         </div>
 
@@ -51,7 +51,7 @@ const CheckoutForm = ({
             value={number}
             onChange={(e) => setNumber(e.target.value)}
             placeholder="শিক্ষার্থীর মোবাইল নম্বর"
-            className="border-2 border-gray-300 rounded-md p-3 mb-5 font-sans text-base h-[50px]"
+            className="border-2 border-gray-300 rounded-md p-3 mb-5  text-base h-[50px]"
           />
         </div>
       </div>
@@ -70,7 +70,7 @@ const CheckoutForm = ({
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="ইমেল এড্রেস লিখুন"
-            className="border-2 border-gray-300 rounded-md p-3 mb-5 font-sans text-base h-[50px]"
+            className="border-2 border-gray-300 rounded-md p-3 mb-5  text-base h-[50px]"
           />
         </div>
 
@@ -86,7 +86,7 @@ const CheckoutForm = ({
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             placeholder="শিক্ষার্থীর ঠিকানা"
-            className="border-2 border-gray-300 rounded-md p-3 mb-5 font-sans text-base h-[50px]"
+            className="border-2 border-gray-300 rounded-md p-3 mb-5  text-base h-[50px]"
           />
         </div>
       </div>
@@ -102,7 +102,7 @@ const CheckoutForm = ({
             type="text"
             onChange={(e) => setPromoValue(e.target.value)}
             placeholder="প্রোমো কোড"
-            className="border-2 border-gray-300 rounded-md p-3 mb-5 font-sans text-base h-[50px] w-full"
+            className="border-2 border-gray-300 rounded-md p-3 mb-5  text-base h-[50px] w-full"
           />
         </>
       )}

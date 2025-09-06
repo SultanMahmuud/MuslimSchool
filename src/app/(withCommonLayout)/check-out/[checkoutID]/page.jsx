@@ -37,8 +37,12 @@ export default function Checkout({ params }) {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <p>Loading course details...</p>
+      <div className="text-3xl font-bold mb-4">
+        <span className="text-primary">Muslim </span>
+        <span>School</span>
       </div>
+     
+    </div>
     );
   }
 

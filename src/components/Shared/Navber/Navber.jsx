@@ -2,16 +2,10 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import {
-  MenuIcon,
+
   XIcon,
   LogInIcon,
-  CircleHelpIcon,
-  CircleCheckIcon,
-  CircleIcon,
-  Home,
-  Book,
-  Clock,
-  DollarSign,
+
 } from "lucide-react";
 import { Button } from "@/components/UI/button";
 import {
@@ -74,13 +68,6 @@ const tasksSubMenu = [
 ];
 
 
-// মেনু -
-// <CgMenuLeftAlt />
-// হোম -
-// <FiHome />
-// কোর্স 
-
-// <MdMenuBook />
 const mobileTopMenu = [
 
   { label: "কোর্স", href: "/courses",},
@@ -248,7 +235,7 @@ export default function Navbar() {
           </DrawerHeader>
 
           {/* ✅ Make drawer scrollable */}
-          <div className="space-y-2  pr-2">
+          <div className="space-y-2 overflow-y-auto pr-2">
             {menuItems.map((item) => (
               <Link
                 key={item.href}

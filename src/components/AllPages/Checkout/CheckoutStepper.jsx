@@ -122,10 +122,12 @@ const CheckoutStepper = ({ courseData }) => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-10">
+    <div className="max-w-6xl mx-auto p-10 font-hind">
       {/* Stepper */}
   {/* Stepper */}
-<div className="flex justify-center mb-10 font-sans text-lg relative">
+{/* Stepper with Hind Siliguri font */}
+
+<div className="flex justify-center mb-10 font-hind text-lg relative">
   {steps.map((label, index) => {
     if (index === 1 && getUser?._id) return null;
 
@@ -246,8 +248,8 @@ const CheckoutStepper = ({ courseData }) => {
                   src="https://qawamiuniversity.nyc3.digitaloceanspaces.com/merchantlogo/Qawmi%20bkash_payment_logo%20(1).png"
                   alt="Bkash Logo"
                   className="h-10"
-                  width={40}
-                  height={40}
+                  width={100}
+                  height={100}
                 />
               </label>
 
@@ -274,8 +276,8 @@ const CheckoutStepper = ({ courseData }) => {
                   src="https://qawamiuniversity.nyc3.digitaloceanspaces.com/merchantlogo/SSLCommerz-Pay-With-logo-All%20(1).png"
                   alt="SSL Pay Logo"
                   className="h-10"
-                  width={40}
-                  height={40}
+                  width={250}
+                  height={300}
                 />
               </label>
 

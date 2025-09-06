@@ -2,6 +2,8 @@ import Marquee from "react-fast-marquee";
 import ContentCard from "./RecentStudentCard";
 import { DateConversionWithTime } from "@/utils/DateConversionWithTime";
 
+import malestudent from "@/assets/defaultImage/Student-1.jpg"
+import femalestudent from "@/assets/defaultImage/Student-2.jpg"
 
 const RecentAdmitStudent = async () => {
   const getAllRecentAdmitStudent = async () => {
@@ -28,6 +30,8 @@ const RecentAdmitStudent = async () => {
         {studentData.map((dt, i) => (
           <ContentCard
           key={i}
+          // if student is male then use male image otherwise use female image
+          image={dt?.gender === "male" ? malestudent : femalestudent}
             name={dt?.name}
             course={dt?.subject || "কোরআন শিক্ষা"}
             joinDate={DateConversionWithTime(dt?.date)}

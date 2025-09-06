@@ -40,7 +40,7 @@ const ForgotPass = ({ onBackToLogin }) => {
  
   } = useForm();
 
-  const apiBase = 'https://muslim-schoool.onrender.com';
+  const apiBase = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   const handleSendOtp = async (e) => {
     e.preventDefault();

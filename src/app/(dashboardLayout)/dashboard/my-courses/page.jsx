@@ -1,40 +1,75 @@
 'use client';
- // Assume this uses Tailwind inside
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
- // Also should be Tailwind-based
-import TeacherCourseCard from "@/components/TeacherDashboard/TeacherCourseCard/TeacherCourseCard";
-import { useState } from "react";
 
-const TeacherCourse = ({ email ='sharminaktermetu86@gmail.com' }) => {
-  // const [courses, setCourses] = useState([]);
+import TeacherCard from "@/components/Shared/TeacherCard/TeacherCard";
+import { getUserInfo } from "@/services/auth.services";
+
+const MyCourse = () => {
+  const [User, setUser] = useState();
+  const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [courses, setCourses] = useState();
+const user = getUserInfo()
 
-const course = {
-  _id: "abc123",
-  image: "https://placekitten.com/400/250",
-  rating: 4.8,
-  title: "Tafsir Course for Beginners",
-  lesson: 12,
-  durationHr: 10,
-  durationMt: 30,
-  level: "Intermediate",
-  price: 100,
-  salePrice: 59,
-  teachers:[]
-};
+  useEffect(() => {
+    axios
+      .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/single/${user?.email}`)
+      .then((res) => {
+        setUser(res?.data);
+        setError(false);
+      })
+      .catch((error) => {
+        setError(true);
+      });
+  }, [user?.email]);
+
+  useEffect(() => {
+    const courseId = User?.data?.Course;
+    setLoading(true);
+    if (courseId?.length) {
+      axios
+        .put(`${process.env.NEXT_PUBLIC_API_BASE_URL}/course/get-courseby-filter`, {
+          courseId: courseId,
+        })
+        .then((res) => {
+          setLoading(false);
+          setCourses(
+            res?.data?.data.filter((course) => course.medium === "Record Course")
+          );
+          setError(false);
+        })
+        .catch((error) => {
+          setLoading(false);
+          setError(true);
+        });
+    }
+  }, [User]);
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {loading && 
-        <div className="col-span-1 sm:col-span-2 lg:col-span-3 text-center">
-          <p>Loading courses...</p>
-        </div>
-      }
-      {/* Assuming course is an array of course objects */}
-      {!loading && (
-        <TeacherCourseCard key={course._id} element={course} />
-      )}
+    <div>
+      <div className="w-full">
+        {!loading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            {courses?.map((el, index) => (
+              <div key={index} className="w-full">
+                <TeacherCard element={el} />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+              <div key={item} className="w-full">
+                {/* <CourseSkeleton /> */}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
 
-export default TeacherCourse;
+export default MyCourse;

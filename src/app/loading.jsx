@@ -1,12 +1,13 @@
 
-
-const loading = () => {
-  const center = {
+  export const center = {
     position: "fixed",
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
   };
+const loading = () => {
+
+
 
   return (
     <div style={{ ...center }}>
