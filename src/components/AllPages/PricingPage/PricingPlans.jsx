@@ -91,7 +91,8 @@ const PricingPlans = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center px-2 bg-slate-50 py-12 min-h-[200vh]">
+    <div className="flex flex-col items-center justify-center px-2 min-h-screen  py-12 bg-red">
+
       <h2 className="text-4xl font-extrabold text-gray-900 mb-6 text-center drop-shadow-sm">
         Choose Your Plan
       </h2>

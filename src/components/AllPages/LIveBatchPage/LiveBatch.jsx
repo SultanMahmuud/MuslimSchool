@@ -4,6 +4,7 @@ import axios from "axios";
 import CourseCard from "@/components/Shared/CourseCard/CourseCard";
 import Link from "next/link";
 import { Button } from "@/components/UI/button";
+import { BiSearch } from "react-icons/bi";
 
 const chips = ["Tajweed", "Hadith", "Arabic", "Kids", "Adults"];
 
@@ -112,15 +113,17 @@ const featuredCourses = [
         </div>
 
         {/* Search Input */}
-        <div className="mb-8">
-          <input
-            type="text"
-            placeholder="Search"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-400"
-          />
-        </div>
+       
+          <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-md shadow max-w-4xl mx-auto mb-6">
+                          <BiSearch className="text-xl text-gray-500" />
+                          <input
+                            type="text"
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                            placeholder="Search course"
+                            className="w-full h-[45px] outline-none text-sm"
+                          />
+                        </div>
 
         {/* Course Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -69,7 +69,7 @@ export default function TeachersSection() {
         <h2 className="text-4xl font-bold text-center mb-6">
           Teacher of the Month
         </h2>
-        <div className="flex space-x-6  mb-12 pb-4">
+        <div className="flex flex-col lg:flex-row space-y-8 space-x-6  mb-12 pb-4">
           {teacherOfMonth.map((t, i) => (
             <div
               key={i}

@@ -66,9 +66,7 @@ const Footer = () => {
               আছি আপনার পাশে। আপনি পারবেন—পথ সহজ করে দেবেন স্বয়ং মহান আল্লাহ。
             </p>
           </div>
-          <div className=" p-4 rounded-lg">
-            <Image  width={700} height={50} src={ssl} alt="SSLCommerz Payment"/>
-          </div>
+         
         </div>
 
         {/* Right side: 3 Cards */}
@@ -206,9 +204,11 @@ const Footer = () => {
           </div>
         </div>
       </div>
-
+ <div className="p-4 mt-4 rounded-lg flex items-center justify-center">
+            <Image  width={700} height={50} src={ssl} alt="SSLCommerz Payment"/>
+          </div>
       {/* Bothrefm copyright */}
-      <div className="mt-10 text-center text-white text-sm opacity-80">
+      <div className="mt-5 text-center text-white text-sm opacity-80">
         © 2025 Muslim School. All Rights Reserved.
       </div>
 

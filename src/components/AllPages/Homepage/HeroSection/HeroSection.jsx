@@ -47,7 +47,8 @@ const HeroSection = () => {
                 </Link>
                 <Link href="/student-registration">
                   <Button className="banner-button-2">
-                    এখনই যোগ দিন
+                   এখনই ভর্তি হোন
+
                     <MdOutlineDoubleArrow className="text-xl" />
                   </Button>
                 </Link>

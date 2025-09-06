@@ -35,7 +35,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/UI/dropdown-menu";
 
-import { CgMenuLeftAlt } from "react-icons/cg";
+import { CgMenuRightAlt } from "react-icons/cg";
 import { FiHome } from "react-icons/fi";
 import { MdMenuBook } from "react-icons/md";
 import { IoMdPricetags } from "react-icons/io";
@@ -51,25 +51,26 @@ import { GiSpellBook } from "react-icons/gi";
 
 import { IoDocumentTextOutline } from "react-icons/io5";
 import { RiShieldUserLine } from "react-icons/ri";
+import homeIcon from "@/assets/Logo/Untitled-1/Untitled-1.png"
 
 
 const menuItems = [
-  { label: "আমাদের সম্পর্কে", href: "/about",icon: <MdAutoAwesome className="h-4 w-4 base1" />  },
-  { label: "কোর্স", href: "/courses" ,icon: <MdMenuBook className="h-4 w-4 base1" /> },
-  { label: "লাইভ ব্যাচ", href: "/live-batch",icon: <MdGroups className="h-4 w-4 base1" /> },
-  { label: "প্রাইসিং", href: "/pricing",icon: <IoMdPricetags className="h-4 w-4 base1" /> },
-  { label: "টিচার", href: "/teacher",icon: <RiShieldUserLine className="h-4 w-4 base1" /> },
-  { label: "ভর্তি ফর্ম", href: "/student-registration" ,icon: <IoDocumentTextOutline className="h-4 w-4 base1" />},
-  { label: "ফ্রি ক্লাস", href: "/trial-class",icon: <IoDocumentTextOutline className="h-4 w-4 base1" /> },
-  { label: "যোগাযোগ", href: "/contact" ,icon: <RiContactsBook3Line className="h-4 w-4 base1" />},
-  { label: "প্রশ্নোত্তর", href: "/frequently-asked-questions",icon: <LuMessageCircleQuestion className="h-4 w-4 base1" /> },
+  { label: "আমাদের সম্পর্কে", href: "/about",icon: <MdAutoAwesome className="h-6 w-6 base1" />  },
+  { label: "কোর্স", href: "/courses" ,icon: <MdMenuBook className="h-6 w-6 base1" /> },
+  { label: "লাইভ ব্যাচ", href: "/live-batch",icon: <MdGroups className="h-6 w-6 base1" /> },
+  { label: "প্রাইসিং", href: "/pricing",icon: <IoMdPricetags className="h-6 w-6 base1" /> },
+  { label: "টিচার", href: "/teacher",icon: <RiShieldUserLine className="h-6 w-6 base1" /> },
+  { label: "ভর্তি ফর্ম", href: "/student-registration" ,icon: <IoDocumentTextOutline className="h-6 w-6 base1" />},
+  { label: "ফ্রি ক্লাস", href: "/trial-class",icon: <IoDocumentTextOutline className="h-6 w-6 base1" /> },
+  { label: "যোগাযোগ", href: "/contact" ,icon: <RiContactsBook3Line className="h-6 w-6 base1" />},
+  { label: "প্রশ্নোত্তর", href: "/frequently-asked-questions",icon: <LuMessageCircleQuestion className="h-6 w-6 base1" /> },
 ];
 
 const tasksSubMenu = [
-  { label: "স্টুডেন্ট রিভিউ দেখুন", href: "/review" ,icon: <FaRegGrinStars className="h-4 w-4 base1" />},
-  { label: "লাইব্রেরি", href: "/show-library", icon: <MdOutlineLibraryBooks className="h-4 w-4 base1" />},
-  { label: "রিডিং কোরআন", href: "/reading-quran",icon: <GiSpellBook className="h-4 w-4 base1" /> },
-  { label: "অডিও কোরআন", href: "/audio-quran",icon: <GiSpellBook className="h-4 w-4 base1" /> },
+  { label: "স্টুডেন্ট রিভিউ দেখুন", href: "/review" ,icon: <FaRegGrinStars className="h-6 w-6 base1" />},
+  { label: "লাইব্রেরি", href: "/show-library", icon: <MdOutlineLibraryBooks className="h-6 w-6 base1" />},
+  { label: "রিডিং কোরআন", href: "/reading-quran",icon: <GiSpellBook className="h-6 w-6 base1" /> },
+  { label: "অডিও কোরআন", href: "/audio-quran",icon: <GiSpellBook className="h-6 w-6 base1" /> },
 ];
 
 
@@ -81,12 +82,13 @@ const tasksSubMenu = [
 
 // <MdMenuBook />
 const mobileTopMenu = [
-  { label: "হোম", href: "/", icon: <FiHome  className="h-4 w-4 base1" /> },
-  { label: "কোর্স", href: "/courses", icon: <MdMenuBook className="h-4 w-4 base1" /> },
+
+  { label: "কোর্স", href: "/courses",},
+  { label: "ফি", href: "/pricing", },
   {
-    label: "প্রাইসিং",
-    href: "/pricing",
-    icon: <IoMdPricetags className="h-4 w-4 base1" />,
+    label: "ভর্তি",
+    href: "/student-registration",
+    
   },
 ];
 
@@ -190,16 +192,8 @@ export default function Navbar() {
 
       {/* Mobile Sticky Bar */}
       <div className="md:hidden sticky top-0 left-0 right-0 bg-white border-b shadow-sm z-50 flex justify-between items-center px-5 py-2">
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={() => setMobileNavOpen(true)}
-        >
-          <div className="flex items-center gap-1 flex-col hover:text-primary font-semibold text-lg navColor">
-            <CgMenuLeftAlt className="h-6 w-6 base1" />
-            <p className="base1">মেনু</p>
-          </div>
-        </Button>
+        <Link href={'/'}><Image src={homeIcon} alt="home icon" height={40} width={40}/></Link>
+      
 
         {mobileTopMenu.map((item) => (
           <Link
@@ -208,18 +202,34 @@ export default function Navbar() {
             className="hover:text-primary font-semibold text-lg base1"
           >
             <div className="flex items-center gap-1 flex-col">
-              <p>{item.icon} </p>
+              {/* <p className="text-[22px]">{item.icon} </p> */}
               <p>{item.label}</p>
             </div>
           </Link>
         ))}
+          <Button  onClick={() => {
+                  setMobileNavOpen(false);
+                  setDrawerOpen(true);
+                }}
+                className="flex items-center gap-2 hover:text-primary">লগিন</Button>
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => setMobileNavOpen(true)}
+        >
+          <div className="flex items-center gap-1  hover:text-primary font-semibold text-lg navColor">
+            <CgMenuRightAlt className="base1 size-9" />
+            
+          </div>
+          
+        </Button>
       </div>
 
       {/* Mobile Left Drawer */}
       <Drawer
         open={mobileNavOpen}
         onOpenChange={setMobileNavOpen}
-        direction="left"
+        direction="right"
       >
         <DrawerContent className="p-4 w-64">
           <DrawerHeader>
@@ -238,7 +248,7 @@ export default function Navbar() {
           </DrawerHeader>
 
           {/* ✅ Make drawer scrollable */}
-          <div className="space-y-2 overflow-y-auto max-h-[calc(100vh-80px)] pr-2">
+          <div className="space-y-2  pr-2">
             {menuItems.map((item) => (
               <Link
                 key={item.href}
@@ -248,7 +258,7 @@ export default function Navbar() {
 
              <div className="flex  gap-2 items-center">
               <p>{item.icon} </p>
-              <p>{item.label}</p>
+              <p className="text-lg font-medium">{item.label}</p>
             </div>
               </Link>
             ))}
@@ -262,7 +272,7 @@ export default function Navbar() {
                 >
                    <div className="flex  gap-2 items-center">
               <p>{task.icon} </p>
-              <p>{task.label}</p>
+              <p className="text-lg font-medium">{task.label}</p>
             </div>
                 </Link>
               ))}

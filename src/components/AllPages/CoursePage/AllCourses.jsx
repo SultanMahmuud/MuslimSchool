@@ -4,6 +4,7 @@ import axios from 'axios';
 import CourseCard from '@/components/Shared/CourseCard/CourseCard';
 import { Button } from '@/components/UI/button';
 import Link from 'next/link';
+import { BiSearch } from 'react-icons/bi';
 
 
 
@@ -99,7 +100,7 @@ export default function AllCourses() {
         </div>
 
         {/* Search Bar */}
-        <div className="mb-6">
+        {/* <div className="mb-6">
           <input
             type="text"
             placeholder="Search"
@@ -107,7 +108,17 @@ export default function AllCourses() {
             onChange={(e) => setSearch(e.target.value)}
             className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-400"
           />
-        </div>
+        </div> */}
+        <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-md shadow max-w-4xl mx-auto mb-6">
+                  <BiSearch className="text-xl text-gray-500" />
+                  <input
+                    type="text"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    placeholder="Search course"
+                    className="w-full h-[45px] outline-none text-sm"
+                  />
+                </div>
 
         {/* Courses Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -117,7 +128,7 @@ export default function AllCourses() {
               ))
             : courses.length > 0
             ? courses.map((course, _id) => (
-                <Link key={_id} href={`/courses/${course._id}`}>
+                <Link key={_id} href={`/courses/${course.engTitle}`}>
                   <CourseCard course={course} loading={false} />
                 </Link>
               ))

@@ -24,6 +24,8 @@ const UpdateCourse = ({ params }) => {
  const router = useRouter();
   const [courseTitle, setCourseTitle] = useState("");
   const [subtitle, setSubtitle] = useState("");
+  const [engTitle, setengTitle] = useState("");
+
   const [courseDesc, setCourseDesc] = useState("");
   const [curriculum, setCurriculum] = useState([]);
   const [faq, setFaq] = useState([]);
@@ -71,7 +73,7 @@ const UpdateCourse = ({ params }) => {
 
   const [whatLearn, setWhatLearn] = useState([{ title: "", uploadUrl: "" }]);
   const [whatYouGet, setWhatYouGet] = useState([
-    { uploadUrl: "", title: "", subtitle: "" },
+    { uploadUrl: "", title: "", engTitle: "" },
   ]);
   const [courseForWhom, setcourseForWhom] = useState([{ title: "" }]);
   const [courseWhy, setcourseWhy] = useState([
@@ -122,6 +124,7 @@ useEffect(() => {
             // setCourseData(data);
             setCourseTitle(data.title || "");
             setSubtitle(data.subTitle || "");
+            setengTitle(data.engTitle || "");
             setCourseDesc(data.description || "");
             setCurriculum(data.curriculum || []);
             setFaq(data.FAQ || []);
@@ -275,6 +278,7 @@ useEffect(() => {
       id:id,
       title: courseTitle,
       subTitle: subtitle,
+      engTitle:engTitle,
       image: featuredImage?.length ? featuredImage : '',
       category: courseCategory,
       createdBy: "Admin",
@@ -374,6 +378,12 @@ useEffect(() => {
                 onChange={(e) => setSubtitle(e.target.value)}
                 placeholder="Subtitle"
                 value={subtitle}
+              />
+              <input
+                className={inputStyles}
+                onChange={(e) => setengTitle(e.target.value)}
+                placeholder="Eng Title"
+                value={engTitle}
               />
               <input
                 className={inputStyles}

@@ -10,7 +10,7 @@ const CommonLayout = ({ children }) => {
       <Navbar />
 
       {/* Main content grows to fill remaining space */}
-      <main className="flex-1 min-h-[200vh]">
+      <main className="flex-1 h-auto">
         {children}
       </main>
 

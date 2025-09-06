@@ -152,11 +152,11 @@ export default function CourseCard({ course, dashboard }) {
            <Button
              onClick={(e) => {
                e.preventDefault();
-               window.location.href = `/courses/${course._id}`;
+               window.location.href = `/courses/${course.engTitle}`;
              }}
              className="banner-button-1 w-full mt-3"
            >
-             Enroll Now
+             ভর্তি হোন
            </Button>
          )}
         </div>
