@@ -6,9 +6,10 @@ import axios from "axios";
 
 
 import enrolled from "@/assets/cardIcon/Icon/Enrolled.svg";
-import liveclass from "@/assets/cardIcon/Icon/Live Classes.svg";
+
 import classNote from "@/assets/cardIcon/Icon/Class Note.svg";
-import students from "@/assets/cardIcon/Icon/Total Student.svg";
+import lectures from "@/assets/cardIcon/Icon/video-lesson.svg";
+import duration from "@/assets/cardIcon/Icon/clock.svg";
 
 import { MdFavoriteBorder } from "react-icons/md";
 import Image from "next/image";
@@ -17,6 +18,7 @@ import StarRating from "@/utils/StarRating";
 
 export default function CourseCard({ course, dashboard }) {
   const [loved, setLoved] = useState(false);
+  console.log(course);
 
   const rankStyle = {
     Hot: "bg-green-500",
@@ -108,22 +110,22 @@ export default function CourseCard({ course, dashboard }) {
           <div className="flex justify-between gap-2 mb-2">
             <div className="flex items-center bg-gray-100 gap-1 px-3 py-1 rounded-md text-[16px] text-gray-700 font-medium">
               <Image src={enrolled} className="w-4 h-4" alt="Enrolled Icon" width={6} height={6}/>
-              Enrolled
+              Enrolled: {course?.totalEnroll || 0}
             </div>
             <div className="flex items-center bg-gray-100 gap-1 px-3 py-1 rounded-md text-[16px] text-gray-700 font-medium">
               <Image src={classNote} className="w-4 h-4" alt="Class Note Icon" width={6} height={6}/>
-              Class Notes
+              Class Notes: {course?.classNote || 0}
             </div>
           </div>
 
           <div className="flex justify-between gap-2 mb-2">
             <div className="flex items-center bg-gray-100 gap-1 px-3 py-1 rounded-md text-[16px] text-gray-700 font-medium">
-              <Image src={liveclass} className="w-4 h-4" alt="Live Class Icon" width={6} height={6}/>
-              Live Classes
+              <Image src={lectures} className="w-4 h-4" alt="Lectures Icon" width={6} height={6}/>
+              Lectures: {course?.lectures || 0}
             </div>
             <div className="flex items-center bg-gray-100 gap-1 px-3 py-1 rounded-md text-[16px] text-gray-700 font-medium">
-              <Image src={students} className="w-4 h-4" alt="Student Icon" width={6} height={6}/>
-              Students {course?.lesson}
+              <Image src={duration} className="w-4 h-4" alt="Duration Icon" width={6} height={6}/>
+              Duration: {course?.courseDuration || 0}
             </div>
           </div>
 

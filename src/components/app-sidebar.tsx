@@ -116,13 +116,7 @@ const baseData = {
         { title: "Add Teacher", url: "/dashboard/admin/add-teacher" },
       ],
     },
-    // {
-    //   title: "Blog",
-    //   url: "/dashboard/admin/blog",
-    //   icon: BiLogIn,
-    //   roles: ["admin"],
-    //   items: [{ title: "Create Blog", url: "/dashboard/admin/blog/add-blog" }],
-    // },
+
     {
       title: "Library",
       url: "/dashboard/admin/library",
@@ -197,19 +191,7 @@ const baseData = {
       icon: MdLeaderboard,
       roles: ["admin",  "student"],
     },
-    //
-    // {
-    //   title: "Settings",
-    //   url: "#",
-    //   icon: Settings2,
-    //   roles: ["admin"],
-    //   items: [
-    //     { title: "General", url: "#" },
-    //     { title: "Team", url: "#" },
-    //     { title: "Billing", url: "#" },
-    //     { title: "Limits", url: "#" },
-    //   ],
-    // },
+
   ],
 };
 
@@ -228,21 +210,23 @@ const dispatch = useDispatch();
   const handleLogout = () => {
     // Implement logout functionality
     dispatch(logout());
-     router.refresh();
+     router.push('/');
   };
 
   return (
-    <Sidebar collapsible="icon">
+  <div className="bg-red-400">
+      <Sidebar collapsible="icon">
       <SidebarHeader className="flex items-center  max-w-full">
         <Link href="/" className="text-2xl font-bold"><Image src={logo} width={150} height={100} alt="logo" /></Link>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={filteredNav} />
+        <NavMain items={filteredNav}/>
       </SidebarContent>
       <SidebarFooter>
         <LogOut onClick={handleLogout} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
+  </div>
   );
 }

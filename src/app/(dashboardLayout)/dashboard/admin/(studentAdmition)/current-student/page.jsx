@@ -101,6 +101,17 @@ const CurrentStudentForm = () => {
           {errors.classType && <p style={{ color: 'red' }}>{errors.classType.message}</p>}
         </div>
 
+        {/* gender */}
+        <div style={{ marginBottom: '12px' }}>
+          <label>Gender</label>
+          <Input
+            {...register('gender', { required: 'Gender is required' })}
+            type="text"
+            style={{ width: '100%', padding: '8px' }}
+          />
+          {errors.gender && <p style={{ color: 'red' }}>{errors.gender.message}</p>}
+        </div>
+
         {/* Time */}
         <div style={{ marginBottom: '12px' }}>
           <label>Time</label>
@@ -111,6 +122,10 @@ const CurrentStudentForm = () => {
           />
           {errors.time && <p style={{ color: 'red' }}>{errors.time.message}</p>}
         </div>
+
+
+
+        
 
         {/* Label */}
         <div style={{ marginBottom: '12px' }}>

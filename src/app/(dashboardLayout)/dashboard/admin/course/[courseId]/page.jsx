@@ -71,6 +71,20 @@ const UpdateCourse = ({ params }) => {
     courseF10: "",
   });
 
+    // course page features
+     const [totalEnroll, setTotalEnroll] = useState("");
+    const [classNote, setClassNote] = useState("");
+    const [lectures, setLectures] = useState("");
+    const [courseDuration, setCourseDuration] = useState("");
+    // course details features
+      // course details states
+    const [totalLiveClass, setTotalLiveClass] = useState("");
+    const [classVideoNote, setClassVideoNote] = useState("");
+    const [coursedetailsLevel, setCoursedetailsLevel] = useState("");
+    const [courseFee, setCourseFee] = useState("");
+    const [courseDescription, setCourseDescription] = useState("");
+    const [courseEnrolled, setCourseEnrolled] = useState("");
+
   const [whatLearn, setWhatLearn] = useState([{ title: "", uploadUrl: "" }]);
   const [whatYouGet, setWhatYouGet] = useState([
     { uploadUrl: "", title: "", engTitle: "" },
@@ -166,6 +180,18 @@ useEffect(() => {
                 { uploadUrl: "", title: "", subtitle: "", layout: "" },
               ]
             );
+            setTotalEnroll(data.totalEnroll || "");
+            setClassNote(data.classNote || "");
+            setLectures(data.lectures || "");
+            setCourseDuration(data.courseDuration || ""); 
+
+            setTotalLiveClass(data.coursedetails.totalLiveClass || "");
+            setClassVideoNote(data.coursedetails.classVideoNote || "");
+            setCoursedetailsLevel(data.coursedetails.level || "");
+            setCourseFee(data.coursedetails.courseFee || "");
+            setCourseDescription(data.coursedetails.courseDescription || "");
+            setCourseEnrolled(data.coursedetails.courseEnrolled || "");
+
           }
         })
         .catch((err) => {
@@ -412,7 +438,7 @@ useEffect(() => {
                   }
                   com3={
                   <EditFAQ
-                faqData={faq}
+                faq={faq}
                 handleDeleteFaq={handleDeleteFaq}
                 setFaq={setFaq}
               />}
@@ -723,7 +749,7 @@ useEffect(() => {
                     className={inputStyles}
                   >
                     {[
-                      "none",
+                      "None",
                       "Hot",
                       "New",
                       "Bestseller",
@@ -833,48 +859,60 @@ useEffect(() => {
                 </div>
               </div>
 
-              <label className="block text-2xl font-bold text-gray-700 mb-2">
+             <label className="block text-2xl font-bold text-gray-700 mb-2">
                 Student Facility
               </label>
               {/* Additional Fields */}
               <div className="flex  gap-4 mb-4 w-full justify-between">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Total Lessons
+                    Total Enrolled
                   </label>
                   <input
                     type="number"
                     className={inputStyles}
-                    value={totalLesson}
-                    onChange={(e) => setTotalLesson(e.target.value)}
-                    placeholder="Total Lessons"
+                    value={totalEnroll}
+                    onChange={(e) => setTotalEnroll(e.target.value)}
+                    placeholder="Total Enrolled"
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Total Students
+                    CLass Note
                   </label>
                   <input
                     className={inputStyles}
-                    value={studentTotal}
-                    onChange={(e) => setTotalStudent(e.target.value)}
-                    placeholder="Total Students"
+                    value={classNote}
+                    onChange={(e) => setClassNote(e.target.value)}
+                    placeholder="Class Note"
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Article
+                    Lecture
                   </label>
                   <input
                     className={inputStyles}
-                    value={article}
-                    onChange={(e) => setArticle(e.target.value)}
-                    placeholder="Article"
+                    value={lectures}
+                    onChange={(e) => setLectures(e.target.value)}
+                    placeholder="Lectures"
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Visibility
+                    Duration
+                  </label>
+                  <input
+                    className={inputStyles}
+                    value={courseDuration}
+                    onChange={(e) => setCourseDuration(e.target.value)}
+                    placeholder="Duration"
+                  />
+                </div>
+
+                {/* <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Duration
                   </label>
                   <select
                     value={visibility}
@@ -884,28 +922,96 @@ useEffect(() => {
                     <option value="Public">Public</option>
                     <option value="Private">Private</option>
                   </select>
+                </div> */}
+              </div>
+               <label className="block text-2xl font-bold text-gray-700 mt-6 mb-2">
+                Course Details page Features
+              </label>
+              <div className="flex  gap-4 mb-4 w-full justify-between">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Total live Class
+                  </label>
+                  <input
+                    type="number"
+                    className={inputStyles}
+                    value={totalLiveClass}
+                    onChange={(e) => setTotalLiveClass(e.target.value)}
+                    placeholder="Total Live Class"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Class Video Note
+                  </label>
+                  <input
+                    className={inputStyles}
+                    value={classVideoNote}
+                    onChange={(e) => setClassVideoNote(e.target.value)}
+                    placeholder="Class Video Note"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Level
+                  </label>
+                  <input
+                    className={inputStyles}
+                    value={coursedetailsLevel}
+                    onChange={(e) => setCoursedetailsLevel(e.target.value)}
+                    placeholder="Level"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Course Fee
+                  </label>
+                  <input
+                    className={inputStyles}
+                    value={courseFee}
+                    onChange={(e) => setCourseFee(e.target.value)}
+                    placeholder="Course Fee"
+                  />
                 </div>
               </div>
-              {/* Checkboxes */}
-              <div className="flex gap-6 mb-4">
-                <label className="flex items-center">
+
+              <div className="flex  gap-4 mb-4 w-full items-center">
+               
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Course Description
+                  </label>
                   <input
-                    type="checkbox"
-                    checked={certificate}
-                    onChange={handleCertificateClick}
-                    className="mr-2"
+                    className={inputStyles}
+                    value={courseDescription}
+                    onChange={(e) => setCourseDescription(e.target.value)}
+                    placeholder="Course Description"
                   />
-                  <span className="text-lg font-medium">Certificate</span>
-                </label>
-                <label className="flex items-center">
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Course Enrolled
+                  </label>
                   <input
-                    type="checkbox"
-                    checked={lifeTimeAccess}
-                    onChange={() => setLifeTimeAccess(!lifeTimeAccess)}
-                    className="mr-2"
+                    className={inputStyles}
+                    value={courseEnrolled}
+                    onChange={(e) => setCourseEnrolled(e.target.value)}
+                    placeholder="Course Enrolled"
                   />
-                  <span className="text-lg font-medium">Lifetime Access</span>
-                </label>
+                </div>
+                 <div>
+                  <label className="flex items-center gap-2 mt-6">
+                    <span className="text-lg font-medium">Certificate </span>
+                    <input
+                      type="checkbox"
+                      checked={certificate}
+                      onChange={handleCertificateClick}
+                      className="mr-2"
+                    />
+                    
+                  </label>
+                </div>
               </div>
               {/* Course Futures */}
               <div className="mt-6">

@@ -1,7 +1,5 @@
 "use client";
 
-
-
 import { Button } from "@/components/UI/button";
 import LearnCourseTab from "./LearnCourseTab";
 import Image from "next/image";
@@ -12,10 +10,9 @@ import StarRating from "@/utils/StarRating";
 import ReactPlayer from "react-player";
 import CourseDetailsRight from "./CourseDetailsRight";
 
-
-
-const CourseDetailsLeft = ({ data}) => {
-const [teachers, setTeachers] = useState([]);
+const CourseDetailsLeft = ({ data }) => {
+  console.log(data, "course data");
+  const [teachers, setTeachers] = useState([]);
 
   useEffect(() => {
     axios
@@ -53,134 +50,132 @@ const [teachers, setTeachers] = useState([]);
       )}
 
       <div className="border p-4 rounded-lg mt-4">
-        <h2 className="text-xl lg:text-4xl font-semibold lg:font-bold mb-2 navColor">{data?.title}</h2>
-        <p className="text-gray-700 mb-4 text-[20px] font-medium">{data?.subTitle}</p>
+        <h2 className="text-xl lg:text-4xl font-semibold lg:font-bold mb-2 navColor">
+          {data?.title}
+        </h2>
+        <p className="text-gray-700 mb-4 text-[20px] font-medium">
+          {data?.subTitle}
+        </p>
 
-      <div
-            style={{
-              display: "flex",
-              gap: "10px",
-              marginTop: "6px",
-              
-              justifyContent: " flex-start",
-              marginBottom: "10px",
-            }}
-          >
-            {data?.courseDay && (
-              <Button
-                style={{
-                  border: "1px solid orange",
-                  backgroundColor: "#fef0e8",
-                  padding: '0 5px',
-                  height: "35px",
-                  borderRadius: "4px",
-                  color:'black',
-                  fontSize:'16px',
-                  fontWeight:700
-                }}
-              >
-                <p>
-                  {`${data?.courseDay}`}
-                </p>
-              </Button>
-            )}
+        <div
+          style={{
+            display: "flex",
+            gap: "10px",
+            marginTop: "6px",
 
-            {data?.courseTime && (
-              <Button
-                style={{
-                  border: "1px solid purple",
-                  backgroundColor: "#f1e3ff",
-                 padding: '0 5px',
-                  height: "35px",
-                  borderRadius: "4px",
-                  color:'black',
-                  fontSize:'16px',
-                  fontWeight:700
-                }}
-              >
-                <p className="inter"
-                >
-                  {`${data?.courseTime}`}
-                </p>
-              </Button>
-            )}
+            justifyContent: " flex-start",
+            marginBottom: "10px",
+          }}
+        >
+          {data?.courseDay && (
+            <Button
+              style={{
+                border: "1px solid orange",
+                backgroundColor: "#fef0e8",
+                padding: "0 5px",
+                height: "35px",
+                borderRadius: "4px",
+                color: "black",
+                fontSize: "16px",
+                fontWeight: 700,
+              }}
+            >
+              <p>{`${data?.courseDay}`}</p>
+            </Button>
+          )}
 
-            {data?.courseSeat && (
-              <Button
-                style={{
-                  border: "1px solid orange",
-                  backgroundColor: "#fef0e8",
-                  padding: '0 5px',
-                  height: "35px",
-                  borderRadius: "4px",
-                  color:'black',
-                  fontSize:'16px',
-                  fontWeight:700
-                }}
-              >
-                <p
-                >
-                  {`${data?.courseSeat}`}
+          {data?.courseTime && (
+            <Button
+              style={{
+                border: "1px solid purple",
+                backgroundColor: "#f1e3ff",
+                padding: "0 5px",
+                height: "35px",
+                borderRadius: "4px",
+                color: "black",
+                fontSize: "16px",
+                fontWeight: 700,
+              }}
+            >
+              <p className="inter">{`${data?.courseTime}`}</p>
+            </Button>
+          )}
+
+          {data?.courseSeat && (
+            <Button
+              style={{
+                border: "1px solid orange",
+                backgroundColor: "#fef0e8",
+                padding: "0 5px",
+                height: "35px",
+                borderRadius: "4px",
+                color: "black",
+                fontSize: "16px",
+                fontWeight: 700,
+              }}
+            >
+              <p>{`${data?.courseSeat}`}</p>
+            </Button>
+          )}
+        </div>
+        <div className="border border-[#ddd] rounded-[10px] p-[5px] mb-[10px] lg:mb-0 hind">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
+            {/* Instructor */}
+            <div className="flex items-center border-r lg:border-r border-[#ddd] pr-2">
+              <Image
+                alt="Remy Sharp"
+                src={teachers[0]?.avatar}
+                width={40}
+                height={40}
+              />
+              <div className="text-[#1C1C1E] ml-2 leading-tight">
+                <p className="text-[16px] font-semibold font-hind">
+                  ইন্সট্রাক্টর
                 </p>
-              </Button>
-            )}
-          </div>
-          <div className="border border-[#ddd] rounded-[10px] p-[5px] mb-[10px] lg:mb-0 hind">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
-              {/* Instructor */}
-              <div className="flex items-center border-r lg:border-r border-[#ddd] pr-2">
-                <Image
-                  alt="Remy Sharp"
-                  src={
-                    teachers[0]?.avatar
-                  }
-                  width={40}
-                  height={40}
+                <p className="text-[18px] font-semibold font-hind">
+                  {data?.teacherName}
+                </p>
+              </div>
+            </div>
+
+            {/* Category */}
+            <div className="flex items-center border-r lg:border-r border-[#ddd] pr-2">
+              <div className="text-[#1C1C1E] leading-tight">
+                <p className="text-[16px] font-semibold">ক্যাটাগরি</p>
+                <p className="text-[18px] font-semibold">{data?.category}</p>
+              </div>
+            </div>
+
+            {/* Students */}
+            <div className="flex items-center border-t lg:border-t-0 border-[#ddd] pl-10 lg:pl-0 border-r lg:border-r pr-2">
+              <div className="text-[#1C1C1E] leading-tight w-full">
+                <p className="text-[16px] font-semibold">স্টুডেন্ট</p>
+                <p className="text-[18px] font-semibold">
+                  {data?.studentTotal}
+                </p>
+              </div>
+            </div>
+
+            {/* Rating */}
+            <div className="flex items-center border-t lg:border-t-0 border-[#ddd] pl-2">
+              <div className="text-[#1C1C1E] leading-tight">
+                <p className="text-[16px] font-semibold">রেটিং</p>
+                <StarRating
+                  name="size-small"
+                  size="small"
+                  readOnly
+                  defaultValue={5}
+                  precision={0.5}
+                  max={5}
                 />
-                <div className="text-[#1C1C1E] ml-2 leading-tight">
-                  <p className="text-[16px] font-semibold font-hind">
-                    ইন্সট্রাক্টর
-                  </p>
-                  <p className="text-[18px] font-semibold font-hind">
-                    {data?.teacherName}
-                  </p>
-                </div>
-              </div>
-
-              {/* Category */}
-              <div className="flex items-center border-r lg:border-r border-[#ddd] pr-2">
-                <div className="text-[#1C1C1E] leading-tight">
-                  <p className="text-[16px] font-semibold">ক্যাটাগরি</p>
-                  <p className="text-[18px] font-semibold">{data?.category}</p>
-                </div>
-              </div>
-
-              {/* Students */}
-              <div className="flex items-center border-t lg:border-t-0 border-[#ddd] pl-10 lg:pl-0 border-r lg:border-r pr-2">
-                <div className="text-[#1C1C1E] leading-tight w-full">
-                  <p className="text-[16px] font-semibold">স্টুডেন্ট</p>
-                  <p className="text-[18px] font-semibold">
-                    {data?.studentTotal}
-                  </p>
-                </div>
-              </div>
-
-              {/* Rating */}
-              <div className="flex items-center border-t lg:border-t-0 border-[#ddd] pl-2">
-                <div className="text-[#1C1C1E] leading-tight">
-                  <p className="text-[16px] font-semibold">রেটিং</p>
-                  <StarRating
-                    name="size-small"
-                    size="small"
-                    readOnly
-                    defaultValue={5}
-                    precision={0.5}
-                    max={5}
-                  />
-                </div>
               </div>
             </div>
           </div>
+        </div>
+        <div
+          className="prose prose-lg text-gray-700"
+          dangerouslySetInnerHTML={{ __html: data?.description }}
+        />
       </div>
 
       {/* Additional Tabs or Right Section */}
@@ -188,8 +183,7 @@ const [teachers, setTeachers] = useState([]);
         <div className="lg:hidden block">
           <CourseDetailsRight data={data} />
         </div>
-        <LearnCourseTab course={data}/>
-
+        <LearnCourseTab course={data} />
       </div>
     </div>
   );

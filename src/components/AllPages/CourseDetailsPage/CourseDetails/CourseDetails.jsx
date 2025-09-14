@@ -8,6 +8,7 @@ import CourseDetailsRight from "../CourseDetailsRight";
 import axios from "axios";
 import Image from "next/image";
 import { Button } from "@/components/UI/button";
+import Loading from "@/components/common/Loading";
 
 
 const CourseDetails = ({ courseID }) => {
@@ -51,15 +52,10 @@ useEffect(() => {
 
         <section className="py-6 max-w-7xl mx-auto">
           {loading ? (
-            <div className="flex items-center justify-center h-screen">
-              <div className="animate-pulse flex flex-col items-center space-y-4">
-                <div className="h-8 w-2/3 bg-gray-200 rounded" />
-                <div className="h-64 w-full bg-gray-200 rounded" />
-                <div className="h-6 w-1/2 bg-gray-200 rounded" />
-                <div className="h-6 w-1/3 bg-gray-200 rounded" />
-                <div className="h-10 w-1/4 bg-gray-200 rounded" />
-              </div>
-            </div>
+            <div className="text-3xl font-bold mb-4 h-[100vh] flex items-center justify-center gap-2">
+        <span className="text-primary">Muslim </span>
+        <span> School</span>
+      </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
               <div className="md:col-span-9">

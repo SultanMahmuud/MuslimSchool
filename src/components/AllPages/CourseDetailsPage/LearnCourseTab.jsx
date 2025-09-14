@@ -42,7 +42,7 @@ const LearnCourseTab = ({ course }) => {
       offset={-70}
       onSetActive={() => handleSetActive(id)}
       className={`text-[16px] font-semibold px-4 py-2 rounded-md transition-colors duration-200 cursor-pointer ${
-        activeSection === id ? "bg-primary p-2 text-white" : "navColor"
+        activeSection === id ? "bg-primary py-1 text-white" : "navColor"
       } hover:text-green-500`}
     >
       {label}
@@ -52,7 +52,7 @@ const LearnCourseTab = ({ course }) => {
   return (
     <div className="w-full">
       {isDesktop && (
-        <div className="sticky top-[65px] z-40 bg-[#f8fffc] shadow-md rounded-b-lg justify-center py-2 space-x-1 lg:block hidden">
+        <div className="sticky top-[70px] z-40 bg-[#f8fffc] shadow-md rounded-b-lg justify-center py-4 space-x-1 lg:block hidden pl-2">
           {whatLearn && sectionLink("what-learn", "কোর্সে কি শিখবেন")}
           {whatYouGet && sectionLink("what-get", "কোর্সে আপনি পাচ্ছেন")}
           {courseForWhom && sectionLink("for-whom", "কোর্সটি যাদের জন্য")}

@@ -16,8 +16,11 @@ export const storeUserInfo = ({ accessToken }) => {
 
 export const getUserInfo = () => {
   const authData = getFromLocalStorage("user");
+  const token = getFromLocalStorage("token");
+
 
   if (!authData) return null;
+  if (!token) return null;
 
   try {
     const parsed = JSON.parse(authData); // if you're storing full user object
@@ -25,7 +28,9 @@ export const getUserInfo = () => {
 
     return {
       ...parsed,
-      role: parsed.role
+      role: parsed.role,
+      token: token,
+
 
     };
 
@@ -35,6 +40,13 @@ export const getUserInfo = () => {
     return null;
   }
 };
+
+
+
+
+
+
+
 export const isLoggedIn = () => {
   const authToken = getFromLocalStorage("user");
   if (!authToken) return false;

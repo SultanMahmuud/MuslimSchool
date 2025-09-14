@@ -6,8 +6,9 @@ import { BiEdit } from "react-icons/bi";
 import { MdDeleteForever, MdExpandMore } from "react-icons/md";
 import AddFAQModal from "./AddFAQModal"
 import EditFAQModal from "./EditFAQModal"
+import AddCourseFaq from "../AddCourseFaq";
 
-export default function EditFAQ({ faqData, handleDeleteFaq, setFaq }) {
+export default function EditFAQ({ faq, handleDeleteFaq, setFaq }) {
   const [index, setIndex] = useState();
   const [openAdd, setOpenAdd] = useState(false);
   const [editable, setEditable] = useState();
@@ -20,7 +21,7 @@ export default function EditFAQ({ faqData, handleDeleteFaq, setFaq }) {
   };
 
   const triggerAddFaq = (newfaq) => {
-    const faq = [...faqData];
+    const faq = [...faq];
     faq.splice(index + 1, 0, newfaq);
     setFaq(faq);
     setOpenAdd(false);
@@ -33,7 +34,7 @@ export default function EditFAQ({ faqData, handleDeleteFaq, setFaq }) {
   };
 
   const triggerEditFaq = (faq) => {
-    const newFaq = faqData.map((item, ind) => (ind === index ? faq : item));
+    const newFaq = faq.map((item, ind) => (ind === index ? faq : item));
     setFaq(newFaq);
     setOpenEdit(false);
   };
@@ -44,7 +45,7 @@ export default function EditFAQ({ faqData, handleDeleteFaq, setFaq }) {
 
   return (
     <div className="w-full">
-      {faqData?.map((faq, idx) => (
+      {faq?.map((faq, idx) => (
         <div key={idx} className="mb-2 rounded-md shadow-sm border border-gray-200">
           {/* Accordion Header */}
           <button
@@ -105,6 +106,10 @@ export default function EditFAQ({ faqData, handleDeleteFaq, setFaq }) {
         singleFaq={editable}
         triggerEditFaq={triggerEditFaq}
       />
+    {faq?.length === 0 && (
+        <AddCourseFaq faq={faq} setFaq={setFaq} />
+    )}
+   
     </div>
   );
 }

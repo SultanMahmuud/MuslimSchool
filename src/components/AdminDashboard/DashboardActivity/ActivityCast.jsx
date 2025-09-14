@@ -2,10 +2,12 @@
 import axios from 'axios';
 import ActivityCastCard from './ActivityCastCard';
 import { useEffect, useState } from 'react';
+import Loading from '@/components/common/Loading';
+import { getUserInfo } from '@/services/auth.services';
 
 
 const ActivityCast = () => {
-
+const User = getUserInfo();
 
   const [totalStudent, setTotalStudent] = useState([]);
   const [newStudent, setNewStudent] = useState([]);
@@ -33,11 +35,11 @@ useEffect(() => {
     }
   };
 
-  axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/role/student`)
+  axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/role/student`,)
     .then(res => setTotalStudent(res.data.data))
     .finally(checkAllDone);
 
-  axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/all`)
+  axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/all`, { headers: { authorization: `Bearer ${User.token}` } })
     .then(res => setTotalUser(res.data.data?.length))
     .finally(checkAllDone);
 
@@ -70,7 +72,7 @@ useEffect(() => {
     <div className="w-full p-2">
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-4 gap-2">
         {loading ? (
-          <div>Loading...</div>
+          <div><Loading/></div>
         ) : (
           activeData.map((item, idx) => (
             <ActivityCastCard key={idx} element={item} loading={loading} />

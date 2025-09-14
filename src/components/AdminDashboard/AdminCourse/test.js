@@ -6,13 +6,11 @@ import AddCourseTab from "@/components/AdminDashboard/AdminCourse/AddCourseTab/A
 import CourseCurriculum from "./CourseCurriculum";
 
 import Announcement from "./Announcement";
-import AddCourseFaq from"./AddCourseFaq"
+import AddCourseFaq from "./AddCourseFaq";
 import TeacherAddBox from "./TeacherAddBox";
-import CommonFileUpload from "@/components/Shared/FileUpload/CommonFileUpload"
+import CommonFileUpload from "@/components/Shared/FileUpload/CommonFileUpload";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-
-
 
 const AddCourse = () => {
   const [courseTitle, setCourseTitle] = useState("");
@@ -22,18 +20,17 @@ const AddCourse = () => {
   const [faq, setFaq] = useState([]);
   const [announcement, setAnnouncement] = useState("");
   const [featuredImage, setFeaturedImage] = useState("");
-  const [instructor, setInstructor] = useState([]);
   const [medium, setMedium] = useState("Record Course");
   const [courseCategory, setCourseCategory] = useState("Reading Quran");
   const [courseRank, setCourseRank] = useState("bestseller");
   const [courseLevel, setCourseLevel] = useState("Level1");
   const [price, setPrice] = useState("");
   const [salePrice, setSalePrice] = useState("");
-  const [duration, setDuration] = useState("");
+
   const [certificate, setCertificate] = useState(false);
   const [totalLesson, setTotalLesson] = useState("");
   const [lifeTimeAccess, setLifeTimeAccess] = useState(false);
-  const [article, setArticle] = useState("");
+  const [Duration, setDuration] = useState("");
   const [featuredVideo, setFeaturedVideo] = useState("");
   const [visibility, setVisibility] = useState("Public");
   const [teacher, setTeacher] = useState([]);
@@ -49,19 +46,18 @@ const AddCourse = () => {
   const [PromoCode, setPromoCode] = useState("");
   const [PromoPercentage, setPromoPercentage] = useState("");
   // course page features
-   const [totalEnroll, setTotalEnroll] = useState("");
+  const [totalEnroll, setTotalEnroll] = useState("");
   const [classNote, setClassNote] = useState("");
   const [lectures, setLectures] = useState("");
   const [courseDuration, setCourseDuration] = useState("");
-  // course details features
-    // course details states
+
+  // course details states
   const [totalLiveClass, setTotalLiveClass] = useState("");
   const [classVideoNote, setClassVideoNote] = useState("");
   const [coursedetailsLevel, setCoursedetailsLevel] = useState("");
   const [courseFee, setCourseFee] = useState("");
   const [courseDescription, setCourseDescription] = useState("");
   const [courseEnrolled, setCourseEnrolled] = useState("");
-
 
   const [courseFuture, setCourseFuture] = useState({
     courseF1: "",
@@ -158,9 +154,10 @@ const AddCourse = () => {
       category: courseCategory,
       createdBy: "Admin",
       lesson: totalLesson,
-      durationHr: duration,
+      durationHr: Duration,
       certificate: certificate,
-      article: article,
+
+      Duration: article,
       medium: medium,
       access: lifeTimeAccess,
       level: courseLevel,
@@ -190,31 +187,26 @@ const AddCourse = () => {
       courseWhy: courseWhy,
       PromoCode: PromoCode,
       PromoPercentage: PromoPercentage,
+
       // course page features
-       totalEnroll: totalEnroll,
+      totalEnroll: totalEnroll,
       classNote: classNote,
       lectures: lectures,
       courseDuration: courseDuration,
 
-       coursedetails: {
+      coursedetails: {
         totalLiveClass,
         classVideoNote,
         level: coursedetailsLevel,
         courseFee,
         courseDescription,
-        courseEnrolled
+        courseEnrolled,
       },
-
-
     };
 
     try {
-      const response = await axios.post(
-        `${BASE_URL}/course`,
-        newCourse
-      );
+      const response = await axios.post(`${BASE_URL}/course`, newCourse);
 
-     
       alert(
         `Course ${
           courseType === "draft" ? "saved as draft" : "published"
@@ -229,9 +221,7 @@ const AddCourse = () => {
       setPrice("");
       setSalePrice("");
       setDuration("");
-      setArticle("");
-
-    
+      setTotalLesson("");
     } catch (error) {
       console.error("Error creating course:", error);
       alert("Failed to create course. Please try again.");
@@ -541,19 +531,20 @@ const AddCourse = () => {
                   }
                 />
               </div>
-
-           
             </div>
           </div>
 
-          {/* Right Column */}
+          {/* Below Column */}
           <div className="lg:w-3xl xl:w-[90%] mx-auto lg:m-6">
             <div className={cardStyles}>
               <h3 className="text-lg font-semibold mb-4">Course Settings</h3>
 
               {/* Featured Image Upload */}
               <div className="mb-6">
-                <CommonFileUpload url={featuredImage} setUrl={setFeaturedImage} />
+                <CommonFileUpload
+                  url={featuredImage}
+                  setUrl={setFeaturedImage}
+                />
               </div>
               <div className="flex gap-2 w-full justify-between">
                 {/* Course Medium */}
@@ -602,7 +593,7 @@ const AddCourse = () => {
                     className={inputStyles}
                   >
                     {[
-                      "none",
+                      "None",
                       "Hot",
                       "New",
                       "Bestseller",
@@ -712,9 +703,7 @@ const AddCourse = () => {
                 </div>
               </div>
 
-            
-              {/* Additional Fields */}
-            <label className="block text-2xl font-bold text-gray-700 mb-2">
+              <label className="block text-2xl font-bold text-gray-700 mb-2">
                 Student Facility
               </label>
               {/* Additional Fields */}
@@ -779,7 +768,30 @@ const AddCourse = () => {
                   </select>
                 </div> */}
               </div>
-               <label className="block text-2xl font-bold text-gray-700 mt-6 mb-2">
+
+              {/* Checkboxes */}
+              {/* <div className="flex gap-6 mb-4">
+                <label className="flex items-center">
+                  <input
+                    type="checkbox"
+                    checked={certificate}
+                    onChange={handleCertificateClick}
+                    className="mr-2"
+                  />
+                  <span className="text-lg font-medium">Certificate</span>
+                </label>
+                <label className="flex items-center">
+                  <input
+                    type="checkbox"
+                    checked={lifeTimeAccess}
+                    onChange={() => setLifeTimeAccess(!lifeTimeAccess)}
+                    className="mr-2"
+                  />
+                  <span className="text-lg font-medium">Lifetime Access</span>
+                </label>
+              </div> */}
+
+              <label className="block text-2xl font-bold text-gray-700 mt-6 mb-2">
                 Course Details page Features
               </label>
               <div className="flex  gap-4 mb-4 w-full justify-between">
@@ -868,41 +880,6 @@ const AddCourse = () => {
                   </label>
                 </div>
               </div>
-              {/* Checkboxes */}
-              {/* <div className="flex gap-6 mb-4">
-                <label className="flex items-center">
-                  <input
-                    type="checkbox"
-                    checked={certificate}
-                    onChange={handleCertificateClick}
-                    className="mr-2"
-                  />
-                  <span className="text-lg font-medium">Certificate</span>
-                </label>
-                <label className="flex items-center">
-                  <input
-                    type="checkbox"
-                    checked={lifeTimeAccess}
-                    onChange={() => setLifeTimeAccess(!lifeTimeAccess)}
-                    className="mr-2"
-                  />
-                  <span className="text-lg font-medium">Lifetime Access</span>
-                </label>
-              </div> */}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
               {/* Course Futures */}
               <div className="mt-6">

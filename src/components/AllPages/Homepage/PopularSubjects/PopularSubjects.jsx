@@ -42,7 +42,7 @@ const PopularSubjects = async () => {
                   <p className=" font-bold text-[16px] md:text-[20px] base1 lg:text-left text-center">
                     {item.title}
                   </p>
-                  <p className=" font-medium text-[14px] md:text-[16px] lg:text-[18px] base2 lg:text-left text-center">
+                  <p className=" font-medium text-[14px] md:text-[16px] lg:text-[17px] base2 lg:text-left text-center">
                     {item.SubTitle}
                   </p>
                 </div>

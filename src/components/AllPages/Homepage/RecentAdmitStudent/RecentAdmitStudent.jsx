@@ -17,6 +17,7 @@ const RecentAdmitStudent = async () => {
   return data?.data || [];
 };
   const studentData = await getAllRecentAdmitStudent();
+  console.log(studentData,'studentData');
 
   return (
     <div className="py-8 px-4">
@@ -34,11 +35,12 @@ const RecentAdmitStudent = async () => {
           image={dt?.gender === "male" ? malestudent : femalestudent}
             name={dt?.name}
             course={dt?.subject || "কোরআন শিক্ষা"}
+            
             joinDate={DateConversionWithTime(dt?.date)}
             location={dt?.location}
             time={dt?.time}
             label={dt?.label}
-            classType={dt?.subject}
+            classType={dt?.classType}
             
           />
         ))}

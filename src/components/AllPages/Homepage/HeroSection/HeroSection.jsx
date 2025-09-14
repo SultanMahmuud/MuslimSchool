@@ -25,7 +25,7 @@ const HeroSection = () => {
             </div>
             {/* For desktop, show text first */}
             <div className="md:order-1 text-center lg:text-start">
-              <p className="text-primary text-xl font-bold leading-relaxed mb-2">
+              <p className="text-primary lg:text-xl font-bold  mb-2 text-[16px]">
                 সহজ উপায়ে উন্নত মানের দ্বীনি শিক্ষা।
               </p>
               <h2 className="base1 lg:text-[36px] text-[24px] font-bold lg:font-extrabold leading-tight">
@@ -38,7 +38,7 @@ const HeroSection = () => {
                 <br />
                 আমরা আছি আপনার পাশে, শিখুন প্রাণ খুলে।
               </p>
-              <div className="flex gap-4 flex-wrap mx-auto justify-center lg:justify-start">
+              <div className="flex gap-4 sm:flex-wrap mx-auto justify-center lg:justify-start">
                 <Link href="/trial-class">
                   <Button className="banner-button-1 font-bold">
                     ফ্রি ক্লাস

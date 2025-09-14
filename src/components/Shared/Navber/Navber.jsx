@@ -218,7 +218,7 @@ export default function Navbar() {
         onOpenChange={setMobileNavOpen}
         direction="right"
       >
-        <DrawerContent className="p-4 w-64">
+        <DrawerContent className="p-4 max-w-2xl w-full">
           <DrawerHeader>
             <DrawerClose className="absolute top-4 right-4">
               <XIcon className="h-5 w-5" />

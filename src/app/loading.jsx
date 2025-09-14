@@ -13,7 +13,7 @@ const loading = () => {
     <div style={{ ...center }}>
       <div className="text-3xl font-bold mb-4">
         <span className="text-primary">Muslim </span>
-        <span>School</span>
+        <span> School</span>
       </div>
      
     </div>

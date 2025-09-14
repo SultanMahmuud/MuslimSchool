@@ -82,9 +82,21 @@ try {
 
     // Success toast
     toast.success("Login successful!");
+    // Redirect based on role
+    if (response?.role === "student") {
+      router.push("/dashboard/student");
+      return
+    } 
 
-    // Redirect
-    router.push("/dashboard");
+     if (response?.role === "teacher") {
+      router.push("/dashboard/teacher");
+      return
+    } 
+    if (response?.role === "admin") {
+      router.push("/dashboard/admin/adminDashboard");
+      return
+    }
+    // router.push("/dashboard");
 
   } catch (error) {
     console.error("Login error:", error);

@@ -8,9 +8,20 @@ import Image from 'next/image';
 
 const CourseDetailsRight = ({ data, trailClass, HandleEnrollNow }) => {
  
-  const [showAll, setShowAll] = useState(false);
+ const [showAll, setShowAll] = useState(false);
   const itemsToShowInitially = 4;
-  const courseFutureValues = Object.values(data?.courseFuture || {});
+
+  // Convert object to array and filter out empty values
+  const courseFutureValues = Object.values(data?.courseFuture).filter(
+    (val) => val && val.trim() !== ""
+  );
+
+  const hasMoreThanInitial = courseFutureValues.length > itemsToShowInitially;
+
+  const itemsToRender =
+    showAll || !hasMoreThanInitial
+      ? courseFutureValues
+      : courseFutureValues.slice(0, itemsToShowInitially);
 
 
   return (
@@ -45,24 +56,32 @@ const CourseDetailsRight = ({ data, trailClass, HandleEnrollNow }) => {
 
         <div className="mt-4 space-y-3">
           <div className="flex justify-between text-gray-700 font-semibold">
-            <span>মোট ক্লাস</span>
-            <span className="bg-gray-100 px-3 py-1 rounded">{data?.durationHr}</span>
+            <span>মোট লাইভ ক্লাস</span>
+            <span className="bg-gray-100 px-3 py-1 rounded">{data?.coursedetails?.totalLiveClass || 0}</span>
           </div>
           <div className="flex justify-between text-gray-700 font-semibold">
-            <span>সার্টিফিকেট প্রদান</span>
+            <span>ক্লাস ভিডিও-নোট</span>
+            <span className="bg-gray-100 px-3 py-1 rounded">{data?.coursedetails?.classVideoNote || 0}</span>
+          </div>
+          <div className="flex justify-between text-gray-700 font-semibold">
+            <span>লেভেল</span>
+            <span className="bg-gray-100 px-3 py-1 rounded">{data?.coursedetails?.level || 0}</span>
+          </div>
+          <div className="flex justify-between text-gray-700 font-semibold">
+            <span>কোর্স ফি</span>
+            <span className="bg-gray-100 px-3 py-1 rounded">{data?.coursedetails?.courseFee || 0}</span>
+          </div>
+          <div className="flex justify-between text-gray-700 font-semibold">
+            <span>সার্টিফিকেট </span>
             <span className="bg-gray-100 px-3 py-1 rounded">{data?.certificate ? 'হ্যা' : 'না'}</span>
           </div>
           <div className="flex justify-between text-gray-700 font-semibold">
-            <span>লাইফটাইম এক্সেস</span>
-            <span className="bg-gray-100 px-3 py-1 rounded">{data?.access === 'true' ? 'হ্যা' : 'না'}</span>
+            <span>কোর্সের বিবরণ </span>
+            <span className="bg-gray-100 px-3 py-1 rounded">{data?.coursedetails?.courseDescription || 'না'}</span>
           </div>
           <div className="flex justify-between text-gray-700 font-semibold">
-            <span>কোর্সটি করেছেন</span>
-            <span className="bg-gray-100 px-3 py-1 rounded">{data?.article}</span>
-          </div>
-          <div className="flex justify-between text-gray-700 font-semibold">
-            <span>কোর্সের ধরণ</span>
-            <span className="bg-gray-100 px-3 py-1 rounded">{data?.medium}</span>
+            <span>কোর্সটি করছেন</span>
+            <span className="bg-gray-100 px-3 py-1 rounded">{data?.coursedetails?.courseEnrolled || 0}</span>
           </div>
         </div>
         <div className="bg-white shadow rounded p-4 text-center mt-4">
@@ -83,26 +102,23 @@ const CourseDetailsRight = ({ data, trailClass, HandleEnrollNow }) => {
 
       </div>
 
-      <div className="bg-white shadow rounded p-4 space-y-2">
-        {courseFutureValues?.map((item, index) => {
-          if (!showAll && index >= itemsToShowInitially) return null;
-          return (
-            <div key={index} className="flex items-start gap-2 text-gray-800">
-              <IoMdCheckboxOutline className="text-green-600 text-xl mt-1" />
-              <p className="text-base font-medium">{item}</p>
-            </div>
-          );
-        })}
+ <div className="bg-white shadow rounded p-4 space-y-2">
+      {itemsToRender.map((item, index) => (
+        <div key={index} className="flex items-start gap-2 text-gray-800">
+          <IoMdCheckboxOutline className="text-green-600 text-xl mt-1" />
+          <p className="text-base font-medium">{item}</p>
+        </div>
+      ))}
 
-        {courseFutureValues.length > itemsToShowInitially && (
-          <Button
-            onClick={() => setShowAll(!showAll)}
-            className="mt-2 text-white  px-4 py-2 rounded"
-          >
-            {showAll ? 'Show Less' : 'Show More'}
-          </Button>
-        )}
-      </div>
+      {hasMoreThanInitial && (
+        <Button
+          onClick={() => setShowAll(!showAll)}
+          className="mt-2 text-white px-4 py-2 rounded"
+        >
+          {showAll ? "Show Less" : "Show More"}
+        </Button>
+      )}
+    </div>
 
       
     </div>

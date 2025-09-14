@@ -6,20 +6,14 @@ import { columns } from "@/components/common/column"
 import { DateConversionWithTime } from "@/utils/DateConversionWithTime"
 import { DataTable } from "@/components/UI/data-table"
 import AddLevelModalReg from "@/components/AdminDashboard/AdminCourse/RegistrationModal/AddLevelModalReg"
+import { getUserInfo } from "@/services/auth.services"
 
 const Registration = () => {
   const [registrations, setRegistrations] = useState([])
   const [openLevel, setOpenLevel] = useState(false)
   const [openDete, setOpenDete] = useState(false)
   const [leveledEmail, setLeveledEmail] = useState(null)
-  const [user, setUser] = useState(null) // store user here
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const storedUser = localStorage.getItem("user")
-      if (storedUser) setUser(JSON.parse(storedUser))
-    }
-  }, [])
+const user = getUserInfo()
 
   useEffect(() => {
     if (!user) return // don't fetch if no user
@@ -29,7 +23,7 @@ const Registration = () => {
         authorization: `Bearer ${user.token}`,
       },
     }
-
+console.log(user)
    axios
   .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration`, config)
   .then((res) => {
@@ -40,6 +34,7 @@ const Registration = () => {
         ? res.data.data 
         : []
     setRegistrations(data)
+    console.log(data)
   })
   .catch((err) => console.error(err))
 
