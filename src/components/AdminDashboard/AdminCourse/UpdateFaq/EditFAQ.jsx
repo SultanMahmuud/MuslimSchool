@@ -106,10 +106,9 @@ export default function EditFAQ({ faq, handleDeleteFaq, setFaq }) {
         singleFaq={editable}
         triggerEditFaq={triggerEditFaq}
       />
-    {faq?.length === 0 && (
-        <AddCourseFaq faq={faq} setFaq={setFaq} />
-    )}
    
+        <AddCourseFaq faq={faq} setFaq={setFaq} />
+  
     </div>
   );
 }

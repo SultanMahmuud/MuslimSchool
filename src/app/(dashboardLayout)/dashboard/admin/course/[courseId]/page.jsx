@@ -341,6 +341,20 @@ useEffect(() => {
       courseWhy: courseWhy,
       PromoCode: PromoCode,
       PromoPercentage: PromoPercentage,
+          // course page features
+       totalEnroll: totalEnroll,
+      classNote: classNote,
+      lectures: lectures,
+      courseDuration: courseDuration,
+
+       coursedetails: {
+        totalLiveClass,
+        classVideoNote,
+        level: coursedetailsLevel,
+        courseFee,
+        courseDescription,
+        courseEnrolled
+      },
     };
 
     try {
