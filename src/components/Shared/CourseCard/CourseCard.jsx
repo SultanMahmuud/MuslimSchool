@@ -18,7 +18,7 @@ import StarRating from "@/utils/StarRating";
 
 export default function CourseCard({ course, dashboard }) {
   const [loved, setLoved] = useState(false);
-  console.log(course);
+
 
   const rankStyle = {
     Hot: "bg-green-500",

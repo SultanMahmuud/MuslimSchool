@@ -16,14 +16,14 @@ const Library = () => {
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/book`);
       const data = await response.json();
-      console.log(data.data)
+     
       setAllbook(data);
       
     } catch (error) {
       console.error("Error fetching books:", error);
     }
   };
-console.log(Allbook.data)
+
   useEffect(() => {
     fetchBooks();
   }, []);

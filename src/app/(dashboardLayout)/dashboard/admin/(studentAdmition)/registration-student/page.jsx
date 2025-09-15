@@ -23,7 +23,7 @@ const user = getUserInfo()
         authorization: `Bearer ${user.token}`,
       },
     }
-console.log(user)
+
    axios
   .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration`, config)
   .then((res) => {
@@ -34,7 +34,7 @@ console.log(user)
         ? res.data.data 
         : []
     setRegistrations(data)
-    console.log(data)
+    
   })
   .catch((err) => console.error(err))
 

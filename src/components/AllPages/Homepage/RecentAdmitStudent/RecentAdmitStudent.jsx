@@ -17,7 +17,7 @@ const RecentAdmitStudent = async () => {
   return data?.data || [];
 };
   const studentData = await getAllRecentAdmitStudent();
-  console.log(studentData,'studentData');
+
 
   return (
     <div className="py-8 px-4">

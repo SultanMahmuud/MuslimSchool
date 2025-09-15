@@ -11,7 +11,7 @@ import ReactPlayer from "react-player";
 import CourseDetailsRight from "./CourseDetailsRight";
 
 const CourseDetailsLeft = ({ data }) => {
-  console.log(data, "course data");
+ 
   const [teachers, setTeachers] = useState([]);
 
   useEffect(() => {

@@ -289,7 +289,7 @@ const AddCourse = () => {
                   com6={
                     <div className="space-y-4">
                       <h3 className="text-lg font-semibold">
-                        What You'll Learn
+                        What You&apos;ll Learn
                       </h3>
                       {whatLearn?.map((value, index) => (
                         <div key={index} className="space-y-2">

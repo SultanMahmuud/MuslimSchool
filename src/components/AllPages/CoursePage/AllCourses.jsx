@@ -29,7 +29,7 @@ export default function AllCourses() {
     axios
       .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/course`)
       .then((res) => {
-        console.log(res)
+       
         setCourses(res?.data.data);
       })
       .finally(() => {
