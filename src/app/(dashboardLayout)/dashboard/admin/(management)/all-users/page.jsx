@@ -29,7 +29,7 @@ useEffect(() => {
   setLoading(true)
 
   axios
-    .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/role/student?limit=${limit}&page=${page}`, config)
+    .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/all?limit=${limit}&page=${page}`, config)
     .then((res) => {
       setRegistrations(res.data.data || [])
       setTotalPages(res.data.pagination?.totalPages || 1)

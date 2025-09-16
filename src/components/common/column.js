@@ -2,17 +2,18 @@
 
 
 import { Button } from "../UI/button";
-import SendMessage from "./SendMessage";
+// import SendMessage from "./SendMessage";
 import axios from "axios";
-// import SendMessage from "@/components/Shared/SendMessage"
-// import AllRegDelete from "@/components/admin/Registration/AllRegDelete"
+import SendMessage from "./SendMessage";
+
+
 
 export const columns = [
   { accessorKey: "name", header: "Name" },
   { accessorKey: "email", header: "Email" },
   { accessorKey: "number", header: "Number" },
   { accessorKey: "parentName", header: "Parent Name" },
-  { accessorKey: "date", header: "Date" },
+
   { accessorKey: "address", header: "Address" },
   { accessorKey: "level", header: "Level" },
   { accessorKey: "age", header: "Age" },
@@ -57,9 +58,14 @@ export const columns = [
           
           await axios.delete(`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/delete/${id}`)
           alert("Deleted successfully")
-          // Optional: trigger a refetch or update table state here
+          // Optional: trigger a refetch or update table state here if needed
+          // do here
+          setRegistrations((prev) => prev.filter((item) => item.id !== id))
+
+
+
         } catch (error) {
-          // toast.error("Error deleting registration")
+          toast.error("Error deleting registration")
         }
       }
 

@@ -14,7 +14,7 @@ const RelativeMenu = ({ user, handleLogout }) => {
         {/* Dropdown menu */}
         <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
           <a
-            href="/dashboard"
+            href="/dashboard/admin/adminDashboard"
             className="block px-4 py-2 text-sm hover:bg-gray-100"
           >
            ড্যাশবোর্ড

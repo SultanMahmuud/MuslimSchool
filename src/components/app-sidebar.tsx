@@ -111,8 +111,11 @@ const baseData = {
       items: [
         { title: "Content", url: "/dashboard/admin/content" },
         { title: "Admin Setting", url: "/dashboard/admin/admin-settings" },
+        { title: "Users Management", url: "/dashboard/admin/all-users" },
         { title: "Student Management ", url: "/dashboard/admin/student-management" },
+
         { title: "Teacher Management", url: "/dashboard/admin/teacher-management" },
+   
         { title: "Add Teacher", url: "/dashboard/admin/add-teacher" },
       ],
     },
