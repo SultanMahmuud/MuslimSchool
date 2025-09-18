@@ -891,19 +891,6 @@ const AddCourse = () => {
               </div> */}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
               {/* Course Futures */}
               <div className="mt-6">
                 <h4 className="block text-2xl font-bold text-gray-700 mb-2">
@@ -934,7 +921,7 @@ const AddCourse = () => {
                   />
                   <input
                     type="text"
-                    placeholder="Course day"
+                    placeholder="Course Day"
                     onChange={(e) => setCourseDay(e.target.value)}
                     className={inputStyles}
                   />

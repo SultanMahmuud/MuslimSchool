@@ -1,20 +1,21 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
-// import { DataTable } from "@/components/UI/data-table";
 import { DateConversionWithTime } from "@/utils/DateConversionWithTime";
-import TeacherModal from "@/components/AdminDashboard/TeacherModal";
+import TeacherModal from "@/components/AdminDashboard/TeacherManagement/TeacherModal";
+import ViewDetails from "@/components/AdminDashboard/TeacherManagement/ViewDetails";
 import { getTeachers, deleteTeacher } from "@/services/teacherService";
 import { Button } from "@/components/UI/button";
 import { Switch } from "@/components/UI/switch";
 import { DataTable } from "@/components/UI/data-table";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/UI/dialog"; // shadcn modal
 
 const TeacherManagement = () => {
   const [teachers, setTeachers] = useState([]);
   const [fetchAgain, setFetchAgain] = useState(false);
   const [selectedTeacher, setSelectedTeacher] = useState(null);
-console.log(teachers,'')
+  const [viewTeacher, setViewTeacher] = useState(null); // for view modal
+
   useEffect(() => {
     getTeachers()
       .then((res) => setTeachers(res.data || []))
@@ -28,11 +29,20 @@ console.log(teachers,'')
 
   const columns = [
     {
-      accessorKey: "view",
-      header: "View/Edit",
+      accessorKey: "Edit",
+      header: "Edit",
       cell: ({ row }) => (
         <Button onClick={() => setSelectedTeacher(row.original)}>
-          View/Edit
+          Edit
+        </Button>
+      ),
+    },
+    {
+      accessorKey: "View",
+      header: "View",
+      cell: ({ row }) => (
+        <Button onClick={() => setViewTeacher(row.original)}>
+          View
         </Button>
       ),
     },
@@ -65,7 +75,10 @@ console.log(teachers,'')
       accessorKey: "delete",
       header: "Delete",
       cell: ({ row }) => (
-        <Button variant="destructive" onClick={() => handleDelete(row.original.email)}>
+        <Button
+          variant="destructive"
+          onClick={() => handleDelete(row.original.email)}
+        >
           Delete
         </Button>
       ),
@@ -81,6 +94,8 @@ console.log(teachers,'')
   return (
     <div className="space-y-6">
       <DataTable columns={columns} data={tableData} />
+
+      {/* Edit Modal */}
       {selectedTeacher && (
         <TeacherModal
           teacher={selectedTeacher}
@@ -88,6 +103,16 @@ console.log(teachers,'')
           onUpdated={() => setFetchAgain((prev) => !prev)}
         />
       )}
+
+      {/* View Modal */}
+      <Dialog open={!!viewTeacher} onOpenChange={() => setViewTeacher(null)}>
+        <DialogContent className="min-w-7xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Teacher Details</DialogTitle>
+          </DialogHeader>
+          {viewTeacher && <ViewDetails userData={viewTeacher} />}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

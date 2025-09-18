@@ -55,32 +55,32 @@ const CourseDetailsRight = ({ data, trailClass, HandleEnrollNow }) => {
         </div>
 
         <div className="mt-4 space-y-3">
-          <div className="flex justify-between text-gray-700 font-semibold">
-            <span>মোট লাইভ ক্লাস</span>
+          <div className="flex justify-between text-gray-700">
+            <span className='font-bold'>মোট লাইভ ক্লাস</span>
             <span className="bg-gray-100 px-3 py-1 rounded">{data?.coursedetails?.totalLiveClass || 0}</span>
           </div>
-          <div className="flex justify-between text-gray-700 font-semibold">
-            <span>ক্লাস ভিডিও-নোট</span>
+          <div className="flex justify-between text-gray-700">
+            <span className='font-bold'>কোর্সে পাচ্ছেন</span>
             <span className="bg-gray-100 px-3 py-1 rounded">{data?.coursedetails?.classVideoNote || 0}</span>
           </div>
-          <div className="flex justify-between text-gray-700 font-semibold">
-            <span>লেভেল</span>
+          <div className="flex justify-between text-gray-700 ">
+            <span className='font-bold'>লেভেল</span>
             <span className="bg-gray-100 px-3 py-1 rounded">{data?.coursedetails?.level || 0}</span>
           </div>
-          <div className="flex justify-between text-gray-700 font-semibold">
-            <span>কোর্স ফি</span>
+          <div className="flex justify-between text-gray-700">
+            <span className='font-bold'>কোর্স ফি</span>
             <span className="bg-gray-100 px-3 py-1 rounded">{data?.coursedetails?.courseFee || 0}</span>
           </div>
-          <div className="flex justify-between text-gray-700 font-semibold">
-            <span>সার্টিফিকেট </span>
+          <div className="flex justify-between text-gray-700">
+            <span className='font-bold'>সার্টিফিকেট </span>
             <span className="bg-gray-100 px-3 py-1 rounded">{data?.certificate ? 'হ্যা' : 'না'}</span>
           </div>
-          <div className="flex justify-between text-gray-700 font-semibold">
-            <span>কোর্সের বিবরণ </span>
+          <div className="flex justify-between text-gray-700">
+            <span className='font-bold'>কোর্সের বিবরণ </span>
             <span className="bg-gray-100 px-3 py-1 rounded">{data?.coursedetails?.courseDescription || 'না'}</span>
           </div>
-          <div className="flex justify-between text-gray-700 font-semibold">
-            <span>কোর্সটি করছেন</span>
+          <div className="flex justify-between text-gray-700">
+            <span className='font-bold'>কোর্সটি করছেন</span>
             <span className="bg-gray-100 px-3 py-1 rounded">{data?.coursedetails?.courseEnrolled || 0}</span>
           </div>
         </div>

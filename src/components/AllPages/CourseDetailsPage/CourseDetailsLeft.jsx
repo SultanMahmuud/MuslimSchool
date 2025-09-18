@@ -173,7 +173,7 @@ const CourseDetailsLeft = ({ data }) => {
           </div>
         </div>
         <div
-          className="prose prose-lg text-gray-700"
+          className="prose prose-lg text-gray-700 hind"
           dangerouslySetInnerHTML={{ __html: data?.description }}
         />
       </div>

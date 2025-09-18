@@ -106,7 +106,7 @@ const LearnCourseTab = ({ course }) => {
       {courseWhy && (
         <Element name="why-learn">
           <section id="why-learn">
-            <SectionTitle primaryText="কোরআন" secondaryText=" কেন শিখবেন" underlineWidth="w-full"/>
+            <SectionTitle primaryText={course?.courseWhyTitle.primaryTopTitle} secondaryText={course?.courseWhyTitle.secondaryTopTitle} underlineWidth="w-full"/>
             <WhyLearnCard  data={course}/>
           </section>
         </Element>
@@ -137,7 +137,7 @@ const LearnCourseTab = ({ course }) => {
       <Element name="what-student-asks-payment">
         <section id="what-student-asks-payment">
           <SectionTitle primaryText="পেমেন্ট" secondaryText="কিভাবে করব?" underlineWidth="w-full"/>
-          <PaymentFaq />
+          <PaymentFaq data={course}/>
           <div className="flex w-full  items-center justify-center">
             <Button className="w-[45%] banner-button-1">এখনই ভর্তি হোন</Button>
             

@@ -2,7 +2,7 @@ import React from 'react';
 import Completedclass from '@/assets/SVG Teacher Card/Completed Class.svg';
 import Experience from '@/assets/SVG Teacher Card/Experience.svg';
 import Institution from '@/assets/SVG Teacher Card/Institution.svg';
-import Specialities from '@/assets/SVG Teacher Card/Specialization.svg';
+import Specialities from '@/assets/lectureicon/008-experience-1.svg';
 import TotalStudent from '@/assets/SVG Teacher Card/Total Student.svg';
 import department from '@/assets/SVG Teacher Card/Department.svg';
 import TotalClasses from '@/assets/SVG Teacher Card/Total Class.svg';

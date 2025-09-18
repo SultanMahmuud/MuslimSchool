@@ -2,26 +2,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-import AddCourseTab from "@/components/AdminDashboard/AdminCourse/AddCourseTab/AddCourseTab";
-import CommonFileUpload from "@/components/Shared/FileUpload/CommonFileUpload"
-import CourseFaq from "@/components/AdminDashboard/AdminCourse/CourseFaq";
-import Announcement from "@/components/AdminDashboard/AdminCourse/Announcement";
-import CourseDesc from "@/components/AdminDashboard/AdminCourse/CourseDesc";
+import CommonFileUpload from "@/components/Shared/FileUpload/CommonFileUpload";
+
 import TeacherAddBox from "@/components/AdminDashboard/AdminCourse/TeacherAddBox";
 import { useRouter } from "next/navigation";
-import EditFAQ from "@/components/AdminDashboard/AdminCourse/UpdateFaq/EditFAQ"
-import EditCuriCulumn from "@/components/AdminDashboard/AdminCourse/Update/EditCuriCulumn"
-
-
-
-
-
+import Topcolumn  from "@/components/AdminDashboard/AdminCourse/UpdateCourse/Topcolumn"
 const UpdateCourse = ({ params }) => {
   const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   const unwrappedParams = React.use(params);
   const id = unwrappedParams.courseId;
- const router = useRouter();
+  const router = useRouter();
   const [courseTitle, setCourseTitle] = useState("");
   const [subtitle, setSubtitle] = useState("");
   const [engTitle, setengTitle] = useState("");
@@ -29,6 +20,7 @@ const UpdateCourse = ({ params }) => {
   const [courseDesc, setCourseDesc] = useState("");
   const [curriculum, setCurriculum] = useState([]);
   const [faq, setFaq] = useState([]);
+  const [pay, setPay] = useState([]);
   const [announcement, setAnnouncement] = useState("");
   const [featuredImage, setFeaturedImage] = useState("");
   const [instructor, setInstructor] = useState([]);
@@ -71,30 +63,34 @@ const UpdateCourse = ({ params }) => {
     courseF10: "",
   });
 
-    // course page features
-     const [totalEnroll, setTotalEnroll] = useState("");
-    const [classNote, setClassNote] = useState("");
-    const [lectures, setLectures] = useState("");
-    const [courseDuration, setCourseDuration] = useState("");
-    // course details features
-      // course details states
-    const [totalLiveClass, setTotalLiveClass] = useState("");
-    const [classVideoNote, setClassVideoNote] = useState("");
-    const [coursedetailsLevel, setCoursedetailsLevel] = useState("");
-    const [courseFee, setCourseFee] = useState("");
-    const [courseDescription, setCourseDescription] = useState("");
-    const [courseEnrolled, setCourseEnrolled] = useState("");
+  // course page features
+  const [totalEnroll, setTotalEnroll] = useState("");
+  const [classNote, setClassNote] = useState("");
+  const [lectures, setLectures] = useState("");
+  const [courseDuration, setCourseDuration] = useState("");
+  // course details features
+  // course details states
+  const [totalLiveClass, setTotalLiveClass] = useState("");
+  const [classVideoNote, setClassVideoNote] = useState("");
+  const [coursedetailsLevel, setCoursedetailsLevel] = useState("");
+  const [courseFee, setCourseFee] = useState("");
+  const [courseDescription, setCourseDescription] = useState("");
+  const [courseEnrolled, setCourseEnrolled] = useState("");
 
   const [whatLearn, setWhatLearn] = useState([{ title: "", uploadUrl: "" }]);
   const [whatYouGet, setWhatYouGet] = useState([
     { uploadUrl: "", title: "", engTitle: "" },
   ]);
   const [courseForWhom, setcourseForWhom] = useState([{ title: "" }]);
+
   const [courseWhy, setcourseWhy] = useState([
     { uploadUrl: "", title: "", subtitle: "", layout: "" },
   ]);
-
-   const handleDeleteLesson = ({ Mindex, lesson, Lindex }) => {
+  const [courseWhyTitle, setCourseWhyTitle] = useState({
+    primaryTopTitle: "",
+    secondaryTopTitle: "",
+  });
+  const handleDeleteLesson = ({ Mindex, lesson, Lindex }) => {
     const newLessons = curriculum[Mindex].lessons.filter(
       (item, index) => index !== Lindex
     );
@@ -111,7 +107,7 @@ const UpdateCourse = ({ params }) => {
     setCurriculum(newCurriCulum);
   };
 
-   const AddNewLessonFunc = (newLesson, addIndex) => {
+  const AddNewLessonFunc = (newLesson, addIndex) => {
     let lessons = curriculum[addIndex.Mindex]?.lessons;
 
     lessons?.splice(addIndex.Lindex + 1, 0, newLesson);
@@ -127,13 +123,15 @@ const UpdateCourse = ({ params }) => {
 
     setCurriculum(newCurr);
   };
-useEffect(() => {
+  useEffect(() => {
     if (id) {
       axios
-        .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/course/single-admin/${id}`)
+        .get(
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/course/single-admin/${id}`
+        )
         .then((res) => {
           const data = res?.data?.data;
-         
+          console.log(data);
           if (data) {
             // setCourseData(data);
             setCourseTitle(data.title || "");
@@ -142,6 +140,7 @@ useEffect(() => {
             setCourseDesc(data.description || "");
             setCurriculum(data.curriculum || []);
             setFaq(data.FAQ || []);
+            setPay(data.pay || []);
             setAnnouncement(data.announcement || "");
             setFeaturedImage(data.image || "");
             setInstructor(data.instructor || []);
@@ -180,10 +179,15 @@ useEffect(() => {
                 { uploadUrl: "", title: "", subtitle: "", layout: "" },
               ]
             );
+            setCourseWhyTitle({
+              primaryTopTitle: data.courseWhyTitle.primaryTopTitle || "",
+              secondaryTopTitle: data.courseWhyTitle.secondaryTopTitle || "",
+            });
+
             setTotalEnroll(data.totalEnroll || "");
             setClassNote(data.classNote || "");
             setLectures(data.lectures || "");
-            setCourseDuration(data.courseDuration || ""); 
+            setCourseDuration(data.courseDuration || "");
 
             setTotalLiveClass(data.coursedetails.totalLiveClass || "");
             setClassVideoNote(data.coursedetails.classVideoNote || "");
@@ -191,7 +195,6 @@ useEffect(() => {
             setCourseFee(data.coursedetails.courseFee || "");
             setCourseDescription(data.coursedetails.courseDescription || "");
             setCourseEnrolled(data.coursedetails.courseEnrolled || "");
-
           }
         })
         .catch((err) => {
@@ -286,13 +289,13 @@ useEffect(() => {
 
     setCurriculum(newCurriCulum);
   };
-    const handleDeleteModule = (Mindex) => {
+  const handleDeleteModule = (Mindex) => {
     const newCurr = curriculum.filter((item, index) => index !== Mindex);
 
     setCurriculum(newCurr);
   };
 
-   const handleAddNewModule = (NewModule) => {
+  const handleAddNewModule = (NewModule) => {
     const newCurr = curriculum;
     newCurr?.splice(NewModule.Mindex + 1, 0, NewModule.module);
     const curr = newCurr.map((item) => item);
@@ -301,11 +304,11 @@ useEffect(() => {
 
   const handlePublish = async (courseType) => {
     const newCourse = {
-      id:id,
+      id: id,
       title: courseTitle,
       subTitle: subtitle,
-      engTitle:engTitle,
-      image: featuredImage?.length ? featuredImage : '',
+      engTitle: engTitle,
+      image: featuredImage?.length ? featuredImage : "",
       category: courseCategory,
       createdBy: "Admin",
       lesson: totalLesson,
@@ -321,6 +324,7 @@ useEffect(() => {
       description: courseDesc,
       curriculum: curriculum,
       FAQ: faq,
+      pay: pay,
       rank: courseRank,
       visibility: visibility,
       announcement: announcement,
@@ -339,31 +343,29 @@ useEffect(() => {
       whatYouGet: whatYouGet,
       courseForWhom: courseForWhom,
       courseWhy: courseWhy,
+      courseWhyTitle,
       PromoCode: PromoCode,
       PromoPercentage: PromoPercentage,
-          // course page features
-       totalEnroll: totalEnroll,
+      // course page features
+      totalEnroll: totalEnroll,
       classNote: classNote,
       lectures: lectures,
       courseDuration: courseDuration,
 
-       coursedetails: {
+      coursedetails: {
         totalLiveClass,
         classVideoNote,
         level: coursedetailsLevel,
         courseFee,
         courseDescription,
-        courseEnrolled
+        courseEnrolled,
       },
     };
 
     try {
-      
-        await axios.put(`${BASE_URL}/course/update`, newCourse);
-        alert("Course updated successfully!");
-        return router.push('/dashboard/admin/course')
-    
-      
+      await axios.put(`${BASE_URL}/course/update`, newCourse);
+      alert("Course updated successfully!");
+      return router.push("/dashboard/admin/course");
     } catch (error) {
       console.error("Error saving course:", error);
       alert("Failed to save course. Please try again.");
@@ -381,18 +383,22 @@ useEffect(() => {
       });
   }, []);
 
-
-  const handleDeleteCourse =async () => {
+  const handleDeleteCourse = async () => {
     if (window.confirm("are you sure")) {
-     
-        await axios.delete(`${BASE_URL}/course/delete/${id}`);
-      return router.push('/dashboard/admin/course')
+      await axios.delete(`${BASE_URL}/course/delete/${id}`);
+      return router.push("/dashboard/admin/course");
     }
   };
- const handleDeleteFaq = (FaqIndex) => {
+  const handleDeleteFaq = ( FaqIndex) => {
     const newFaq = faq.filter((item, index) => index !== FaqIndex);
 
     setFaq(newFaq);
+  };
+  const handleDeletePay = (FaqIndex) => {
+    console.log('clicked')
+    const newFaq = pay.filter((item, index) => index !== FaqIndex);
+
+    setPay(newFaq);
   };
 
   const inputStyles =
@@ -401,311 +407,51 @@ useEffect(() => {
 
   return (
     <div className="min-h-screen w-full">
-      <div className="xl:w-[1100px] mx-auto">
+      <div className="max-w-6xl mx-auto">
         <h3 className="text-2xl p-5 font-semibold">Create Course</h3>
         <div className="flex flex-col">
           {/* Left Column */}
-          <div className="lg:w-3xl xl:w-[90%] lg:m-6 mx-auto">
-            <div className={cardStyles}>
-              <input
-                className={inputStyles}
-                onChange={(e) => setCourseTitle(e.target.value)}
-                placeholder="Course Title"
-                value={courseTitle}
-              />
-              <input
-                className={inputStyles}
-                onChange={(e) => setSubtitle(e.target.value)}
-                placeholder="Subtitle"
-                value={subtitle}
-              />
-              <input
-                className={inputStyles}
-                onChange={(e) => setengTitle(e.target.value)}
-                placeholder="Eng Title"
-                value={engTitle}
-              />
-              <input
-                className={inputStyles}
-                onChange={(e) => setFeaturedVideo(e.target.value)}
-                placeholder="Featured Video Link"
-                value={featuredVideo}
-              />
-
-              <div className="mt-6">
-                <AddCourseTab
-                  com1={
-                    <CourseDesc
-                      savedValue={courseDesc}
-                      setValue={setCourseDesc}
-                    />
-                  }
-                  com2={
-                     <EditCuriCulumn
-                curriculumData={curriculum}
-                handleDeleteLesson={handleDeleteLesson}
-                handleEditLesson={handleEditLesson}
-                AddNewLessonFunc={AddNewLessonFunc}
-                handleDeleteModule={handleDeleteModule}
-                handleAddNewModule={handleAddNewModule}
-              />
-                  }
-                  com3={
-                  <EditFAQ
-                faq={faq}
-                handleDeleteFaq={handleDeleteFaq}
-                setFaq={setFaq}
-              />}
-                  com5={<Announcement setAnnouncement={setAnnouncement} />}
-                  com6={
-                    <div className="space-y-4">
-                      <h3 className="text-lg font-semibold">
-                        What You'll Learn
-                      </h3>
-                      {whatLearn?.map((value, index) => (
-                        <div key={index} className="space-y-2">
-                          <input
-                            className={inputStyles}
-                            value={value.title}
-                            onChange={(e) =>
-                              handleInputChange(
-                                index,
-                                "title",
-                                e.target.value,
-                                setWhatLearn
-                              )
-                            }
-                            placeholder="Learning Point"
-                          />
-                          <input
-                            className={inputStyles}
-                            value={value.uploadUrl}
-                            onChange={(e) =>
-                              handleInputChange(
-                                index,
-                                "uploadUrl",
-                                e.target.value,
-                                setWhatLearn
-                              )
-                            }
-                            placeholder="Upload URL"
-                          />
-                          <button
-                            className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-                            onClick={() => handleDelete(index, setWhatLearn)}
-                          >
-                            Delete
-                          </button>
-                        </div>
-                      ))}
-                      <button
-                        className="w-full px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                        onClick={() =>
-                          addInputField(setWhatLearn, {
-                            title: "",
-                            uploadUrl: "",
-                          })
-                        }
-                      >
-                        Add More
-                      </button>
-                    </div>
-                  }
-                  com7={
-                    <div className="space-y-4">
-                      <h3 className="text-lg font-semibold">What You Get</h3>
-                      {whatYouGet?.map((value, index) => (
-                        <div key={index} className="space-y-2">
-                          <input
-                            className={inputStyles}
-                            value={value.uploadUrl}
-                            onChange={(e) =>
-                              handleInputChange(
-                                index,
-                                "uploadUrl",
-                                e.target.value,
-                                setWhatYouGet
-                              )
-                            }
-                            placeholder="Upload URL"
-                          />
-                          <input
-                            className={inputStyles}
-                            value={value.title}
-                            onChange={(e) =>
-                              handleInputChange(
-                                index,
-                                "title",
-                                e.target.value,
-                                setWhatYouGet
-                              )
-                            }
-                            placeholder="Title"
-                          />
-                          <input
-                            className={inputStyles}
-                            value={value.subtitle}
-                            onChange={(e) =>
-                              handleInputChange(
-                                index,
-                                "subtitle",
-                                e.target.value,
-                                setWhatYouGet
-                              )
-                            }
-                            placeholder="Subtitle"
-                          />
-                          <button
-                            className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-                            onClick={() => handleDelete(index, setWhatYouGet)}
-                          >
-                            Delete
-                          </button>
-                        </div>
-                      ))}
-                      <button
-                        className="w-full px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                        onClick={() =>
-                          addInputField(setWhatYouGet, {
-                            uploadUrl: "",
-                            title: "",
-                            subtitle: "",
-                          })
-                        }
-                      >
-                        Add Course
-                      </button>
-                    </div>
-                  }
-                  com8={
-                    <div className="space-y-4">
-                      <h3 className="text-lg font-semibold">Course For Whom</h3>
-                      {courseForWhom?.map((value, index) => (
-                        <div key={index} className="flex gap-2">
-                          <input
-                            className={inputStyles}
-                            value={value.title}
-                            onChange={(e) =>
-                              handleInputChange(
-                                index,
-                                "title",
-                                e.target.value,
-                                setcourseForWhom
-                              )
-                            }
-                            placeholder="Target Audience"
-                          />
-                          <button
-                            className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 whitespace-nowrap"
-                            onClick={() =>
-                              handleDelete(index, setcourseForWhom)
-                            }
-                          >
-                            Delete
-                          </button>
-                        </div>
-                      ))}
-                      <button
-                        className="w-full px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                        onClick={() =>
-                          addInputField(setcourseForWhom, { title: "" })
-                        }
-                      >
-                        Add Course
-                      </button>
-                    </div>
-                  }
-                  com9={
-                    <div className="space-y-4">
-                      <h3 className="text-lg font-semibold">
-                        Why Choose This Course
-                      </h3>
-                      {courseWhy?.map((value, index) => (
-                        <div key={index} className="space-y-2">
-                          <input
-                            className={inputStyles}
-                            value={value.uploadUrl}
-                            onChange={(e) =>
-                              handleInputChange(
-                                index,
-                                "uploadUrl",
-                                e.target.value,
-                                setcourseWhy
-                              )
-                            }
-                            placeholder="Upload URL"
-                          />
-                          <input
-                            className={inputStyles}
-                            value={value.title}
-                            onChange={(e) =>
-                              handleInputChange(
-                                index,
-                                "title",
-                                e.target.value,
-                                setcourseWhy
-                              )
-                            }
-                            placeholder="Title"
-                          />
-                          <input
-                            className={inputStyles}
-                            value={value.subtitle}
-                            onChange={(e) =>
-                              handleInputChange(
-                                index,
-                                "subtitle",
-                                e.target.value,
-                                setcourseWhy
-                              )
-                            }
-                            placeholder="Subtitle"
-                          />
-                          <select
-                            className={inputStyles}
-                            value={value.layout}
-                            onChange={(e) =>
-                              handleInputChange(
-                                index,
-                                "layout",
-                                e.target.value,
-                                setcourseWhy
-                              )
-                            }
-                          >
-                            <option value="">Select Layout Direction</option>
-                            <option value="row">Row</option>
-                            <option value="row-reverse">Row Reverse</option>
-                          </select>
-                          <button
-                            className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-                            onClick={() => handleDelete(index, setcourseWhy)}
-                          >
-                            Delete
-                          </button>
-                        </div>
-                      ))}
-                      <button
-                        className="w-full px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                        onClick={() =>
-                          addInputField(setcourseWhy, {
-                            uploadUrl: "",
-                            title: "",
-                            subtitle: "",
-                            layout: "",
-                          })
-                        }
-                      >
-                        Add Course
-                      </button>
-                    </div>
-                  }
-                />
-              </div>
-
-           
-            </div>
-          </div>
+          <Topcolumn
+            inputStyles={inputStyles}
+            cardStyles={cardStyles}
+            courseTitle={courseTitle}
+            setCourseTitle={setCourseTitle}
+            subtitle={subtitle}
+            setSubtitle={setSubtitle}
+            engTitle={engTitle}
+            setengTitle={setengTitle}
+            featuredVideo={featuredVideo}
+            setFeaturedVideo={setFeaturedVideo}
+            courseDesc={courseDesc}
+            setCourseDesc={setCourseDesc}
+            curriculum={curriculum}
+            handleDeleteLesson={handleDeleteLesson}
+            handleEditLesson={handleEditLesson}
+            AddNewLessonFunc={AddNewLessonFunc}
+            handleDeleteModule={handleDeleteModule}
+            handleAddNewModule={handleAddNewModule}
+            faq={faq}
+            pay={pay}
+            setPay={setPay}
+            handleDeleteFaq={handleDeleteFaq}
+            handleDeletePay={handleDeletePay}
+            setFaq={setFaq}
+            announcement={announcement}
+            setAnnouncement={setAnnouncement}
+            whatLearn={whatLearn}
+            setWhatLearn={setWhatLearn}
+            whatYouGet={whatYouGet}
+            setWhatYouGet={setWhatYouGet}
+            courseForWhom={courseForWhom}
+            setcourseForWhom={setcourseForWhom}
+            courseWhy={courseWhy}
+            setcourseWhy={setcourseWhy}
+            courseWhyTitle={courseWhyTitle}
+            setCourseWhyTitle={setCourseWhyTitle}
+            handleInputChange={handleInputChange}
+            handleDelete={handleDelete}
+            addInputField={addInputField}
+          />
 
           {/* Right Column */}
           <div className="lg:w-3xl xl:w-[90%] mx-auto lg:m-6">
@@ -714,7 +460,10 @@ useEffect(() => {
 
               {/* Featured Image Upload */}
               <div className="mb-6">
-                <CommonFileUpload url={featuredImage} setUrl={setFeaturedImage} />
+                <CommonFileUpload
+                  url={featuredImage}
+                  setUrl={setFeaturedImage}
+                />
               </div>
               <div className="flex gap-2 w-full justify-between">
                 {/* Course Medium */}
@@ -744,8 +493,8 @@ useEffect(() => {
                     onChange={(e) => setCourseCategory(e.target.value)}
                     className={inputStyles}
                   >
-                    {allCategory.map((option) => (
-                      <option key={option} value={option}>
+                    {allCategory.map((option ,idx) => (
+                      <option key={idx} value={option}>
                         {option}
                       </option>
                     ))}
@@ -797,6 +546,7 @@ useEffect(() => {
                 </div>
               </div>
 
+             {/* add here */}
               {/* Price Section */}
               <div className="mb-6">
                 <h4 className="block text-2xl font-bold text-gray-700 mb-2">
@@ -873,7 +623,7 @@ useEffect(() => {
                 </div>
               </div>
 
-             <label className="block text-2xl font-bold text-gray-700 mb-2">
+              <label className="block text-2xl font-bold text-gray-700 mb-2">
                 Student Facility
               </label>
               {/* Additional Fields */}
@@ -892,7 +642,7 @@ useEffect(() => {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    CLass Note
+                    Class Note
                   </label>
                   <input
                     className={inputStyles}
@@ -938,13 +688,13 @@ useEffect(() => {
                   </select>
                 </div> */}
               </div>
-               <label className="block text-2xl font-bold text-gray-700 mt-6 mb-2">
+              <label className="block text-2xl font-bold text-gray-700 mt-6 mb-2">
                 Course Details page Features
               </label>
               <div className="flex  gap-4 mb-4 w-full justify-between">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Total live Class
+                    Total Live Class
                   </label>
                   <input
                     type="number"
@@ -990,7 +740,6 @@ useEffect(() => {
               </div>
 
               <div className="flex  gap-4 mb-4 w-full items-center">
-               
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Course Description
@@ -1014,7 +763,7 @@ useEffect(() => {
                     placeholder="Course Enrolled"
                   />
                 </div>
-                 <div>
+                <div>
                   <label className="flex items-center gap-2 mt-6">
                     <span className="text-lg font-medium">Certificate </span>
                     <input
@@ -1023,7 +772,6 @@ useEffect(() => {
                       onChange={handleCertificateClick}
                       className="mr-2"
                     />
-                    
                   </label>
                 </div>
               </div>
@@ -1059,7 +807,7 @@ useEffect(() => {
                   />
                   <input
                     type="text"
-                    placeholder="Course day"
+                    placeholder="Course Day"
                     onChange={(e) => setCourseDay(e.target.value)}
                     className={inputStyles}
                     value={courseDate}

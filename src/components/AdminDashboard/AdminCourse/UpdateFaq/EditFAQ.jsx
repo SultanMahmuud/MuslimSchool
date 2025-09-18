@@ -8,9 +8,8 @@ import { MdDeleteForever, MdExpandMore } from "react-icons/md";
 import EditFAQModal from "./EditFAQModal";
 import AddCourseFaq from "../AddCourseFaq";
 
-export default function EditFAQ({ faq, handleDeleteFaq, setFaq }) {
+export default function EditFAQ({ faq, handleDeletePay, setFaq }) {
   const [index, setIndex] = useState();
-  const [openAdd, setOpenAdd] = useState(false);
   const [editable, setEditable] = useState();
   const [openEdit, setOpenEdit] = useState(false);
   const [openIdx, setOpenIdx] = useState(0); // Track which accordion is open
@@ -69,7 +68,7 @@ export default function EditFAQ({ faq, handleDeleteFaq, setFaq }) {
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  handleDeleteFaq(idx);
+                  handleDeletePay(idx);
                 }}
                 className="p-1 rounded hover:bg-red-100 text-red-600"
               >

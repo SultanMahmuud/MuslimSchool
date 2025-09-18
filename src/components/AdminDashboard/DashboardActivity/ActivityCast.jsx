@@ -26,7 +26,7 @@ const User = getUserInfo();
 useEffect(() => {
   setLoading(true);
   let completedRequests = 0;
-  const totalRequests = 4; // how many axios calls you are making
+  const totalRequests = 4;
 
   const checkAllDone = () => {
     completedRequests += 1;
@@ -35,20 +35,26 @@ useEffect(() => {
     }
   };
 
-  axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/role/student`,)
-    .then(res => setTotalStudent(res.data.data))
+  axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/role/student`)
+    .then(res => setTotalStudent(res?.data?.pagination?.totalUsers || 0))
+    .catch(err => console.error("Student fetch error:", err))
     .finally(checkAllDone);
 
-  axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/all`, { headers: { authorization: `Bearer ${User.token}` } })
-    .then(res => setTotalUser(res.data.data?.length))
+  axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/all`, { 
+      headers: { authorization: `Bearer ${User?.token || ""}` } 
+    })
+    .then(res => setTotalUser(res.data.data?.length || 0))
+    .catch(err => console.error("User fetch error:", err))
     .finally(checkAllDone);
 
   axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/assignment`)
     .then(res => setAssignment(res.data.data || []))
+    .catch(err => console.error("Assignment fetch error:", err))
     .finally(checkAllDone);
 
   axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/role/teacher`)
     .then(res => setTotalTeacher(res.data.data || []))
+    .catch(err => console.error("Teacher fetch error:", err))
     .finally(checkAllDone);
 
 }, []);
@@ -57,7 +63,7 @@ useEffect(() => {
 
 
   const activeData = [
-    { heading: 'Total Student', count: totalStudent.length },
+    { heading: 'Total Student', count: totalStudent },
     { heading: 'New Student', count: newStudent.length }, // Placeholder
     { heading: 'Present Today', count: presentStudent.length }, // 
     { heading: 'Absent Today', count: absentStudent.length }, // Placeholder

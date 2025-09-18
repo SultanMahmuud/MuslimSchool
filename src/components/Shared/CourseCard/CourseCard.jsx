@@ -8,7 +8,7 @@ import axios from "axios";
 import enrolled from "@/assets/cardIcon/Icon/Enrolled.svg";
 
 import classNote from "@/assets/cardIcon/Icon/Class Note.svg";
-import lectures from "@/assets/cardIcon/Icon/video-lesson.svg";
+import lectures from "@/assets/lectureicon/video-lecture (1).svg"
 import duration from "@/assets/cardIcon/Icon/clock.svg";
 
 import { MdFavoriteBorder } from "react-icons/md";

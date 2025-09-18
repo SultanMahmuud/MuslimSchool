@@ -198,7 +198,7 @@ export default function Navbar() {
                   setMobileNavOpen(false);
                   setDrawerOpen(true);
                 }}
-                className="flex items-center gap-2 hover:text-primary">লগিন</Button>
+                className="flex items-center gap-2 hover:text-primary text-[18px] font-semibold">লগিন</Button>
         <Button
           variant="ghost"
           size="icon"

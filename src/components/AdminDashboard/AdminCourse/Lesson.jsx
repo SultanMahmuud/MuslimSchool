@@ -92,7 +92,7 @@ const Lesson = ({ lessons, setLessons, setSave, save }) => {
         <CommonFilter
           value={lessonType}
           setValue={setLessonType}
-          values={["video", "note"]}
+          values={["Video", "Note"]}
         />
 
         {/* Duration Fields */}
