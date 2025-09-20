@@ -7,5 +7,5 @@ export const getTeachers = () => axios.get(`${API_BASE}/user/role/teacher`);
 export const deleteTeacher = (email) =>
   axios.delete(`${API_BASE}/user/delete/${email}`);
 
-export const updateTeacher = ( data) =>
+export const updateTeacher = (data) =>
   axios.put(`${API_BASE}/user`, data);

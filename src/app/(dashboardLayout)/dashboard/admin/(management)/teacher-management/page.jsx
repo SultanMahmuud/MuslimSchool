@@ -4,27 +4,53 @@ import { useEffect, useState } from "react";
 import { DateConversionWithTime } from "@/utils/DateConversionWithTime";
 import TeacherModal from "@/components/AdminDashboard/TeacherManagement/TeacherModal";
 import ViewDetails from "@/components/AdminDashboard/TeacherManagement/ViewDetails";
-import { getTeachers, deleteTeacher } from "@/services/teacherService";
+import { getTeachers, deleteTeacher, updateTeacher } from "@/services/teacherService";
 import { Button } from "@/components/UI/button";
 import { Switch } from "@/components/UI/switch";
 import { DataTable } from "@/components/UI/data-table";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/UI/dialog"; // shadcn modal
 
 const TeacherManagement = () => {
-  const [teachers, setTeachers] = useState([]);
+  const [teachers, setTeachers] = useState([]); // always an array
   const [fetchAgain, setFetchAgain] = useState(false);
   const [selectedTeacher, setSelectedTeacher] = useState(null);
   const [viewTeacher, setViewTeacher] = useState(null); // for view modal
-
+console.log(teachers)
   useEffect(() => {
     getTeachers()
-      .then((res) => setTeachers(res.data || []))
+      .then((res) => setTeachers(res.data || [])) // ensure array
       .catch((err) => console.error("Error fetching teachers:", err));
   }, [fetchAgain]);
 
   const handleDelete = async (email) => {
-    await deleteTeacher(email);
-    setFetchAgain((prev) => !prev);
+    try {
+      await deleteTeacher(email);
+      setTeachers(prev => prev.filter(t => t.email !== email)); // remove deleted teacher from table
+      alert("Teacher deleted successfully");
+    } catch (err) {
+      console.error(err);
+      alert("Error deleting teacher");
+    }
+  };
+
+  const handleToggleBlock = async (teacher) => {
+    try {
+      await updateTeacher({
+        email: teacher.email,
+        isBlock: !teacher.isBlock
+      });
+
+      // Update table immediately
+      
+
+    alert(`Teacher ${teacher.name} is now ${teacher.isBlock ? "unblocked" : "blocked"}`);
+      
+ window.location.reload();
+  
+    } catch (err) {
+      console.error("Failed to update teacher:", err);
+      alert("Error updating teacher. Please try again.");
+    }
   };
 
   const columns = [
@@ -55,9 +81,7 @@ const TeacherManagement = () => {
     {
       accessorKey: "teacherOfTheMonth",
       header: "Teacher of the Month",
-      cell: ({ row }) => (
-        <Switch checked={row.original.teacherOfTheMonth} readOnly />
-      ),
+      cell: ({ row }) => <Switch checked={row.original.teacherOfTheMonth} readOnly />,
     },
     {
       accessorKey: "isBlock",
@@ -65,7 +89,7 @@ const TeacherManagement = () => {
       cell: ({ row }) => (
         <Button
           variant={row.original.isBlock ? "destructive" : "outline"}
-          onClick={() => console.log("Block toggle")}
+          onClick={() => handleToggleBlock(row.original)}
         >
           {row.original.isBlock ? "Unblock" : "Block"}
         </Button>
@@ -85,8 +109,7 @@ const TeacherManagement = () => {
     },
   ];
 
-  // Prepare data for table
-  const tableData = teachers?.data?.map((t) => ({
+   const tableData = teachers?.data?.map((t) => ({
     ...t,
     joiningDate: DateConversionWithTime(t.joiningDate),
   }));
@@ -100,7 +123,7 @@ const TeacherManagement = () => {
         <TeacherModal
           teacher={selectedTeacher}
           onClose={() => setSelectedTeacher(null)}
-          onUpdated={() => setFetchAgain((prev) => !prev)}
+          onUpdated={() => setFetchAgain(prev => !prev)}
         />
       )}
 

@@ -42,7 +42,7 @@ const AddNew = ({ role }) => {
       };
 
       const res = await registerUser({
-        url: authRoutes.register,
+        url: authRoutes.registerTeacher,
         tags: tagTypes.auth,
         payload,
       }).unwrap();

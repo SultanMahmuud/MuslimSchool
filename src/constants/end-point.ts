@@ -27,6 +27,7 @@ export const rootCanonicalUrlRoutes = {
 export const authRoutes = {
     login: `${rootAuthRoute}/login`,
     register: `${rootAuthRoute}/signup`,
+    registerTeacher: `${rootAuthRoute}/signup/teacher`,
     get_all_user: `${rootAuthRoute}/get-all-user`,
     delete_user: (id: string) => `${rootAuthRoute}/delete-user/${id}`,
     update_user: (id: string) => `${rootAuthRoute}`,
