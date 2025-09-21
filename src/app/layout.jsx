@@ -3,6 +3,8 @@ import "./globals.css";
 import dynamic from "next/dynamic";
 import { Toaster } from "sonner";
 import Script from "next/script";
+import { Suspense } from "react";
+import GTMAnalytics from "@/components/GTMAnalytics";
 
 const Providers = dynamic(() => import("@/lib/providers"));
 const hindSiliguri = Hind_Siliguri({
@@ -55,7 +57,9 @@ export default function RootLayout({ children }) {
   `,
           }}
         />
-
+        <Suspense>
+          <GTMAnalytics />
+        </Suspense>
         <Providers>{children}</Providers>
         <Toaster />
       </body>
