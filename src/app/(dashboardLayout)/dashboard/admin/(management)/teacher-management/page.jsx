@@ -25,7 +25,7 @@ console.log(teachers)
   const handleDelete = async (email) => {
     try {
       await deleteTeacher(email);
-      setTeachers(prev => prev.filter(t => t.email !== email)); // remove deleted teacher from table
+      // setTeachers(prev => prev.filter(t => t.email !== email)); // remove deleted teacher from table
       alert("Teacher deleted successfully");
     } catch (err) {
       console.error(err);

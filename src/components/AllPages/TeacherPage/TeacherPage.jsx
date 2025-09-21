@@ -4,6 +4,8 @@ import { Button } from "@/components/UI/button";
 import Image from "next/image";
 import Link from "next/link";
 import{ useEffect, useState } from "react";
+import  maleTeacher from '@/assets/defaultImage/Teacher-1.jpg';
+import  femaleteacher  from '@/assets/defaultImage/Teacher-2.jpg';
 
 
 
@@ -167,7 +169,7 @@ export default function TeachersSection() {
                   experience={el?.teachingExperience}
                   totalSutdents={el?.perAddressLine}
                   totalClass={el?.attendance?.length}
-                  image={el?.avatar}
+                    image={el?.gender === "Male" ? maleTeacher : femaleteacher}
                   qualification={el?.qual1}
                 />
               </Link>

@@ -1,16 +1,19 @@
-
 "use client";
 
+
 import { Button } from "../UI/button";
+// import SendMessage from "./SendMessage";
 import axios from "axios";
 import SendMessage from "./SendMessage";
-import { toast } from "sonner";
 
-export const columns = (fetchRegistrations) => [
+
+
+export const newColumn = [
   { accessorKey: "name", header: "Name" },
   { accessorKey: "email", header: "Email" },
   { accessorKey: "number", header: "Number" },
   { accessorKey: "parentName", header: "Parent Name" },
+
   { accessorKey: "address", header: "Address" },
   { accessorKey: "level", header: "Level" },
   { accessorKey: "age", header: "Age" },
@@ -22,7 +25,8 @@ export const columns = (fetchRegistrations) => [
     header: "Add Level",
     cell: ({ row }) => {
       const email = row.original.email;
-      const open = row.original.openLevel;
+      const open = row.original.openLevel; // passed manually in row object
+
       return (
         <Button
           variant="outline"
@@ -47,51 +51,34 @@ export const columns = (fetchRegistrations) => [
     id: "delete",
     header: "Delete",
     cell: ({ row }) => {
-      const handleDelete =() => {
- toast.custom(
-  (t) => (
-    <div className="flex flex-col gap-2 bg-white p-5  shadow-md min-w-96 rounded-lg">
-      <span className="font-bold">Want to delete?</span>
-      <div className="flex justify-end gap-2">
-        <Button
-          size="sm"
-          variant="destructive"
-          onClick={async () => {
-            try {
-              const id = row.original.id;
-              await axios.delete(`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/delete/${id}`);
-              toast.success("Deleted successfully");
-              fetchRegistrations();
-              toast.dismiss(t.id);
-            } catch (error) {
-              toast.error("Error deleting registration");
-              toast.dismiss(t.id);
-            }
-          }}
-        >
-          Yes
-        </Button>
-        <Button size="sm" variant="outline" onClick={() => toast.dismiss(t.id)}>
-          Cancel
-        </Button>
-      </div>
-    </div>
-  ),
-  { duration: Infinity, position: "top-right" } // ✅ top-right corner
-);
+    
+      const handleDelete = async () => {
+        try {
+          const id = row.original.id
+          
+          await axios.delete(`${process.env.NEXT_PUBLIC_API_BASE_URL}/registration/delete/${id}`)
+          alert("Deleted successfully")
+          // Optional: trigger a refetch or update table state here if needed
+          // do here
+          setRegistrations((prev) => prev.filter((item) => item.id !== id))
 
-};
+
+
+        } catch (error) {
+          toast.error("Error deleting registration")
+        }
+      }
 
       return (
         <Button
-          
+          variant="destructive"
           size="sm"
-          className="text-xs bg-orange-400"
+          className="text-xs"
           onClick={handleDelete}
         >
           Delete
         </Button>
-      );
+      )
     },
   },
 ];

@@ -61,7 +61,7 @@ const AwsomeTeachers = async ({ isLoading = false }) => {
                 //   el?.avatar || "https://img.icons8.com/color/128/teacher.png"
                 // }
                 // if gender is male then show maleTeacher else show femaleTeacher
-                image={el?.gender === "male" ? maleTeacher : femaleteacher}
+                image={el?.gender === "Male" ? maleTeacher : femaleteacher}
                 depart={el?.Department || "নাজেরা"}
                 name={el?.name || "yasin"}
                 joiningDate={el?.joiningDate || "23-5-11"}

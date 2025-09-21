@@ -95,9 +95,10 @@ useEffect(() => {
                 <del className="text-sm text-gray-500">
                   ৳{course?.banPrice || course?.salePrice}
                 </del>
+                
               </div>
-
-              {course?.courseTime && (
+            <div>
+              {course?.singleHighlighter && (
                 <div className="flex items-center bg-red-100 text-red-600 text-sm font-medium px-2 py-1 rounded-md">
                   <Image
                     src="https://qawamiuniversity.nyc3.digitaloceanspaces.com/courseIcons/clock%20(2).svg"
@@ -106,12 +107,14 @@ useEffect(() => {
                     width={40}
                     height={40} 
                   />
-                  {course?.courseTime}
+                  {course?.singleHighlighter}
                 </div>
               )}
             </div>
+              
+            </div>
 
-            <div className="flex gap-2">
+            <div className="flex justify-between">
               <Button
                 onClick={trailClass}
                 className="banner-button-1 w-[45%]"

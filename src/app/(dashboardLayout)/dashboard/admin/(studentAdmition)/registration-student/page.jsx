@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react"
 import axios from "axios"
-import { columns } from "@/components/common/column"
+import { newColumn } from "@/components/common/newColumn"
 import { DateConversionWithTime } from "@/utils/DateConversionWithTime"
 import { DataTable } from "@/components/UI/data-table"
 import AddLevelModalReg from "@/components/AdminDashboard/AdminCourse/RegistrationModal/AddLevelModalReg"
@@ -69,7 +69,7 @@ const filteredData = Array.isArray(registrations)
 
   return (
     <div className="p-4 w-full">
-      <DataTable columns={columns} data={filteredData} />
+      <DataTable columns={newColumn} data={filteredData} />
       <AddLevelModalReg open={openLevel} setOpen={setOpenLevel} email={leveledEmail} />
     </div>
   )

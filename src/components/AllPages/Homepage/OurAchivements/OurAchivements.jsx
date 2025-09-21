@@ -29,7 +29,7 @@ const OurAchivements = async () => {
               <Image
                 src={item.iconImg}
                 alt={item.title}
-                className="w-20 h-20 mb-3 opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                className="w-20 h-20 mb-3  group-hover:opacity-100 transition-opacity duration-300"
                 width={80}
                 height={80}
               />

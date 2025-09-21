@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import StarRating from "@/utils/StarRating";
 import ReactPlayer from "react-player";
 import CourseDetailsRight from "./CourseDetailsRight";
-
+import detailsImg from "@/assets/details/Untitled-1-min.png"
 const CourseDetailsLeft = ({ data }) => {
  
   const [teachers, setTeachers] = useState([]);
@@ -124,7 +124,7 @@ const CourseDetailsLeft = ({ data }) => {
             <div className="flex items-center border-r lg:border-r border-[#ddd] pr-2">
               <Image
                 alt="Remy Sharp"
-                src={teachers[0]?.avatar}
+                src={teachers[0]?.avatar || detailsImg}
                 width={40}
                 height={40}
               />
@@ -157,10 +157,11 @@ const CourseDetailsLeft = ({ data }) => {
             </div>
 
             {/* Rating */}
-            <div className="flex items-center border-t lg:border-t-0 border-[#ddd] pl-2">
-              <div className="text-[#1C1C1E] leading-tight">
-                <p className="text-[16px] font-semibold">রেটিং</p>
-                <StarRating
+            <div className="flex items-center border-t lg:border-t-0 border-[#ddd]  flex-wrap">
+              <div className="text-[#1C1C1E] my-1">
+                <p className="lg:text-[16px] font-semibold">রেটিং</p>
+                <div className="w-32">
+                  <StarRating
                   name="size-small"
                   size="small"
                   readOnly
@@ -168,6 +169,7 @@ const CourseDetailsLeft = ({ data }) => {
                   precision={0.5}
                   max={5}
                 />
+                </div>
               </div>
             </div>
           </div>

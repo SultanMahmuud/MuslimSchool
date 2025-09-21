@@ -96,6 +96,14 @@ const TeacherUpdateModal = ({ teacher, onClose, onUpdated }) => {
                 <Input {...register("number")} placeholder="Phone Number" />
               </div>
               <div>
+                <label className="block mb-1">Phone Number</label>
+                <Input {...register("number")} placeholder="Phone Number" />
+              </div>
+              <div>
+                <label className="block mb-1">Teacher ID</label>
+                <Input {...register("teacherId")} placeholder="Teacher ID" />
+              </div>
+              <div>
                 <label className="block mb-1">Date of Birth</label>
                 <Input type="date" {...register("dob")} />
               </div>

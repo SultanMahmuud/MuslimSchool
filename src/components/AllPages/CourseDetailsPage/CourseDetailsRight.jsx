@@ -6,8 +6,9 @@ import { MdOutlineDoubleArrow } from 'react-icons/md';
 import { Button } from '@/components/UI/button';
 import Image from 'next/image';
 
+
 const CourseDetailsRight = ({ data, trailClass, HandleEnrollNow }) => {
- 
+
  const [showAll, setShowAll] = useState(false);
   const itemsToShowInitially = 4;
 
@@ -32,7 +33,7 @@ const CourseDetailsRight = ({ data, trailClass, HandleEnrollNow }) => {
           <div className="text-lg line-through text-gray-500">৳{data?.banPrice || data?.salePrice}</div>
           {data?.singleHighlighter && (
             <div className="flex items-center text-red-600 bg-red-100 px-3 py-1 rounded text-sm font-bold">
-              <Image src="" alt="clock" className="w-4 h-4 mr-2" width={16} height={16} />
+              <Image src='https://qawamiuniversity.nyc3.digitaloceanspaces.com/courseIcons/clock%20(2).svg' alt="clock" className="w-4 h-4 mr-2" width={16} height={16} />
               {data?.singleHighlighter}
             </div>
           )}
