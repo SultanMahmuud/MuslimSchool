@@ -131,7 +131,7 @@ const UpdateCourse = ({ params }) => {
         )
         .then((res) => {
           const data = res?.data?.data;
-          console.log(data);
+        
           if (data) {
             // setCourseData(data);
             setCourseTitle(data.title || "");
@@ -395,7 +395,7 @@ const UpdateCourse = ({ params }) => {
     setFaq(newFaq);
   };
   const handleDeletePay = (FaqIndex) => {
-    console.log('clicked')
+   
     const newFaq = pay.filter((item, index) => index !== FaqIndex);
 
     setPay(newFaq);

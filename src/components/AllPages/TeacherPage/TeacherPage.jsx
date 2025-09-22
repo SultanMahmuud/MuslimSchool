@@ -39,7 +39,7 @@ export default function TeachersSection() {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/role/teacher`)
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/role/teacher?limit=all`)
       .then((res) => res.json())
       .then((data) => {
         const activeTeachers = data?.data?.filter((teacher) => !teacher.isBlock);
@@ -61,6 +61,7 @@ export default function TeachersSection() {
       t.Department?.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesDepartment && matchesGender && matchesSearch;
   });
+
 
   return (
     <>
