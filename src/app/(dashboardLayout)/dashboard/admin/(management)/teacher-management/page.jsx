@@ -8,25 +8,37 @@ import { getTeachers, deleteTeacher, updateTeacher } from "@/services/teacherSer
 import { Button } from "@/components/UI/button";
 import { Switch } from "@/components/UI/switch";
 import { DataTable } from "@/components/UI/data-table";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/UI/dialog"; // shadcn modal
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/UI/dialog"; 
+import axios from "axios";
 
 const TeacherManagement = () => {
-  const [teachers, setTeachers] = useState([]); // always an array
+  const [teachers, setTeachers] = useState([]); 
   const [fetchAgain, setFetchAgain] = useState(false);
   const [selectedTeacher, setSelectedTeacher] = useState(null);
-  const [viewTeacher, setViewTeacher] = useState(null); // for view modal
-console.log(teachers)
+  const [viewTeacher, setViewTeacher] = useState(null); 
+  const [search, setSearch] = useState("")
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
+  const limit = 15;
+
   useEffect(() => {
-    getTeachers()
-      .then((res) => setTeachers(res.data || [])) // ensure array
+    axios
+      .get(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/user/role/teacher?limit=${limit}&page=${page}`
+      )
+      .then((res) => {
+        setTeachers(res.data.data || []); // ✅ save only array
+        setTotalPages(res.data.pagination?.totalPages || 1);
+      })
       .catch((err) => console.error("Error fetching teachers:", err));
-  }, [fetchAgain]);
+  }, [fetchAgain, page]); // ✅ also depend on page
 
   const handleDelete = async (email) => {
+    if (!confirm("Are you sure you want to delete this teacher?")) return;
     try {
       await deleteTeacher(email);
-      // setTeachers(prev => prev.filter(t => t.email !== email)); // remove deleted teacher from table
-      alert("Teacher deleted successfully");
+      setFetchAgain((prev) => !prev); // ✅ refresh data instead of reload
     } catch (err) {
       console.error(err);
       alert("Error deleting teacher");
@@ -37,16 +49,9 @@ console.log(teachers)
     try {
       await updateTeacher({
         email: teacher.email,
-        isBlock: !teacher.isBlock
+        isBlock: !teacher.isBlock,
       });
-
-      // Update table immediately
-      
-
-    alert(`Teacher ${teacher.name} is now ${teacher.isBlock ? "unblocked" : "blocked"}`);
-      
- window.location.reload();
-  
+      setFetchAgain((prev) => !prev); // ✅ refresh data
     } catch (err) {
       console.error("Failed to update teacher:", err);
       alert("Error updating teacher. Please try again.");
@@ -58,18 +63,14 @@ console.log(teachers)
       accessorKey: "Edit",
       header: "Edit",
       cell: ({ row }) => (
-        <Button onClick={() => setSelectedTeacher(row.original)}>
-          Edit
-        </Button>
+        <Button onClick={() => setSelectedTeacher(row.original)}>Edit</Button>
       ),
     },
     {
       accessorKey: "View",
       header: "View",
       cell: ({ row }) => (
-        <Button onClick={() => setViewTeacher(row.original)}>
-          View
-        </Button>
+        <Button onClick={() => setViewTeacher(row.original)}>View</Button>
       ),
     },
     { accessorKey: "name", header: "Name" },
@@ -81,7 +82,9 @@ console.log(teachers)
     {
       accessorKey: "teacherOfTheMonth",
       header: "Teacher of the Month",
-      cell: ({ row }) => <Switch checked={row.original.teacherOfTheMonth} readOnly />,
+      cell: ({ row }) => (
+        <Switch checked={row.original.teacherOfTheMonth} readOnly />
+      ),
     },
     {
       accessorKey: "isBlock",
@@ -109,21 +112,53 @@ console.log(teachers)
     },
   ];
 
-   const tableData = teachers?.data?.map((t) => ({
+  const mappedData = teachers?.map((t) => ({
     ...t,
     joiningDate: DateConversionWithTime(t.joiningDate),
   }));
-
+ const filteredData = mappedData.filter((user) =>
+    user.name.toLowerCase().includes(search.toLowerCase())
+  )
   return (
     <div className="space-y-6">
-      <DataTable columns={columns} data={tableData} />
+      <div className="mb-4 flex justify-end">
+        <input
+          type="text"
+          placeholder="Search by name..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="px-3 py-2 border rounded-md w-64"
+        />
+      </div>
+      <DataTable columns={columns} data={filteredData} />
+
+      {/* Pagination */}
+      <div className="flex justify-center mt-4 gap-2">
+        <button
+          disabled={page === 1}
+          onClick={() => setPage((prev) => prev - 1)}
+          className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
+        >
+          Prev
+        </button>
+        <span className="px-3 py-1">
+          Page {page} of {totalPages}
+        </span>
+        <button
+          disabled={page === totalPages}
+          onClick={() => setPage((prev) => prev + 1)}
+          className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
+        >
+          Next
+        </button>
+      </div>
 
       {/* Edit Modal */}
       {selectedTeacher && (
         <TeacherModal
           teacher={selectedTeacher}
           onClose={() => setSelectedTeacher(null)}
-          onUpdated={() => setFetchAgain(prev => !prev)}
+          onUpdated={() => setFetchAgain((prev) => !prev)}
         />
       )}
 
