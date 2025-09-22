@@ -1,10 +1,10 @@
-'use client'
+"use client";
 
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-const ReviewCard = () => {
+const ReviewCard = ({ showPage }) => {
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -27,8 +27,6 @@ const ReviewCard = () => {
           `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/reviews/getReview`
         );
 
-    
-
         // Adjust according to API shape
         const apiData = Array.isArray(res.data) ? res.data : res.data.data;
 
@@ -36,8 +34,12 @@ const ReviewCard = () => {
           const style = stylePresets[index % stylePresets.length];
           return { ...review, border: style.border };
         });
+        const filteredData = styledData.filter(
+          (review) => review.showPage === (showPage || "ReviewPage")
+        );
 
-        setReviews(styledData);
+        setReviews(filteredData);
+       
       } catch (error) {
         console.error("Failed to fetch reviews:", error);
       } finally {
@@ -90,9 +92,7 @@ const ReviewCard = () => {
                   </div>
                   <div className="text-white/70 text-sm">
                     {t.location || "Unknown"} &bull;{" "}
-                    {t.date
-                      ? new Date(t.date).toLocaleDateString()
-                      : "No date"}
+                    {t.date ? new Date(t.date).toLocaleDateString() : "No date"}
                   </div>
                 </div>
               </div>

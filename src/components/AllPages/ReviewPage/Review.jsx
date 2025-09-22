@@ -18,7 +18,7 @@ export default function Review() {
           our operations more and more. You can also share your opinion about us
         </p>
       </div>
-<ReviewCard/>
+<ReviewCard showPage={"ReviewPage"}/>
       
       
     </div>

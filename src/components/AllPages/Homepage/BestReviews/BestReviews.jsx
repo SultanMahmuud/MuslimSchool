@@ -71,12 +71,15 @@ const staticReviews = await getStaticReviews();
     ...stylePresets[index % stylePresets.length],
   }));
 
+ const filteredData = reviews.filter(
+          (review) => review.showPage === "HomePage"
+        );
   return (
     <div>
      
       <Marquee direction="right" gradient={false} speed={70}>
         <div className="flex gap-1 px-4">
-          {reviews.map((t, i) => (
+          {filteredData.map((t, i) => (
             <div
               key={i}
               className={`relative w-[340px] md:w-[400px] min-h-[200px] p-[1px] rounded-2xl bg-gradient-to-br ${t.border} transition-transform hover:scale-105 z-10 ${t.rotate} ${t.offsetY} mb-12 mt-24`}
