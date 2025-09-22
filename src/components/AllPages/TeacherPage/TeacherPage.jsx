@@ -162,17 +162,21 @@ export default function TeachersSection() {
           filteredTeachers.map((el) => (
             <div key={el?._id}>
               <Link href={`/teacher/${el?._id}`} className="no-underline">
-                <TeacherCard
-                  depart={el?.Department}
-                  name={el?.name}
-                  joiningDate={el?.joiningDate}
-                  institution={el?.studiedSchool}
-                  experience={el?.teachingExperience}
-                  totalSutdents={el?.perAddressLine}
-                  totalClass={el?.attendance?.length}
-                    image={el?.gender === "Male" ? maleTeacher : femaleteacher}
-                  qualification={el?.qual1}
-                />
+              <TeacherCard
+                
+                image={el?.gender === "Male" ? maleTeacher : femaleteacher}
+                depart={el?.Department || "নাজেরা"}
+                name={el?.name || "yasin"}
+                joiningDate={el?.joiningDate || "23-5-11"}
+                institution={el?.institution}
+                experience={el?.experience}
+                totalSutdents={el?.totalStudents}
+                totalClass={el?.totalClasses || "20"}
+                qualification={el?.qual1}
+                qualification2={el?.qual2}
+                expert={el?.expert}
+                
+              />
               </Link>
             </div>
           ))

@@ -57,10 +57,7 @@ const AwsomeTeachers = async ({ isLoading = false }) => {
           {teachers?.slice(0, 4).map((el) => (
             <Link key={el?._id} href={`teacher/${el._id}`}>
               <TeacherCard
-                // image={
-                //   el?.avatar || "https://img.icons8.com/color/128/teacher.png"
-                // }
-                // if gender is male then show maleTeacher else show femaleTeacher
+                
                 image={el?.gender === "Male" ? maleTeacher : femaleteacher}
                 depart={el?.Department || "নাজেরা"}
                 name={el?.name || "yasin"}
