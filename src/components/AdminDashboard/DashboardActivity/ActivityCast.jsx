@@ -53,7 +53,7 @@ useEffect(() => {
     .finally(checkAllDone);
 
   axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/role/teacher`)
-    .then(res => setTotalTeacher(res.data.data || []))
+    .then(res => setTotalTeacher(res?.data?.pagination?.totalUsers || []))
     .catch(err => console.error("Teacher fetch error:", err))
     .finally(checkAllDone);
 
@@ -68,7 +68,7 @@ useEffect(() => {
     { heading: 'Present Today', count: presentStudent.length }, // 
     { heading: 'Absent Today', count: absentStudent.length }, // Placeholder
     { heading: 'Assignment', count: assignment.length },
-    { heading: 'Total Teacher', count: totalTeacher.length || 0 },
+    { heading: 'Total Teacher', count: totalTeacher || 0 },
     { heading: 'Today Class', count: todayClass.length },
     { heading: 'Registration', count: totalUser },
     { heading: 'Total Class', count: totalClass }, // Placeholder
