@@ -84,7 +84,8 @@ const user = getUserInfo(); // Assuming getUserInfo is a function that retrieves
           email,
           password: data.password,
           number,
-          name: data.name
+          name: data.name,
+          role:"student"
         }
       }).unwrap();
 
