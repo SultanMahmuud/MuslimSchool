@@ -20,11 +20,15 @@ const Registration = () => {
   const limit = 15
   const user = React.useMemo(() => getUserInfo(), [])
 
-  // ✅ Refetch function
+  // ========================================================
+  // 🔁 Fetch student list with pagination
+  // ========================================================
+
   const fetchRegistrations = useCallback(() => {
     if (!user?.token) return
-    const config = { headers: { authorization: `Bearer ${user.token}` } }
+
     setLoading(true)
+    const config = { headers: { authorization: `Bearer ${user.token}` } }
 
     axios
       .get(
@@ -35,16 +39,18 @@ const Registration = () => {
         setRegistrations(res.data.data || [])
         setTotalPages(res.data.pagination?.totalPages || 1)
       })
-      .catch((err) => console.error(err))
+      .catch((err) => console.error("Error fetching students:", err))
       .finally(() => setLoading(false))
-  }, [user, page])
+  }, [user?.token, page])
 
-  // ✅ Fetch on mount and page change
   useEffect(() => {
     fetchRegistrations()
   }, [fetchRegistrations])
 
-  // Map API data
+  // ========================================================
+  // 🔄 Mapped Data for DataTable
+  // ========================================================
+
   const mappedData = registrations.map((user) => ({
     id: user._id,
     name: user?.name || "",
@@ -58,20 +64,25 @@ const Registration = () => {
     days: user?.attDays || "",
     time: user?.attTime || "",
     interestedSubject: user?.subject || "",
+
+    // Open modal
     openLevel: (email) => {
       setLeveledEmail(email)
       setOpenLevel(true)
     },
   }))
 
-  // Apply search filter
+  // ========================================================
+  // 🔍 Search Filter
+  // ========================================================
+
   const filteredData = mappedData.filter((user) =>
-    user.name.toLowerCase().includes(search.toLowerCase())
+    user?.name?.toLowerCase().includes(search.toLowerCase())
   )
 
   return (
     <div className="p-4 w-full">
-      {/* Search input */}
+      {/* Search */}
       <div className="mb-4 flex justify-end">
         <input
           type="text"
@@ -82,31 +93,37 @@ const Registration = () => {
         />
       </div>
 
-     <DataTable columns={columns(fetchRegistrations)} data={filteredData} loading={loading} />
-
+      {/* DataTable */}
+      <DataTable
+        columns={columns(fetchRegistrations)}
+        data={filteredData}
+        loading={loading}
+      />
 
       {/* Pagination */}
-      <div className="flex justify-center mt-4 gap-2">
+      <div className="flex justify-center mt-6 gap-2">
         <button
           disabled={page === 1}
-          onClick={() => setPage((prev) => prev - 1)}
+          onClick={() => setPage((p) => p - 1)}
           className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
         >
           Prev
         </button>
+
         <span className="px-3 py-1">
           Page {page} of {totalPages}
         </span>
+
         <button
           disabled={page === totalPages}
-          onClick={() => setPage((prev) => prev + 1)}
+          onClick={() => setPage((p) => p + 1)}
           className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
         >
           Next
         </button>
       </div>
 
-      {/* Level Modal */}
+      {/* Level Update Modal */}
       <AddLevelModalReg
         open={openLevel}
         setOpen={setOpenLevel}
