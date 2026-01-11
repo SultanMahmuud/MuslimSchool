@@ -9,7 +9,7 @@ import  femaleteacher  from '@/assets/defaultImage/Teacher-2.jpg';
 const getAllTeachers = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/role/teacher`, {
-      cache: 'no-store',
+       cache: "force-cache" 
     });
 
     if (!res.ok) throw new Error("Failed to fetch courses");

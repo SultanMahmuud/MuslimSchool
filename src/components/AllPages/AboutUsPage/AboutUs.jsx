@@ -1,8 +1,14 @@
-
+'use client';
+import dynamic from "next/dynamic";
 import BestReviews from "../Homepage/BestReviews/BestReviews";
-import CommonCourse from "../Homepage/MostPopularCourses/CommonCourse";
+
 import AboutAndDetails from "./AboutAndDetails";
 import Abouttopbar from "./AboutTopBar";
+
+
+const CommonCourse = dynamic(() => import("../Homepage/MostPopularCourses/CommonCourse"), {
+  ssr: false,
+});
 
 const About = () => {
   return (

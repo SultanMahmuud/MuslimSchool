@@ -5,7 +5,7 @@ import CourseSlider from "./CourseSlider";
 const getCourses = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/course`, {
-      cache: 'no-store',
+      
     });
 
     if (!res.ok) return "Failed to fetch courses";

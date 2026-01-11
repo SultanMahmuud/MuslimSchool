@@ -31,6 +31,7 @@ export default function AllCourses() {
       .then((res) => {
        
         setCourses(res?.data.data);
+        
       })
       .finally(() => {
         setLoading(false);
