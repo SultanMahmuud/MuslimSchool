@@ -35,6 +35,7 @@ const Registration = () => {
       .then((res) => {
         const data = Array.isArray(res.data?.data) ? res.data.data : [];
         setRegistrations(data);
+        
         setTotalPages(res.data?.pagination?.totalPages || 1);
       })
       .catch((err) => console.error(err));
